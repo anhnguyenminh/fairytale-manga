@@ -1,11 +1,9 @@
 <template>
-  <div class="home">
-    <navbar-menu></navbar-menu>
+  <div class="login-view">
     <login></login>
-    <register></register>
-    <login-default></login-default>
-    <register-default></register-default>
-    <footer-bottom></footer-bottom>
+<!--    <register></register>-->
+   <login-default></login-default>
+<!--    <register-default></register-default>-->
   </div>
 </template>
 
@@ -25,8 +23,6 @@ export default {
     'register-default': Register,
     'login': Login2,
     'register': Register2,
-    'navbar-menu': Menu,
-    'footer-bottom': Footer
   }
 }
 </script>
