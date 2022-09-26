@@ -47,7 +47,7 @@
                       </div>
 
                       <p class="suggest">Đã có tài khoản?
-                        <a href="/">Đăng nhập tại đây</a>
+                        <router-link :to="{ name: 'LoginView' }" tag="a">Đăng nhập tại đây</router-link>
                       </p>
 
                     </form>
