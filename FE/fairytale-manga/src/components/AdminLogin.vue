@@ -54,15 +54,19 @@ export default {
     }
   },
   methods: {
-
     adminAuthenticate() {
+      let self = this;
       axios.post('http://localhost:3000/api/v1/admins/sessions', {
-        email : this.admin.adminEmail,
-        password : this.admin.adminPwd
+        email: this.admin.adminEmail,
+        password: this.admin.adminPwd
       })
           .then(function (response) {
             console.log(response);
             //get data lately here
+            if (response.status == 200) {
+              self.$router.push({path: "/auth/register"}) //need change router-link to dashboard
+              console.log("Da chay vao den day");
+            }
           })
           .catch(function (error) {
             console.log(error);

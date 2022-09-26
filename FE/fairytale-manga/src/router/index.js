@@ -46,8 +46,20 @@ const routes = [
 
 
             {
-                path: '/register',
+                path: '/auth/register',
                 component: () => import(/* webpackChunkName: "about" */ '@/views/RegisterView'),
+            }
+        ],
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: () => import('@/pages/Homepage'),
+        children: [
+            {
+                path: '/stories',
+                name: 'HomeView',
+                component: () => import('@/views/HomeView'),
             }
         ],
     },
