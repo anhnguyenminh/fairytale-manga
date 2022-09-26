@@ -61,6 +61,7 @@ export default {
       })
           .then(function (response) {
             console.log(response);
+            //get data lately here
           })
           .catch(function (error) {
             console.log(error);
