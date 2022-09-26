@@ -8,7 +8,7 @@
               <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                   <img
-                      src="https://64.media.tumblr.com/4077e14df41f7b17e719c3929c1b569e/a6fab51351c98fe6-22/s1280x1920/13ab0be7795e27b68f44f5b1ace0d23c6eef438c.jpg"
+                      src="https://i.pinimg.com/564x/0f/f3/e1/0ff3e1200fe31d8bb7e1a8e5efadfceb.jpg"
                       alt="register form" class="card-image"/>
                 </div>
                 <div class="col-md-6 col-lg-7 card-details">
@@ -47,7 +47,7 @@
                       </div>
 
                       <p class="suggest">Đã có tài khoản?
-                        <a href="/">Đăng nhập tại đây</a>
+                        <router-link :to="{ name: 'LoginView' }" tag="a">Đăng nhập tại đây</router-link>
                       </p>
 
                     </form>

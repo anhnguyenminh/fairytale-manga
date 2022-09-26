@@ -1,8 +1,7 @@
 <template>
   <div id="homepage-user">
-
     <Menu></Menu>
-    <router-view />
+    <router-view></router-view>
     <Footer></Footer>
 
   </div>

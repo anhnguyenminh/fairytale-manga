@@ -35,8 +35,8 @@
                         <button class="btn btn-dark" type="button">Đăng nhập</button>
                       </div>
 
-                      <p class="mb-5 pb-lg-2 suggest">Chưa có tài khoản? <a
-                          href="#">Đăng kí tại đây</a></p>
+                      <p class="mb-5 pb-lg-2 suggest">Chưa có tài khoản? <router-link :to="{ name: 'RegisterView' }" tag="a"
+                          >Đăng kí tại đây</router-link></p>
 
                     </form>
                   </div>

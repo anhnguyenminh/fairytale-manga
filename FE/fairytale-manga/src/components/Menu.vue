@@ -67,7 +67,7 @@
                     </div>
 
                     <div>
-                      <a href="/"><i class="fas fa-user"></i></a>
+                      <router-link :to="{ name: 'LoginView' }" tag="a"><i class="fas fa-user"></i></router-link>
                     </div>
                     <div>
                       <a href="/"><i class="fas fa-bell"></i></a>
