@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         resources :sessions, only:[:create]
         resources :admins
         # resources :gifts
-        # resources :authors
+        resources :authors
         resources :categories
         # resources :readers, only: [:index]
         # resources :chapters
