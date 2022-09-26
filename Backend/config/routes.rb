@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         resources :admins
         # resources :gifts
         # resources :authors
-        # resources :categories
+        resources :categories
         # resources :readers, only: [:index]
         # resources :chapters
         # resources :comments

@@ -9,7 +9,7 @@ module Api
           if @admin && @admin.valid_password?(params[:password])
             # sign_in(:user, @user)
             render json: {
-              message: 'sucesss',
+              message: 'success',
               # token: ::JsonWebToken.encode({
               #                              sub: 2
               #                            })
