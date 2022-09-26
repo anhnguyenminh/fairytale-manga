@@ -49,7 +49,8 @@ export default {
       admin: {
         adminEmail: '',
         adminPwd: ''
-      }
+      },
+      msg: ''
     }
   },
   methods: {
