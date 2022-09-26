@@ -27,5 +27,6 @@
 /config/master.key
 /config/database.yml
 
+../demo.rb
 
-*.yml
+../config/oah.rb
