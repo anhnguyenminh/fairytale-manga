@@ -1,4 +1,4 @@
-# require 'json_web_token'
+require 'json_web_token'
 
 module Api
   module V1
@@ -10,9 +10,9 @@ module Api
             # sign_in(:user, @user)
             render json: {
               message: 'sucesss',
-              # token: ::JsonWebToken.encode({
-              #                              sub: 2
-              #                            })
+              token: ::JsonWebToken.encode({
+                                           sub: 2
+                                         })
             }
           else
             render json: {
