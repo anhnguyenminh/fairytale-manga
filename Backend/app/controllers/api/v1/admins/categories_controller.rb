@@ -2,7 +2,6 @@ module Api
   module V1
     module Admins
       class CategoriesController < ApplicationController
-        skip_before_action :authenticate_request, only: [:create]
         def create
           @category = Category.new(category_params)
           @category.image.attach(params[:category][:image])
