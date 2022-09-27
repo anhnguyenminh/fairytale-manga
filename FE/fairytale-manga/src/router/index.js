@@ -18,33 +18,31 @@ const routes = [
                 name: 'HomeView',
                 component: () => import('@/views/HomeView'),
             },
-            {
-                path: '/categories/trending-stories',
-                name: 'LoginView',
-                component: LoginView,
-            },
-            {
-                path: '/categories/recommended-stories',
-                name: 'LoginView',
-                component: LoginView,
-            },
-            {
-                path: '/categories',
-                name: 'LoginView',
-                component: LoginView,
-            },
-            {
-                path: '/search-advanced/',
-                name: 'LoginView',
-                component: LoginView,
-            },
+            // {
+            //     path: '/categories/trending-stories',
+            //     name: 'LoginView',
+            //     component: LoginView,
+            // },
+            // {
+            //     path: '/categories/recommended-stories',
+            //     name: 'LoginView',
+            //     component: LoginView,
+            // },
+            // {
+            //     path: '/categories',
+            //     name: 'LoginView',
+            //     component: LoginView,
+            // },
+            // {
+            //     path: '/search-advanced/',
+            //     name: 'LoginView',
+            //     component: LoginView,
+            // },
             {
                 path: '/auth/sign-in',
                 name: 'LoginView',
                 component: LoginView,
             },
-
-
             {
                 path: '/auth/register',
                 component: () => import(/* webpackChunkName: "about" */ '@/views/RegisterView'),
@@ -53,14 +51,23 @@ const routes = [
     },
     {
         path: '/admin',
-        name: 'Admin',
-        component: () => import('@/pages/Homepage'),
+        name: 'AdminDashboard',
+        component: () => import('@/pages/AdminDashboard'),
         children: [
+            {
+                path: '/',
+                component: () => import('@/views/CategoriesView'),
+            },
             {
                 path: '/stories',
                 name: 'HomeView',
                 component: () => import('@/views/HomeView'),
-            }
+            },
+            // {
+            //     path: '/categories',
+            //     name: 'CategoriesView',
+            //     component: () => import('@/views/CategoriesView'),
+            // }
         ],
     },
     {
