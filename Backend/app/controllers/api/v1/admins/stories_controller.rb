@@ -5,6 +5,7 @@ module Api
         def create
           @story = Story.new(story_params)
           @story.image.attach(params[:story][:image])
+          # @story.images.attach(params[:images])
           if @story.save
             render json: {
               message: "success"
@@ -55,7 +56,7 @@ module Api
 
         private
           def story_params
-            params.permit(:name, :author_id)
+            params.permit(:name, :author_id, :image)
           end
       end
     end
