@@ -4,5 +4,6 @@ class CreateJoinTableGiftReader < ActiveRecord::Migration[6.1]
       t.index :reader_id
       t.index :gift_id
       t.timestamps
+    end
   end
 end

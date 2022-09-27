@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_27_021935) do
+ActiveRecord::Schema.define(version: 2022_09_27_023752) do
 
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,6 +41,25 @@ ActiveRecord::Schema.define(version: 2022_09_27_021935) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_chapters_on_story_id"
+  end
+
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.bigint "reader_id", null: false
+    t.string "cmt_in", null: false
+    t.integer "id_where_cmt", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reader_id"], name: "index_comments_on_reader_id"
+  end
+
+  create_table "gift_reader", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reader_id", null: false
+    t.bigint "gift_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gift_id"], name: "index_gift_reader_on_gift_id"
+    t.index ["reader_id"], name: "index_gift_reader_on_reader_id"
   end
 
   create_table "gifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -75,5 +94,6 @@ ActiveRecord::Schema.define(version: 2022_09_27_021935) do
   end
 
   add_foreign_key "chapters", "stories"
+  add_foreign_key "comments", "readers"
   add_foreign_key "stories", "authors"
 end
