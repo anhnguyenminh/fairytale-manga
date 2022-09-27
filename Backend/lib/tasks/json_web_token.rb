@@ -12,4 +12,17 @@ class JsonWebToken
     decoded = JWT.decode(token, SECRET_KEY)[0]
     HashWithIndifferentAccess.new decoded
   end
+
+  def self.authorized_user
+    if decode(token)
+      admin_id = decode(token)[0]
+      @admin = Admin.find_by(id: admin_id)
+    end
+  end
+
+  def authorize
+    render json: {
+      message: "You need to login"
+    }, status: 400 unless authorized_user
+  end
 end
