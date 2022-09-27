@@ -21,81 +21,23 @@
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                      <th class="col-lg-2">STT</th>
-                      <th class="col-lg-6">Category</th>
-                      <th class="col-lg-4">Action</th>
+                      <th class="col-1">ID</th>
+                      <th class="col-4">Title</th>
+                      <th class="col-4">Description</th>
+                      <th class="col-3">Action</th>
                     </tr>
                     </thead>
                     <!-- admin account data -->
                     <tbody id="admAccData">
-                    <tr>
-                      <td class="col-lg-2">1</td>
-                      <td class="col-lg-6">Comedy</td>
-                      <td class="col-lg-4">
-                        <a href="">
+                    <tr v-for="category in categories">
+                      <td class="col-1">{{ category.id}}</td>
+                      <td class="col-4">{{ category.name}}</td>
+                      <td class="col-4">{{ category.description}}</td>
+                      <td class="col-3">
+                        <a href="#">
                           <button>Edit</button>
                         </a>
-                        <a href="">
-                          <button>Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-lg-2">2</td>
-                      <td class="col-lg-6">Historical</td>
-                      <td class="col-lg-4">
-                        <a href="">
-                          <button>Edit</button>
-                        </a>
-                        <a href="">
-                          <button>Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-lg-2">3</td>
-                      <td class="col-lg-6">Mystery</td>
-                      <td class="col-lg-4">
-                        <a href="">
-                          <button>Edit</button>
-                        </a>
-                        <a href="">
-                          <button>Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-lg-2">4</td>
-                      <td class="col-lg-6">Romance</td>
-                      <td class="col-lg-4">
-                        <a href="">
-                          <button>Edit</button>
-                        </a>
-                        <a href="">
-                          <button>Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-lg-2">5</td>
-                      <td class="col-lg-6">Fantasy</td>
-                      <td class="col-lg-4">
-                        <a href="">
-                          <button>Edit</button>
-                        </a>
-                        <a href="">
-                          <button>Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-lg-2">6</td>
-                      <td class="col-lg-6">Action</td>
-                      <td class="col-lg-4">
-                        <a href="">
-                          <button>Edit</button>
-                        </a>
-                        <a href="">
+                        <a href="#">
                           <button>Delete</button>
                         </a>
                       </td>
@@ -117,12 +59,44 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "Categories",
   data() {
-    return {};
+    return {
+      categories: [
+        {
+          id: '',
+          name:'',
+          description:''
+        }
+      ]
+    };
   },
-  method: {}
+  method: {
+  },
+  created() {
+      let self = this;
+      const axios = require('axios').default;
+      axios.get('http://localhost:3000/api/v1/admins/categories/')
+          .then(function (response) {
+            // handle success
+            console.log(response);
+            console.log('Sieu wa da chay duoc vao day roi ne');
+            self.categories = response.data;
+
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+            console.log('Gi ki z ba, sai te le roi !!!')
+          })
+          .finally(function () {
+            // always executed
+          });
+
+  }
 }
 
 </script>
