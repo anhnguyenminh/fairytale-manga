@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       namespace :admins do
         resources :sessions, only:[:create]
         resources :admins
-        # resources :gifts
+        resources :gifts
         resources :authors
         resources :categories
         # resources :readers, only: [:index]
