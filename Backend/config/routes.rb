@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         resources :authors
         resources :categories
         resources :readers, only: [:index]
-        # resources :chapters
+        resources :stories
         # resources :comments
       end
     end
