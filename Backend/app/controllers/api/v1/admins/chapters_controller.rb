@@ -4,6 +4,7 @@ module Api
       class ChaptersController < ApplicationController
         def create
           @chapter = Chapter.new(chapter_params)
+          @story.images.attach(params[:images])
           if @chapter.save
             render json: {
               message: 'success'
@@ -53,7 +54,7 @@ module Api
 
         private
           def chapter_params
-            params.permit(:name, :story_id)
+            params.permit(:name, :story_id, images: [])
           end
       end
     end

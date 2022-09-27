@@ -54,7 +54,7 @@ module Api
 
           private
             def author_params
-              params.permit(:name, :description)
+              params.permit(:name, :description, :image)
             end
       end
 
