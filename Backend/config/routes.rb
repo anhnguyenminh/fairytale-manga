@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :readers
   devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
         resources :gifts
         resources :authors
         resources :categories
-        # resources :readers, only: [:index]
+        resources :readers, only: [:index]
         # resources :chapters
         # resources :comments
       end
