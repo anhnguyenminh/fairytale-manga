@@ -15,9 +15,11 @@ module Api
 						}
 					end
 				end
+
+
 				private
 					def admin_params
-						params.permit(:email, :password)
+						params.permit(:email,:username, :password)
 					end
 			end		
 				
