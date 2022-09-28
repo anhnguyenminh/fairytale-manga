@@ -45,3 +45,4 @@ gem 'jwt'
 gem "ransack"
 gem "serializer"
 gem 'mailtrap'
+
