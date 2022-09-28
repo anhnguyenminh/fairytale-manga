@@ -15,7 +15,28 @@ module Api
 						}
 					end
 				end
-
+				
+				def update
+					@admin = Admin.find(params[:id])
+					if @admin == @current_admin
+						if @admin.update_attributes(admin_params)
+							render json: {
+								message: "Update Successfuly"
+							}
+						else
+							render json: {
+								message: "Update failedx"
+							}
+						end
+					else
+						render json: {
+							message: "Please sign in this user"
+						}
+					end
+						
+				end
+				
+				
 
 				private
 					def admin_params

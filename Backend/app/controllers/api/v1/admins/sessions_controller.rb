@@ -8,7 +8,7 @@ module Api
         def create
           @admin = Admin.find_by( email: params[:email])
           if @admin && @admin.valid_password?(params[:password])
-            # sign_in(:user, @user)
+            sign_in(:admin, @admin)
             render json: {
               message: 'success',
               token: ::JsonWebToken.encode({
