@@ -50,13 +50,13 @@ const routes = [
         ],
     },
     {
-        path: '/admin/:params',
+        path: '/admin/',
         name: 'AdminDashboard',
         component: () => import('@/pages/AdminDashboard'),
         children: [
             {
                 path: '/',
-                component: () => import('@/views/CategoriesView'),
+                component: () => import('@/views/AboutView'),
             },
             {
                 path: 'stories',
@@ -65,9 +65,10 @@ const routes = [
             },
             {
                 path: 'categories',
-                // name: 'CategoriesView',
+                name: 'CategoriesView',
                 component: () => import('@/views/CategoriesView'),
-            }
+            },
+
         ],
     },
     {
