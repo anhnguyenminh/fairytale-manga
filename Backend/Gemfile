@@ -43,5 +43,5 @@ gem 'jwt'
 
 # gem 'wdm'
 gem "ransack"
-
+gem "serializer"
 gem 'mailtrap'
