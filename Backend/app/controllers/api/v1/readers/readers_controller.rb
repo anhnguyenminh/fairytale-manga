@@ -5,6 +5,7 @@ module Api
         def create
           @reader = Reader.new(reader_params)
           if @reader.save
+            @reader.image.attach(params[:reader][:image])
             UserMailer.reader_activation(@reader).deliver_now 
             render json: {
               message: "Wait email message"
@@ -19,7 +20,7 @@ module Api
 
         private 
           def reader_params
-            params.permit(:name, :email, :password, :age, :gender, :phonenumber, :address)
+            params.permit(:name, :email, :password, :age, :gender, :phonenumber, :address, :image)
           end
       end
     end
