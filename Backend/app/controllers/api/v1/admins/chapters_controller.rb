@@ -18,7 +18,8 @@ module Api
         end
 
         def index
-          @chapters = Chapter.all
+          @q = Chapter.ransack(params[:q])
+          @chapters = @q.result(distinct: true)
           render json: @chapters
         end
 
