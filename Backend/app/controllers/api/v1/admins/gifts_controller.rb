@@ -55,7 +55,7 @@ module Api
 
         private
           def gift_params
-            params.permit(:name, :score, :stock)
+            params.permit(:name, :score, :stock, :image)
           end
       end
     end
