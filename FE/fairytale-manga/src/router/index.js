@@ -55,7 +55,7 @@ const routes = [
         component: () => import('@/pages/AdminDashboard'),
         children: [
             {
-                path: '/',
+                path: '',
                 component: () => import('@/views/AboutView'),
             },
             {
