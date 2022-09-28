@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      # namespace :readers do
-      #   resources :readers
+      namespace :readers do
+        resources :readers
       #   resources :sessions, only: [:create]
       #   resources :gifts, only: [:index]
       #   resources :authors, only: [:index]
-      #   resources :account_activations, only: [:edit]
-      # end
+        resources :reader_activations, only: [:edit]
+      end
       namespace :admins do
         resources :sessions, only:[:create]
         resources :admins
