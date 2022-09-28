@@ -18,16 +18,16 @@ const routes = [
                 name: 'HomeView',
                 component: () => import('@/views/HomeView'),
             },
-            // {
-            //     path: '/categories/trending-stories',
-            //     name: 'LoginView',
-            //     component: LoginView,
-            // },
-            // {
-            //     path: '/categories/recommended-stories',
-            //     name: 'LoginView',
-            //     component: LoginView,
-            // },
+            {
+                path: '/categories/trending-stories',
+                name: 'LoginView',
+                component: LoginView,
+            },
+            {
+                path: '/categories/recommended-stories',
+                name: 'LoginView',
+                component: LoginView,
+            },
             // {
             //     path: '/categories',
             //     name: 'LoginView',
@@ -50,7 +50,7 @@ const routes = [
         ],
     },
     {
-        path: '/admin',
+        path: '/admin/:params',
         name: 'AdminDashboard',
         component: () => import('@/pages/AdminDashboard'),
         children: [
@@ -59,15 +59,15 @@ const routes = [
                 component: () => import('@/views/CategoriesView'),
             },
             {
-                path: '/stories',
+                path: 'stories',
                 name: 'HomeView',
                 component: () => import('@/views/HomeView'),
             },
-            // {
-            //     path: '/categories',
-            //     name: 'CategoriesView',
-            //     component: () => import('@/views/CategoriesView'),
-            // }
+            {
+                path: 'categories',
+                // name: 'CategoriesView',
+                component: () => import('@/views/CategoriesView'),
+            }
         ],
     },
     {
