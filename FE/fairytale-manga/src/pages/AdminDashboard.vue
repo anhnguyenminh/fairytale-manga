@@ -8,8 +8,6 @@
         <Copyright></Copyright>
       </div>
     </div>
-
-
   </div>
 </template>
 

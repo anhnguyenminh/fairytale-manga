@@ -13,7 +13,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
-                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Categories</h6>
+                <h5 class="m-0 font-weight-bold text-primary text-uppercase">Categories</h5>
                 <a class="btn btn-success" href="register.html" role="button">Create category</a>
               </div>
               <div class="card-body">
