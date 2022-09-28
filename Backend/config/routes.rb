@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       #   resources :gifts, only: [:index]
       #   resources :authors, only: [:index]
         resources :reader_activations, only: [:edit]
+        get '/header/', to: 'partials#header'
       end
       namespace :admins do
         resources :sessions, only:[:create]

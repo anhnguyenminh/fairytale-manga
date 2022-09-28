@@ -18,8 +18,9 @@ module Api
         end
 
         def index
-          @categories = Category.all
-          render json: @categories
+          # @categories = Category.all
+          # render json: @categories
+          show_categories
         end
 
         def edit
