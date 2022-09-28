@@ -138,7 +138,7 @@
   display: flex;
   padding: 0.65rem 1rem;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .menu-item:hover {
