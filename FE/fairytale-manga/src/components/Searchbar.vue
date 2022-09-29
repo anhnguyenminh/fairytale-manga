@@ -16,8 +16,9 @@
 nav.search-navbar {
   justify-content: flex-end !important;
 }
-.search-box{
-  width: 30% ;
-  margin: 0.5rem ;
+
+.search-box {
+  width: 30%;
+  margin: 0.5rem;
 }
 </style>
