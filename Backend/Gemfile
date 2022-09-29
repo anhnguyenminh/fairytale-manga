@@ -45,4 +45,5 @@ gem 'jwt'
 gem "ransack"
 gem "serializer"
 gem 'mailtrap'
-
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
