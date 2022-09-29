@@ -60,11 +60,30 @@ const routes = [
             },
             {
                 path: 'stories',
-                name: 'HomeView',
-                component: () => import('@/views/HomeView'),
+                component: () => import('@/views/StoriesView'),
             },
             {
                 path: 'categories',
+                name: 'CategoriesView',
+                component: () => import('@/views/CategoriesView'),
+            },
+            {
+                path: 'authors',
+                name: 'AuthorsView',
+                component: () => import('@/views/AuthorsView'),
+            },
+            {
+                path: 'readers',
+                name: 'ReadersView',
+                component: () => import('@/views/ReadersView'),
+            },
+            // {
+            //     path: 'gifts',
+            //     name: 'CategoriesView',
+            //     component: () => import('@/views/GiftsView'),
+            // },
+            {
+                path: 'profile-admin',
                 name: 'CategoriesView',
                 component: () => import('@/views/CategoriesView'),
             },

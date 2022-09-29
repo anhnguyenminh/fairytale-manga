@@ -4,10 +4,6 @@
       <div class="content-wrapper d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
-          <!-- Topbar -->
-
-          <!-- End of Topbar -->
-
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- DataTales Example -->
@@ -24,21 +20,20 @@
                       <th class="col-1">ID</th>
                       <th class="col-4">Title</th>
                       <th class="col-4">Description</th>
-                      <th class="col-3">Action</th>
+                      <th class="col-3 col-last">Actions</th>
                     </tr>
                     </thead>
-                    <!-- admin account data -->
                     <tbody id="admAccData">
-                    <tr v-for="category in categories">
-                      <td class="col-1">{{ category.id}}</td>
-                      <td class="col-4">{{ category.name}}</td>
-                      <td class="col-4">{{ category.description}}</td>
-                      <td class="col-3">
+                    <tr v-for="category in Categories.categories" :key="category.id">
+                      <td class="col-1">{{ category.id }}</td>
+                      <td class="col-4">{{ category.name }}</td>
+                      <td class="col-4">{{ category.description }}</td>
+                      <td class="col-3 actions">
                         <a href="#">
-                          <button>Edit</button>
+                          <button class="btn btn-info">Edit</button>
                         </a>
                         <a href="#">
-                          <button>Delete</button>
+                          <button class="btn btn-danger">Delete</button>
                         </a>
                       </td>
                     </tr>
@@ -59,47 +54,42 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import {createNamespacedHelpers} from "vuex";
+const {mapActions} = createNamespacedHelpers("categories");
 
 export default {
   name: "Categories",
   data() {
-    return {
-      categories: [
-        {
-          id: '',
-          name:'',
-          description:''
-        }
-      ]
-    };
+    return {};
   },
-  method: {
+  methods: {
+    ...mapActions([
+      'getCategoryData'
+    ])
   },
-  created() {
-      let self = this;
-      const axios = require('axios').default;
-      axios.get('http://localhost:3000/api/v1/admins/categories/')
-          .then(function (response) {
-            // handle success
-            console.log(response);
-            console.log('Sieu wa da chay duoc vao day roi ne');
-            self.categories = response.data;
-
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-            console.log('Gi ki z ba, sai te le roi !!!')
-          })
-          .finally(function () {
-            // always executed
-          });
-
+  computed: {
+    Categories() {
+      console.log(this.$store.state.categories)
+      return this.$store.state.categories
+    }
+  },
+  async mounted() {
+    await this.getCategoryData();
   }
 }
 
 </script>
 <style scoped>
+.col-last {
+  text-align: right;
+  padding-right: 17px;
+}
 
+.actions {
+  text-align: right;
+}
+
+.actions button {
+  margin: 0 5px;
+}
 </style>

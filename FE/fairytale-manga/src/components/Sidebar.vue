@@ -44,24 +44,24 @@
               </div>
               <div>Readers</div>
             </div>
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-comments"></i>
-              </div>
-              <div>Comment</div>
-            </div>
+<!--            <div class="menu-item">-->
+<!--              <div class="icon-item">-->
+<!--                <i class="fas fa-comments"></i>-->
+<!--              </div>-->
+<!--              <div>Comment</div>-->
+<!--            </div>-->
             <div class="menu-item">
               <div class="icon-item">
                 <i class="fas fa-gift"></i>
               </div>
               <div>Gifts</div>
             </div>
-<!--            <div class="menu-item">-->
-<!--              <div class="icon-item">-->
-<!--                <i class="fas fa-sign-out-alt"></i>-->
-<!--              </div>-->
-<!--              <div>Logout</div>-->
-<!--            </div>-->
+            <div class="menu-item">
+              <div class="icon-item">
+                <i class="fas fa-sign-out-alt"></i>
+              </div>
+              <div>Logout</div>
+            </div>
           </div>
         </div>
         <div class="navbar-footer" >
