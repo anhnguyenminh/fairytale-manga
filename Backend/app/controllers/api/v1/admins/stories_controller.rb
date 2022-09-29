@@ -6,19 +6,15 @@ module Api
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
           if @story.save
-            # @categories = story_category_params
-            story_category_params.each do |c|
-              # @category = Category.find(c)
-              # render json: @category
+            @categories = params[:categories]
+            @categories.each do |c|
+              @category = Category.find(c)
               @story.category << Category.find(c)
-              # render json: c
-            end
-            
-           
+            end  
             render json: {
-              message: "success"
+              message: "Success"
             }
-          else
+           else
             render json: {
               message: "failed",
               validation: @story.errors.messages
@@ -67,9 +63,6 @@ module Api
             params.permit(:name, :author_id, :image)
           end
 
-          def story_category_params 
-            params.permit(categories: [])
-          end
       end
     end
   end

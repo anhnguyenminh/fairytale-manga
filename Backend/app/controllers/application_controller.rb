@@ -16,18 +16,18 @@ class ApplicationController < ActionController::API
   # end
 
   private
-    # def authenticate_request
-    #   header = request.headers["Authorization"]
-    #   if header
-    #     header = header.split(" ").last 
-    #     decode = JsonWebToken.decode(header)
-    #     @current_admin= Admin.find_by(id: decode[:sub])
-    #   else
-    #     render json: {
-    #       message: "You need to login"
-    #     }
-    #   end
-    # end
+    def authenticate_request
+      header = request.headers["Authorization"]
+      if header
+        header = header.split(" ").last 
+        decode = JsonWebToken.decode(header)
+        @current_admin= Admin.find_by(id: decode[:sub])
+      else
+        render json: {
+          message: "You need to login"
+        }
+      end
+    end
 
     
 end
