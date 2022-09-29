@@ -2,7 +2,7 @@
   <div>
     <nav class="sidebar-nav">
       <div class="container">
-        <div class="wrapped-navbar">
+<!--        <div class="wrapped-navbar">-->
           <div class="navbar-header">
             <div class="app-logo">
               <img src="https://qmanga3.net/image/logo-while.png" alt="app-logo"/>
@@ -63,15 +63,15 @@
               <div>Logout</div>
             </div>
           </div>
-        </div>
-        <div class="navbar-footer" >
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-sign-out-alt"></i>
-            </div>
-            <div>Logout</div>
-          </div>
-        </div>
+<!--        </div>-->
+<!--        <div class="navbar-footer" >-->
+<!--          <div class="menu-item">-->
+<!--            <div class="icon-item">-->
+<!--              <i class="fas fa-sign-out-alt"></i>-->
+<!--            </div>-->
+<!--            <div>Logout</div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </nav>
   </div>
@@ -94,7 +94,8 @@
   justify-content: space-between;
 }
 
-.wrapped-navbar .navbar-header {
+/*.wrapped-navbar */
+.navbar-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -155,7 +156,7 @@
   padding-left: 15px;
 }
 
-.navbar-footer{
-  margin-bottom: 0.5rem;
-}
+/*.navbar-footer{*/
+/*  margin-bottom: 0.5rem;*/
+/*}*/
 </style>
