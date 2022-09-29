@@ -22,7 +22,10 @@ module Api
           show_categories
         end
 
-        def edit
+      
+        
+
+        def show
           @category = Category.find(params[:id])
           render json: @category
         end

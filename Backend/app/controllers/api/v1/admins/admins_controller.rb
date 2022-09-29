@@ -2,7 +2,7 @@ module Api
 	module V1
 		module Admins
 			class AdminsController < ApplicationController
-        # skip_before_action :authenticate_request, only: [:create]				
+        skip_before_action :authenticate_request, only: [:create]				
 				def create
 					@admin = Admin.new(admin_params)
 					if @admin.save
@@ -19,13 +19,13 @@ module Api
 				def update
 					@admin = Admin.find(params[:id])
 					if @admin == @current_admin
-						if @admin.update_attributes(admin_params)
+						if @admin.update(admin_params)
 							render json: {
 								message: "Update Successfuly"
 							}
 						else
 							render json: {
-								message: "Update failedx"
+								message: "Update failed"
 							}
 						end
 					else
@@ -40,7 +40,7 @@ module Api
 
 				private
 					def admin_params
-						params.permit(:email,:username, :password)
+						params.permit(:email,:username, :encrypted_password)
 					end
 			end		
 				
