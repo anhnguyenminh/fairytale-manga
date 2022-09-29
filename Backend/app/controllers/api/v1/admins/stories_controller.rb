@@ -6,14 +6,17 @@ module Api
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
           if @story.save
-            @categories = story_category_params
-            @categories.each do |category|
-              Category_story.create(story_id: @story.id, category_id: category)
+            # @categories = story_category_params
+            story_category_params.each do |c|
+              # @category = Category.find(c)
+              # render json: @category
+              @story.category << Category.find(c)
+              # render json: c
             end
-            # render json: @categories
+            
+           
             render json: {
               message: "success"
-              # @categories
             }
           else
             render json: {
