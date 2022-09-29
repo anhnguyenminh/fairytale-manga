@@ -4,7 +4,6 @@ module Api
       class CategoriesController < ApplicationController
         def create
           @category = Category.new(category_params)
-          @category.image.attach(params[:category][:image])
           if @category.save
             render json: {
               message: 'success'

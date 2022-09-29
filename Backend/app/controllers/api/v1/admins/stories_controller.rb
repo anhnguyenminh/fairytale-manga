@@ -4,11 +4,16 @@ module Api
       class StoriesController < ApplicationController
         def create
           @story = Story.new(story_params)
-          @story.image.attach(params[:story][:image])
-          # @story.images.attach(params[:images])
+          @story.image.attach(params[:image])
           if @story.save
+            @categories = story_category_params
+            @categories.each do |category|
+              Category_story.create(story_id: @story.id, category_id: category)
+            end
+            # render json: @categories
             render json: {
               message: "success"
+              # @categories
             }
           else
             render json: {
@@ -57,6 +62,10 @@ module Api
         private
           def story_params
             params.permit(:name, :author_id, :image)
+          end
+
+          def story_category_params 
+            params.permit(categories: [])
           end
       end
     end
