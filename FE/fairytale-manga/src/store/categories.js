@@ -7,14 +7,7 @@ Vue.use(Vuex)
 export default {
     namespaced: true,
     state: {
-        // categories: [
-        //     {
-        //         id: '',
-        //         name: '',
-        //         description: ''
-        //     }
-        // ]
-        categories: []
+        categories: [],
     },
     actions: {
         async getCategoryData({commit}) {
