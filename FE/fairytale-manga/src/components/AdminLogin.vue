@@ -41,6 +41,8 @@
 
 <script>
 import axios from "axios";
+import {createNamespacedHelpers} from "vuex";
+const {maps} = createNamespacedHelpers("categories");
 
 export default {
   name: 'AdminLogin',
@@ -64,8 +66,9 @@ export default {
             console.log(response);
             //get data lately here
             if (response.status == 200) {
-              self.$router.push({path: "/admin/categories"}) //need change router-link to dashboard
+              self.$router.push({path: "/admin/categories"})
               console.log("Da chay vao den day roi hihi");
+              self.$store.commit("setToken", response.data.token)
             }
           })
           .catch(function (error) {

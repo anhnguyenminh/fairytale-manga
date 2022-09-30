@@ -8,12 +8,17 @@ import categories from "@/store/categories";
 export default new Vuex.Store({
   namespaced: true,
   state: {
-    categories,
     token:''
   },
   getters: {
   },
   mutations: {
+    setToken(state, newToken){
+      state.token = newToken
+    },
+    clearToken(state){
+      state.token =''
+    }
   },
   actions: {
   },
