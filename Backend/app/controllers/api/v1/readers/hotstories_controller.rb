@@ -3,11 +3,11 @@ module Api
     module Readers
       class HotstoriesController < ApplicationController
         def hot_day
-          a = 1
+          time_range = (Time.now.midnight - 1.week)..Time.now.midnight
           @stories = Story.joins(:category)
                           .select('categories.*, COUNT(stories.id) as book_count')
                           .group('categories.id')
-                          .where('stories.id'=> a)
+                          .where('stories.created_at'=> time_range)
                           .order("book_count DESC")
           render json: @stories
         end
