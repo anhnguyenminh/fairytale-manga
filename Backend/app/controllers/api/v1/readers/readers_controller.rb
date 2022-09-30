@@ -2,6 +2,7 @@ module Api
   module V1
     module Readers
       class ReadersController < ApplicationController
+        skip_before_action :authenticate_request, only: [:create]
         def create
           @reader = Reader.new(reader_params)
           if @reader.save

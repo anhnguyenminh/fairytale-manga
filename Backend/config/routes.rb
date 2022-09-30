@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :readers do
         resources :readers
-      #   resources :sessions, only: [:create]
+        resources :sessions, only: [:create]
       #   resources :gifts, only: [:index]
       #   resources :authors, only: [:index]
         resources :reader_activations, only: [:edit]

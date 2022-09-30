@@ -22,6 +22,7 @@ class ApplicationController < ActionController::API
         header = header.split(" ").last 
         decode = JsonWebToken.decode(header)
         @current_admin= Admin.find_by(id: decode[:sub])
+        @current_reader = Reader.find_by(id: decode[:sub])
       else
         render json: {
           message: "You need to login"
