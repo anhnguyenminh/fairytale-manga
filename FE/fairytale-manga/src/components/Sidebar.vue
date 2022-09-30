@@ -2,82 +2,93 @@
   <div>
     <nav class="sidebar-nav">
       <div class="container">
-<!--        <div class="wrapped-navbar">-->
-          <div class="navbar-header">
-            <div class="app-logo">
-              <img src="https://qmanga3.net/image/logo-while.png" alt="app-logo"/>
-            </div>
+        <!--        <div class="wrapped-navbar">-->
+        <div class="navbar-header">
+          <div class="app-logo">
+            <img src="https://qmanga3.net/image/logo-while.png" alt="app-logo"/>
           </div>
+        </div>
 
-          <div class="navbar-avt">
-            <div>
-              <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
-            </div>
-            <div>
-              <div class="admin-name">Adam Straub</div>
-              <div class="position">Admin</div>
-            </div>
+        <div class="navbar-avt">
+          <div>
+            <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
           </div>
+          <div>
+            <div class="admin-name">Adam Straub</div>
+            <div class="position">Admin</div>
+          </div>
+        </div>
 
-          <div class="navbar-main-content" >
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-books"></i>
-              </div>
-              <div>Stories</div>
+        <div class="navbar-main-content">
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-books"></i>
             </div>
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-th-large"></i>
-              </div>
-              <div>Categories</div>
-            </div>
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-marker"></i>
-              </div>
-              <div>Authors</div>
-            </div>
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-book-reader"></i>
-              </div>
-              <div>Readers</div>
-            </div>
-<!--            <div class="menu-item">-->
-<!--              <div class="icon-item">-->
-<!--                <i class="fas fa-comments"></i>-->
-<!--              </div>-->
-<!--              <div>Comment</div>-->
-<!--            </div>-->
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-gift"></i>
-              </div>
-              <div>Gifts</div>
-            </div>
-            <div class="menu-item">
-              <div class="icon-item">
-                <i class="fas fa-sign-out-alt"></i>
-              </div>
-              <div>Logout</div>
-            </div>
+            <div>Stories</div>
           </div>
-<!--        </div>-->
-<!--        <div class="navbar-footer" >-->
-<!--          <div class="menu-item">-->
-<!--            <div class="icon-item">-->
-<!--              <i class="fas fa-sign-out-alt"></i>-->
-<!--            </div>-->
-<!--            <div>Logout</div>-->
-<!--          </div>-->
-<!--        </div>-->
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-th-large"></i>
+            </div>
+            <div>Categories</div>
+          </div>
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-marker"></i>
+            </div>
+            <div>Authors</div>
+          </div>
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-book-reader"></i>
+            </div>
+            <div>Readers</div>
+          </div>
+          <!--            <div class="menu-item">-->
+          <!--              <div class="icon-item">-->
+          <!--                <i class="fas fa-comments"></i>-->
+          <!--              </div>-->
+          <!--              <div>Comment</div>-->
+          <!--            </div>-->
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div>Gifts</div>
+          </div>
+          <div class="menu-item">
+            <div class="icon-item">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div @click="logout">Logout</div>
+          </div>
+        </div>
+        <!--        </div>-->
+        <!--        <div class="navbar-footer" >-->
+        <!--          <div class="menu-item">-->
+        <!--            <div class="icon-item">-->
+        <!--              <i class="fas fa-sign-out-alt"></i>-->
+        <!--            </div>-->
+        <!--            <div>Logout</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
     </nav>
   </div>
 </template>
 <script>
 
+export default {
+  methods:{
+    logout(){
+      this.$store.commit("clearToken");
+      this.$router.push({path:"/admin/login"});
+    }
+  }
+
+
+
+}
 </script>
 <style scoped>
 .sidebar-nav {

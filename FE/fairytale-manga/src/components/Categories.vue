@@ -10,7 +10,8 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Categories</h5>
-                <a class="btn btn-success" href="register.html" role="button">Create category</a>
+                <router-link class="btn btn-success" :to="{ name: 'AddNewCategory' }" role="button">Create category
+                </router-link>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -65,11 +66,12 @@ export default {
   methods: {
     ...mapActions([
       'getCategoryData'
-    ])
+    ]),
   },
   computed: {
     Categories() {
       console.log(this.$store.state.categories)
+      console.log(this.$store.state.token)
       return this.$store.state.categories
     }
   },
