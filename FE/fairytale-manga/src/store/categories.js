@@ -13,7 +13,7 @@ export default {
         async getCategoryData({commit}) {
             const CategoriesQuery = {
                 method: 'GET',
-                url: 'http://localhost:3000/api/v1/admins/categories/'
+                url: 'admins/categories'
             }
             await axios(CategoriesQuery).then(res => {
                 this.categories = res.data

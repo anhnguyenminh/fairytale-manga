@@ -88,7 +88,7 @@ const routes = [
                 component: () => import('@/views/CategoriesView'),
             },
             {
-                path: '/categories/add-new',
+                path: 'categories/add-new',
                 name: 'AddNewCategory',
                 component: () => import('@/views/AddNewCategory'),
             },

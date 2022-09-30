@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard-admin">
-    <div class="row">
+    <div class="row" >
       <Sidebar class="col-lg-2 col-md-3 left-sidebar"></Sidebar>
       <div class="col-lg-10 col-md-9 right-content">
         <Searchbar></Searchbar>
