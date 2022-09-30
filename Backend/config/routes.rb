@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       #   resources :authors, only: [:index]
         resources :reader_activations, only: [:edit]
         get '/header/', to: 'partials#header'
+        get '/hotday/', to: 'hotstories#hot_day'
       end
       namespace :admins do
         resources :sessions, only:[:create]
