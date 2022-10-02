@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="width: 60%; height: auto; margin-bottom: 2rem;">
     <div class="d-flex align-items-center ">
-      <b-button style="background-color: #f1f1f1">
+      <b-button style="background-color: #f1f1f1" @click="goBack">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </b-button>
       <h2 style="margin: 0 1.2rem ;">Create category</h2>
@@ -34,7 +34,7 @@
         </div>
       </b-form>
     </div>
-    <b-card class="mt-3" header="Form Data Preview">
+    <b-card class="mt-3" header="Preview Data">
       <p class="m-0 font-weight-bold">Category: {{ form.name }}</p>
       <p class="m-0 font-weight-bold">Description: {{ form.description }}</p>
     </b-card>
@@ -58,12 +58,12 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      alert("Submit data completed!")
+      this.$router.push({path: "/admin/categories"})
     },
     onReset(event) {
       event.preventDefault()
       // Reset our form values
-
       this.form.name = ''
       this.form.description = ''
       // Trick to reset/clear native browser form validation state
@@ -71,6 +71,9 @@ export default {
       this.$nextTick(() => {
         this.show = true
       })
+    },
+    goBack(){
+      this.$router.push({path: "/admin/categories"})
     }
   }
 }
