@@ -35,7 +35,7 @@
       </b-form>
     </div>
     <b-card class="mt-3" header="Preview Data">
-      <p class="m-0 font-weight-bold">Category: {{ form.name }}</p>
+      <p class="m-0 font-weight-bold">Author's name: {{ form.name }}</p>
       <p class="m-0 font-weight-bold">Description: {{ form.description }}</p>
     </b-card>
   </div>
