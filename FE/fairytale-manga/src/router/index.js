@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginView from '@/views/LoginView'
-import RegisterView from '@/views/RegisterView'
-import LoginAdminView from '@/views/LoginAdminView'
+import LoginView from '@/views/User/LoginView'
+import RegisterView from '@/views/User/RegisterView'
+import LoginAdminView from '@/views/Admin/LoginAdminView'
 
 
 Vue.use(VueRouter)
@@ -16,7 +16,7 @@ const routes = [
             {
                 path: '/',
                 name: 'HomeView',
-                component: () => import('@/views/HomeView'),
+                component: () => import('@/views/User/HomeView'),
             },
             {
                 path: '/categories/trending-stories',
@@ -45,7 +45,7 @@ const routes = [
             },
             {
                 path: '/auth/register',
-                component: () => import(/* webpackChunkName: "about" */ '@/views/RegisterView'),
+                component: () => import(/* webpackChunkName: "about" */ '@/views/User/RegisterView'),
             }
         ],
     },
@@ -60,22 +60,22 @@ const routes = [
             },
             {
                 path: 'stories',
-                component: () => import('@/views/StoriesView'),
+                component: () => import('@/views/Admin/StoriesView'),
             },
             {
                 path: 'categories',
                 name: 'CategoriesView',
-                component: () => import('@/views/CategoriesView'),
+                component: () => import('@/views/Admin/CategoriesView'),
             },
             {
                 path: 'authors',
                 name: 'AuthorsView',
-                component: () => import('@/views/AuthorsView'),
+                component: () => import('@/views/Admin/AuthorsView'),
             },
             {
                 path: 'readers',
                 name: 'ReadersView',
-                component: () => import('@/views/ReadersView'),
+                component: () => import('@/views/Admin/ReadersView'),
             },
             // {
             //     path: 'gifts',
@@ -85,12 +85,12 @@ const routes = [
             {
                 path: 'profile-admin',
                 name: 'CategoriesView',
-                component: () => import('@/views/CategoriesView'),
+                component: () => import('@/views/Admin/CategoriesView'),
             },
             {
                 path: 'categories/add-new',
                 name: 'AddNewCategory',
-                component: () => import('@/views/AddNewCategory'),
+                component: () => import('@/views/Admin/AddNewCategory'),
             },
 
         ],
