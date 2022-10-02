@@ -10,7 +10,7 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Authors</h5>
-                <a class="btn btn-success" href="register.html" role="button">Create author</a>
+                <router-link class="btn btn-success" :to="{ path: 'authors/add-new' }" role="button">Create author</router-link>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

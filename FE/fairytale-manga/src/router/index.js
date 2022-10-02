@@ -73,6 +73,10 @@ const routes = [
                 component: () => import('@/views/Admin/AuthorsView'),
             },
             {
+                path: 'authors/add-new',
+                component: () => import('@/views/Admin/AddNewAuthor'),
+            },
+            {
                 path: 'readers',
                 name: 'ReadersView',
                 component: () => import('@/views/Admin/ReadersView'),
