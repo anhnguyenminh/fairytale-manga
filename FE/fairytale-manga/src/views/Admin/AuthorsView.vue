@@ -20,7 +20,7 @@
                       <th class="col-1">ID</th>
                       <th class="col-4">Author</th>
                       <th class="col-4">Description</th>
-                      <th class="col-3">Actions</th>
+                      <th class="col-3 col-last">Actions</th>
                     </tr>
                     </thead>
                     <!-- admin account data -->
@@ -29,12 +29,12 @@
                       <td class="col-1">{{ author.id}}</td>
                       <td class="col-4">{{ author.name}}</td>
                       <td class="col-4">{{ author.description}}</td>
-                      <td class="col-3">
+                      <td class="col-3 actions">
                         <a href="#">
-                          <button>Edit</button>
+                          <button class="btn btn-info">Edit</button>
                         </a>
                         <a href="#">
-                          <button>Delete</button>
+                          <button class="btn btn-danger">Delete</button>
                         </a>
                       </td>
                     </tr>
@@ -79,7 +79,7 @@ export default {
         .then(function (response) {
           // handle success
           console.log(response);
-          console.log('Sieu wa da chay duoc vao day roi ne');
+          console.log('TAC GIA');
           self.authors = response.data;
 
         })
@@ -98,4 +98,16 @@ export default {
 </script>
 <style scoped>
 
+.col-last {
+  text-align: right;
+  padding-right: 17px;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions button {
+  margin: 0 5px;
+}
 </style>

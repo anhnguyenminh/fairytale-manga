@@ -60,7 +60,7 @@ const routes = [
             },
             {
                 path: 'stories',
-                component: () => import('@/views/Admin/StoriesView'),
+                component: () => import('@/views/Admin/GiftsView'),
             },
             {
                 path: 'categories',
@@ -77,11 +77,16 @@ const routes = [
                 name: 'ReadersView',
                 component: () => import('@/views/Admin/ReadersView'),
             },
-            // {
-            //     path: 'gifts',
-            //     name: 'CategoriesView',
-            //     component: () => import('@/views/GiftsView'),
-            // },
+            {
+                path: 'gifts',
+                name: 'CategoriesView',
+                component: () => import('@/views/Admin/GiftsView'),
+            },
+            {
+                path: 'gifts/add-new',
+                name: 'AddNewCategory',
+                component: () => import('@/views/Admin/AddNewGift'),
+            },
             {
                 path: 'profile-admin',
                 name: 'CategoriesView',
@@ -92,6 +97,7 @@ const routes = [
                 name: 'AddNewCategory',
                 component: () => import('@/views/Admin/AddNewCategory'),
             },
+
 
         ],
     },

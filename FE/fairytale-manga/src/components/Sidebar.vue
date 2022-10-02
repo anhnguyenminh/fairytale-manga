@@ -79,13 +79,12 @@
 <script>
 
 export default {
-  methods:{
-    logout(){
+  methods: {
+    logout() {
       this.$store.commit("clearToken");
-      this.$router.push({path:"/admin/login"});
+      this.$router.push({path: "/admin/login"});
     }
   }
-
 
 
 }
