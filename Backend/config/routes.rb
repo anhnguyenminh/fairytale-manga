@@ -14,6 +14,8 @@ Rails.application.routes.draw do
         get '/hotday/', to: 'hotstories#hot_day'
         get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'
+        get '/read/', to: 'histories#read_story'
+        resources :histories, only: [:show]
       end
       namespace :admins do
         resources :sessions, only:[:create]

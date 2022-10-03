@@ -19,8 +19,7 @@ module Api
 
         def index
           @q = Chapter.ransack(params[:q])
-          @chaps = @q.result(distinct: true)
-          @chapters = @chaps.where('story_id'=> params[:id])
+          @chapters = @q.result(distinct: true)
           render json: @chapters
         end
 
