@@ -9,9 +9,8 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
-                <h5 class="m-0 font-weight-bold text-primary text-uppercase">Categories</h5>
-                <router-link class="btn btn-success" :to="{ path: 'categories/add-new' }" role="button">Create category
-                </router-link>
+                <h5 class="m-0 font-weight-bold text-primary text-uppercase">Authors</h5>
+                <router-link class="btn btn-success" :to="{ path: 'authors/add-new' }" role="button">Create author</router-link>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -19,16 +18,17 @@
                     <thead>
                     <tr>
                       <th class="col-1">ID</th>
-                      <th class="col-4">Title</th>
+                      <th class="col-4">Author</th>
                       <th class="col-4">Description</th>
                       <th class="col-3 col-last">Actions</th>
                     </tr>
                     </thead>
+                    <!-- admin account data -->
                     <tbody id="admAccData">
-                    <tr v-for="category in Categories.categories" :key="category.id">
-                      <td class="col-1">{{ category.id }}</td>
-                      <td class="col-4">{{ category.name }}</td>
-                      <td class="col-4">{{ category.description }}</td>
+                    <tr v-for="author in authors" :key="author.id">
+                      <td class="col-1">{{ author.id}}</td>
+                      <td class="col-4">{{ author.name}}</td>
+                      <td class="col-4">{{ author.description}}</td>
                       <td class="col-3 actions">
                         <a href="#">
                           <button class="btn btn-info">Edit</button>
@@ -55,33 +55,49 @@
   </div>
 </template>
 <script>
-import {createNamespacedHelpers} from "vuex";
-const {mapActions} = createNamespacedHelpers("categories");
+import axios from "axios";
 
 export default {
   name: "Categories",
   data() {
-    return {};
+    return {
+      authors: [
+        {
+          id: '',
+          name:'',
+          description:''
+        }
+      ]
+    };
   },
-  methods: {
-    ...mapActions([
-      'getCategoryData'
-    ]),
+  method: {
   },
-  computed: {
-    Categories() {
-      console.log(this.$store.state.categories)
-      console.log(this.$store.state.token)
-      return this.$store.state.categories
-    }
-  },
-  async mounted() {
-    await this.getCategoryData();
+  created() {
+    let self = this;
+    const axios = require('axios').default;
+    axios.get('http://localhost:3000/api/v1/admins/authors/')
+        .then(function (response) {
+          // handle success
+          console.log(response);
+          console.log('TAC GIA');
+          self.authors = response.data;
+
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+          console.log('Gi ki z ba, sai te le roi !!!')
+        })
+        .finally(function () {
+          // always executed
+        });
+
   }
 }
 
 </script>
 <style scoped>
+
 .col-last {
   text-align: right;
   padding-right: 17px;
