@@ -3,7 +3,7 @@ module Api
   module V1
     module Readers
       class ReaderActivationsController < ApplicationController
-        skip_before_action :authenticate_request, only: [:edit]
+        # skip_before_action :authenticate_request, only: [:edit]
         def edit
           reader = Reader.find_by(email: params[:email])
           if reader && !reader.activated? 

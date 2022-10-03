@@ -16,6 +16,8 @@ Rails.application.routes.draw do
         get '/recommend/', to: 'recommends#recommend_story'
         get '/read/', to: 'histories#read_story'
         resources :histories, only: [:show]
+        resources :stories
+        get '/list/', to: 'notifications#list'
       end
       namespace :admins do
         resources :sessions, only:[:create]

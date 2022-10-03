@@ -2,14 +2,14 @@ module Api
   module V1
     module Readers
       class SessionsController < ApplicationController
-        skip_before_action :authenticate_request, only: [:create]
+        # skip_before_action :authenticate_request, only: [:create]
         def create
           reader = Reader.find_by(email: params[:email])
           if reader && reader.valid_password?(params[:password])
             render json: {
               message: "success",
               token: ::JsonWebToken.encode({
-                                            sub: reader.id
+                                            reader_id: reader.id
               })
             }
           else
