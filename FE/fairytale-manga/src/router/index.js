@@ -60,7 +60,7 @@ const routes = [
             },
             {
                 path: 'stories',
-                component: () => import('@/views/Admin/GiftsView'),
+                component: () => import('@/views/Admin/StoriesView'),
             },
             {
                 path: 'categories',

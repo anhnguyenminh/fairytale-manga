@@ -67,13 +67,13 @@ export default {
             //get data lately here
             if (response.status == 200) {
               self.$router.push({path: "/admin/categories"})
-              console.log("Da chay vao den day roi hihi");
+              console.log("You are here");
               self.$store.commit("setToken", response.data.token)
             }
           })
           .catch(function (error) {
             console.log(error);
-            alert("Co gi do sai sai, kiem tra lai di, baka !!!");
+            alert("There is something wrong, please check again !!!");
           });
     }
 
