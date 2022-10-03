@@ -10,7 +10,8 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Gifts</h5>
-                <router-link class="btn btn-success" :to="{ path: 'gifts/add-new' }" role="button">Add new gift</router-link>
+                <router-link class="btn btn-success" :to="{ path: 'gifts/add-new' }" role="button">Add new gift
+                </router-link>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -25,12 +26,12 @@
                     </tr>
                     </thead>
                     <!-- admin account data -->
-                    <tbody >
-                    <tr v-for="gift in gifts" :key="gift.id">
-                      <td class="col-1">{{ gift.id}}</td>
-                      <td class="col-4">{{ gift.name}}</td>
-                      <td class="col-2">{{ gift.score}}</td>
-                      <td class="col-2">{{ gift.stock}}</td>
+                    <tbody>
+                    <tr v-for="gift in Gifts.gifts" :key="gift.id">
+                      <td class="col-1">{{ gift.id }}</td>
+                      <td class="col-4">{{ gift.name }}</td>
+                      <td class="col-2">{{ gift.score }}</td>
+                      <td class="col-2">{{ gift.stock }}</td>
                       <td class="col-3 actions">
                         <a href="#">
                           <button class="btn btn-info">Edit</button>
@@ -57,44 +58,30 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import {createNamespacedHelpers} from "vuex";
+
+const {mapActions} = createNamespacedHelpers("gifts");
+// import {mapActions} from  'vuex'
 
 export default {
-  name: "Gifts",
+  // name: "Gifts",.
   data() {
-    return {
-      gifts: [
-        {
-          id: '',
-          name:'',
-          score:'',
-          stock:''
-        }
-      ]
-    };
+    return {};
   },
-  method: {
+  mounted() {
+     this.getGift();
   },
-  created() {
-    let self = this;
-    const axios = require('axios').default;
-    axios.get('http://localhost:3000/api/v1/admins/gifts')
-        .then(function (response) {
-          // handle success
-          console.log(response);
-          console.log('QUA TANG');
-          self.authors = response.data;
-
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-          console.log('Gi ki z ba, sai te le roi !!!')
-        })
-        .finally(function () {
-          // always executed
-        });
-
+  methods: {
+    ...mapActions([
+      'getGift'
+    ])
+  },
+  computed: {
+    Gifts() {
+      console.log(this.$store.state.gifts)
+      console.log(this.$store.state.token)
+      return this.$store.state.gifts
+    }
   }
 }
 
