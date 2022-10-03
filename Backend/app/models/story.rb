@@ -4,4 +4,18 @@ class Story < ApplicationRecord
   has_one_attached :image
   has_and_belongs_to_many :category, join_table: 'category_story'
   validates :name, :author_id , presence: true
+
+  scope :get_hot_stories, ->time_range{joins(:category) 
+                                      .select('stories.*, COUNT(categories.id) as category_count')
+                                      .group('stories.id')
+                                      .where('stories.created_at'=> time_range)
+                                      .order("category_count DESC")}
+
+  def self.hot_story(time_range)
+    @stories = Story.joins(:category)
+                          .select('categories.*, COUNT(stories.id) as book_count')
+                          .group('categories.id')
+                          .where('stories.created_at'=> time_range)
+                          .order("book_count DESC")
+  end
 end
