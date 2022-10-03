@@ -7,6 +7,7 @@ Vue.use(Vuex)
 import categories from "@/store/categories";
 import gifts from "@/store/gifts";
 import authors from "@/store/authors";
+import readers from "@/store/readers";
 
 const dataState = createPersistedState({
     paths: ['token']
@@ -28,6 +29,6 @@ export default new Vuex.Store({
     },
     actions: {},
     modules: {
-        categories, authors,gifts
+        categories, authors, gifts, readers
     }, plugins: [dataState]
 })
