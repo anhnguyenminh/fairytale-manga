@@ -25,7 +25,7 @@
                     </thead>
                     <!-- admin account data -->
                     <tbody id="admAccData">
-                    <tr v-for="author in authors" :key="author.id">
+                    <tr v-for="author in Authors.authors" :key="author.id">
                       <td class="col-1">{{ author.id}}</td>
                       <td class="col-4">{{ author.name}}</td>
                       <td class="col-4">{{ author.description}}</td>
@@ -55,43 +55,29 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import {createNamespacedHelpers} from "vuex";
+const {mapActions} = createNamespacedHelpers("authors");
+
 
 export default {
-  name: "Categories",
+  name: "AuthorsView",
   data() {
-    return {
-      authors: [
-        {
-          id: '',
-          name:'',
-          description:''
-        }
-      ]
-    };
+    return { };
   },
-  method: {
+  methods: {
+    ...mapActions([
+      'getAuthorsData'
+    ]),
   },
-  created() {
-    let self = this;
-    const axios = require('axios').default;
-    axios.get('http://localhost:3000/api/v1/admins/authors/')
-        .then(function (response) {
-          // handle success
-          console.log(response);
-          console.log('TAC GIA');
-          self.authors = response.data;
-
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-          console.log('Gi ki z ba, sai te le roi !!!')
-        })
-        .finally(function () {
-          // always executed
-        });
-
+ computed:{
+    Authors(){
+      console.log(this.$store.state.authors)
+      console.log(this.$store.state.token)
+      return this.$store.state.authors
+    }
+  },
+  async mounted(){
+    await this.getAuthorsData();
   }
 }
 
