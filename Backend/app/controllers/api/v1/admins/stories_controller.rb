@@ -23,11 +23,11 @@ module Api
         end
 
         def index
-          @stories = Story.all
+          @stories = Story.paginate(page: params[:page], per_page: 10)
           render json: @stories
         end
 
-        def edit
+        def show
           @story = Story.find(params[:id])
           render json: @story
         end

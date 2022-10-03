@@ -18,7 +18,7 @@ module Api
         end
 
         def index
-          @gifts = Gift.all
+          @gifts = Gift.paginate(page: params[:page], per_page: 10)
           render json: @gifts
         end
 

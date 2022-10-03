@@ -17,7 +17,7 @@ module Api
         end
 
         def index
-          @categories =  Category.paginate(page: params[:page], per_page: 5)
+          @categories =  Category.paginate(page: params[:page], per_page: 10)
           #Ex:- :limit => 40
           render json: @categories
           # show_categories

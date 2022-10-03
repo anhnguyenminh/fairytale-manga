@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         resources :reader_activations, only: [:edit]
         get '/header/', to: 'partials#header'
         get '/hotday/', to: 'hotstories#hot_day'
-        get '/getcat/', to: 'reads#getcat'
+        get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'
       end
       namespace :admins do

@@ -3,12 +3,8 @@ module Api
     module Admins
       class ReadersController < ApplicationController
         def index
-          @q = Reader.ransack(params[:q])
-          @readers = @q.result(distinct: true)
-          # @readers = Reader.all
+          @readers = Reader.where('activated'=> true)
           render json: @readers
-
-          # render 'abc'
         end
 
         # private
