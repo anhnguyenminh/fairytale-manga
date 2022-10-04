@@ -20,12 +20,12 @@ const routes = [
             },
             {
                 path: '/categories/trending-stories',
-                name: 'LoginView',
+                // name: 'LoginView',
                 component: LoginView,
             },
             {
                 path: '/categories/recommended-stories',
-                name: 'LoginView',
+                // name: 'LoginView',
                 component: LoginView,
             },
             // {
@@ -83,17 +83,17 @@ const routes = [
             },
             {
                 path: 'gifts',
-                name: 'CategoriesView',
+                name: 'GiftsView',
                 component: () => import('@/views/Admin/GiftsView'),
             },
             {
                 path: 'gifts/add-new',
-                name: 'AddNewCategory',
+                name: 'AddNewGift',
                 component: () => import('@/views/Admin/AddNewGift'),
             },
             {
                 path: 'profile-admin',
-                name: 'CategoriesView',
+                // name: 'CategoriesView',
                 component: () => import('@/views/Admin/CategoriesView'),
             },
             {
