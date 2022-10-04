@@ -35,6 +35,20 @@ Rails.application.routes.draw do
         resources :stories, shallow: true do
           resources :comments, only: [:create],  module: 'stories'
         end
+
+        resources :likes, only: [:create, :index, :destroy]
+
+        resources :authors, shallow: true do
+          resources :likes, only: [:create],  module: 'authors'
+        end
+
+        resources :comments, shallow: true do
+          resources :likes, only: [:create],  module: 'comments'
+        end
+
+        resources :stories, shallow: true do
+          resources :likes, only: [:create],  module: 'stories'
+        end
       end
       namespace :admins do
         resources :sessions, only:[:create]

@@ -27,10 +27,10 @@ module Api
           render json: @likes
         end
 
-        def update
-          @like = like.find(params[:id])
-          if @comment.reader_id == current_reader.id
-            @comment.update(like: 0)
+        def destroy
+          @like = Like.find(params[:id])
+          if @like.reader_id == current_reader.id
+            @like.destroy
           else
             render json: {
               message: "You can't dislike "
