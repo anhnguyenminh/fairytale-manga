@@ -1,14 +1,14 @@
 module Api
   module V1
     module Readers
-      class CommentsController < ApplicationController
-        before_action :set_commentable, only: [ :create]
+      class LikesController < ApplicationController
+        before_action :set_liketable, only: [ :create]
         def create
-          @comment = @commentable.comments.new(comment_params) do |c|
+          @like = @liketable.comments.new do |c|
             c.readers = current_reader
           end
           render json: {
-            message: "Create Successfuly"
+            message: "You 're liked that"
           }
         end
 
@@ -40,21 +40,6 @@ module Api
           end
         end
 
-        def destroy
-          @comment = Comment.find(params[:id])
-          if @comment.reader_id == current_reader.id
-            @comment.destroy
-          else
-            render json: {
-              message: "You can't delete this comment"
-            }
-          end
-        end
-
-        private
-          def comment_params
-            params.permit(:content)
-          end
       end
     end
   end
