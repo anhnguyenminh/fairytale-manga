@@ -28,6 +28,33 @@ module Api
             message: "Something wrong. Please Check Again"
           }
         end
+
+        def update
+          @comment = Comment.find(params[:id])
+          if @comment.reader_id == current_reader.id
+            @comment.update(content: :content)
+          else
+            render json: {
+              message: "You can't update this comment"
+            }
+          end
+        end
+
+        def delete
+          @comment = Comment.find(params[:id])
+          if @comment.reader_id == current_reader.id
+            @comment.destroy
+          else
+            render json: {
+              message: "You can't delete this comment"
+            }
+          end
+        end
+
+        private
+          def comment_params
+            params.permit(:content)
+          end
       end
     end
   end
