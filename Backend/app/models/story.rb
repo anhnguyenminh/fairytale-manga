@@ -5,8 +5,8 @@ class Story < ApplicationRecord
   has_and_belongs_to_many :category, join_table: 'category_story'
   validates :name, :author_id , presence: true
   has_many :chapter
-  has_many :comment as: :commentable
-  has_many :like as: :liketable
+  has_many :comment, as: :commentable
+  has_many :like, as: :liketable
 
   def self.hot_story(time_range)
     @stories = Story.joins(:category)

@@ -22,11 +22,16 @@ module Api
           elsif params[:story_id].present?
             @comments = Story.find(params[:story_id]).comment
           else
-            @comments = nil
+            render json: {
+              message: "Something wrong. Please Check Again"
+            }
           end
-          render json: {
-            message: "Something wrong. Please Check Again"
-          }
+          #@comments = @commentable.comments
+          if @comments
+            render json: @comments
+          end
+
+          
         end
 
         def update

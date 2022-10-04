@@ -14,28 +14,26 @@ module Api
 
         def index
           if params[:author_id].present?
-            @comments = Author.find(params[:author_id]).comment
+            @likes = Author.find(params[:author_id]).like.length
           elsif params[:chapter_id].present?
-            @comments = Chapter.find(params[:chapter_id]).comment
+            @likes = Chapter.find(params[:chapter_id]).like.length
           elsif params[:comment_id].present?
-            @comments = Comment.find(params[:comment_id]).comment
+            @likes = Comment.find(params[:comment_id]).like.length
           elsif params[:story_id].present?
-            @comments = Story.find(params[:story_id]).comment
+            @likes = Story.find(params[:story_id]).like.length
           else
-            @comments = nil
+            @likes = nil
           end
-          render json: {
-            message: "Something wrong. Please Check Again"
-          }
+          render json: @likes
         end
 
         def update
-          @comment = Comment.find(params[:id])
+          @like = like.find(params[:id])
           if @comment.reader_id == current_reader.id
-            @comment.update(content: :content)
+            @comment.update(like: 0)
           else
             render json: {
-              message: "You can't update this comment"
+              message: "You can't dislike "
             }
           end
         end
