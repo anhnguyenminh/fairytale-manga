@@ -44,7 +44,7 @@
 <script>
 
 export default {
-  name: 'AddNewCategory',
+  name: 'AddNewAuthor',
   data() {
     return {
       form: {

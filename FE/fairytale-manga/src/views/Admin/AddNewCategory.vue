@@ -70,10 +70,7 @@ export default {
           .catch((error) => {
             // error.response.status Check status code
           })
-      //     .finally(() => {
-      //   //Perform action in always
-      // });
-    },
+     },
     onReset(event) {
       event.preventDefault()
       // Reset our form values

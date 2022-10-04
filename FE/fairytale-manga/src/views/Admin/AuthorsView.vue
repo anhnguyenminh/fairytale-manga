@@ -34,7 +34,7 @@
                           <button class="btn btn-info">Edit</button>
                         </a>
                         <a href="#">
-                          <button class="btn btn-danger">Delete</button>
+                          <button class="btn btn-danger" @click="deleteData(author.id)">Delete</button>
                         </a>
                       </td>
                     </tr>
@@ -56,6 +56,7 @@
 </template>
 <script>
 import {createNamespacedHelpers} from "vuex";
+import axios from "@/plugins/axios";
 const {mapActions} = createNamespacedHelpers("authors");
 
 
@@ -68,6 +69,25 @@ export default {
     ...mapActions([
       'getAuthorsData'
     ]),
+    deleteData(id){
+      //need to check if author dont compose any story
+      //check if admin create typo author
+      if (confirm('Are you sure you want to delete this author?')) {
+        // Save it!
+        axios.delete(`http://localhost:3000/api/v1/admins/authors/${id}`)
+            .then(response => {
+              console.log();
+              this.getAuthorsData();
+            })
+            .catch(function (error) {
+              console.log(error.response)
+            })
+        console.log('Thing was deleted.');
+      } else {
+        // Do nothing!
+        console.log('Thing was not deleted to the database.');
+      }
+    }
   },
  computed:{
     Authors(){
