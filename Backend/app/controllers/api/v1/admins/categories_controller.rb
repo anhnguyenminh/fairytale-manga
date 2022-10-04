@@ -49,7 +49,8 @@ module Api
         
         def destroy
           @category = Category.find(params[:id])
-          if @category.destroy
+          if @category.story.destroy_all
+            @category.destroy
             render json: {
               message: "destroy successfuly"
             }

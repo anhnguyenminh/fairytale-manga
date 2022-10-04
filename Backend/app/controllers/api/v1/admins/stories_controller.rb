@@ -46,7 +46,8 @@ module Api
         
         def destroy
           @story = Story.find(params[:id])
-          if @story.destroy
+          if @story.chapter.destroy_all && @story.category.destroy_all
+            @story.destroy
             render json: {
               message: "destroy successfuly"
             }
