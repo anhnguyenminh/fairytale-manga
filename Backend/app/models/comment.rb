@@ -1,4 +1,4 @@
 class Comment < ApplicationRecord
-  validates :title, presence: true, length: {maximum:255}
-  validates :reader, presence :true
+  belongs_to :commentable, polymorphic: true
+  has_many: :comment as: :commentable
 end
