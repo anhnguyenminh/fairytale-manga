@@ -18,26 +18,36 @@ class ApplicationController < ActionController::API
   private
     def authenticate_request_admin
       header = request.headers["Authorization"]
-      header = header.split(" ").last 
-      decode = JsonWebToken.decode(header)
-      @current_admin= Admin.find_by(id: decode[:user_id])
-      if !@current_admin
-        render json: {
-          message: "You need to login"
-        }
+      if header
+        header = header.split(" ").last 
+        decode = JsonWebToken.decode(header)
+        @current_admin= Admin.find_by(id: decode[:user_id])
+        if !@current_admin 
+          @message = "You aren't admin"
+        end
+      else
+        @message = "You need login"
       end
+      render json: {
+        message: @message
+      }
     end
 
     def authenticate_request_reader
-      header = request.headers["Authorization"]     
-      header = header.split(" ").last 
-      decode = JsonWebToken.decode(header)
-      @current_reader = Reader.find_by(id: decode[:reader_id])
-      if !@current_reader
-        render json: {
-          message: "You need to login"
-        }
+      header = request.headers["Authorization"]
+      if header
+        header = header.split(" ").last 
+        decode = JsonWebToken.decode(header)
+        @current_reader= Admin.find_by(id: decode[:reader_id])
+        if !@current_reader 
+          @message = "You aren't reader"
+        end
+      else
+        @message = "You need login"
       end
+      render json: {
+        message: @message
+      }
     end
     
 end
