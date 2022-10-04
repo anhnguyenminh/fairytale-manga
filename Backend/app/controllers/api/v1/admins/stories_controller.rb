@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class StoriesController < ApplicationController
+      class StoriesController < AdminappController
         def create
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
