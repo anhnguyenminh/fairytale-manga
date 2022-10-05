@@ -4,7 +4,7 @@ module Api
       class Authors::LikesController < LikesController
           private 
           def set_liketable
-            @liketable = Author.find(params[:id])
+            @liketable = Author.find(params[:author_id])
           end
       end
     end

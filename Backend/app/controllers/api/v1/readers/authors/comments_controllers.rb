@@ -4,7 +4,7 @@ module Api
       class Authors::CommentsController < CommentsController
           private 
           def set_commentable
-            @commentable = Author.find(params[:id])
+            @commentable = Author.find(params[:author_id])
           end
       end
     end

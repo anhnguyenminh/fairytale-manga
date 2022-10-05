@@ -4,7 +4,7 @@ module Api
       class Chapters::CommentsController < CommentsController
           private 
           def set_commentable
-            @commentable = Chapter.find(params[:id])
+            @commentable = Chapter.find(params[:chapter_id])
           end
       end
     end

@@ -2,28 +2,24 @@ module Api
   module V1
     module Readers
       class LikesController < ReaderappController
-        before_action :set_liketable, only: [ :create]
+        before_action :set_liketable, only: [ :create, :index]
         def create
-          @like = @liketable.likes.new do |c|
-            c.readers = current_reader
+          @like = @liketable.like.new do |c|
+            c.reader = current_reader
           end
-          render json: {
-            message: "You 're liked that"
-          }
+          if @like.save
+            render json: {
+              message: "You 're liked that"
+            }
+          else
+            render json: {
+              message: "u can't like that"
+            }
+          end
         end
 
         def index
-          if params[:author_id].present?
-            @likes = Author.find(params[:author_id]).like.length
-          elsif params[:chapter_id].present?
-            @likes = Chapter.find(params[:chapter_id]).like.length
-          elsif params[:comment_id].present?
-            @likes = Comment.find(params[:comment_id]).like.length
-          elsif params[:story_id].present?
-            @likes = Story.find(params[:story_id]).like.length
-          else
-            @likes = nil
-          end
+          @likes = @liketable.like.length
           render json: @likes
         end
 

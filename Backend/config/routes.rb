@@ -55,11 +55,11 @@ Rails.application.routes.draw do
         resources :likes, only: [:create, :index, :destroy]
 
         resources :authors, shallow: true do
-          resources :likes, only: [:create],  module: 'authors'
+          resources :likes, only: [:create, :index],  module: 'authors'
         end
 
         resources :comments, shallow: true do
-          resources :likes, only: [:create],  module: 'comments'
+          resources :likes, only: [:create, :index],  module: 'comments'
         end
 
         resources :stories, shallow: true do
