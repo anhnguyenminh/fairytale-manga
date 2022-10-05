@@ -3,7 +3,7 @@ module Api
     module Readers
       class ScoresController < ReaderappController
         def increase_score
-          score = params[:score]
+          @gift = Gift.find_by(name: params[:gift_name])
           current_reader.update_attribute(:score, current_reader.score+ score)
           render json: {
             message: "Chuc mung ban da hoan thanh nhiem vu"

@@ -25,31 +25,31 @@ Rails.application.routes.draw do
 
   #     Notification      
         get '/list/', to: 'notifications#list_story'
-        
-        
+  #     Recommend Story      
+        get '/recommend/', to: 'recommends#recommend_story'
         get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'
         get '/read/', to: 'histories#read_story'
         resources :histories, only: [:show]
         post '/read_story/:id', to: 'histories#read_story'
         resources :stories
-        # get '/list/', to: 'notifications#list'
+        
         resources :comments, only: [:create, :index, :update, :destroy]
 
         resources :authors, shallow: true do
-          resources :comments, only: [:create],  module: 'authors'
+          resources :comments, only: [:create, :index],  module: 'authors'
         end
 
         resources :chapters, shallow: true do
-          resources :comments, only: [:create],  module: 'chapters'
+          resources :comments, only: [:create, :index],  module: 'chapters'
         end
 
         resources :comments, shallow: true do
-          resources :comments, only: [:create],  module: 'comments'
+          resources :comments, only: [:create, :index],  module: 'comments'
         end
 
         resources :stories, shallow: true do
-          resources :comments, only: [:create],  module: 'stories'
+          resources :comments, only: [:create, :index],  module: 'stories'
         end
 
         resources :likes, only: [:create, :index, :destroy]
@@ -63,7 +63,7 @@ Rails.application.routes.draw do
         end
 
         resources :stories, shallow: true do
-          resources :likes, only: [:create],  module: 'stories'
+          resources :likes, only: [:create, :index],  module: 'stories'
         end
       end
       namespace :admins do
