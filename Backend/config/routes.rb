@@ -5,11 +5,24 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :readers do
+  #     Sign_up and Sign_in
         resources :readers
         resources :sessions, only: [:create]
         resources :reader_activations, only: [:edit]
+        
+  #     Get all categories for partials
         get '/header/', to: 'partials#header'
+
+  #     Search hot stories      
         get '/hotday/', to: 'hotstories#hot_day'
+        get '/hotweek/', to: 'hotstories#hot_week'
+        get '/hotmonth/', to: 'hotstories#hot_month'
+
+  #     Show Stories And Read story
+        resources :histories, only: [:show] #show stories
+        post '/read_story/:id', to: 'histories#read_story' #read stories
+        # get '/chapter'
+
         get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'
         get '/read/', to: 'histories#read_story'

@@ -24,11 +24,7 @@ module Api
 
         def show
           @story = Story.find(params[:id])
-          @chapters = @story.chapter
-          render json: {
-            story: @story,
-            chapters: @chapters
-          }
+          render json: @story, each_serializer: StorySerializer
         end
 
         def show_chapter

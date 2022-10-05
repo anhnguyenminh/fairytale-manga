@@ -9,10 +9,10 @@ class Story < ApplicationRecord
   has_many :like, as: :liketable
 
   def self.hot_story(time_range)
-    @stories = Story.joins(:category)
-                          .select('categories.*, COUNT(stories.id) as book_count')
-                          .group('categories.id')
+    @stories = Story.joins(:reader)
+                          .select('stories.*, COUNT(readers.id) as read_count')
+                          .group('stories.id')
                           .where('stories.created_at'=> time_range)
-                          .order("book_count DESC")
+                          .order("read_count DESC")
   end
 end
