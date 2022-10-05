@@ -23,14 +23,15 @@ class ApplicationController < ActionController::API
         decode = JsonWebToken.decode(header)
         @current_admin= Admin.find_by(id: decode[:admin_id])
         if !@current_admin 
-          @message = "You aren't admin"
+          render json: {
+            message: "You aren't admin"
+          }
         end
       else
-        @message = "You need login"
+        render json: {
+          message: "You need login"
+        }
       end
-      render json: {
-        message: @message
-      }
     end
 
     def authenticate_request_reader

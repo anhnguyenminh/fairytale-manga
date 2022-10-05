@@ -1,7 +1,25 @@
 module Api
 	module V1
 		module Admins
-			class AdminsController < AdminappController	
+			class AdminsController < AdminappController
+				skip_before_action :authenticate_request_admin, only: [:create]
+
+				def create
+			
+						@admin  = Admin.new(admin_params)
+						if @admin.save
+							render json: {
+								message: 'success'
+							}
+						else
+							render json:{
+								message: 'failed',
+								validation: @category.errors.messages
+							}, status: 400
+						end
+					
+				end
+
 				def update
 					@admin = Admin.find(params[:id])
 					if @admin.update(admin_params)
