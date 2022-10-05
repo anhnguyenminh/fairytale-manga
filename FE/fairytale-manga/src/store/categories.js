@@ -13,7 +13,7 @@ export default {
         async getCategoryData({commit}) {
             const CategoriesQuery = {
                 method: 'GET',
-                url: 'admins/categories'
+                url: 'admins/categories?page=2'
                 // url: 'admins/categories?page=2' for paginate
             }
             await axios(CategoriesQuery).then(res => {
@@ -22,23 +22,7 @@ export default {
             }).catch(err => {
                 console.log(err)
             })
-        },
-        async createNewCategory({commit}) {
-            const DataQuery = {
-                method: 'POST',
-                url: 'admins/categories',
-                params: {
-                    // categories
-                }
-            }
-            await axios(DataQuery).then(res => {
-                // this.categories = res.data
-                console.log("You are here!")
-                commit('setCategories', this.categories)
-            }).catch(err => {
-                console.log(err)
-            })
-        },
+        }
     },
     getters: {}
     ,

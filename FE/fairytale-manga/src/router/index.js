@@ -65,7 +65,17 @@ const routes = [
             {
                 path: 'categories',
                 name: 'CategoriesView',
-                component: () => import('@/views/Admin/CategoriesView'),
+                component: () => import('@/views/Admin/CategoriesView')
+            },
+            {
+                path: 'categories/add-new',
+                name: 'AddNewCategory',
+                component: () => import('@/views/Admin/AddNewCategory'),
+            },
+            {
+                path: 'categories/update/:id',
+                name: 'UpdateCategory',
+                component: () => import('@/views/Admin/UpdateCategory'),
             },
             {
                 path: 'authors',
@@ -96,11 +106,7 @@ const routes = [
                 // name: 'CategoriesView',
                 component: () => import('@/views/Admin/CategoriesView'),
             },
-            {
-                path: 'categories/add-new',
-                name: 'AddNewCategory',
-                component: () => import('@/views/Admin/AddNewCategory'),
-            },
+
 
 
         ],

@@ -8,7 +8,7 @@
           <div class="container-fluid">
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
-              <div class="card-header py-3" >
+              <div class="card-header py-3">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Readers</h5>
               </div>
               <div class="card-body">
@@ -30,14 +30,14 @@
                     <!-- admin account data -->
                     <tbody>
                     <tr v-for="reader in Readers.readers" :key="reader.id">
-                      <td class="col-1">{{ reader.id}}</td>
-                      <td class="col-1">{{ reader.email}}</td>
-                      <td class="col-1">{{ reader.name}}</td>
-                      <td class="col-1">{{ reader.age}}</td>
-                      <td class="col-1">{{ reader.gender}}</td>
-                      <td class="col-1">{{ reader.phonenumber}}</td>
-                      <td class="col-2">{{ reader.address}}</td>
-                      <td class="col-1">{{ reader.score}}</td>
+                      <td class="col-1">{{ reader.id }}</td>
+                      <td class="col-1">{{ reader.email }}</td>
+                      <td class="col-1">{{ reader.name }}</td>
+                      <td class="col-1">{{ reader.age }}</td>
+                      <td class="col-1">{{ checkGender(reader.gender) }}</td>
+                      <td class="col-1">{{ reader.phonenumber }}</td>
+                      <td class="col-2">{{ reader.address }}</td>
+                      <td class="col-1">{{ reader.score }}</td>
                       <td class="col-2 actions">
                         <a href="#">
                           <button class="btn btn-info">Edit</button>
@@ -65,26 +65,38 @@
 </template>
 <script>
 import {createNamespacedHelpers} from "vuex";
+
 const {mapActions} = createNamespacedHelpers("readers");
 
 export default {
   name: "ReadersView",
   data() {
-    return { };
+    return {
+    };
   },
   methods: {
     ...mapActions([
       'getReadersData'
     ]),
+    checkGender(gender) {
+      if (gender == false) {
+        console.log("get male")
+        return "Male"
+      } else {
+        console.log("get female")
+        return "Female"
+      }
+      return gender
+    }
   },
-  computed:{
-    Readers(){
+  computed: {
+    Readers() {
       console.log(this.$store.state.readers)
       console.log(this.$store.state.token)
       return this.$store.state.readers
     }
   },
-  async mounted(){
+  async mounted() {
     await this.getReadersData();
   }
 }

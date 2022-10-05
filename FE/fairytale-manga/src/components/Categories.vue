@@ -10,7 +10,7 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Categories</h5>
-                <router-link class="btn btn-success" :to="{ path: 'categories/add-new' }" role="button">Create category
+                <router-link class="btn btn-success" :to="{ path: '/admin/categories/add-new' }" role="button">Create category
                 </router-link>
               </div>
               <div class="card-body">
@@ -24,17 +24,17 @@
                       <th class="col-3 col-last">Actions</th>
                     </tr>
                     </thead>
-                    <tbody id="admAccData">
+                    <tbody>
                     <tr v-for="category in Categories.categories" :key="category.id">
                       <td class="col-1">{{ category.id }}</td>
                       <td class="col-4">{{ category.name }}</td>
                       <td class="col-4">{{ category.description }}</td>
                       <td class="col-3 actions">
-                        <a href="#">
+                        <router-link :to="{path:`/admin/categories/update/${category.id}`}">
                           <button class="btn btn-info">Edit</button>
-                        </a>
+                        </router-link>
                         <a href="#">
-                          <button class="btn btn-danger">Delete</button>
+                          <button class="btn btn-danger" @click="deleteData(category.id)">Delete</button>
                         </a>
                       </td>
                     </tr>
@@ -57,6 +57,7 @@
 <script>
 import {createNamespacedHelpers} from "vuex";
 const {mapActions} = createNamespacedHelpers("categories");
+import axios from "@/plugins/axios";
 
 export default {
   name: "Categories",
@@ -67,6 +68,25 @@ export default {
     ...mapActions([
       'getCategoryData'
     ]),
+    //delete data
+
+    deleteData(id){
+      if (confirm('Are you sure you want to delete this item?')) {
+        // Save it!
+        axios.delete(`http://localhost:3000/api/v1/admins/categories/${id}`)
+            .then(response => {
+              console.log();
+              this.getCategoryData();
+            })
+            .catch(function (error) {
+              console.log(error.response)
+            })
+        console.log('Thing was deleted.');
+      } else {
+        // Do nothing!
+        console.log('Thing was not deleted to the database.');
+      }
+    }
   },
   computed: {
     Categories() {
