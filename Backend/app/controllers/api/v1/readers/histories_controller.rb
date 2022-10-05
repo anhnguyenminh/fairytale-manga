@@ -3,19 +3,19 @@ module Api
     module Readers
       class HistoriesController < ReaderappController
         def read_story
-          @s = Story.find(params[:id])
+          # @s = Story.find(params[:id])
           @story = Story.joins(:reader)
                           .select('stories.*')
-                          .where('readers.id'=> current_reader.id)
+                          .where('readers.id'=> @current_reader.id)
                           .where('stories.id'=> params[:id])
-          if @story
-            current_reader.story.find(params[:id]).delete
-            current_reader.story<< Story.find(params)
+          if !@story
+            @current_reader.story.find(params[:id]).delete
+            @current_reader.story<< Story.find(params[:id])
             render json: {
               message: "ok"
             }
           else
-            current_reader.story<< Story.find(params)
+            @current_reader.story<< Story.find(params[:id])
             render json: {
               message: "ok"
             }
@@ -24,7 +24,11 @@ module Api
 
         def show
           @story = Story.find(params[:id])
-          render json: @story
+          @chapters = @story.chapter
+          render json: {
+            story: @story,
+            chapters: @chapters
+          }
         end
 
         def show_chapter

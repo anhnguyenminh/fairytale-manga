@@ -7,8 +7,6 @@ Rails.application.routes.draw do
       namespace :readers do
         resources :readers
         resources :sessions, only: [:create]
-      #   resources :gifts, only: [:index]
-      #   resources :authors, only: [:index]
         resources :reader_activations, only: [:edit]
         get '/header/', to: 'partials#header'
         get '/hotday/', to: 'hotstories#hot_day'
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
         get '/recommend/', to: 'recommends#recommend_story'
         get '/read/', to: 'histories#read_story'
         resources :histories, only: [:show]
+        post '/read_story/:id', to: 'histories#read_story'
         resources :stories
         get '/list/', to: 'notifications#list'
         resources :comments, only: [:create, :index, :update, :destroy]

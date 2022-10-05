@@ -13,8 +13,8 @@ class Reader < ApplicationRecord
   validates :address, presence: true, length: {minimum: 8, maximum: 255}
   validates :password , length: {minimum: 8, maximum: 255}
   has_one_attached :image
-  has_and_belongs_to_many :gift, join_table: 'readergifts'
-  has_and_belongs_to_many :story, join_table: 'readerstories'
+  has_and_belongs_to_many :gift, join_table: 'reader_gift'
+  has_and_belongs_to_many :story, join_table: 'reader_story'
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
