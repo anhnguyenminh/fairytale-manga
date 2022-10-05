@@ -5,7 +5,7 @@ module Api
         def list_story
           time_range = (Time.now.midnight - 1.month)..Time.now.midnight
           @stories = current_reader.story.where('created_at'=> time_range)
-                                         .where('end'=> nil)
+                                         .where('end'=> 0)
           render json: {
             story_name: @stories
           }
