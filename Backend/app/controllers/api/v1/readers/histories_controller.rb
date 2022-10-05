@@ -28,7 +28,7 @@ module Api
 
         def show_chapter
           @story = Story.find_by(name: params[:name_story])
-          @chapter = Chapter.find_by()
+          @chapter = Chapter.find_by(story_id: @story.id , name: params[:name_chapter])
           render json: @chapter
         end
       end
