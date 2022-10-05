@@ -21,15 +21,19 @@ Rails.application.routes.draw do
   #     Show Stories And Read story
         resources :histories, only: [:show] #show stories
         post '/read_story/:id', to: 'histories#read_story' #read stories
-        get '/read_chapter/:name_story/:name_chapter/', to: 'histories#showchapter'
+        get '/read_chapter/:name_story/:name_chapter/', to: 'histories#showchapter' #show chap
 
+  #     Notification      
+        get '/list/', to: 'notifications#list_story'
+        
+        
         get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'
         get '/read/', to: 'histories#read_story'
         resources :histories, only: [:show]
         post '/read_story/:id', to: 'histories#read_story'
         resources :stories
-        get '/list/', to: 'notifications#list'
+        # get '/list/', to: 'notifications#list'
         resources :comments, only: [:create, :index, :update, :destroy]
 
         resources :authors, shallow: true do

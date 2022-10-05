@@ -41,7 +41,7 @@ module Api
         
         def destroy
           @author = Author.find(params[:id])
-          unless @author.category
+          unless @author.story
             render json: {
               message: "destroy successfuly"
             }
