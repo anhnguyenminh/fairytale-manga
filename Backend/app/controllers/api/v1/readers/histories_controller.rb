@@ -1,7 +1,7 @@
 module Api
   module V1
     module Readers
-      class HistoriesController < ApplicationController
+      class HistoriesController < ReaderappController
         def read_story
           @s = Story.find(params[:id])
           @story = Story.joins(:reader)

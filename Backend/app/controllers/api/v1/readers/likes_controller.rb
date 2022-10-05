@@ -1,7 +1,7 @@
 module Api
   module V1
     module Readers
-      class LikesController < ApplicationController
+      class LikesController < ReaderappController
         before_action :set_liketable, only: [ :create]
         def create
           @like = @liketable.comments.new do |c|

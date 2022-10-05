@@ -1,8 +1,8 @@
 module Api
   module V1
     module Readers
-      class SessionsController < ApplicationController
-        # skip_before_action :authenticate_request, only: [:create]
+      class SessionsController < ReaderappController
+        skip_before_action :authenticate_request_reader, only: [:create]
         def create
           reader = Reader.find_by(email: params[:email])
           if reader && reader.valid_password?(params[:password])

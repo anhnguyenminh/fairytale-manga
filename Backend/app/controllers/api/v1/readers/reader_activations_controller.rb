@@ -2,8 +2,8 @@ require 'json_web_token'
 module Api
   module V1
     module Readers
-      class ReaderActivationsController < ApplicationController
-        # skip_before_action :authenticate_request, only: [:edit]
+      class ReaderActivationsController < ReaderappController
+        skip_before_action :authenticate_request_reader, only: [:edit]
         def edit
           reader = Reader.find_by(email: params[:email])
           if reader && !reader.activated? 

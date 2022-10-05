@@ -1,7 +1,7 @@
 module Api
   module V1
     module Readers
-      class ScoresController < ApplicationController
+      class ScoresController < ReaderappController
         def increase_score
           score = params[:score]
           current_reader.update_attribute(:score, current_reader.score+ score)

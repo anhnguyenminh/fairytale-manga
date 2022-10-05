@@ -1,7 +1,7 @@
 module Api
   module V1
     module Readers
-      class CommentsController < ApplicationController
+      class CommentsController < ReaderappController
         before_action :set_commentable, only: [ :create]
         def create
           @comment = @commentable.comments.new(comment_params) do |c|
