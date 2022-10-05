@@ -4,7 +4,7 @@
       <router-link :to="{path: '/admin/categories/'}" class="btn" style="background-color: #f1f1f1" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </router-link>
-      <h2 style="margin: 0 1.2rem ;">Update category</h2>
+      <h2 style="margin: 0 1.2rem ;">Update Category</h2>
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -82,7 +82,7 @@ export default {
       axios.put('http://localhost:3000/api/v1/admins/categories/'+ this.$route.params.id, this.form)
           .then((res) => {
             //Perform Success Action
-            alert("Update data completed!")
+            alert("Update category completed!")
             this.$router.push({path: "/admin/categories"})
           })
           .catch((error) => {

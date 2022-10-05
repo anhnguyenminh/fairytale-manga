@@ -10,7 +10,10 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Authors</h5>
-                <router-link class="btn btn-success" :to="{ path: 'authors/add-new' }" role="button">Create author</router-link>
+
+                <router-link class="btn btn-success" :to="{path: '/admin/authors/add-new'}" role="button">Create
+                  author
+                </router-link>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -26,13 +29,13 @@
                     <!-- admin account data -->
                     <tbody id="admAccData">
                     <tr v-for="author in Authors.authors" :key="author.id">
-                      <td class="col-1">{{ author.id}}</td>
-                      <td class="col-4">{{ author.name}}</td>
-                      <td class="col-4">{{ author.description}}</td>
+                      <td class="col-1">{{ author.id }}</td>
+                      <td class="col-4">{{ author.name }}</td>
+                      <td class="col-4">{{ author.description }}</td>
                       <td class="col-3 actions">
-                        <a href="#">
+                        <router-link :to="{path:`/admin/authors/update/${author.id}`}">
                           <button class="btn btn-info">Edit</button>
-                        </a>
+                        </router-link>
                         <a href="#">
                           <button class="btn btn-danger" @click="deleteData(author.id)">Delete</button>
                         </a>
@@ -57,23 +60,25 @@
 <script>
 import {createNamespacedHelpers} from "vuex";
 import axios from "@/plugins/axios";
+
 const {mapActions} = createNamespacedHelpers("authors");
 
 
 export default {
   name: "AuthorsView",
   data() {
-    return { };
+    return {};
   },
   methods: {
     ...mapActions([
       'getAuthorsData'
     ]),
-    deleteData(id){
+    deleteData(id) {
       //need to check if author dont compose any story
       //check if admin create typo author
-      if (confirm('Are you sure you want to delete this author?')) {
-        // Save it!
+      if (confirm('Are you sure you want to delete this author? ' +
+          '(All stories of this author if existed will be delete either)')) {
+        // Delete it!
         axios.delete(`http://localhost:3000/api/v1/admins/authors/${id}`)
             .then(response => {
               console.log();
@@ -85,18 +90,18 @@ export default {
         console.log('Thing was deleted.');
       } else {
         // Do nothing!
-        console.log('Thing was not deleted to the database.');
+        console.log('Thing was not deleted.');
       }
     }
   },
- computed:{
-    Authors(){
+  computed: {
+    Authors() {
       console.log(this.$store.state.authors)
       console.log(this.$store.state.token)
       return this.$store.state.authors
     }
   },
-  async mounted(){
+  async mounted() {
     await this.getAuthorsData();
   }
 }

@@ -83,6 +83,11 @@ const routes = [
                 component: () => import('@/views/Admin/AuthorsView'),
             },
             {
+                path: 'authors/update/:id',
+                name: 'UpdateAuthor',
+                component: () => import('@/views/Admin/UpdateAuthor'),
+            },
+            {
                 path: 'authors/add-new',
                 component: () => import('@/views/Admin/AddNewAuthor'),
             },
@@ -100,6 +105,11 @@ const routes = [
                 path: 'gifts/add-new',
                 name: 'AddNewGift',
                 component: () => import('@/views/Admin/AddNewGift'),
+            },
+            {
+                path: 'gifts/update/:id',
+                name: 'UpdateGift',
+                component: () => import('@/views/Admin/UpdateGift'),
             },
             {
                 path: 'profile-admin',

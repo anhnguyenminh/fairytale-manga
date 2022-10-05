@@ -13,7 +13,7 @@ export default {
         async getAuthorsData({commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/authors'
+                url: 'admins/authors?page=2'
             }
             await axios(DataQuery).then(res => {
                 this.authors = res.data

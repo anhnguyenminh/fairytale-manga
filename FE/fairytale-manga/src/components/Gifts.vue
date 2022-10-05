@@ -10,7 +10,7 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="m-0 font-weight-bold text-primary text-uppercase">Gifts</h5>
-                <router-link class="btn btn-success" :to="{ path: 'gifts/add-new' }" role="button">Add new gift
+                <router-link class="btn btn-success" :to="{ path: '/admin/gifts/add-new' }" role="button">Add new gift
                 </router-link>
               </div>
               <div class="card-body">
@@ -33,11 +33,11 @@
                       <td class="col-2">{{ gift.score }}</td>
                       <td class="col-2">{{ gift.stock }}</td>
                       <td class="col-3 actions">
-                        <a href="#">
+                        <router-link :to="{path:`/admin/gifts/update/${gift.id}`}">
                           <button class="btn btn-info">Edit</button>
-                        </a>
+                        </router-link>
                         <a href="#">
-                          <button class="btn btn-danger">Delete</button>
+                          <button class="btn btn-danger" @click="deleteData(gift.id)">Delete</button>
                         </a>
                       </td>
                     </tr>
@@ -59,29 +59,46 @@
 </template>
 <script>
 import {createNamespacedHelpers} from "vuex";
-
 const {mapActions} = createNamespacedHelpers("gifts");
-// import {mapActions} from  'vuex'
-
+import axios from "@/plugins/axios";
 export default {
-  // name: "Gifts",.
+  name: "Gifts",
   data() {
     return {};
-  },
-  mounted() {
-     this.getGift();
   },
   methods: {
     ...mapActions([
       'getGift'
-    ])
+    ]),
+    //delete data
+    //UNDONE
+    deleteData(id) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        // Delete it!
+        axios.delete(`http://localhost:3000/api/v1/admins/gifts/${id}`)
+            .then(response => {
+              console.log();
+              this.getGift();
+            })
+            .catch(function (error) {
+              console.log(error.response)
+            })
+        console.log('Thing was deleted.');
+      } else {
+        // Do nothing!
+        console.log('Thing was not deleted.');
+      }
+    }
   },
   computed: {
     Gifts() {
-      console.log(this.$store.state.gifts)
-      console.log(this.$store.state.token)
+      // console.log(this.$store.state.gifts)
+      // console.log(this.$store.state.token)
       return this.$store.state.gifts
     }
+  },
+  mounted() {
+    this.getGift();
   }
 }
 
