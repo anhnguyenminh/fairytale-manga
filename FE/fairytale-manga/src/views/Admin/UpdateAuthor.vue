@@ -1,10 +1,10 @@
 <template>
   <div class="container" style="width: 60%; height: auto; margin-bottom: 2rem;">
     <div class="d-flex align-items-center ">
-      <b-button style="background-color: #f1f1f1" @click="goBack">
+      <router-link :to="{path: '/admin/authors/'}" class="btn" style="background-color: #f1f1f1" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
-      </b-button>
-      <h2 style="margin: 0 1.2rem ;">Create New Author</h2>
+      </router-link>
+      <h2 style="margin: 0 1.2rem ;">Update Author</h2>
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -42,9 +42,11 @@
 </template>
 
 <script>
+import {createNamespacedHelpers} from "vuex";
+const {mapActions} = createNamespacedHelpers("authors");
 import axios from "@/plugins/axios";
 export default {
-  name: 'AddNewAuthor',
+  name: 'UpdateAuthor',
   data() {
     return {
       form: {
@@ -54,17 +56,34 @@ export default {
       show: true
     }
   },
+  created(){
+    // console.log(this.$route.params.id)
+    let self = this;
+    axios.get('admins/authors/'+ this.$route.params.id)
+        .then(function (response) {
+          // handle success
+          self.form.name = response.data.name
+          self.form.description = response.data.description
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+        });
+  },
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      axios.post('admins/authors', this.form)
+      axios.put('admins/authors/'+ this.$route.params.id, this.form)
           .then((res) => {
             //Perform Success Action
-            alert("Add new author completed!")
-            this.$router.push({path: "/admin/authors/"})
+            alert("Update author completed!")
+            this.$router.push({path: "/admin/authors"})
           })
           .catch((error) => {
-            alert(error.data.message)
             // error.response.status Check status code
           })
     },

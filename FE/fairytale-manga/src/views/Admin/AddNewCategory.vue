@@ -4,7 +4,7 @@
       <b-button style="background-color: #f1f1f1" @click="goBack">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </b-button>
-      <h2 style="margin: 0 1.2rem ;">Create category</h2>
+      <h2 style="margin: 0 1.2rem ;">Create New Category</h2>
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -13,7 +13,7 @@
               id="input-1"
               v-model="form.name"
               type="text"
-              placeholder="Enter category name"
+              placeholder="Category name..."
               required
           ></b-form-input>
         </b-form-group>
@@ -43,8 +43,6 @@
 </template>
 
 <script>
-// import {createNamespacedHelpers} from "vuex";
-// const {mapActions} = createNamespacedHelpers("categories");
 import axios from "@/plugins/axios";
 
 export default {
@@ -61,11 +59,11 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      axios.post('http://localhost:3000/api/v1/admins/categories', this.form)
+      axios.post('admins/categories', this.form)
           .then((res) => {
             //Perform Success Action
-            alert("Submit data completed!")
-            this.$router.push({path: "/admin/categories"})
+            alert("Add new category completed!")
+            this.$router.push({path: "/admin/categories/"})
           })
           .catch((error) => {
             // error.response.status Check status code
