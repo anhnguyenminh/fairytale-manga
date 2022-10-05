@@ -12,7 +12,7 @@ module Api
             render json: {
               message: 'success',
               token: ::JsonWebToken.encode({
-                                           user_id: @admin.id
+                                           admin_id: @admin.id
                                          })
             }
           else
