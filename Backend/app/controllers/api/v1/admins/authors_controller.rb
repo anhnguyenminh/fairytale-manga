@@ -42,7 +42,7 @@ module Api
         def destroy
           @author = Author.find(params[:id])
           # render json: @author.story
-          if @author.story
+          if @author.story.length == 0
             @author.destroy
             render json: {
               message: "destroy successfuly"
