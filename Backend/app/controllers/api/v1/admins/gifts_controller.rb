@@ -22,7 +22,7 @@ module Api
           render json: @gifts
         end
 
-        def edit
+        def show
           @gift = Gift.find(params[:id])
           render json: @gift
         end

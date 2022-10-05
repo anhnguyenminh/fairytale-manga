@@ -13,6 +13,7 @@ module Api
         end
 
         def index
+          @current_reader.comment
           if params[:author_id].present?
             @comments = Author.find(params[:author_id]).comment
           elsif params[:chapter_id].present?

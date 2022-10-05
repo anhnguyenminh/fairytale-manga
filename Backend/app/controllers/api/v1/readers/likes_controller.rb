@@ -4,7 +4,7 @@ module Api
       class LikesController < ReaderappController
         before_action :set_liketable, only: [ :create]
         def create
-          @like = @liketable.comments.new do |c|
+          @like = @liketable.likes.new do |c|
             c.readers = current_reader
           end
           render json: {

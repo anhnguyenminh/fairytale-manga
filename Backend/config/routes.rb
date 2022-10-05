@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   #     Show Stories And Read story
         resources :histories, only: [:show] #show stories
         post '/read_story/:id', to: 'histories#read_story' #read stories
-        # get '/chapter'
+        get '/read_chapter/:name_story/:name_chapter/', to: 'histories#showchapter'
 
         get '/new/', to: 'histories#new'
         get '/recommend/', to: 'recommends#recommend_story'

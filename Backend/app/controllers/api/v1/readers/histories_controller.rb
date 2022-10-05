@@ -3,7 +3,6 @@ module Api
     module Readers
       class HistoriesController < ReaderappController
         def read_story
-          # @s = Story.find(params[:id])
           @story = Story.joins(:reader)
                           .select('stories.*')
                           .where('readers.id'=> @current_reader.id)
@@ -28,7 +27,8 @@ module Api
         end
 
         def show_chapter
-          @chapter = Chapter.find(params[:id])
+          @story = Story.find_by(name: params[:name_story])
+          @chapter = Chapter.find_by()
           render json: @chapter
         end
       end

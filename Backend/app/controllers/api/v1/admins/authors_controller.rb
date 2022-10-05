@@ -22,7 +22,7 @@ module Api
           render json: @authors
         end
 
-        def edit
+        def show
           @author = Author.find(params[:id])
           render json: @author
         end
