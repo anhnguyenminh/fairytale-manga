@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class CategoriesController < ApplicationController
+      class CategoriesController < AdminappController
         def create
           @category = Category.new(category_params)
           if @category.save

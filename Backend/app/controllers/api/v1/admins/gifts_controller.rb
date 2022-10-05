@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class GiftsController < ApplicationController
+      class GiftsController < AdminappController
         def create
           @gift = Gift.new(gift_params)
           @gift.image.attach(params[:gift][:image])

@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
       if header
         header = header.split(" ").last 
         decode = JsonWebToken.decode(header)
-        @current_admin= Admin.find_by(id: decode[:user_id])
+        @current_admin= Admin.find_by(id: decode[:admin_id])
         if !@current_admin 
           @message = "You aren't admin"
         end

@@ -3,7 +3,7 @@ require 'json_web_token'
 module Api
   module V1
     module Admins
-      class SessionsController < ApplicationController
+      class SessionsController < AdminappController
         # skip_before_action :authenticate_request, only: [:create]
         def create
           @admin = Admin.find_by( email: params[:email])

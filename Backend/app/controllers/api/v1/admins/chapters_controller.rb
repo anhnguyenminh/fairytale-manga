@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class ChaptersController < ApplicationController
+      class ChaptersController < AdminappController
         def create
           @chapter = Chapter.new(chapter_params)
           @story.images.attach(params[:images])

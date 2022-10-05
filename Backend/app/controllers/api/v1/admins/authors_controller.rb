@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class AuthorsController < ApplicationController
+      class AuthorsController < AdminappController
         def create
           @author = Author.new(author_params)
           @author.image.attach(params[:author][:image])
