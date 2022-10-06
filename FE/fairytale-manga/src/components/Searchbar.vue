@@ -2,7 +2,9 @@
   <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow search-navbar">
     <!-- Topbar Search -->
     <b-input-group class="search-box">
-      <b-form-input></b-form-input>
+      <b-form-input
+      placeholder="Search..."
+      ></b-form-input>
       <b-input-group-append>
         <b-button variant="light"><i class="fas fa-search fa-sm"></i></b-button>
       </b-input-group-append>

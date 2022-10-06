@@ -4,7 +4,7 @@
       <Sidebar class="col-lg-2 col-md-3 left-sidebar"></Sidebar>
       <div class="col-lg-10 col-md-9 right-content">
         <Searchbar></Searchbar>
-        <router-view></router-view>
+        <router-view class="main-content"></router-view>
         <Copyright></Copyright>
       </div>
     </div>
@@ -34,9 +34,13 @@ export default {
 <style scoped>
 .left-sidebar{
   padding-right: 0!important;
+  height: 1200px;
 }
 .right-content{
   padding-left: 0!important;
+}
+.main-content{
+  height: 1042px
 }
 
 </style>

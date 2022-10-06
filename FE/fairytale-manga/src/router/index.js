@@ -60,61 +60,75 @@ const routes = [
             },
             {
                 path: 'stories',
-                component: () => import('@/views/Admin/StoriesView'),
+                component: () => import('@/views/Admin/Stories/StoriesView'),
+            },
+            {
+                path: 'stories/add-new',
+                component: () => import('@/views/Admin/Stories/AddNewStory'),
+            },
+            {
+                // path: 'stories/:story/update/:id',
+                path: 'stories/ten-truyen/update/:id', //test url for UI design
+                component: () => import('@/views/Admin/Stories/UpdateStory'),
+            },
+            {
+                // path: 'stories/:story/new-chapter/',
+                path: 'stories/ten-truyen/new-chapter/',  //test url for UI design
+                component: () => import('@/views/Admin/Stories/AddNewChapter'),
             },
             {
                 path: 'categories',
                 name: 'CategoriesView',
-                component: () => import('@/views/Admin/CategoriesView')
+                component: () => import('@/views/Admin/Categories/CategoriesView')
             },
             {
                 path: 'categories/add-new',
                 name: 'AddNewCategory',
-                component: () => import('@/views/Admin/AddNewCategory'),
+                component: () => import('@/views/Admin/Categories/AddNewCategory'),
             },
             {
                 path: 'categories/update/:id',
                 name: 'UpdateCategory',
-                component: () => import('@/views/Admin/UpdateCategory'),
+                component: () => import('@/views/Admin/Categories/UpdateCategory'),
             },
             {
                 path: 'authors',
                 name: 'AuthorsView',
-                component: () => import('@/views/Admin/AuthorsView'),
+                component: () => import('@/views/Admin/Authors/AuthorsView'),
             },
             {
                 path: 'authors/update/:id',
                 name: 'UpdateAuthor',
-                component: () => import('@/views/Admin/UpdateAuthor'),
+                component: () => import('@/views/Admin/Authors/UpdateAuthor'),
             },
             {
                 path: 'authors/add-new',
-                component: () => import('@/views/Admin/AddNewAuthor'),
+                component: () => import('@/views/Admin/Authors/AddNewAuthor'),
             },
             {
                 path: 'readers',
                 name: 'ReadersView',
-                component: () => import('@/views/Admin/ReadersView'),
+                component: () => import('@/views/Admin/Readers/ReadersView'),
             },
             {
                 path: 'gifts',
                 name: 'GiftsView',
-                component: () => import('@/views/Admin/GiftsView'),
+                component: () => import('@/views/Admin/Gifts/GiftsView'),
             },
             {
                 path: 'gifts/add-new',
                 name: 'AddNewGift',
-                component: () => import('@/views/Admin/AddNewGift'),
+                component: () => import('@/views/Admin/Gifts/AddNewGift'),
             },
             {
                 path: 'gifts/update/:id',
                 name: 'UpdateGift',
-                component: () => import('@/views/Admin/UpdateGift'),
+                component: () => import('@/views/Admin/Gifts/UpdateGift'),
             },
             {
                 path: 'profile-admin',
                 // name: 'CategoriesView',
-                component: () => import('@/views/Admin/CategoriesView'),
+                component: () => import('@/views/Admin/Categories/CategoriesView'),
             },
 
 

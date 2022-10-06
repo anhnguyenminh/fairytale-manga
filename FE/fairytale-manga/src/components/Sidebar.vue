@@ -24,25 +24,25 @@
             <div class="icon-item">
               <i class="fas fa-books"></i>
             </div>
-            <div>Stories</div>
+            <router-link :to="{path:'/admin/stories/'}" tag="div" class="single-item">Stories</router-link>
           </div>
           <div class="menu-item">
             <div class="icon-item">
               <i class="fas fa-th-large"></i>
             </div>
-            <div>Categories</div>
+            <router-link :to="{path:'/admin/categories'}" tag="div" class="single-item">Categories</router-link>
           </div>
           <div class="menu-item">
             <div class="icon-item">
               <i class="fas fa-marker"></i>
             </div>
-            <div>Authors</div>
+            <router-link :to="{path:'/admin/authors'}" tag="div" class="single-item">Authors</router-link>
           </div>
           <div class="menu-item">
             <div class="icon-item">
               <i class="fas fa-book-reader"></i>
             </div>
-            <div>Readers</div>
+            <router-link :to="{path:'/admin/readers'}" tag="div" class="single-item">Readers</router-link>
           </div>
           <!--            <div class="menu-item">-->
           <!--              <div class="icon-item">-->
@@ -54,13 +54,13 @@
             <div class="icon-item">
               <i class="fas fa-gift"></i>
             </div>
-            <div>Gifts</div>
+            <router-link :to="{path:'/admin/gifts'}" tag="div" class="single-item">Gifts</router-link>
           </div>
           <div class="menu-item">
             <div class="icon-item">
               <i class="fas fa-sign-out-alt"></i>
             </div>
-            <div @click="logout">Logout</div>
+            <div @click="logout" class="single-item" style="width: 100%">Logout</div>
           </div>
         </div>
         <!--        </div>-->
@@ -166,6 +166,9 @@ export default {
   padding-left: 15px;
 }
 
+.single-item{
+  width: 100%;
+}
 /*.navbar-footer{*/
 /*  margin-bottom: 0.5rem;*/
 /*}*/
