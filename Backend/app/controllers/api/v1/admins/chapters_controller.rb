@@ -4,12 +4,11 @@ module Api
       class ChaptersController < AdminappController
         def create
           @chapter = Chapter.new(chapter_params)
-          if params[:comment][:images].present?
-            params[:comment][:images].each do |image|
+          if params[:chapter][:images].present?
+            params[:chapter][:images].each do |image|
               @message.images.attach(image)
             end
           end
-      
           if @chapter.save
             render json: {
               message: 'success'
@@ -19,7 +18,7 @@ module Api
               message: 'failed',
               validation: @chapter.errors.messages
             }, status: 400
-          end
+          end                 
         end
 
         def index
