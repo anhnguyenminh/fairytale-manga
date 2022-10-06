@@ -4,7 +4,12 @@ module Api
       class ChaptersController < AdminappController
         def create
           @chapter = Chapter.new(chapter_params)
-          @story.images.attach(params[:images])
+          if params[:comment][:images].present?
+            params[:comment][:images].each do |image|
+              @message.images.attach(image)
+            end
+          end
+      
           if @chapter.save
             render json: {
               message: 'success'
