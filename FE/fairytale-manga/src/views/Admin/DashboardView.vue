@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Admin/Sidebar";
 
 export default {
   name: 'DashboardView',

@@ -6,6 +6,7 @@ module Api
       class SessionsController < AdminappController
         skip_before_action :authenticate_request_admin, only: [:create]
 
+
         def create
           @admin = Admin.find_by(email: params[:email])
           if @admin && @admin.valid_password?(params[:password])

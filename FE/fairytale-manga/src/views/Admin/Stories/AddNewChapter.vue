@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="width: 60%; height: auto; margin-bottom: 2rem;">
+  <div class="container" style="width: 60%;">
     <div class="d-flex align-items-center ">
       <b-button style="background-color: #f1f1f1" @click="goBack">
         <b-icon variant="dark" icon="arrow-left"></b-icon>

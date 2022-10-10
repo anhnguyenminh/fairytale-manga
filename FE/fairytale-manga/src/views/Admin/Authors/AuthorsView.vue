@@ -76,8 +76,7 @@ export default {
     deleteData(id) {
       //need to check if author dont compose any story
       //check if admin create typo author
-      if (confirm('Are you sure you want to delete this author? ' +
-          '(All stories of this author if existed will be delete either)')) {
+      if (confirm('Are you sure you want to delete this author?')) {
         // Delete it!
         axios.delete(`http://localhost:3000/api/v1/admins/authors/${id}`)
             .then(response => {
@@ -85,6 +84,7 @@ export default {
               this.getAuthorsData();
             })
             .catch(function (error) {
+              alert("Delete author failed because author has many story");
               console.log(error.response)
             })
         console.log('Thing was deleted.');

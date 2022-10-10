@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="height: auto; margin-bottom: 2rem;">
+  <div class="container">
     <div class="d-flex align-items-center ">
       <router-link :to="{path: '/admin/stories/'}" class="btn" style="background-color: #f1f1f1" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
@@ -25,8 +25,15 @@
             <b-form-group label="Author">
               <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
             </b-form-group>
-            <b-form-group label="Category">
-              <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
+            <b-form-group label="Category" v-slot="{ ariaDescribedby }">
+              <b-form-checkbox-group
+                  id="checkbox-group-category"
+                  v-model="form.selected2"
+                  :options="form.options2"
+                  :aria-describedby="ariaDescribedby"
+                  stacked
+                  name="flavour-1"
+              ></b-form-checkbox-group>
             </b-form-group>
 
             <b-form-group id="input-group-2" label="Description" label-for="textarea">
@@ -183,6 +190,17 @@ export default {
           {value: 'b', text: 'Selected Option'},
           {value: {C: '3PO'}, text: 'This is an option with object value'},
           {value: 'd', text: 'This one is disabled', disabled: true}
+        ],
+        selected2: [], // Must be an array reference!
+        options2: [
+          { text: 'Comedy', value: 'comedy' },
+          { text: 'One shot', value: 'oneshot' },
+          { text: 'Historical', value: 'historical' },
+          { text: 'Mystery', value: 'mystery' },
+          { text: 'Adventure', value: 'adventure' },
+          { text: 'Horror', value: 'horror' },
+          { text: 'Harem', value: 'harem' },
+          { text: 'Supernatural', value: 'supernatural' }
         ]
       }
     }
@@ -224,7 +242,10 @@ export default {
   margin-top: 1rem;
   min-width: 30%;
 }
-
+/* checkbox */
+#checkbox-group-category{
+  column-count: 3;
+}
 
 /* table */
 .col-last {

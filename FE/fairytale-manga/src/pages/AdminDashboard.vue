@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Sidebar from "@/components/Sidebar";
-import Searchbar from "@/components/Searchbar";
-import Copyright from "@/components/Copyright";
+import Sidebar from "@/components/Admin/Sidebar";
+import Searchbar from "@/components/Admin/Searchbar";
+import Copyright from "@/components/Admin/Copyright";
 
 export default {
   name: 'AdminDashboard',
@@ -34,13 +34,13 @@ export default {
 <style scoped>
 .left-sidebar{
   padding-right: 0!important;
-  height: 1200px;
+  height: 1400px;
 }
 .right-content{
   padding-left: 0!important;
 }
 .main-content{
-  height: 1042px
+  height: 1242px
 }
 
 </style>

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu";
-import Footer from "@/components/Footer";
+import Menu from "@/components/Client/Menu";
+import Footer from "@/components/Client/Footer";
 export default {
   name: 'Homepage',
   components: {

@@ -25,7 +25,6 @@ const routes = [
             },
             {
                 path: '/categories/recommended-stories',
-                // name: 'LoginView',
                 component: LoginView,
             },
             // {

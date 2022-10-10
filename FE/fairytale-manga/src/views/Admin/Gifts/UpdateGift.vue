@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="width: 60%; height: auto; margin-bottom: 2rem;">
+  <div class="container" style="width: 60%; ">
     <div class="d-flex align-items-center ">
       <router-link :to="{path: '/admin/gifts/'}" class="btn" style="background-color: #f1f1f1" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>

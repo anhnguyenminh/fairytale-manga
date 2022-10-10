@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="height: auto; margin-bottom: 2rem;">
+  <div class="container">
     <div class="d-flex align-items-center ">
       <router-link :to="{path: '/admin/stories/'}" class="btn" style="background-color: #f1f1f1" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
