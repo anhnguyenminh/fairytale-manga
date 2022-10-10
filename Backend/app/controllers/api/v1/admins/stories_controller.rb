@@ -3,7 +3,12 @@ module Api
     module Admins
       class StoriesController < AdminappController
         def new
-          show_categories
+          @categories = Category.all
+          @authors = Author.all
+          render json: {
+            categories: @categories,
+            author: @authors
+          }
         end
         
         def create

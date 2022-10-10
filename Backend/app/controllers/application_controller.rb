@@ -1,7 +1,7 @@
 require "json_web_token"
 
 class ApplicationController < ActionController::API
-  include Pagy::Backend
+  include Response
   # before_action :authenticate_request
   def show_categories
     @categories = Category.all
