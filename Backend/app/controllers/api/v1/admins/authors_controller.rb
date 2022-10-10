@@ -2,6 +2,11 @@ module Api
   module V1
     module Admins
       class AuthorsController < AdminappController
+        def get_authors
+          @authors = Author.all
+          render json: @authors
+        end
+
         def create
           @author = Author.new(author_params)
           @author.image.attach(params[:author][:image])

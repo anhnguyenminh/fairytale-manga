@@ -2,15 +2,6 @@ module Api
   module V1
     module Admins
       class StoriesController < AdminappController
-        def new
-          @categories = Category.all
-          @authors = Author.all
-          render json: {
-            categories: @categories,
-            authors: @authors
-          }
-        end
-        
         def create
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
