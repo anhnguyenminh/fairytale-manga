@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Stories from "@/components/Stories";
+import Stories from "@/components/Admin/Stories";
 
 export default {
   name: 'StoriesView',

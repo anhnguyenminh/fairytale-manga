@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import AdminLogin from '@/components/AdminLogin'
+import AdminLogin from '@/components/Admin/AdminLogin'
 
 export default {
   name: 'AdminLoginView',

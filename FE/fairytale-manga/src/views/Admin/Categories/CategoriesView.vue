@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Categories from "@/components/Categories";
+import Categories from "@/components/Admin/Categories";
 
 export default {
   name: 'CategoriesView',

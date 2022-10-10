@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Gifts from "@/components/Gifts";
+import Gifts from "@/components/Admin/Gifts";
 
 export default {
   name: 'GiftsView',
