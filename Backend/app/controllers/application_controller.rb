@@ -1,4 +1,4 @@
-require 'json_web_token'
+require "json_web_token"
 
 class ApplicationController < ActionController::API
   # before_action :authenticate_request
@@ -9,48 +9,47 @@ class ApplicationController < ActionController::API
 
   # def current_admin
   #   header = request.headers["Authorization"]
-  #   header = header.split(" ").last 
+  #   header = header.split(" ").last
   #   decode = JsonWebToken.decode(header)
   #   @current_admin = Admin.find_by(id: decode[:admin_id])
   #   render json: {admin: @current_admin}
   # end
 
   private
-    def authenticate_request_admin
-      header = request.headers["Authorization"]
-      if header
-        header = header.split(" ").last 
-        decode = JsonWebToken.decode(header)
-        @current_admin= Admin.find_by(id: decode[:admin_id])
-        if !@current_admin 
-          render json: {
-            message: "You aren't admin"
-          }
-        end
-      else
-        render json: {
-          message: "You need login"
-        }
-      end
-    end
 
-    def authenticate_request_reader
-      header = request.headers["Authorization"]
-      if header
-        header = header.split(" ").last 
-        decode = JsonWebToken.decode(header)
-        @current_reader= Reader.find_by(id: decode[:reader_id])
-        if !@current_reader 
-          render json: {
-            message: "You aren't reader"
-          }
-        end
-      else
+  def authenticate_request_admin
+    header = request.headers["Authorization"]
+    if header
+      header = header.split(" ").last
+      decode = JsonWebToken.decode(header)
+      @current_admin = Admin.find_by(id: decode[:admin_id])
+      if !@current_admin
         render json: {
-          message: "You need login"
-        }
+                 message: "You aren't admin",
+               }
       end
-      
+    else
+      render json: {
+               message: "You need login",
+             }
     end
-    
+  end
+
+  def authenticate_request_reader
+    header = request.headers["Authorization"]
+    if header
+      header = header.split(" ").last
+      decode = JsonWebToken.decode(header)
+      @current_reader = Reader.find_by(id: decode[:reader_id])
+      if !@current_reader
+        render json: {
+                 message: "You aren't reader",
+               }
+      end
+    else
+      render json: {
+               message: "You need login",
+             }
+    end
+  end
 end

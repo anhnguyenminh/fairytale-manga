@@ -4,5 +4,4 @@ class Admin < ApplicationRecord
   devise :database_authenticatable
   # validates :username
   has_one_attached :image
-
 end

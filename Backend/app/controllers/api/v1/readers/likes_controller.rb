@@ -2,18 +2,19 @@ module Api
   module V1
     module Readers
       class LikesController < ReaderappController
-        before_action :set_liketable, only: [ :create, :index]
+        before_action :set_liketable, only: [:create, :index]
+
         def create
           @like = @liketable.like.new do |c|
             c.reader = current_reader
           end
           if @like.save
             render json: {
-              message: "You 're liked that"
+              message: "You 're liked that",
             }
           else
             render json: {
-              message: "u can't like that"
+              message: "u can't like that",
             }
           end
         end
@@ -29,11 +30,10 @@ module Api
             @like.destroy
           else
             render json: {
-              message: "You can't dislike "
+              message: "You can't dislike ",
             }
           end
         end
-
       end
     end
   end

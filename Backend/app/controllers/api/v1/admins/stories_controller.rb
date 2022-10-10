@@ -10,14 +10,14 @@ module Api
             @categories.each do |c|
               @category = Category.find(c)
               @story.category << Category.find(c)
-            end  
+            end
             render json: {
-              message: "Success"
+              message: "Success",
             }
-           else
+          else
             render json: {
               message: "failed",
-              validation: @story.errors.messages
+              validation: @story.errors.messages,
             }, status: 400
           end
         end
@@ -31,39 +31,38 @@ module Api
           @story = Story.find(params[:id])
           render json: @story
         end
-        
+
         def update
           @story = Story.find(params[:id])
-            if @story.update(story_params)
-              render json: "Update Successfully"
-            else
-              render json:{
-                message: "Failed",
-                validation: @story.errors.messages
-              }, status: 400
-            end
+          if @story.update(story_params)
+            render json: "Update Successfully"
+          else
+            render json: {
+                     message: "Failed",
+                     validation: @story.errors.messages,
+                   }, status: 400
+          end
         end
-        
+
         def destroy
           @story = Story.find(params[:id])
           if @story.chapter.destroy_all && @story.category.destroy_all
             @story.destroy
             render json: {
-              message: "destroy successfuly"
+              message: "destroy successfuly",
             }
           else
             render json: {
-              message: "destroy failed"
+              message: "destroy failed",
             }, status: 400
           end
         end
-        
 
         private
-          def story_params
-            params.permit(:name, :author_id, :image)
-          end
 
+        def story_params
+          params.permit(:name, :author_id, :image)
+        end
       end
     end
   end

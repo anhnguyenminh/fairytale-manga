@@ -4,5 +4,4 @@ class Author < ApplicationRecord
   has_many :story
   has_many :comment, as: :commentable
   has_many :like, as: :liketable
-
 end

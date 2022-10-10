@@ -1,24 +1,25 @@
-require 'json_web_token'
+require "json_web_token"
 
 module Api
   module V1
     module Admins
       class SessionsController < AdminappController
         skip_before_action :authenticate_request_admin, only: [:create]
+
         def create
-          @admin = Admin.find_by( email: params[:email])
+          @admin = Admin.find_by(email: params[:email])
           if @admin && @admin.valid_password?(params[:password])
             sign_in(:admin, @admin)
             render json: {
-              message: 'success',
+              message: "success",
               token: ::JsonWebToken.encode({
-                                           admin_id: @admin.id
-                                         })
+                admin_id: @admin.id,
+              }),
             }
           else
             render json: {
-              message: 'failed',
-              validate: "Password Or Username failed."
+              message: "failed",
+              validate: "Password Or Username failed.",
             }, status: 400
           end
         end

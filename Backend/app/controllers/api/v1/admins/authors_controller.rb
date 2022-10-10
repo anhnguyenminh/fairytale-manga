@@ -7,12 +7,12 @@ module Api
           @author.image.attach(params[:author][:image])
           if @author.save
             render json: {
-              message: 'Success'
+              message: "Success",
             }
           else
             render json: {
-              message: 'Failded',
-              validation: @author.errors.messages
+              message: "Failded",
+              validation: @author.errors.messages,
             }, status: 400
           end
         end
@@ -26,40 +26,40 @@ module Api
           @author = Author.find(params[:id])
           render json: @author
         end
-        
+
         def update
           @author = Author.find(params[:id])
-            if @author.update(author_params)
-              render json: "Update Successfully"
-            else
-              render json:{
-                message: "Failed",
-                validation: @author.errors.messages
-              }, status: 400
-            end
+          if @author.update(author_params)
+            render json: "Update Successfully"
+          else
+            render json: {
+                     message: "Failed",
+                     validation: @author.errors.messages,
+                   }, status: 400
+          end
         end
-        
+
         def destroy
           @author = Author.find(params[:id])
           # render json: @author.story
           if @author.story.length == 0
             @author.destroy
             render json: {
-              message: "destroy successfuly"
+              message: "destroy successfuly",
             }
           else
             render json: {
-              message: "destroy failed because author has many story"
+              message: "destroy failed because author has many story",
             }, status: 400
           end
         end
 
-          private
-            def author_params
-              params.permit(:name, :description, :image)
-            end
-      end
+        private
 
+        def author_params
+          params.permit(:name, :description, :image)
+        end
+      end
     end
   end
 end

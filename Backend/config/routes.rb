@@ -5,69 +5,69 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :readers do
-  #     Sign_up and Sign_in
+        #     Sign_up and Sign_in
         resources :readers
         resources :sessions, only: [:create]
         resources :reader_activations, only: [:edit]
-        
-  #     Get all categories for partials
-        get '/header/', to: 'partials#header'
 
-  #     Search hot stories      
-        get '/hotday/', to: 'hotstories#hot_day'
-        get '/hotweek/', to: 'hotstories#hot_week'
-        get '/hotmonth/', to: 'hotstories#hot_month'
+        #     Get all categories for partials
+        get "/header/", to: "partials#header"
 
-  #     Show Stories And Read story
+        #     Search hot stories
+        get "/hotday/", to: "hotstories#hot_day"
+        get "/hotweek/", to: "hotstories#hot_week"
+        get "/hotmonth/", to: "hotstories#hot_month"
+
+        #     Show Stories And Read story
         resources :histories, only: [:show] #show stories
-        post '/read_story/:id', to: 'histories#read_story' #read stories
-        get '/read_chapter/:name_story/:name_chapter/', to: 'histories#showchapter' #show chap
+        post "/read_story/:id", to: "histories#read_story" #read stories
+        get "/read_chapter/:name_story/:name_chapter/", to: "histories#showchapter" #show chap
 
-  #     Notification      
-        get '/list/', to: 'notifications#list_story'
-  #     Recommend Story      
-        get '/recommend/', to: 'recommends#recommend_story'
-        get '/new/', to: 'histories#new'
-        get '/recommend/', to: 'recommends#recommend_story'
-        get '/read/', to: 'histories#read_story'
+        #     Notification
+        get "/list/", to: "notifications#list_story"
+        #     Recommend Story
+        get "/recommend/", to: "recommends#recommend_story"
+        get "/new/", to: "histories#new"
+        get "/recommend/", to: "recommends#recommend_story"
+        get "/read/", to: "histories#read_story"
         resources :histories, only: [:show]
-        post '/read_story/:id', to: 'histories#read_story'
+        post "/read_story/:id", to: "histories#read_story"
         resources :stories
-        
+
         resources :comments, only: [:create, :index, :update, :destroy]
 
         resources :authors, shallow: true do
-          resources :comments, only: [:create, :index],  module: 'authors'
+          resources :comments, only: [:create, :index], module: "authors"
         end
 
         resources :chapters, shallow: true do
-          resources :comments, only: [:create, :index],  module: 'chapters'
+          resources :comments, only: [:create, :index], module: "chapters"
         end
 
         resources :comments, shallow: true do
-          resources :comments, only: [:create, :index],  module: 'comments'
+          resources :comments, only: [:create, :index], module: "comments"
         end
 
         resources :stories, shallow: true do
-          resources :comments, only: [:create, :index],  module: 'stories'
+          resources :comments, only: [:create, :index], module: "stories"
         end
 
         resources :likes, only: [:create, :index, :destroy]
 
         resources :authors, shallow: true do
-          resources :likes, only: [:create, :index],  module: 'authors'
+          resources :likes, only: [:create, :index], module: "authors"
         end
 
         resources :comments, shallow: true do
-          resources :likes, only: [:create, :index],  module: 'comments'
+          resources :likes, only: [:create, :index], module: "comments"
         end
 
         resources :stories, shallow: true do
-          resources :likes, only: [:create, :index],  module: 'stories'
+          resources :likes, only: [:create, :index], module: "stories"
         end
       end
       namespace :admins do
-        resources :sessions, only:[:create]
+        resources :sessions, only: [:create]
         resources :admins
         resources :gifts
         resources :authors
@@ -78,5 +78,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end
