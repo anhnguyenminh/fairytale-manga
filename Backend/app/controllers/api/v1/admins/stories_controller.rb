@@ -7,7 +7,7 @@ module Api
           @authors = Author.all
           render json: {
             categories: @categories,
-            author: @authors
+            authors: @authors
           }
         end
         
