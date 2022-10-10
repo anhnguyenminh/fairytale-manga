@@ -59,6 +59,7 @@
 import {createNamespacedHelpers} from "vuex";
 
 const {mapActions} = createNamespacedHelpers("categories");
+
 import axios from "@/plugins/axios";
 
 export default {

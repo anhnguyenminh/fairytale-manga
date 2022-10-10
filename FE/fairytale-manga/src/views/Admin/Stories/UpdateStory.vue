@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="d-flex align-items-center ">
-      <router-link :to="{path: '/admin/stories/'}" class="btn" style="background-color: #f1f1f1" tag="button">
+      <router-link :to="{path: '/admin/stories/'}" class="btn go-back" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </router-link>
-      <h2 style="margin: 0 1.2rem ;">Trò chơi sinh tử</h2>
+      <h2 class="page-header">Trò chơi sinh tử</h2>
     </div>
     <div class="wrap-body">
       <!--      left-->
@@ -25,6 +25,7 @@
             <b-form-group label="Author">
               <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
             </b-form-group>
+
             <b-form-group label="Category" v-slot="{ ariaDescribedby }">
               <b-form-checkbox-group
                   id="checkbox-group-category"
@@ -32,22 +33,9 @@
                   :options="form.options2"
                   :aria-describedby="ariaDescribedby"
                   stacked
-                  name="flavour-1"
+                  name="categories"
               ></b-form-checkbox-group>
             </b-form-group>
-
-            <b-form-group id="input-group-2" label="Description" label-for="textarea">
-              <b-form-textarea
-                  id="textarea"
-                  v-model="form.description"
-                  placeholder="Enter description for this story"
-                  rows="3"
-                  max-rows="6"
-                  required
-              ></b-form-textarea>
-            </b-form-group>
-
-
           </b-form>
 
         </div>
@@ -62,7 +50,7 @@
           <div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
                   <tr>
                     <th class="col-3">ID</th>
@@ -139,9 +127,9 @@
         </div>
         <div class="content">
 
-          <div style="display: flex;justify-content: center;align-items: center">
+          <div class="btn-bottom">
             <b-button class="my-btn" type="reset" variant="outline-danger">Delete this story</b-button>
-            <b-button class="my-btn" type="submit" variant="outline-success" style="margin-left: 5rem">Save story</b-button>
+            <b-button class="my-btn-submit" type="submit" variant="outline-success">Save story</b-button>
           </div>
         </div>
       </div>
@@ -164,8 +152,8 @@
               <a href="#">Edit</a>
             </div>
           </div>
-          <div style="height: 50%; width: 200px; margin: auto;">
-            <img src="https://st.ntcdntempv3.com/data/comics/172/saotome-san-va-tro-choi-sinh-tu.jpg" alt="" style="height: 100%; width: 100%">
+          <div class="wrapped-image img">
+            <img src="https://st.ntcdntempv3.com/data/comics/172/saotome-san-va-tro-choi-sinh-tu.jpg" alt="cover-picture">
           </div>
         </div>
 
@@ -176,13 +164,15 @@
 </template>
 
 <script>
+require('@/assets/css/story.css')
+
 export default {
   name: 'UpdateStory',
   data() {
     return {
       form: {
         name: '',
-        description: '',
+        // description: '',
         selected: null,
         options: [
           {value: null, text: 'Please select an option'},
@@ -210,57 +200,5 @@ export default {
 </script>
 
 <style scoped>
-.wrap-body {
-  align-items: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: calc(1.25rem * -1);
-  margin-top: calc(1rem * -1);
-}
-
-.left-side {
-  margin-left: 1.25rem;
-  margin-top: 1rem;
-  /*max-width: calc(100% - 1.25rem);*/
-
-  /*flex: 2 2 30rem;*/
-  min-width: 66%;
-}
-
-.content {
-  background-color: #f1f1f1;
-  border-radius: 0.5rem;
-
-  margin: 1.5rem 0;
-  padding: 1.25rem 1rem;
-}
-
-/* right-side */
-.right-side {
-  margin-left: 1.25rem;
-  margin-top: 1rem;
-  min-width: 30%;
-}
-/* checkbox */
-#checkbox-group-category{
-  column-count: 3;
-}
-
-/* table */
-.col-last {
-  text-align: right;
-  padding-right: 17px;
-}
-
-.actions {
-  text-align: right;
-}
-.actions button {
-  margin: 0 5px;
-}
-
-/* button save or delete */
-
 
 </style>
