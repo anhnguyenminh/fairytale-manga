@@ -74,6 +74,7 @@ Rails.application.routes.draw do
         resources :categories
         resources :readers, only: [:index]
         resources :stories
+        get 'story/new', to:"stories#new"
         resources :chapters
       end
     end

@@ -112,6 +112,8 @@ GEM
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (5.10.1)
+      activesupport
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   listen (~> 3.3)
   mailtrap
   mysql2 (~> 0.5)
+  pagy
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.7)
@@ -211,4 +214,4 @@ RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
-   2.3.22
+   2.3.21

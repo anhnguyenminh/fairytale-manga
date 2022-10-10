@@ -1,5 +1,5 @@
 class ReaderSerializer < ActiveModel::Serializer
-  attributes :email, :name, :age, :phonenumber, :ban, :score,:gender, :show_gender
+  attributes :id, :email, :name, :age, :phonenumber, :ban, :score, :show_gender
 
   def show_gender
     if object.gender == false
