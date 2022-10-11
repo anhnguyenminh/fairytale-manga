@@ -8,16 +8,6 @@ module Api
           response_list(@readers, { adapter: :json,
                                     each_serializer: ReaderSerializer })
         end
-
-        private
-
-        def option
-          { total: @pagy.count,
-            page: @pagy.page,
-            from: @pagy.from,
-            to: @pagy.to,
-            pages: @pagy.pages }
-        end
       end
     end
   end

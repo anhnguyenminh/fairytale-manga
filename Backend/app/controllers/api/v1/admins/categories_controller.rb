@@ -22,10 +22,10 @@ module Api
         end
 
         def index
-          @categories = Category.paginate(page: params[:page], per_page: 10)
-          #Ex:- :limit => 40
-          render json: @categories
-          # show_categories
+          categories = Category.order(id: :desc).ransack(params[:q]).result
+          @pagy, @categories = pagy(categories, items: 2)
+          response_list(@categories, { adapter: :json,
+                                    each_serializer: ReaderSerializer })
         end
 
         def edit

@@ -18,8 +18,10 @@ module Api
         end
 
         def index
-          @gifts = Gift.paginate(page: params[:page], per_page: 10)
-          render json: @gifts
+          gifts = Gift.order(id: :desc).ransack(params[:q]).result
+          @pagy, @gifts = pagy(gifts, items: 2)
+          response_list(@gifts, { adapter: :json,
+                                    each_serializer: ReaderSerializer })
         end
 
         def show

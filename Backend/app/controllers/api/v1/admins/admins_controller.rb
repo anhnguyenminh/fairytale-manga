@@ -18,6 +18,14 @@ module Api
           end
         end
 
+        def index
+          admins = Admin.order(id: :desc).ransack(params[:q]).result
+          @pagy, @admins = pagy(admins, items: 5)
+          response_list(@admins, { adapter: :json,
+                                    each_serializer: ReaderSerializer })
+        end
+        
+
         def update
           @admin = Admin.find(params[:id])
           if @admin.update(admin_params)

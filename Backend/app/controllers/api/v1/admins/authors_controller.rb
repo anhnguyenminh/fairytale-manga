@@ -23,8 +23,10 @@ module Api
         end
 
         def index
-          @authors = Author.paginate(page: params[:page], per_page: 10)
-          render json: @authors
+          authors = Author.order(id: :desc).ransack(params[:q]).result
+          @pagy, @authors = pagy(authors, items: 2)
+          response_list(@authors, { adapter: :json,
+                                    each_serializer: ReaderSerializer })
         end
 
         def show
