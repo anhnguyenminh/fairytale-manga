@@ -26,7 +26,7 @@ module Api
           authors = Author.order(id: :desc).ransack(params[:q]).result
           @pagy, @authors = pagy(authors, items: 2)
           response_list(@authors, { adapter: :json,
-                                    each_serializer: ReaderSerializer })
+                                    each_serializer: nil })
         end
 
         def show

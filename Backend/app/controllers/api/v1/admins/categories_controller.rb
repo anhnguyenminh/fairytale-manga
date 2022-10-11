@@ -4,7 +4,7 @@ module Api
       class CategoriesController < AdminappController
         def get_categories
           @categories = Category.all
-          render json: @categories         
+          render json: @categories
         end
 
         def create
@@ -25,7 +25,7 @@ module Api
           categories = Category.order(id: :desc).ransack(params[:q]).result
           @pagy, @categories = pagy(categories, items: 2)
           response_list(@categories, { adapter: :json,
-                                    each_serializer: ReaderSerializer })
+                                       each_serializer: nil })
         end
 
         def edit

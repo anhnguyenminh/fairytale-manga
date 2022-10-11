@@ -26,7 +26,7 @@ module Api
           stories = Story.order(id: :desc).ransack(params[:q]).result
           @pagy, @stories = pagy(stories, items: 2)
           response_list(@stories, { adapter: :json,
-                                    each_serializer: ReaderSerializer })
+                                    each_serializer: nil })
         end
 
         def show

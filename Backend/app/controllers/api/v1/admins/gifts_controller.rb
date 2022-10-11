@@ -21,7 +21,7 @@ module Api
           gifts = Gift.order(id: :desc).ransack(params[:q]).result
           @pagy, @gifts = pagy(gifts, items: 2)
           response_list(@gifts, { adapter: :json,
-                                    each_serializer: ReaderSerializer })
+                                  each_serializer: ReaderSerializer })
         end
 
         def show

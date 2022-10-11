@@ -25,7 +25,7 @@ module Api
           chapters = Chapter.order(id: :desc).ransack(params[:q]).result
           @pagy, @chapters = pagy(chapters, items: 2)
           response_list(@chapters, { adapter: :json,
-                                    each_serializer: ReaderSerializer })
+                                     each_serializer: nil })
         end
 
         def edit
