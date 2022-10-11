@@ -18,6 +18,7 @@ module Api
             }
           else
             current_reader.update_attribute(:score, current_reader.score- gift.score)
+            current_reader.gift << @gift
             render json: {
               message: "Chuc mung ban da doi qua thanh cong"
             }

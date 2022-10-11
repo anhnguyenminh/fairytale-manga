@@ -56,7 +56,14 @@ Rails.application.routes.draw do
         # get "/recommend/", to: "recommends#recommend_story"
         resources :recommends do
           collection do
-            get recommend_story
+            get :recommend_story
+          end
+        end
+
+        resources :scores do
+          collection do
+            put :increase_score
+            put :decrease_score
           end
         end
 
