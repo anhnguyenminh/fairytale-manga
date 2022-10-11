@@ -11,28 +11,54 @@ Rails.application.routes.draw do
         resources :reader_activations, only: [:edit]
 
         #     Get all categories for partials
-        get "/header/", to: "partials#header"
+        # get "/header/", to: "partials#header"
+        resources :partials do
+          collection do
+            get :header
+          end
+        end
 
         #     Search hot stories
-        get "/hotday/", to: "hotstories#hot_day"
-        get "/hotweek/", to: "hotstories#hot_week"
-        get "/hotmonth/", to: "hotstories#hot_month"
+        # get "/hotday/", to: "hotstories#hot_day"
+        # get "/hotweek/", to: "hotstories#hot_week"
+        # get "/hotmonth/", to: "hotstories#hot_month"
+        resources :hotstories do
+          collection do
+            get :hot_day
+            get :hot_month
+            get :hot_week
+          end
+        end
 
         #     Show Stories And Read story
-        resources :histories, only: [:show] #show stories
-        post "/read_story/:id", to: "histories#read_story" #read stories
-        get "/read_chapter/:name_story/:name_chapter/", to: "histories#showchapter" #show chap
+        # resources :histories, only: [:show] #show stories
+        # post "/read_story/:id", to: "histories#read_story" #read stories
+        # get "/read_chapter/:name_story/:name_chapter/", to: "histories#showchapter" #show chap
+        resources :stories, only: [:show, :index] do
+          member do
+            post :read_story
+            get :show_chapter
+          end
+          collection do
+            get :search_stories
+          end
+        end
 
         #     Notification
-        get "/list/", to: "notifications#list_story"
+        # get "/list/", to: "notifications#list_story"
+        resources :notifications do
+          collection do
+            get :list_story
+          end
+        end
         #     Recommend Story
-        get "/recommend/", to: "recommends#recommend_story"
-        get "/new/", to: "histories#new"
-        get "/recommend/", to: "recommends#recommend_story"
-        get "/read/", to: "histories#read_story"
-        resources :histories, only: [:show]
-        post "/read_story/:id", to: "histories#read_story"
-        resources :stories
+        # get "/recommend/", to: "recommends#recommend_story"
+        # get "/recommend/", to: "recommends#recommend_story"
+        resources :recommends do
+          collection do
+            get recommend_story
+          end
+        end
 
         resources :comments, only: [:create, :index, :update, :destroy]
 
