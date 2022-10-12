@@ -16,10 +16,10 @@ module Api
         end
 
         def read_story
-          @story = ReaderStory.where("reader_stories.reader_id" => @current_reader.id)
-            .where("reader_stories.story_id" => params[:story_id])
-          if !@story
-            @readerstory = ReaderStory.new(story_params)
+          story = ReaderStory.find_by(reader_id: @current_reader.id, story_id: params[:id])
+           
+          if !story
+            @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
             if @readerstory.save
               render json: {
                 message: "ok",
@@ -30,8 +30,12 @@ module Api
               }
             end
           else
-           @readerstory = ReaderStory.update_atribute(chap: params[:chap])
+            story.update(chap: params[:chap])
+            render json: {
+              message: "Success"
+            }
           end
+          # render json: story
         end
 
         def show
