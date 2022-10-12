@@ -17,6 +17,8 @@ class Reader < ApplicationRecord
   # has_and_belongs_to_many :story, join_table: "reader_story"
   has_many :reader_story 
   has_many :story, :through => :reader_story
+  has_many :mission_reader 
+  has_many :mission, :through => :mission_reader
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

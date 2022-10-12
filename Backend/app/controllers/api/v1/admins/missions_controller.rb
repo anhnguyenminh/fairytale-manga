@@ -6,11 +6,11 @@ module Api
           @mission = Mission.new(mission_params)
           if @mission.save
             render json: {
-              message: "Create Successful"
+              message: "Create Successful",
             }
           else
             render json: {
-              @mission.messages.errors
+              valid: @mission.messages.errors,
             }, status: 400
           end
         end
@@ -31,10 +31,9 @@ module Api
                    }, status: 400
           end
         end
-        
-        
+
         private
-        
+
         def mission_params
           params.permit(:name, :score)
         end

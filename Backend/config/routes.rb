@@ -100,6 +100,7 @@ Rails.application.routes.draw do
         end
       end
       namespace :admins do
+        resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
         resources :admins
         resources :gifts
