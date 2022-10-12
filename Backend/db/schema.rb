@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_035049) do
+ActiveRecord::Schema.define(version: 2022_10_12_043849) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(version: 2022_10_11_035049) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["liketable_type", "liketable_id"], name: "index_likes_on_liketable"
     t.index ["reader_id"], name: "index_likes_on_reader_id"
+  end
+
+  create_table "missions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", default: "null", null: false
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reader_stories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
