@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_045613) do
+ActiveRecord::Schema.define(version: 2022_10_11_035049) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -120,15 +120,14 @@ ActiveRecord::Schema.define(version: 2022_10_05_045613) do
     t.index ["reader_id"], name: "index_likes_on_reader_id"
   end
 
-  create_table "reader_story", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "reader_id", null: false
-    t.bigint "story_id", null: false
+  create_table "reader_stories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reader_id"
+    t.bigint "story_id"
     t.integer "chap"
-    t.datetime "reader_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["reader_id"], name: "index_reader_story_on_reader_id"
-    t.index ["story_id"], name: "index_reader_story_on_story_id"
+    t.index ["reader_id"], name: "index_reader_stories_on_reader_id"
+    t.index ["story_id"], name: "index_reader_stories_on_story_id"
   end
 
   create_table "readers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

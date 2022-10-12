@@ -16,21 +16,21 @@ module Api
         end
 
         def read_story
-          @story = Story.joins(:reader)
-            .select("stories.*")
-            .where("readers.id" => @current_reader.id)
-            .where("stories.id" => params[:id])
+          @story = ReaderStory.where("reader_stories.reader_id" => @current_reader.id)
+            .where("reader_stories.story_id" => params[:story_id])
           if !@story
-            @current_reader.story.find(params[:id]).delete
-            @current_reader.story << Story.find(params[:id])
-            render json: {
-              message: "ok",
-            }
+            @readerstory = ReaderStory.new(story_params)
+            if @readerstory.save
+              render json: {
+                message: "ok",
+              }
+            else
+              render json: {
+                message: "failed"
+              }
+            end
           else
-            @current_reader.story << Story.find(params[:id])
-            render json: {
-              message: "ok",
-            }
+           @readerstory = ReaderStory.update_atribute(chap: params[:chap])
           end
         end
 
@@ -43,6 +43,12 @@ module Api
           @story = Story.find_by(name: params[:name_story])
           @chapter = Chapter.find_by(story_id: @story.id, name: params[:name_chapter])
           render json: @chapter
+        end
+
+        private
+
+        def story_params
+          params.permit(:reader_id, :story_id, :chap)
         end
       end
     end
