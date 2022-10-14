@@ -59,6 +59,9 @@ Rails.application.routes.draw do
             get :recommend_story
           end
         end
+        # Gift
+        resources :gifts, only: [:index, :show] do
+        end
 
         resources :scores do
           collection do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_092613) do
+ActiveRecord::Schema.define(version: 2022_10_12_100924) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -92,15 +92,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_092613) do
     t.index ["reader_id"], name: "index_comments_on_reader_id"
   end
 
-  create_table "gift_reader", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "reader_id", null: false
-    t.bigint "gift_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gift_id"], name: "index_gift_reader_on_gift_id"
-    t.index ["reader_id"], name: "index_gift_reader_on_reader_id"
-  end
-
   create_table "gifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "score"
@@ -136,6 +127,16 @@ ActiveRecord::Schema.define(version: 2022_10_12_092613) do
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reader_gifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reader_id"
+    t.bigint "gift_id"
+    t.boolean "received", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gift_id"], name: "index_reader_gifts_on_gift_id"
+    t.index ["reader_id"], name: "index_reader_gifts_on_reader_id"
   end
 
   create_table "reader_stories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

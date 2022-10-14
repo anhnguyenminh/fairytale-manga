@@ -5,11 +5,16 @@ module Response
 
   def response_success(data = {}, options = {})
     render({ json: data, status: :ok, **options })
+    
+    
+    
   end
 
   def response_list(data, options = {})
     default_options = { adapter: :json, meta: meta_data }
     response_success(data, options.merge(default_options))
+    
+    
   end
 
   def response_error(error = {}, status = :unprocessable_entity)
