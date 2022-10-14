@@ -28,10 +28,10 @@ module Response
   def meta_data
     {
       total: @pagy.count,
-      current_page: @pagy.page,
+      page: @pagy.page,
       from: @pagy.from,
       to: @pagy.to,
-      rotal_pages: @pagy.pages,
+      pages: @pagy.pages,
     }
   end
 end
