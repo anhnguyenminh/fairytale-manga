@@ -32,6 +32,12 @@ class Reader < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  def self.compensation(rg)
+    @reader = Reader.find(rg.reader_id)
+    @gift = Gift.find(rg.gift_id)
+    @reader.update_attribute(:score, current_reader.score+ @gift.score)
+  end
+
   private
 
   def create_token

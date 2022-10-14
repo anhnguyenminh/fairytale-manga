@@ -7,7 +7,7 @@ module Api
           @gift.image.attach(params[:image])
           if @gift.save
             render json: {
-             id: @gift.id
+              id: @gift.id,
             }
           else
             render json: {
@@ -43,15 +43,49 @@ module Api
 
         def destroy
           @gift = Gift.find(params[:id])
-          if @gift.destroy
+          @readergift = ReaderGift.where(reader_id: params[:id])
+          # render json: @gift
+          if @readergift.count == 0
+            if @gift.destroy
+              render json: {
+                message: "destroy successfuly",
+              }
+            else
+              render json: {
+                message: "destroy failed",
+              }, status: 400
+            end
+          elsif @readergift.count != 0
             render json: {
-              message: "destroy successfuly",
+              message: "This Gift has been changed by reader. Do you want compensation?",
             }
-          else
-            render json: {
-              message: "destroy failed",
-            }, status: 400
           end
+        end
+
+        def compensation
+          @gift = Gift.find(params[:id])
+          @readergift = ReaderGift.where(gift_id: params[:id])
+          @readergift.each do |rg|
+            if rg.received == false
+              Reader.compensation(rg)
+              title = "Opp. Your gift has been deleted. I am sorry because this trouble. Your score has been restored"
+              Notification.create(title, rg.reader_id)
+              rg.destroy
+            else
+              rg.destroy
+            end
+          end
+          @gift.destroy
+        end
+
+        def received
+          @readergift = ReaderGift.find_by(gift_id: params[:id], reader_id: params[:reader_id])
+          @readergift.update(received: true)
+          title = "Your gift has been received. Please check!"
+          Notification.create(title, params[:reader_id])
+          render json: {
+            message: "User are received"
+          }
         end
 
         private

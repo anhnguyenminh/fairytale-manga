@@ -106,13 +106,22 @@ Rails.application.routes.draw do
         resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
         resources :admins
-        resources :gifts
+        resources :gifts do
+          member do
+            get :compensation
+            get :received
+          end
+        end
+          
         resources :authors
         resources :categories
         resources :readers, only: [:index]
-        resources :stories
-        get "get_categories", to: "categories#get_categories"
-        get "get_authors", to: "authors#get_authors"
+        resources :stories do 
+          collection do
+            get :get_categories
+            get :get_authors
+          end
+        end
         resources :chapters
       end
     end
