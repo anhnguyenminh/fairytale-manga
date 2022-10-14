@@ -68,9 +68,12 @@ module Api
           @readergift.each do |rg|
             if rg.received == false
               Reader.compensation(rg)
-              title = "Opp. Your gift has been deleted. I am sorry because this trouble. Your score has been restored"
-              Notification.create(title, rg.reader_id)
-              rg.destroy
+              reader_id = rg.reader_id
+              # title = "Opp. Your gift has been deleted. I am sorry because this trouble. Your score has been restored"
+              # Notification.create(title, reader_id)
+              # rg.destroy
+              render rg.reader_id
+              break
             else
               rg.destroy
             end

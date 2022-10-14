@@ -2,11 +2,6 @@ module Api
   module V1
     module Admins
       class CategoriesController < AdminappController
-        def get_categories
-          @categories = Category.all
-          render json: @categories
-        end
-
         def create
           @category = Category.new(category_params)
           if @category.save
