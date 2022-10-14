@@ -3,7 +3,7 @@
     <div class="container">
 
       <div style="padding-top: 20px">
-        <h3>This is Slider part</h3>
+<!--        <h3>This is Slider part</h3>-->
         <b-carousel
             id="carousel-fade"
             style="text-shadow: 0px 0px 2px #000"
@@ -27,31 +27,140 @@
         </b-carousel>
       </div>
 
-      <div>
-        <h3>Multi upload</h3>
-        <b-form-file
-            v-model="file1"
-            multiple
-            :state="Boolean(file1)"
-
-            placeholder="Choose a file or drop it here..."
-            drop-placeholder="Drop file here..."
-        ></b-form-file>
-        Selected files
-        <div v-for="file in file1" :key="file.name">
-          <div>{{ file.name }}</div>
+      <div class="container box-pho-bien">
+        <div class="row-header-title">
+          <h1 class="h1-title h1-title-pho-bien"><i class="fas fa-fire" style="color: gold"></i> PHỔ BIẾN </h1>
         </div>
-      </div>
+        <div class="content-tab">
+          <ul id="ul-content-pho-bien">
+            <li class="comic-hover">
+              <div class="image-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
+                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                  <img class=" lazyloaded"
+                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
+                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                </a>
+                <span class="time-comic-tab">1 giờ trước &nbsp;
+                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>1
+                </span>
+              </div>
+              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ</h3>
+              </a>
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ
 
-      <div>
-        <div>
-          <p>This is list truyen</p>
-          <div>
+                </h3></a>
+              </span>
+            </li>
+            <li class="comic-hover">
+              <div class="image-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
+                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                  <img class=" lazyloaded"
+                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
+                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                </a>
+                <span class="time-comic-tab">1 giờ trước &nbsp;
+                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>1
+                </span>
+              </div>
+              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ</h3>
+              </a>
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ
 
-          </div>
+                </h3></a>
+              </span>
+            </li>
+            <li class="comic-hover">
+              <div class="image-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
+                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                  <img class=" lazyloaded"
+                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
+                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                </a>
+                <span class="time-comic-tab">1 giờ trước &nbsp;
+                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>1
+                </span>
+              </div>
+              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ</h3>
+              </a>
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ
 
+                </h3></a>
+              </span>
+            </li>
+            <li class="comic-hover">
+              <div class="image-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
+                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                  <img class=" lazyloaded"
+                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
+                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                </a>
+                <span class="time-comic-tab">1 giờ trước &nbsp;
+                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>1
+                </span>
+              </div>
+              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ</h3>
+              </a>
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ
+
+                </h3></a>
+              </span>
+            </li>
+            <li class="comic-hover">
+              <div class="image-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
+                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                  <img class=" lazyloaded"
+                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
+                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                </a>
+                <span class="time-comic-tab">1 giờ trước &nbsp;
+                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>1
+                </span>
+              </div>
+              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ</h3>
+              </a>
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14
+                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ
+
+                </h3></a>
+              </span>
+            </li>
+          </ul>
+          <a href="#" class="more-btn"></a>
         </div>
-        <div>Include xem them btn</div>
       </div>
 
       <div>
@@ -61,6 +170,7 @@
   </div>
 </template>
 <script>
+require("@/assets/css/home.css")
 export default {
   name: "Home",
   data() {
@@ -68,7 +178,7 @@ export default {
       file1: []
     };
   },
-  method: {
+  methods: {
     onSlideStart(slide) {
       this.sliding = true
     },

@@ -11,15 +11,29 @@ export default {
         option2:[]
     },
     actions: {
+        // with old paginate
         async getCategoryData({commit}) {
             const CategoriesQuery = {
                 method: 'GET',
                 url: 'admins/categories'
-             
+
             }
             await axios(CategoriesQuery).then(res => {
                 this.categories = res.data
                 commit('setCategories', this.categories)
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        //get all data
+        async getAllCategories({commit}) {
+            const DataQuery = {
+                method: 'GET',
+                url: 'admins/get_categories'
+
+            }
+            await axios(DataQuery).then(res => {
+                this.categories = res.data
                 commit('setCategoriesOptions', this.categories)
             }).catch(err => {
                 console.log(err)

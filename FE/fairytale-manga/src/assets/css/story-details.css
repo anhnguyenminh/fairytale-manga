@@ -1,0 +1,326 @@
+.single-story-details {
+    color: #fff;
+    background: url('http://storage.googleapis.com/cheritz/msg/images/general/bg.png') no-repeat top center fixed;
+}
+
+.single-story-details .wrapped-story-detail {
+    margin: 0;
+    padding-top: 1.25rem;
+}
+
+.image-comic-detail {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.image-comic-detail img {
+    width: 100%;
+}
+
+.title-comic-detail {
+    font-size: 35px;
+    line-height: 45px;
+    display: block;
+    font-weight: 600;
+    padding-bottom: 0.5em;
+    color: #ff9601;
+}
+
+.desc-comic-detail {
+    font-size: 17px;
+    line-height: 22px;
+    padding-bottom: 0.5em;
+    display: block;
+}
+
+.desc-comic-detail p {
+    margin-bottom: 1.75rem;
+}
+
+.manga-info a {
+    color: #ff9601;
+}
+
+.manga-info .list-info {
+    padding-left: 10px;
+}
+
+.name span {
+    margin-left: 10px;
+}
+
+/* btn */
+
+.list-chapter-detail-comic {
+    padding: 0 15px;
+}
+
+.move-to-chap {
+    display: block;
+}
+
+.btn-move-to-chap {
+    width: 45%;
+    max-width: 225px;
+    text-align: center;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    margin: 2px auto;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+.btn-move-to-chap span:first-child {
+    font-size: 14px;
+}
+
+.btn-move-to-chap span {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 22px;
+}
+
+/* search */
+
+.search-chapters {
+    display: block;
+
+    margin-top: 15px;
+}
+
+.search-input {
+    display: block;
+    width: 100%;
+    height: 32px;
+    margin: 5px 0;
+    padding: 0 8px;
+    border-color: #b2b2b3;
+    border-width: 1px;
+    border-radius: 2px;
+    border-left-color: #fff;
+    border-top-color: #fff;
+    background: #fff;
+}
+
+/* header chapter */
+
+.list-chapter-detail-comic h2 {
+    font-size: 22px;
+    padding-top: 1em;
+    font-weight: 700;
+    padding-bottom: 0.5em;
+    color: #ff9601;
+}
+
+/* chapter */
+
+.ul-list-chapter-detail-comic {
+    padding: 5px 0;
+    display: inline-block;
+    width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    /*column-count: 2;*/
+}
+
+.ul-list-chapter-detail-comic li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #fffc;
+
+    /*border: 1px solid #fffc;*/
+    padding: 6px 8px;
+    margin: 0 5px;
+}
+
+.ul-list-chapter-detail-comic li:last-child {
+    border-bottom: none;
+}
+
+.ul-list-chapter-detail-comic a {
+    color: white;
+}
+
+.ul-list-chapter-detail-comic h3 {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 26px;
+    padding-right: 20px;
+    white-space: nowrap;
+    /*overflow: hidden!important;*/
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.ul-list-chapter-detail-comic span {
+    /*float: right;*/
+    font-size: 15px;
+    line-height: 26px;
+    padding: 0 7px;
+}
+
+/* comment */
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+}
+
+.main-tab > li {
+    padding: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ff9601;
+}
+
+.active {
+    line-height: 28px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.active a {
+    color: #ff9601;
+}
+
+/*  submit btn */
+.btn-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0px;
+    padding-bottom: 15px;
+}
+
+.btn-submit-comment {
+    border: 0;
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.btn-more {
+    width: 94px;
+    background: #f0ad4e;
+    color: #fff;
+    line-height: 28px;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    border-radius: 4px;
+}
+
+/* body comment-content */
+
+.ul-content-comment {
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.single-comment {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.ul-content-comment li .image-li-content-comment {
+    width: 60px;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.ul-content-comment li .image-li-content-comment img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.ul-content-comment li .content-li-content-comment {
+    width: calc(100% - 60px);
+    padding: 5px;
+    border: 1px solid #f1f1f1;
+    margin: 5px 0;
+    border-radius: 2px;
+    position: relative;
+}
+
+.ul-content-comment li .content-li-content-comment .three-dots-comments {
+    position: absolute;
+    right: 0;
+}
+
+.ul-content-comment li .content-li-content-comment .three-dots-comments span {
+    transform: rotate(90deg);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    position: absolute;
+    right: 0;
+}
+
+.ul-content-comment li .content-li-content-comment .action-three-dots-comments {
+    display: none;
+    position: relative;
+    top: 20px;
+    padding: 8px 10px;
+    background: black;
+    color: #f1c40f;
+    border-radius: 2px;
+    z-index: 9;
+}
+
+.action-three-dots-comments p {
+    font-size: 11px;
+    line-height: 22px;
+    margin: 0;
+    cursor: pointer;
+}
+/* hover here later*/
+
+/* user content */
+
+.h3-span-content-li-content-comment{
+    display: flex;
+    align-items: center;
+}
+
+.h3-span-content-li-content-comment h3{
+    margin: 0;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.h3-span-content-li-content-comment span{
+    padding-left: 2em;
+    font-size: 11px;
+    line-height: 18px;
+    color: #a1a1a1;
+}
+
+.h3-span-content-li-content-comment .chapter-comment{
+    color: #f1c40f;
+}
+
+.ul-content-comment li .content-li-content-comment span {
+    font-size: 13px;
+    display: block;
+    overflow: hidden;
+}
+
+.ul-content-comment li .content-li-content-comment .reply {
+    color: #337ab7;
+    font-weight: 600;
+    display: block;
+    font-size: 13px;
+    line-height: 20px;
+}
