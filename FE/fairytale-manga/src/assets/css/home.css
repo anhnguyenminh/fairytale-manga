@@ -1,0 +1,16 @@
+.row-header-title{
+    height: 35px;
+    margin: 8px 0;
+}
+.h1-title {
+    font-weight: 700;
+    font-size: 18px;
+    /*padding: 6px 0;*/
+    /*padding-bottom: 2px;*/
+    line-height: 32px;
+}
+#ul-content-pho-bien{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}

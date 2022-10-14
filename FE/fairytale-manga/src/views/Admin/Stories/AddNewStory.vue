@@ -22,8 +22,9 @@
               ></b-form-input>
             </b-form-group>
 
+            <!--            still have problem here-->
             <b-form-group label="Author">
-              <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
+              <b-form-select v-model="form.selected" :options="Authors.options"></b-form-select>
             </b-form-group>
 
             <b-form-group label="Category" v-slot="{ ariaDescribedby }">
@@ -124,28 +125,18 @@
 </template>
 
 <script>
-import Categories from "@/components/Admin/Categories";
-
 require('@/assets/css/story.css')
 import {createNamespacedHelpers} from "vuex";
 
 const categoriesStore = createNamespacedHelpers("categories");
-// const authorStore = createNamespacedHelpers("authors");
+const authorsStore = createNamespacedHelpers("authors");
 export default {
   name: 'AddNewStory',
   data() {
     return {
       form: {
         name: '',
-        // description: '',
         selected: null,
-        options: [
-          {value: null, text: 'Please select an option'},
-          {value: 'a', text: 'This is First option'},
-          {value: 'b', text: 'Selected Option'},
-          {value: {C: '3PO'}, text: 'This is an option with object value'},
-          {value: 'd', text: 'This one is disabled', disabled: true}
-        ],
         file1: null,
         selected2: [], // Must be an array reference!
       }
@@ -153,25 +144,27 @@ export default {
   },
   methods: {
     ...categoriesStore.mapActions([
-      'getCategoryData'
+      'getAllCategories'
+    ]),
+    ...authorsStore.mapActions([
+      'getAllAuthors'
     ]),
   },
-
-  // ...authorStore.mapActions([
-  //   'getAuthorsData'
-  // ]),
   computed: {
     Categories() {
-      console.log(this.$store.state.categories)
-      console.log(this.form.selected2)
+      // console.log(this.$store.state.categories)
+      // console.log(this.form.selected2)
       return this.$store.state.categories
     },
-    // Authors() {
-    //   return this.$store.state.authors
-    // }
+    Authors() {
+      // console.log(this.$store.state.authors)
+      // console.log(this.form.selected)
+      return this.$store.state.authors
+    }
   },
   mounted() {
-    this.getCategoryData()
+    this.getAllCategories(),
+        this.getAllAuthors()
   }
 }
 </script>

@@ -97,7 +97,8 @@ a:hover {
 
 .line-h2-footer {
   display: block;
-  width: 25%;
+  width: 40%;
+  /*width: 25%;*/
   height: 2px;
   background: #f1c40f;
   margin-bottom: 8px;

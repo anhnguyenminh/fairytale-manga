@@ -16,7 +16,7 @@ const routes = [
             {
                 path: '/',
                 name: 'HomeView',
-                component: () => import('@/views/User/HomeView'),
+                component: () => import('@/views/User/HomeView')
             },
             {
                 path: '/categories/trending-stories',
@@ -44,7 +44,11 @@ const routes = [
             },
             {
                 path: '/auth/register',
-                component: () => import(/* webpackChunkName: "about" */ '@/views/User/RegisterView'),
+                component: () => import('@/views/User/RegisterView'),
+            },
+            {
+                path: '/story-details',
+                component: () => import('@/components/Client/SingleStoryDetails')
             }
         ],
     },
@@ -129,7 +133,6 @@ const routes = [
                 // name: 'CategoriesView',
                 component: () => import('@/views/Admin/Categories/CategoriesView'),
             },
-
 
 
         ],
