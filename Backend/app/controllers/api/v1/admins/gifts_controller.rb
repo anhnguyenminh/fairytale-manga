@@ -4,10 +4,10 @@ module Api
       class GiftsController < AdminappController
         def create
           @gift = Gift.new(gift_params)
-          @gift.image.attach(params[:gift][:image])
+          @gift.image.attach(params[:image])
           if @gift.save
             render json: {
-              message: "success",
+             id: @gift.id
             }
           else
             render json: {
@@ -21,12 +21,12 @@ module Api
           gifts = Gift.order(id: :desc).ransack(params[:q]).result
           @pagy, @gifts = pagy(gifts, items: 2)
           response_list(@gifts, { adapter: :json,
-                                  each_serializer: ReaderSerializer })
+                                  each_serializer: GiftSerializer })
         end
 
         def show
           @gift = Gift.find(params[:id])
-          render json: @gift
+          render json: @gift, each_serializer: GiftSerializer
         end
 
         def update
