@@ -3,7 +3,7 @@ class StorySerializer < ActiveModel::Serializer
 
   def status
     if object.end == false
-      return "end"
+      return "completed"
     else
       return "on going"
     end
