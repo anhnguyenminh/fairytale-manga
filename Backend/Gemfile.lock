@@ -199,6 +199,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   byebug
   devise
+  jsonapi-serializer (~> 2.2)
   jwt
   listen (~> 3.3)
   mailtrap
