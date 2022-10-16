@@ -16,7 +16,8 @@ export default {
                 url: 'admins/gifts'
             }
             await axios(DataQuery).then(res => {
-                this.gifts = res.data
+                this.gifts = res.data.gifts
+                // console.log(this.gifts)
                 commit('setGift', this.gifts)
             }).catch(err => {
                 console.log(err)
@@ -32,7 +33,8 @@ export default {
                     id: item.id,
                     name: item.name,
                     score: item.score,
-                    stock: item.stock
+                    stock: item.stock,
+                    image_url: item.image_url
                 }
             })
         }

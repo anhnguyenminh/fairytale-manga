@@ -16,7 +16,9 @@ export default {
                 url: 'admins/readers'
             }
             await axios(DataQuery).then(res => {
-                this.readers = res.data
+                console.log("Get here")
+                this.readers = res.data.readers
+                // console.log(this.readers)
                 commit('setReader', this.readers)
             }).catch(err => {
                 console.log(err)
@@ -33,10 +35,11 @@ export default {
                     email: item.email,
                     name: item.name,
                     age: item.age,
-                    gender: item.gender,
-                    phonenumber: item.phonenumber,
                     address: item.address,
-                    score: item.score
+                    phonenumber: item.phonenumber,
+                    ban: item.ban,
+                    score: item.score,
+                    show_gender: item.show_gender
                 }
             })
         }

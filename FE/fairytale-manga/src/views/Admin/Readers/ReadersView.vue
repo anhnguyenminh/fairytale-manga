@@ -21,22 +21,24 @@
                       <th class="col-2">Username</th>
                       <th class="col-1">Age</th>
                       <th class="col-1">Gender</th>
-                      <th class="col-2">Phone number</th>
+                      <th class="col-1">Phonenumber</th>
                       <th class="col-2">Address</th>
                       <th class="col-1">Score</th>
+                      <th class="col-1">Banned</th>
                     </tr>
                     </thead>
-                    <!-- admin account data -->
+
                     <tbody>
                     <tr v-for="reader in Readers.readers" :key="reader.id">
                       <td class="col-1">{{ reader.id }}</td>
                       <td class="col-2">{{ reader.email }}</td>
                       <td class="col-2">{{ reader.name }}</td>
                       <td class="col-1">{{ reader.age }}</td>
-                      <td class="col-1">{{ checkGender(reader.gender) }}</td>
-                      <td class="col-2">{{ reader.phonenumber }}</td>
+                      <td class="col-1">{{ reader.show_gender }}</td>
+                      <td class="col-1">{{ reader.phonenumber }}</td>
                       <td class="col-2">{{ reader.address }}</td>
                       <td class="col-1">{{ reader.score }}</td>
+                      <td class="col-1">{{ reader.ban }}</td>
 
                     </tr>
                     </tbody>
@@ -63,33 +65,21 @@ const {mapActions} = createNamespacedHelpers("readers");
 export default {
   name: "ReadersView",
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     ...mapActions([
       'getReadersData'
-    ]),
-    checkGender(gender) {
-      if (gender == false) {
-        console.log("get male")
-        return "Male"
-      } else {
-        console.log("get female")
-        return "Female"
-      }
-      return gender
-    }
+    ])
   },
   computed: {
     Readers() {
       console.log(this.$store.state.readers)
-      console.log(this.$store.state.token)
       return this.$store.state.readers
     }
   },
-  async mounted() {
-    await this.getReadersData();
+  mounted() {
+    this.getReadersData();
   }
 }
 

@@ -38,7 +38,15 @@
 
           </b-form-group>
         </div>
-
+        <b-form-group id="input-group-1" label="Select image" label-for="input-1">
+          <b-form-file
+              ref="imgInput"
+              placeholder="Choose file or drop it here..."
+              drop-placeholder="Drop image here..."
+              required
+          >
+          </b-form-file>
+        </b-form-group>
         <div style="text-align: center;">
           <b-button class="my-btn" type="reset" variant="info">Reset</b-button>
           <b-button class="my-btn" type="submit" variant="success">Save</b-button>
@@ -69,18 +77,40 @@ export default {
     }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault()
-      axios.post('/admins/gifts', this.form)
-          .then((res) => {
-            //Perform Success Action
-            alert("Create item completed!")
-            this.$router.push({path: "/admin/gifts"})
-          })
-          .catch((error) => {
-            // error.response.status Check status code
-          })
+    onSubmit(e) {
+      console.log(this.$refs.imgInput.files);
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("score", this.form.score);
+      formData.append("stock", this.form.stock);
+      if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
+      e.preventDefault();
+      axios.post(`/admins/gifts`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(() => {
+        // this.$refs.imgInput.value = ''
+        alert("Add gift successfully!")
+        this.$router.push({path: "/admin/gifts"})
+        // e.preventDefault();
+      }).catch(() => {
+        alert("something wrong happen !");
+        e.preventDefault();
+      });
     },
+    // onSubmit(event) {
+    //   event.preventDefault()
+    //   axios.post('/admins/gifts', this.form)
+    //       .then((res) => {
+    //         //Perform Success Action
+    //         alert("Create item completed!")
+    //         this.$router.push({path: "/admin/gifts"})
+    //       })
+    //       .catch((error) => {
+    //         // error.response.status Check status code
+    //       })
+    // },
     onReset(event) {
       event.preventDefault()
       // Reset our form values
