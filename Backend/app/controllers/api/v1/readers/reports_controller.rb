@@ -8,9 +8,14 @@ module Api
             render json: "You can't report your comment"
           else
             if @comment.report.blank?
-              @comment.report << Report.create(reader_id: @comment.reader_id)
+              # @comment.report << Report.create(reader_id: @comment.reader_id, comment_id: @comment.id, num_report:1)
+              # render json: @comment.report
+              @report = Report.find(2)
+              render json: @report.reader
             else
-              render json: @comment.report
+              @report = Report.find(2)
+              render json: @report.reader
+              # render json: @comment.report
             end
           end
           # render json: @comment.reader_id

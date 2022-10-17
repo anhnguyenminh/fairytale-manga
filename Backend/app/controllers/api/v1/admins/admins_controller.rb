@@ -26,11 +26,7 @@ module Api
         end
 
         def showcurrentadmin
-          header = params[:token]
-          header = header.split(" ").last
-          decode = JsonWebToken.decode(header)
-          @current_admin = Admin.find_by(id: decode[:admin_id])
-          render json: @current_admin
+          render json: current_admin
         end
 
         def update
