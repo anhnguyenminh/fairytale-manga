@@ -29,7 +29,7 @@
                     <!-- admin account data -->
                     <tbody>
                     <tr v-for="gift in Gifts.gifts" :key="gift.id">
-                      <th class="col-1">{{gift.id}}</th>
+                      <th class="col-1">{{ gift.id }}</th>
                       <td class="col-2">{{ gift.name }}</td>
                       <td class="col-2 text-center"><img :src="gift.image_url" style="max-width: 200px;"/></td>
                       <td class="col-2">{{ gift.score }}</td>
@@ -77,17 +77,16 @@ export default {
     //delete data
     //UNDONE
     deleteData(id) {
-      if (confirm('Are you sure you want to delete this item?')) {
+      if (confirm('Are you sure you want to delete this item? (If readers have changed this item, action cannot be completed)')) {
         // Delete it!
         axios.delete(`http://localhost:3000/api/v1/admins/gifts/${id}`)
             .then(response => {
-              console.log();
               this.getGift();
+              // alert("This Gift has been changed by reader. Do you want compensation?")
             })
             .catch(function (error) {
               console.log(error.response)
             })
-        console.log('Gift was deleted.');
       } else {
         // Do nothing!
         console.log('Gift was not deleted.');

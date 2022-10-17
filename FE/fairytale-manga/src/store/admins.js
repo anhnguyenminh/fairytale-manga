@@ -7,17 +7,19 @@ Vue.use(Vuex)
 export default {
     namespaced: true,
     state: {
-        admins: []
+        admin: []
     },
     actions: {
-        async getAdminData({commit}) {
+        async getAdminDetail({commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/admins'
+                url: 'admins/admins/showcurrentadmin/'
             }
             await axios(DataQuery).then(res => {
-                this.admins = res.data
-                commit('setAdmin', this.admins)
+                // this.admin = res.data
+                console.log("AAAAAAAAAAAA Store")
+                // console.log(this.admin)
+                commit('setAdmin', res.data)
             }).catch(err => {
                 console.log(err)
             })
@@ -27,13 +29,8 @@ export default {
     ,
     mutations: {
         setAdmin(state, newAdmin) {
-            state.categories = newAdmin.map(item => {
-                return {
-                    id: item.id,
-                    email: item.email,
-                    username: item.username
-                }
-            })
+            // console.log(newAdmin)
+            state.admin = newAdmin
         }
     }
 }

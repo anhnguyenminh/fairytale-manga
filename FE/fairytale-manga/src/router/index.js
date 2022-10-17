@@ -62,7 +62,7 @@ const routes = [
                 component: () => import('@/views/AboutView'),
             },
             {
-                path: 'profile-admin',
+                path: 'profile-admin/:id',
                 component: () => import('@/views/Admin/Admin/AdminProfile'),
             },
             {
