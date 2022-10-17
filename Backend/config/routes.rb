@@ -102,12 +102,20 @@ Rails.application.routes.draw do
           resources :likes, only: [:create, :index], module: "stories"
         end
 
-        
+        resources :reports do
+          member do
+            get :createreports
+          end
+        end
       end
       namespace :admins do
         resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
-        resources :admins
+        resources :admins do
+          collection do
+            get :showcurrentadmin
+          end
+        end
         resources :gifts do
           member do
             get :compensation
