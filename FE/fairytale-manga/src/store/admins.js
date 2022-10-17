@@ -10,7 +10,7 @@ export default {
         admins: []
     },
     actions: {
-        async getAdminsData({commit}) {
+        async getAdminData({commit}) {
             const DataQuery = {
                 method: 'GET',
                 url: 'admins/admins'

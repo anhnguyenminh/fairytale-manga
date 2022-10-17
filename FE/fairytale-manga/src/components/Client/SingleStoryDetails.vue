@@ -271,7 +271,7 @@
     <div class="container comment-area">
       <div class="load-comment-content" style="padding: 0 15px">
         <ul class="nav nav-tabs main-tab">
-          <li class="active">
+          <li class="comment-active">
             <a data-toggle="tab" href="#nt_comments">
               <i class="fa fa-comments"></i> <span class="text-uppercase">Bình luận</span> (<span class="comment-count">430</span>)
             </a>

@@ -35,10 +35,17 @@
                 placeholder="1"
                 required
             ></b-form-input>
-
           </b-form-group>
         </div>
-
+        <b-form-group id="input-group-1" label="Select image" label-for="input-1">
+          <b-form-file
+              ref="imgInput"
+              placeholder="Choose a file or drop it here..."
+              drop-placeholder="Drop image here..."
+              required
+          >
+          </b-form-file>
+        </b-form-group>
         <div style="text-align: center;">
           <b-button class="my-btn" type="reset" variant="info">Reset</b-button>
           <b-button class="my-btn" type="submit" variant="success">Save</b-button>
@@ -92,16 +99,25 @@ export default {
   },
   methods: {
     onSubmit(event) {
-      event.preventDefault()
-      axios.put('http://localhost:3000/api/v1/admins/gifts/' + this.$route.params.id, this.form)
-          .then((res) => {
-            //Perform Success Action
-            alert("Update item completed!")
-            this.$router.push({path: "/admin/gifts"})
-          })
-          .catch((error) => {
-            // error.response.status Check status code
-          })
+      event.preventDefault();
+      console.log(this.$refs.imgInput.files);
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("score", this.form.score);
+      formData.append("stock", this.form.stock);
+      if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
+
+      axios.put(`/admins/gifts/` + this.$route.params.id, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(() => {
+        alert("Update item completed!")
+        this.$router.push({path: "/admin/gifts/"})
+      }).catch(() => {
+        alert("Something wrong happen !");
+        event.preventDefault();
+      });
     },
     onReset(event) {
       event.preventDefault()

@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 2022_10_17_035614) do
     t.index ["reader_id"], name: "index_comments_on_reader_id"
   end
 
+  create_table "gift_reader", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reader_id", null: false
+    t.bigint "gift_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gift_id"], name: "index_gift_reader_on_gift_id"
+    t.index ["reader_id"], name: "index_gift_reader_on_reader_id"
+  end
+
   create_table "gifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "score"
@@ -167,6 +176,17 @@ ActiveRecord::Schema.define(version: 2022_10_17_035614) do
     t.index ["story_id"], name: "index_reader_stories_on_story_id"
   end
 
+  create_table "reader_story", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reader_id", null: false
+    t.bigint "story_id", null: false
+    t.integer "chap"
+    t.datetime "reader_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reader_id"], name: "index_reader_story_on_reader_id"
+    t.index ["story_id"], name: "index_reader_story_on_story_id"
+  end
+
   create_table "readers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -188,7 +208,7 @@ ActiveRecord::Schema.define(version: 2022_10_17_035614) do
   create_table "reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "reader_id"
     t.bigint "comment_id"
-    t.integer "num_report"
+    t.integer "num_report", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_reports_on_comment_id"
