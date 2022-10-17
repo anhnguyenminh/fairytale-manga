@@ -25,6 +25,15 @@ module Api
                                    each_serializer: nil })
         end
 
+        def show
+          @admin = Admin.find(params[:id])
+          if @admin == current_admin
+            render json: @admin
+          else 
+            render json: "You aren't this admin"
+          end
+        end
+
         def update
           @admin = Admin.find(params[:id])
           if @admin.update(admin_params)

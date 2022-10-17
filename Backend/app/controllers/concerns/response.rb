@@ -12,6 +12,14 @@ module Response
     response_success(data, options.merge(default_options))
   end
 
+  def response_error(error = {}, status = :unprocessable_entity)
+    render json: error, status: status
+  end
+
+  def response_not_found(message = "Not found")
+    render json: { message: message }, status: :not_found
+  end
+
   def meta_data
     {
       total: @pagy.count,
