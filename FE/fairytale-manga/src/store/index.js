@@ -9,7 +9,7 @@ import gifts from "@/store/gifts";
 import authors from "@/store/authors";
 import readers from "@/store/readers";
 import stories from "@/store/stories"
-
+import admins from "@/store/admins";
 const dataState = createPersistedState({
     paths: ['token']
 })
@@ -30,6 +30,6 @@ export default new Vuex.Store({
     },
     actions: {},
     modules: {
-        categories, authors, gifts, readers, stories
+        categories, authors, gifts, readers, stories, admins
     }, plugins: [dataState]
 })
