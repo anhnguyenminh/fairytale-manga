@@ -3,7 +3,7 @@ class Story < ApplicationRecord
   has_and_belongs_to_many :category, join_table: "category_story"
   has_one_attached :image
   # has_and_belongs_to_many :category, join_table: "category_story"
-  has_many :reader_story 
+  has_many :reader_story
   has_many :reader, :through => :reader_story
   validates :name, :author_id, presence: true
   has_many :chapter
