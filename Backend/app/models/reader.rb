@@ -21,7 +21,8 @@ class Reader < ApplicationRecord
   has_many :mission, :through => :mission_reader
   has_many :reader_gift
   has_many :gift, :through => :reader_gift
-
+  has_many :report
+  has_many :comment
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost

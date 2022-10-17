@@ -1,6 +1,6 @@
-class CreateReports < ActiveRecord::Migration[6.1]
+class CreateTableReport < ActiveRecord::Migration[6.1]
   def change
-    create_table :Report do |t|
+    create_table :reports do |t|
       t.belongs_to :reader
       t.belongs_to :comment
       t.timestamps
