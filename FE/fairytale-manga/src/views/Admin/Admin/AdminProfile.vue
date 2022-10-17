@@ -71,7 +71,7 @@
                   required
               ></b-form-input>
             </b-form-group>
-            <b-form-group id="input-group-2" label="Enter old password" label-for="admin-email">
+            <b-form-group id="input-group-2" label="Old Password" label-for="admin-email">
               <b-form-input
                   id="admin-email"
                   v-model="form.oldPassword"
@@ -80,7 +80,7 @@
                   required
               ></b-form-input>
             </b-form-group>
-            <b-form-group id="input-group-2" label="Enter New Password" label-for="admin-email">
+            <b-form-group id="input-group-2" label="New Password" label-for="admin-email">
               <b-form-input
                   id="admin-email"
                   v-model="form.password"
