@@ -14,7 +14,7 @@
             <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
           </div>
           <div>
-            <div class="admin-name">Adam Straub</div>
+            <router-link :to="{path:'/admin/profile-admin/'}" tag="div" class="admin-name">Adam Straub</router-link>
             <div class="position">Admin</div>
           </div>
         </div>
@@ -130,6 +130,10 @@ export default {
 .admin-name {
   font-weight: 600;
   font-size: 1.125rem;
+  cursor: pointer;
+}
+.admin-name:hover {
+  color: darkblue;
 }
 
 .position {
@@ -150,6 +154,7 @@ export default {
   padding: 0.65rem 1rem;
   font-weight: 700;
   font-size: 1.125rem;
+  cursor: pointer;
 }
 
 .menu-item:hover {
