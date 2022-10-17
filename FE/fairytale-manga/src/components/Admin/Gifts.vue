@@ -19,7 +19,8 @@
                     <thead>
                     <tr>
                       <th class="col-1">ID</th>
-                      <th class="col-4">Name</th>
+                      <th class="col-2">Name</th>
+                      <th class="col-2">Image</th>
                       <th class="col-2">Score</th>
                       <th class="col-2">Stock</th>
                       <th class="col-3 col-last">Actions</th>
@@ -28,8 +29,9 @@
                     <!-- admin account data -->
                     <tbody>
                     <tr v-for="gift in Gifts.gifts" :key="gift.id">
-                      <td class="col-1">{{ gift.id }}</td>
-                      <td class="col-4">{{ gift.name }}</td>
+                      <th class="col-1">{{gift.id}}</th>
+                      <td class="col-2">{{ gift.name }}</td>
+                      <td class="col-2 text-center"><img :src="gift.image_url" style="max-width: 200px;"/></td>
                       <td class="col-2">{{ gift.score }}</td>
                       <td class="col-2">{{ gift.stock }}</td>
                       <td class="col-3 actions">
@@ -59,8 +61,10 @@
 </template>
 <script>
 import {createNamespacedHelpers} from "vuex";
+
 const {mapActions} = createNamespacedHelpers("gifts");
 import axios from "@/plugins/axios";
+
 export default {
   name: "Gifts",
   data() {
@@ -83,17 +87,16 @@ export default {
             .catch(function (error) {
               console.log(error.response)
             })
-        console.log('Thing was deleted.');
+        console.log('Gift was deleted.');
       } else {
         // Do nothing!
-        console.log('Thing was not deleted.');
+        console.log('Gift was not deleted.');
       }
     }
   },
   computed: {
     Gifts() {
-      // console.log(this.$store.state.gifts)
-      // console.log(this.$store.state.token)
+      console.log(this.$store.state.gifts)
       return this.$store.state.gifts
     }
   },

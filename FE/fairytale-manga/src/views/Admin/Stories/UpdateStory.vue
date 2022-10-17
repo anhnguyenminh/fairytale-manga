@@ -36,6 +36,16 @@
                   name="categories"
               ></b-form-checkbox-group>
             </b-form-group>
+            <b-form-group label="Description" label-for="textarea">
+              <b-form-textarea
+                  id="textarea"
+                  v-model="form.description"
+                  placeholder="Enter short summary for this story"
+                  rows="3"
+                  max-rows="6"
+                  required
+              ></b-form-textarea>
+            </b-form-group>
           </b-form>
 
         </div>

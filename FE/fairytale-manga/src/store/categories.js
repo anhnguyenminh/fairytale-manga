@@ -29,8 +29,7 @@ export default {
         async getAllCategories({commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/get_categories'
-
+                url: 'admins/stories/get_categories'
             }
             await axios(DataQuery).then(res => {
                 this.categories = res.data

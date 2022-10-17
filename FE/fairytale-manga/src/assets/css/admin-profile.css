@@ -1,0 +1,43 @@
+.page-title h3 {
+    font-size: calc(1.3rem + 0.6vw) !important;
+}
+
+.content {
+    padding: 29px 0 0 0;
+}
+
+.avt-admin {
+    margin-bottom: 1rem;
+    margin-right: 1.75rem;
+}
+
+.symbol {
+    display: inline-block;
+    flex-shrink: 0;
+    border-radius: 0.65rem;
+}
+
+.symbol .symbol-avt {
+    width: 160px;
+    height: 160px;
+    max-width: none;
+}
+
+.username-admin {
+    color: #181C32;
+    transition: color 0.2s ease;
+    font-weight: 600;
+    font-size: calc(1.275rem + 0.3vw);
+    margin-right: 0.25rem;
+}
+
+.username-admin:hover{
+    color: #6959CD;
+}
+.position-admin{
+    font-weight: 500;
+    font-size: 1.075rem;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+    color: #B5B5C3;
+}

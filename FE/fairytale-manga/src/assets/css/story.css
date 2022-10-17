@@ -9,7 +9,7 @@
 .wrap-body {
     align-items: flex-start;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     justify-content: center;
     margin-left: calc(1.25rem * -1);
     margin-top: calc(1rem * -1);
