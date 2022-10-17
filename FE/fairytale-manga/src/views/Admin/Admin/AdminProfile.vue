@@ -71,6 +71,33 @@
                   required
               ></b-form-input>
             </b-form-group>
+            <b-form-group id="input-group-2" label="Enter old password" label-for="admin-email">
+              <b-form-input
+                  id="admin-email"
+                  v-model="form.oldPassword"
+                  type="password"
+                  placeholder="Please enter old password"
+                  required
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group id="input-group-2" label="Enter New Password" label-for="admin-email">
+              <b-form-input
+                  id="admin-email"
+                  v-model="form.password"
+                  type="password"
+                  placeholder="Please enter new password"
+                  required
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group id="input-group-2" label="Re-Enter New Password" label-for="admin-email">
+              <b-form-input
+                  id="admin-email"
+                  v-model="form.password"
+                  type="password"
+                  placeholder="Re-enter new password"
+                  required
+              ></b-form-input>
+            </b-form-group>
 
             <div style="text-align: center;">
               <b-button class="my-btn" type="submit" variant="outline-success">Save profile</b-button>
@@ -95,7 +122,10 @@ export default {
     return {
       form: {
         username: '',
-        email: ''
+        email: '',
+        password:'',
+        oldPassword:'',
+        reEnterPwd:''
       },
       show: false
     }
