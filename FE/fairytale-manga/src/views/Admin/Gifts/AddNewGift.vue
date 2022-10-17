@@ -35,7 +35,6 @@
                 placeholder="1"
                 required
             ></b-form-input>
-
           </b-form-group>
         </div>
         <b-form-group id="input-group-1" label="Select image" label-for="input-1">

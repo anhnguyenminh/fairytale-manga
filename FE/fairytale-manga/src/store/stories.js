@@ -17,7 +17,7 @@ export default {
             }
             await axios(DataQuery).then(res => {
                 this.stories = res.data
-                // console.log(this.stories)
+                console.log(this.stories)
                 commit('setStories', this.stories)
             }).catch(err => {
                 console.log(err)

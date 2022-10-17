@@ -180,13 +180,13 @@ a {
     border-bottom: 1px solid #ff9601;
 }
 
-.active {
+.comment-active {
     line-height: 28px;
     font-size: 1.2em;
     font-weight: 700;
 }
 
-.active a {
+.comment-active a {
     color: #ff9601;
 }
 

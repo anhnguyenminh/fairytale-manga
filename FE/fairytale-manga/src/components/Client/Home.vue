@@ -3,7 +3,6 @@
     <div class="container">
 
       <div style="padding-top: 20px">
-<!--        <h3>This is Slider part</h3>-->
         <b-carousel
             id="carousel-fade"
             style="text-shadow: 0px 0px 2px #000"
@@ -13,23 +12,32 @@
             img-height="480"
         >
           <b-carousel-slide
-              caption="First Slide"
-              img-src="https://picsum.photos/1024/480/?image=10"
+
+              img-src="https://adsmg.fanfox.net/4/2018/12/28/63903f3765294921.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-              caption="Second Slide"
-              img-src="https://picsum.photos/1024/480/?image=12"
+
+              img-src="https://adsmg.fanfox.net/4/2019/4/16/9406be4ce25d4879.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-              caption="Third Slide"
-              img-src="https://picsum.photos/1024/480/?image=22"
+
+              img-src="https://adsmg.fanfox.net/3/2018/11/22/ff6f97db68c5485e.jpg"
+          ></b-carousel-slide>
+          <b-carousel-slide
+
+              img-src="https://adsmg.fanfox.net/3/2018/11/26/6fca8776b1f847c6.jpg"
+          ></b-carousel-slide>
+          <b-carousel-slide
+
+              img-src="https://adsmg.fanfox.net/4/2019/4/16/0f42fca631e04acd.jpg"
           ></b-carousel-slide>
         </b-carousel>
       </div>
 
       <div class="container box-pho-bien">
         <div class="row-header-title">
-          <h1 class="h1-title h1-title-pho-bien"><i class="fas fa-fire" style="color: gold"></i> PHỔ BIẾN </h1>
+          <h1 class="h1-title h1-title-pho-bien text-uppercase"><i class="fas fa-fire" style="color: gold"></i> Nổi bật
+          </h1>
         </div>
         <div class="content-tab">
           <ul id="ul-content-pho-bien">
