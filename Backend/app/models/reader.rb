@@ -8,10 +8,10 @@ class Reader < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :age, presence: true, numericality: { greater_than: 0, less_than: 100 }
-  # validates :gender, presence: true
+  validates :gender, presence: true, on: :create
   validates :phonenumber, presence: true, numericality: { only_integer: true }, length: { is: 10 }
   validates :address, presence: true, length: { minimum: 8, maximum: 255 }
-  # validates :password, length: { minimum: 8, maximum: 255 }
+  validates :password, length: { minimum: 8, maximum: 255 }, on: :create
   has_one_attached :image
   # has_and_belongs_to_many :gift, join_table: "reader_gift"
   # has_and_belongs_to_many :story, join_table: "reader_story"

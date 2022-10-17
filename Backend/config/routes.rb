@@ -101,6 +101,8 @@ Rails.application.routes.draw do
         resources :stories, shallow: true do
           resources :likes, only: [:create, :index], module: "stories"
         end
+
+        
       end
       namespace :admins do
         resources :missions, only: [:create, :update, :index]

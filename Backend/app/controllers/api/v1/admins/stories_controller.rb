@@ -17,9 +17,6 @@ module Api
           @story.image.attach(params[:image])
           if @story.save
             @categories = params[:categories]
-
-            # binding.pry
-
             @categories.each do |c|
               @category = Category.find(c)
               @story.category << @category

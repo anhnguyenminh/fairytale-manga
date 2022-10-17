@@ -69,27 +69,37 @@ module Api
             if rg.received == false
               @reader = Reader.find(rg.reader_id)
               @gift = Gift.find(rg.gift_id)
-              @reader.update(score: @gift.score + @reader.score)
+              if @reader.update(score: @gift.score + @reader.score)
+                render json: "dc r"
+              else
+                render json: {
+                  message: "ko dc",
+                  validates: @reader.errors.messages
+                }
+              end
               @title = "Opp. Your gift is "+ @gift.name+ " has been deleted. I am sorry because this trouble. Your score has been restored"
               @notification = Notification.create(reader_id: rg.reader_id, title: @title)
-              rg.destroy
+              # rg.destroy
             else
               rg.destroy
             end
           end
-          @gift.destroy
+          # @gift.destroy
+          
+          # binding.pry 
+          
         end
 
-        def received
-          @readergift = ReaderGift.find_by(gift_id: params[:id], reader_id: params[:reader_id])
-          @readergift.update(received: true)
-          @gift = Gift.find_by(id: params[:id])
-          title = "Your gift is "+ @gift.name +" has been received. Please check!"
-          Notification.create(title, params[:reader_id])
-          render json: {
-            message: "User are received",
-          }
-        end
+        # def received
+        #   @readergift = ReaderGift.find_by(gift_id: params[:id])
+        #   @readergift.update(received: true)
+        #   @gift = Gift.find_by(id: params[:id])
+        #   title = "Your gift is has been received. Please check!"
+        #   Notification.create(title, params[:reader_id])
+        #   render json: {
+        #     message: "User are received",
+        #   }
+        # end
 
         private
 

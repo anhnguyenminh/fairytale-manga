@@ -20,6 +20,18 @@ module Api
           end
         end
 
+        def update
+          @reader = Reader.find(params[:id])
+            if @reader.update(reader_params)
+              render json: "ok"
+            else
+              render json: {
+                validate: @reader.errors.messages
+              }
+            end
+        end
+        
+
         private
 
         def reader_params
