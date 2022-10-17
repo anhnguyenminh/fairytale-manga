@@ -10,6 +10,20 @@ module Api
             story_name: @stories,
           }
         end
+
+        def index
+          @notifications = Notification.where(reader_id: current_reader.id, read: false)
+                                      .order("created_at DESC")
+          render json: @notifications
+        end
+
+        def update
+          @notification = Notification.find(params[:id])
+          if @notification.update(read: true)
+            render json: "You read this notification"
+          else
+            render json: "Function Read is wrong!!!"
+        end
       end
     end
   end
