@@ -8,18 +8,18 @@ class Reader < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :age, presence: true, numericality: { greater_than: 0, less_than: 100 }
-  validates :gender, numericality: { only_integer: true, less_than: 2, message: "Gender seems wrong" }
+  # validates :gender, presence: true
   validates :phonenumber, presence: true, numericality: { only_integer: true }, length: { is: 10 }
   validates :address, presence: true, length: { minimum: 8, maximum: 255 }
-  validates :password, length: { minimum: 8, maximum: 255 }
+  # validates :password, length: { minimum: 8, maximum: 255 }
   has_one_attached :image
   # has_and_belongs_to_many :gift, join_table: "reader_gift"
   # has_and_belongs_to_many :story, join_table: "reader_story"
-  has_many :reader_story 
+  has_many :reader_story
   has_many :story, :through => :reader_story
-  has_many :mission_reader 
+  has_many :mission_reader
   has_many :mission, :through => :mission_reader
-  has_many :reader_gift 
+  has_many :reader_gift
   has_many :gift, :through => :reader_gift
 
   def self.digest(string)
@@ -30,12 +30,6 @@ class Reader < ApplicationRecord
 
   def self.new_token
     SecureRandom.urlsafe_base64
-  end
-
-  def self.compensation(rg)
-    @reader = Reader.find(rg.reader_id)
-    @gift = Gift.find(rg.gift_id)
-    @reader.update(score: @reader.score+ @gift.score)
   end
 
   private

@@ -67,13 +67,12 @@ module Api
           @readergift = ReaderGift.where(gift_id: params[:id])
           @readergift.each do |rg|
             if rg.received == false
-              Reader.compensation(rg)
-              reader_id = rg.reader_id
-              # title = "Opp. Your gift has been deleted. I am sorry because this trouble. Your score has been restored"
-              # Notification.create(title, reader_id)
-              # rg.destroy
-              render rg.reader_id
-              break
+              @reader = Reader.find(rg.reader_id)
+              @gift = Gift.find(rg.gift_id)
+              @reader.update(score: @gift.score + @reader.score)
+              @title = "Opp. Your gift has been deleted. I am sorry because this trouble. Your score has been restored"
+              @notification = Notification.create(reader_id: rg.reader_id, title: @title)
+              rg.destroy
             else
               rg.destroy
             end
@@ -87,7 +86,7 @@ module Api
           title = "Your gift has been received. Please check!"
           Notification.create(title, params[:reader_id])
           render json: {
-            message: "User are received"
+            message: "User are received",
           }
         end
 

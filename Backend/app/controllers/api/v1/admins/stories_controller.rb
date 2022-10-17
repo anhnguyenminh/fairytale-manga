@@ -11,15 +11,18 @@ module Api
           @categories = Category.all
           render json: @categories
         end
-        
+
         def create
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
           if @story.save
             @categories = params[:categories]
+
+            # binding.pry
+
             @categories.each do |c|
               @category = Category.find(c)
-              @story.category << Category.find(c)
+              @story.category << @category
             end
             render json: {
               message: "Success",
@@ -73,7 +76,7 @@ module Api
         private
 
         def story_params
-          params.permit(:name, :author_id, :image)
+          params.permit(:name, :author_id, :description, :status, :categories, :image)
         end
       end
     end
