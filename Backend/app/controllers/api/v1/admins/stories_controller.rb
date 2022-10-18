@@ -16,7 +16,7 @@ module Api
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
           if @story.save
-            @categories = params[:categories]
+            @categories = params[:categories_id]
             @categories.each do |c|
               @category = Category.find(c)
               @story.category << @category
