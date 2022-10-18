@@ -153,8 +153,8 @@ export default {
         description: '',
         end: null,
         status: [
-          {value: false, text: 'On going'},
-          {value: true, text: 'Ended'}
+          {value: true, text: 'On going'},
+          {value: false, text: 'Ended'}
         ],
         selectedCategory: [], // list categories
       }
