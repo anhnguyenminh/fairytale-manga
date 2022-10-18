@@ -21,9 +21,8 @@
                       <th class="col-1">ID</th>
                       <th class="col-2">Title</th>
                       <th class="col-2">Author</th>
-                      <th class="col-3">Description</th>
+                      <th class="col-4">Description</th>
                       <th class="col-1">Status</th>
-                      <th class="col-1">All chapter</th>
                       <th class="col-2 col-last">Actions</th>
                     </tr>
                     </thead>
@@ -31,10 +30,9 @@
                     <tr v-for="story in Stories.stories" :key="story.id">
                       <td class="col-1">{{ story.id }}</td>
                       <td class="col-2">{{ story.name }}</td>
-                      <td class="col-2">Jimmy Tran</td>
-                      <td class="col-3">This is the description for the story</td>
-                      <td class="col-1">On-going</td>
-                      <td class="col-1">235</td>
+                      <td class="col-2">{{ story.author_id }}</td>
+                      <td class="col-4">{{ story.description }}</td>
+                      <td class="col-1">{{ checkEnding(story.end) }}</td>
                       <td class="col-2 actions">
                         <router-link :to="{path:`/admin/stories/ten-truyen/update/${story.id}`}">
                           <button class="btn btn-info">Details</button>
@@ -72,12 +70,18 @@ export default {
   methods: {
     ...mapActions([
       'getStoriesData'
-    ])
+    ]),
+    checkEnding(status) {
+      if (status == false) {
+        return "On Going"
+      } else {
+        return "Ended"
+      }
+    },
   },
   computed: {
     Stories() {
-      // console.log(this.$store.state.stories)
-      // console.log(this.$store.state.token)
+      console.log(this.$store.state.stories)
       return this.$store.state.stories
     }
   },

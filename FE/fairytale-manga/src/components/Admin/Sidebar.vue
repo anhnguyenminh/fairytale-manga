@@ -95,8 +95,7 @@ export default {
   },
   computed:{
     Admin(){
-      console.log("Sibarrrrrr")
-      console.log(this.$store.state.admins)
+      // console.log(this.$store.state.admins)
       return this.$store.state.admins
     }
   }

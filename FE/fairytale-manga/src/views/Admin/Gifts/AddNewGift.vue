@@ -98,18 +98,6 @@ export default {
         e.preventDefault();
       });
     },
-    // onSubmit(event) {
-    //   event.preventDefault()
-    //   axios.post('/admins/gifts', this.form)
-    //       .then((res) => {
-    //         //Perform Success Action
-    //         alert("Create item completed!")
-    //         this.$router.push({path: "/admin/gifts"})
-    //       })
-    //       .catch((error) => {
-    //         // error.response.status Check status code
-    //       })
-    // },
     onReset(event) {
       event.preventDefault()
       // Reset our form values

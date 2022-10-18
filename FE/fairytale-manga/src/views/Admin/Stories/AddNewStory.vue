@@ -32,7 +32,7 @@
             <b-form-group label="Category" v-slot="{ ariaDescribedby }">
               <b-form-checkbox-group
                   id="checkbox-group-category"
-                  v-model="form.selected2"
+                  v-model="form.selectedCategory"
                   :options="Categories.option2"
                   :aria-describedby="ariaDescribedby"
                   stacked
@@ -113,21 +113,17 @@
 
           </div>
           <div class="content">
-            <div class="d-flex justify-content-between align-items-center">
+            <div>
               <h6>Cover image</h6>
-              <div>
-                <a href="#">Add</a>
-              </div>
             </div>
-            <div class="wrapped-image" style="">
-              <!--            <img src="https://st.ntcdntempv3.com/data/comics/172/saotome-san-va-tro-choi1-sinh-tu.jpg" alt="cover-image" >-->
-              <b-form-file
-                  v-model="form.file1"
-                  :state="Boolean(form.file1)"
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-              ></b-form-file>
-
+            <div class="wrapped-image" >
+                <b-form-file
+                    ref="imgInput"
+                    placeholder="Choose file or drop it here..."
+                    drop-placeholder="Drop image here..."
+                    required
+                >
+                </b-form-file>
             </div>
           </div>
 
@@ -156,12 +152,11 @@ export default {
         author_id: null,
         description: '',
         end: null,
-        file1: null,
         status: [
-          {value: 0, text: 'On going'},
-          {value: 1, text: 'Ended'}
+          {value: false, text: 'On going'},
+          {value: true, text: 'Ended'}
         ],
-        selected2: [], // Must be an array reference!
+        selectedCategory: [], // list categories
       }
     }
   },
@@ -172,29 +167,38 @@ export default {
     ...authorsStore.mapActions([
       'getAllAuthors'
     ]),
-    onSubmit(event) {
-      event.preventDefault()
-      console.log(this.form)
-      axios.post('admins/stories', this.form)
-          .then((res) => {
-            //Perform Success Action
-            alert("Add new story completed!")
-            this.$router.push({path: "/admin/stories/"})
-          })
-          .catch((error) => {
-            // error.response.status Check status code
-          })
+    onSubmit(e) {
+    console.log(this.$refs.imgInput.files);
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("author_id", this.form.author_id);
+      formData.append("description", this.form.description);
+      formData.append("end", this.form.end);
+      formData.append("categories_id", this.form.selectedCategory);
+      if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
+      e.preventDefault();
+      axios.post(`/admins/stories`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(() => {
+        alert("Add new story successfully!")
+        this.$router.push({path: "/admin/stories"})
+      }).catch(() => {
+        alert("Something wrong happened, please check again!");
+        e.preventDefault();
+      });
     }
   },
   computed: {
     Categories() {
-      // console.log(this.$store.state.categories)
-      console.log("Categories selected:" + this.form.selected2)
+      console.log("Catttttt")
+      console.log(this.$store.state.categories)
+      console.log("Categories selected:" + this.form.selectedCategory)
       return this.$store.state.categories
     },
     Authors() {
-      // console.log(this.$store.state.authors)
-      console.log("Author selected:" + this.form.selected)
+      console.log("Author selected:" + this.form.author_id)
       return this.$store.state.authors
     }
   },

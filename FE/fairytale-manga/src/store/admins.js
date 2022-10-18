@@ -13,11 +13,10 @@ export default {
         async getAdminDetail({commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/admins/showcurrentadmin/'
+                url: 'admins/admins/show_current_admin/'
             }
             await axios(DataQuery).then(res => {
                 // this.admin = res.data
-                console.log("AAAAAAAAAAAA Store")
                 // console.log(this.admin)
                 commit('setAdmin', res.data)
             }).catch(err => {
