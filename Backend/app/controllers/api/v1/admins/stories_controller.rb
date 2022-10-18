@@ -16,8 +16,8 @@ module Api
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
           if @story.save
-            @categories = params[:categories_id]
-            @categories.each do |c|
+            # @ca = params[:categories_id]
+            params[:categories_id].each do |c|
               @category = Category.find(c)
               @story.category << @category
             end
@@ -30,6 +30,9 @@ module Api
               validation: @story.errors.messages,
             }, status: 400
           end
+          
+          # binding.pry
+          
         end
 
         def index
@@ -73,8 +76,12 @@ module Api
         private
 
         def story_params
-          params.permit(:name, :author_id, :description, :end, :image)
+          params.permit(:name, :author_id, :description, :end, :image, categories_id: [])
         end
+
+        # def test_params
+        #   params.permit(:categories_id)
+        # end
       end
     end
   end
