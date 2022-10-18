@@ -36,7 +36,7 @@ module Api
           stories = Story.order(id: :desc).ransack(params[:q]).result
           @pagy, @stories = pagy(stories, items: 2)
           response_list(@stories, { adapter: :json,
-                                    each_serializer: nil })
+                                    each_serializer: StorySerializer })
         end
 
         def show
@@ -73,7 +73,7 @@ module Api
         private
 
         def story_params
-          params.permit(:name, :author_id, :description, :status, :categories, :image)
+          params.permit(:name, :author_id, :description, :status, :categories_id, :image)
         end
       end
     end

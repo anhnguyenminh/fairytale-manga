@@ -6,7 +6,7 @@ module Api
 
         def index
           @stories = Story.all.order("created_at DESC").limit(5)
-          render json: @stories
+          render json: @stories, each_serializer: StorySerializer
         end
 
         def search_stories

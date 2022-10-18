@@ -113,7 +113,8 @@ Rails.application.routes.draw do
         resources :sessions, only: [:create]
         resources :admins do
           collection do
-            get :showcurrentadmin
+            get :show_current_admin
+            put :update_admin
           end
         end
         resources :gifts do

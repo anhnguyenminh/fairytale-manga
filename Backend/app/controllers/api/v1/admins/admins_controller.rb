@@ -25,28 +25,37 @@ module Api
                                    each_serializer: nil })
         end
 
-        def showcurrentadmin
+        def show_current_admin
           render json: current_admin
         end
 
-        def update
-          @admin = Admin.find(params[:id])
-          if @admin.update(admin_params)
-            render json: {
-                     message: "Update Successfully",
-                   }
+        def update_admin
+          if current_admin.valid_password?(params[:oldPassword])
+            if params[:password]== params[:reEnterPwd]
+              if @admin.update(admin_params)
+                render json: {
+                        message: "Update Successfully",
+                      }
+              else
+                render json: {
+                        message: "Failed",
+                        validation: @admin.errors.messages,
+                      }, status: 400
+              end
+            else
+              render json: "Confirm pass word must be like your password"
+            end    
           else
             render json: {
-                     message: "Failed",
-                     validation: @admin.errors.messages,
-                   }, status: 400
+              validation: "Nhap sai mk"
+            }
           end
         end
 
         private
 
         def admin_params
-          params.permit(:email, :username, :password)
+          params.permit(:email, :username, :oldPassword, :password, :reEnterPwd)
         end
       end
     end

@@ -9,6 +9,8 @@ class Story < ApplicationRecord
   has_many :chapter
   has_many :comment, as: :commentable
   has_many :like, as: :liketable
+  attribute :image_url
+  after_find :set_image_url
 
   def self.hot_story(time_range)
     @stories = Story.joins(:reader)
