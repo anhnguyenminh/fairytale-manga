@@ -33,7 +33,7 @@ module Api
           end
           
           # binding.pry
-          
+
         end
 
         def index
