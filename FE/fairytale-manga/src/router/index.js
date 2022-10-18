@@ -62,7 +62,7 @@ const routes = [
                 component: () => import('@/views/AboutView'),
             },
             {
-                path: 'profile-admin/:id',
+                path: 'profile-admin/',
                 component: () => import('@/views/Admin/Admin/AdminProfile'),
             },
             {
@@ -75,7 +75,7 @@ const routes = [
             },
             {
                 // path: 'stories/:story/update/:id',
-                path: 'stories/ten-truyen/update/:id', //test url for UI design
+                path: 'stories/update/:id', //test url for UI design
                 component: () => import('@/views/Admin/Stories/UpdateStory'),
             },
             {

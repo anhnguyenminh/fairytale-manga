@@ -4,17 +4,20 @@
       <router-link :to="{path: '/admin/stories/'}" class="btn go-back" tag="button">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </router-link>
-      <h2 class="page-header">Trò chơi sinh tử</h2>
+      <h2 class="page-header">Story Detail</h2>
     </div>
-    <div class="wrap-body">
-      <!--      left-->
-      <div class="left-side">
-        <div class="content">
+    <b-form @submit="onSubmit">
+      <div class="wrap-body">
+        <!--      left-->
 
-          <b-form>
-            <b-form-group id="input-group-1" label="Title" label-for="input-1">
+        <div class="left-side">
+
+          <div class="content">
+
+
+            <b-form-group id="input-group-1" label="Title" label-for="str-title">
               <b-form-input
-                  id="input-1"
+                  id="str-title"
                   v-model="form.name"
                   type="text"
                   placeholder="Enter story name..."
@@ -23,14 +26,14 @@
             </b-form-group>
 
             <b-form-group label="Author">
-              <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
+              <b-form-select v-model="form.author_id" :options="Authors.options"></b-form-select>
             </b-form-group>
 
             <b-form-group label="Category" v-slot="{ ariaDescribedby }">
               <b-form-checkbox-group
                   id="checkbox-group-category"
-                  v-model="form.selected2"
-                  :options="form.options2"
+                  v-model="form.selectedCategory"
+                  :options="Categories.option2"
                   :aria-describedby="ariaDescribedby"
                   stacked
                   name="categories"
@@ -46,166 +49,239 @@
                   required
               ></b-form-textarea>
             </b-form-group>
-          </b-form>
 
-        </div>
-        <div class="content">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5>Chapters</h5>
-            <div>
-              <router-link class="btn btn-success" :to="{ path: '/admin/stories/ten-truyen/new-chapter' }" role="button">+ New chapter
-              </router-link>
-            </div>
+
           </div>
-          <div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th class="col-3">ID</th>
-                    <th class="col-5">Chapter</th>
-                    <th class="col-4 col-last">Actions</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td class="col-3">1</td>
-                    <td class="col-5">Chapter 1</td>
-                    <td class="col-4 actions">
-                      <a>
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                      <a>
-                        <button class="btn btn-danger" >Delete</button>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="col-3">2</td>
-                    <td class="col-5">Chapter 2</td>
-                    <td class="col-4 actions">
-                      <a>
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                      <a>
-                        <button class="btn btn-danger" >Delete</button>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="col-3">3</td>
-                    <td class="col-5">Chapter 3</td>
-                    <td class="col-4 actions">
-                      <a>
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                      <a>
-                        <button class="btn btn-danger" >Delete</button>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="col-3">4</td>
-                    <td class="col-5">Chapter 4</td>
-                    <td class="col-4 actions">
-                      <a>
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                      <a>
-                        <button class="btn btn-danger" >Delete</button>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="col-3">5</td>
-                    <td class="col-5">Chapter 5</td>
-                    <td class="col-4 actions">
-                      <a>
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                      <a>
-                        <button class="btn btn-danger" >Delete</button>
-                      </a>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+          <div class="content">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Chapters</h5>
+              <div>
+                <router-link class="btn btn-success" :to="{ path: '/admin/stories/ten-truyen/new-chapter' }"
+                             role="button">+ New chapter
+                </router-link>
+              </div>
+            </div>
+            <div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                      <th class="col-3">ID</th>
+                      <th class="col-5">Chapter</th>
+                      <th class="col-4 col-last">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td class="col-3">1</td>
+                      <td class="col-5">Chapter 1</td>
+                      <td class="col-4 actions">
+                        <a>
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                        <a>
+                          <button class="btn btn-danger">Delete</button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-3">2</td>
+                      <td class="col-5">Chapter 2</td>
+                      <td class="col-4 actions">
+                        <a>
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                        <a>
+                          <button class="btn btn-danger">Delete</button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-3">3</td>
+                      <td class="col-5">Chapter 3</td>
+                      <td class="col-4 actions">
+                        <a>
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                        <a>
+                          <button class="btn btn-danger">Delete</button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-3">4</td>
+                      <td class="col-5">Chapter 4</td>
+                      <td class="col-4 actions">
+                        <a>
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                        <a>
+                          <button class="btn btn-danger">Delete</button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-3">5</td>
+                      <td class="col-5">Chapter 5</td>
+                      <td class="col-4 actions">
+                        <a>
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                        <a>
+                          <button class="btn btn-danger">Delete</button>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="content">
+          <div class="content">
 
-          <div class="btn-bottom">
-            <b-button class="my-btn" type="reset" variant="outline-danger">Delete this story</b-button>
-            <b-button class="my-btn-submit" type="submit" variant="outline-success">Save story</b-button>
-          </div>
-        </div>
-      </div>
-      <!--      right-->
-      <div class="right-side">
-        <div class="content">
-
-          <b-form>
-            <b-form-group label="Status">
-              <b-form-select v-model="form.selected" :options="form.options"></b-form-select>
-            </b-form-group>
-
-          </b-form>
-
-        </div>
-        <div class="content">
-          <div class="d-flex justify-content-between align-items-center">
-            <h6>Cover image</h6>
-            <div>
-              <a href="#">Edit</a>
+            <div class="btn-bottom">
+              <b-button class="my-btn" type="reset" variant="outline-danger">Delete this story</b-button>
+              <b-button class="my-btn-submit" type="submit" variant="outline-success">Save story</b-button>
             </div>
           </div>
-          <div class="wrapped-image img">
-            <img src="https://st.ntcdntempv3.com/data/comics/172/saotome-san-va-tro-choi-sinh-tu.jpg" alt="cover-picture">
+
+        </div>
+        <!--      right-->
+        <div class="right-side">
+          <div class="content">
+
+            <b-form>
+              <b-form-group label="Status">
+                <b-form-select v-model="form.end" :options="form.status"></b-form-select>
+              </b-form-group>
+
+            </b-form>
+
           </div>
+          <div class="content">
+            <div>
+              <h6>Cover image</h6>
+            </div>
+            <div class="wrapped-image">
+              <b-form-file
+                  ref="imgInput"
+                  placeholder="Choose file or drop it here..."
+                  drop-placeholder="Drop image here..."
+                  required
+              >
+              </b-form-file>
+            </div>
+          </div>
+
         </div>
 
       </div>
-    </div>
+    </b-form>
 
   </div>
 </template>
 
 <script>
-require('@/assets/css/story.css')
+import axios from "@/plugins/axios";
 
+require('@/assets/css/story.css')
+import {createNamespacedHelpers} from "vuex";
+
+const categoriesStore = createNamespacedHelpers("categories");
+const authorsStore = createNamespacedHelpers("authors");
 export default {
-  name: 'UpdateStory',
+  name: 'AddNewStory',
   data() {
     return {
       form: {
         name: '',
-        // description: '',
-        selected: null,
-        options: [
-          {value: null, text: 'Please select an option'},
-          {value: 'a', text: 'This is First option'},
-          {value: 'b', text: 'Selected Option'},
-          {value: {C: '3PO'}, text: 'This is an option with object value'},
-          {value: 'd', text: 'This one is disabled', disabled: true}
+        author_id: null,
+        description: '',
+        end: null,
+        status: [
+          {value: true, text: 'On going'},
+          {value: false, text: 'Ended'}
         ],
-        selected2: [], // Must be an array reference!
-        options2: [
-          { text: 'Comedy', value: 'comedy' },
-          { text: 'One shot', value: 'oneshot' },
-          { text: 'Historical', value: 'historical' },
-          { text: 'Mystery', value: 'mystery' },
-          { text: 'Adventure', value: 'adventure' },
-          { text: 'Horror', value: 'horror' },
-          { text: 'Harem', value: 'harem' },
-          { text: 'Supernatural', value: 'supernatural' }
-        ]
+        selectedCategory: [], // list categories
       }
     }
   },
-  methods: {}
+  created() {
+    // console.log(this.$route.params.id)
+    let self = this;
+    axios.get('admins/stories/' + this.$route.params.id)
+        .then(function (response) {
+          // handle success
+          console.log("BBBBBBBBBBBBBBBBB")
+          console.log(response.data.category)
+          self.form.name = response.data.name
+          self.form.author_id = response.data.author_id
+          self.form.description = response.data.description
+          // self.form.status.value = response.data.status
+          // self.form.selectedCategory = response.data.category.map(item =>{
+          //   return item.id
+          // })
+
+
+
+          //...
+
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+        });
+  },
+  methods: {
+    ...categoriesStore.mapActions([
+      'getAllCategories'
+    ]),
+    ...authorsStore.mapActions([
+      'getAllAuthors'
+    ]),
+    onSubmit(e) {
+      console.log(this.$refs.imgInput.files);
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("author_id", this.form.author_id);
+      formData.append("description", this.form.description);
+      formData.append("end", this.form.end);
+      formData.append("categories_id", JSON.stringify(this.form.selectedCategory));
+      if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
+      e.preventDefault();
+      axios.post(`/admins/stories`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(() => {
+        alert("Add new story successfully!")
+        this.$router.push({path: "/admin/stories"})
+      }).catch(() => {
+        alert("Something wrong happened, please check again!");
+        e.preventDefault();
+      });
+    }
+  },
+  computed: {
+    Categories() {
+      console.log("Categories selected:" + this.form.selectedCategory)
+      return this.$store.state.categories
+    },
+    Authors() {
+      console.log("Author selected:" + this.form.author_id)
+      return this.$store.state.authors
+    }
+  },
+  mounted() {
+    this.getAllCategories(),
+        this.getAllAuthors()
+  }
 }
 </script>
 

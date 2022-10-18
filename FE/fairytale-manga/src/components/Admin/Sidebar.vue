@@ -14,7 +14,7 @@
             <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
           </div>
           <div>
-            <router-link :to="{path:'/admin/profile-admin/'+ Admin.admin.id}" tag="div" class="admin-name">{{Admin.admin.username}}</router-link>
+            <router-link :to="{path:'/admin/profile-admin/'}" tag="div" class="admin-name">{{Admin.admin.username}}</router-link>
             <div class="position">Admin</div>
           </div>
         </div>
