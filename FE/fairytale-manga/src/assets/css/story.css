@@ -67,21 +67,3 @@
 .my-btn-submit {
     margin-left: 5rem;
 }
-
-/* image */
-.wrapped-image {
-    height: 287px;
-    width: 200px;
-    margin: auto;
-    border: 1px solid #ccc
-}
-
-.img {
-    height: 50% !important;
-    border: none;
-}
-
-.wrapped-image img {
-    height: 100%;
-    width: 100%
-}

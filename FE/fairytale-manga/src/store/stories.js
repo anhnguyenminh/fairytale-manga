@@ -17,7 +17,7 @@ export default {
             }
             await axios(DataQuery).then(res => {
                 this.stories = res.data
-                console.log(this.stories)
+                // console.log(res.data)
                 commit('setStories', this.stories)
             }).catch(err => {
                 console.log(err)
@@ -33,7 +33,9 @@ export default {
                     id: item.id,
                     name: item.name,
                     description: item.description,
-                    end: item.end
+                    end: item.end,
+                    author_id: item.author_id,
+                    categories_id: item.categories_id
                 }
             })
         }

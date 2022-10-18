@@ -44,11 +44,10 @@
             <li class="comic-hover">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                   <img class=" lazyloaded"
-                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
-                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+
                        alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                 </a>
                 <span class="time-comic-tab">1 giờ trước &nbsp;
@@ -69,11 +68,10 @@
             <li class="comic-hover">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                   <img class=" lazyloaded"
-                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
-                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+
                        alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                 </a>
                 <span class="time-comic-tab">1 giờ trước &nbsp;
@@ -94,11 +92,10 @@
             <li class="comic-hover">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                   <img class=" lazyloaded"
-                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
-                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+
                        alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                 </a>
                 <span class="time-comic-tab">1 giờ trước &nbsp;
@@ -119,11 +116,10 @@
             <li class="comic-hover">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                   <img class=" lazyloaded"
-                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
-                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+
                        alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                 </a>
                 <span class="time-comic-tab">1 giờ trước &nbsp;
@@ -144,11 +140,10 @@
             <li class="comic-hover">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   data-id="13635" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                   <img class=" lazyloaded"
-                       src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-                       onerror="this.src=`https://qmanga3.net/image/defaul-load.png`"
-                       data-src="https://cdn.qmanga3.net/mangas/2022/08/12/15/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+
                        alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
                 </a>
                 <span class="time-comic-tab">1 giờ trước &nbsp;
@@ -166,6 +161,8 @@
                 </h3></a>
               </span>
             </li>
+
+
           </ul>
           <a href="#" class="more-btn"></a>
         </div>
