@@ -174,7 +174,7 @@ export default {
       formData.append("author_id", this.form.author_id);
       formData.append("description", this.form.description);
       formData.append("end", this.form.end);
-      formData.append("categories_id", this.form.selectedCategory);
+      formData.append("categories_id", JSON.stringify(this.form.selectedCategory));
       if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
       e.preventDefault();
       axios.post(`/admins/stories`, formData, {
