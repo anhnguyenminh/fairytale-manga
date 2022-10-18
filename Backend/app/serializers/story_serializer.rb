@@ -9,8 +9,8 @@ class StorySerializer < ActiveModel::Serializer
   def author_id
     object.author.id
   end
- 
- 
+  
+  
   has_many :category, each_serializer: CategorySerializer
 
   def cat_id
@@ -21,3 +21,4 @@ class StorySerializer < ActiveModel::Serializer
     object.end
   end
 end
+

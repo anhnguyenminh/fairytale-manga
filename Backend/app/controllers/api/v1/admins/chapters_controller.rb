@@ -20,7 +20,7 @@ module Api
           #   }, status: 400
           # end
           
-          binding.pry
+          # binding.pry
           
         end
 
