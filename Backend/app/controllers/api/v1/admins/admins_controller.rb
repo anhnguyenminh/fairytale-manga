@@ -32,7 +32,7 @@ module Api
         def update_admin
           if current_admin.valid_password?(params[:oldPassword])
             if params[:password]== params[:reEnterPwd]
-              if @admin.update(admin_params)
+              if current_admin.update(username: params[:username], email: params[:email], password: params[:password])
                 render json: {
                         message: "Update Successfully",
                       }
