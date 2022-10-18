@@ -51,6 +51,12 @@ module Api
         def update
           @story = Story.find(params[:id])
           if @story.update(story_params)
+            @story.category.destroy_all
+            @ca = JSON.parse params[:categories_id]
+            @ca.each do |c|
+              @category = Category.find(c)
+              @story.category << @category
+            end
             render json: "Update Successfully"
           else
             render json: {
