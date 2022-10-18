@@ -34,7 +34,7 @@
                       <td class="col-4">{{ story.description }}</td>
                       <td class="col-1">{{ story.status }}</td>
                       <td class="col-2 actions">
-                        <router-link :to="{path:`/admin/stories/ten-truyen/update/${story.id}`}">
+                        <router-link :to="{path:`/admin/stories/update/${story.id}`}">
                           <button class="btn btn-info">Details</button>
                         </router-link>
 
@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     Stories() {
-      console.log(this.$store.state.stories)
+      // console.log(this.$store.state.stories)
       return this.$store.state.stories
     }
   },
