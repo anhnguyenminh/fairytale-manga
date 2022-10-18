@@ -30,9 +30,9 @@
                     <tr v-for="story in Stories.stories" :key="story.id">
                       <td class="col-1">{{ story.id }}</td>
                       <td class="col-2">{{ story.name }}</td>
-                      <td class="col-2">{{ story.author_id }}</td>
+                      <td class="col-2">{{ story.author_name }}</td>
                       <td class="col-4">{{ story.description }}</td>
-                      <td class="col-1">{{ checkEnding(story.end) }}</td>
+                      <td class="col-1">{{ story.status }}</td>
                       <td class="col-2 actions">
                         <router-link :to="{path:`/admin/stories/ten-truyen/update/${story.id}`}">
                           <button class="btn btn-info">Details</button>
@@ -70,14 +70,7 @@ export default {
   methods: {
     ...mapActions([
       'getStoriesData'
-    ]),
-    checkEnding(status) {
-      if (status == false) {
-        return "On Going"
-      } else {
-        return "Ended"
-      }
-    },
+    ])
   },
   computed: {
     Stories() {
