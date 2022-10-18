@@ -28,7 +28,7 @@ export default {
     ,
     mutations: {
         setAdmin(state, newAdmin) {
-            // console.log(newAdmin)
+            console.log(newAdmin)
             state.admin = newAdmin
         }
     }

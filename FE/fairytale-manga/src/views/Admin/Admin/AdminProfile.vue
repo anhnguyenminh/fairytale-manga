@@ -77,7 +77,8 @@
                   v-model="form.oldPassword"
                   type="password"
                   placeholder="Please enter old password"
-                  required
+                  autocomplete="off"
+
               ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="New Password" label-for="admin-email">
@@ -86,16 +87,16 @@
                   v-model="form.password"
                   type="password"
                   placeholder="Please enter new password"
-                  required
+
               ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="Re-Enter New Password" label-for="admin-email">
               <b-form-input
                   id="admin-email"
-                  v-model="form.password"
+                  v-model="form.reEnterPwd"
                   type="password"
                   placeholder="Re-enter new password"
-                  required
+
               ></b-form-input>
             </b-form-group>
 
@@ -136,7 +137,7 @@ export default {
     },
     onSubmit(event) {
       event.preventDefault()
-      axios.put('admins/admins/'+ this.$route.params.id, this.form)
+      axios.put('admins/admins/update_admin/', this.form)
           .then((res) => {
             //Perform Success Action
             alert("Update profile completed!")
@@ -149,7 +150,7 @@ export default {
   },
   created(){
     let self = this;
-    axios.get('admins/admins/showcurrentadmin/')
+    axios.get('admins/admins/show_current_admin/')
         .then(function (response) {
           // handle success
           self.form.username = response.data.username

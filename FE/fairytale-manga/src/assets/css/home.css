@@ -13,4 +13,22 @@
     display: flex;
     list-style-type: none;
     padding: 0;
+
+}
+
+#ul-content-pho-bien li{
+    width: 15.6%;
+    margin-right: 10px;
+    margin-bottom: 1%;
+}
+
+.image-comic-tab{
+    width: 100%;
+    height: 220px;
+    position: relative;
+}
+.content-tab a {
+    width: 100%;
+    height: 100%;
+    display: block;
 }

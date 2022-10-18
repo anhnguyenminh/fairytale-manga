@@ -192,8 +192,6 @@ export default {
   },
   computed: {
     Categories() {
-      console.log("Catttttt")
-      console.log(this.$store.state.categories)
       console.log("Categories selected:" + this.form.selectedCategory)
       return this.$store.state.categories
     },
