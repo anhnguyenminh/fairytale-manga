@@ -26,29 +26,22 @@ module Api
           
         end
 
-        def index
-          chapters = Chapter.order(id: :desc).ransack(params[:q]).result
-          @pagy, @chapters = pagy(chapters, items: 10)
-          response_list(@chapters, { adapter: :json,
-                                     each_serializer: nil })
-        end
-
         def show
           @chapter = Chapter.find(params[:id])
           render json: @chapter
         end
 
-        def update
-          @chapter = Chapter.find(params[:id])
-          if @chapter.update(chapter_params)
-            render json: "Update Successfully"
-          else
-            render json: {
-                     message: "Failed",
-                     validation: @chapter.errors.messages,
-                   }, status: 400
-          end
-        end
+        # def update
+        #   @chapter = Chapter.find(params[:id])
+        #   if @chapter.update(chapter_params)
+        #     render json: "Update Successfully"
+        #   else
+        #     render json: {
+        #              message: "Failed",
+        #              validation: @chapter.errors.messages,
+        #            }, status: 400
+        #   end
+        # end
 
         def destroy
           @chapter = Chapter.find(params[:id])

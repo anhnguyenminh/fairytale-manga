@@ -138,6 +138,9 @@ Rails.application.routes.draw do
             get :get_categories
             get :get_authors
           end
+          member do
+            get :show_list_chapters
+          end
         end
         resources :chapters
       end
