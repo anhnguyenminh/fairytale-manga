@@ -1,11 +1,10 @@
 module Stories
   class ShowStoriesSerializer < ActiveModel::Serializer
-    attributes :id, :name, :status, :chapter, :author_name, :description
+    attributes :id, :name, :status, :author_name, :description
 
     def author_name
       object.author.name
     end
-  
   
     def author_id
       object.author.id
