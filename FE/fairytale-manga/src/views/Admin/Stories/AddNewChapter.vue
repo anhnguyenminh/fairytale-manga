@@ -7,7 +7,7 @@
       <h2 style="margin: 0 1.2rem ;">New Chapter</h2>
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
-      <b-form @submit="onSubmit" v-if="show">
+      <b-form @submit="onSubmit" >
         <b-form-group id="input-group-1" label="Chapter name" label-for="input-1">
           <b-form-input
               id="input-1"
@@ -21,8 +21,6 @@
         <b-form-group id="input-group-2" label="Upload images">
           <b-form-file
               ref="imgInput"
-              v-model="form.images"
-              :state="Boolean(form.images)"
               multiple
               placeholder="Choose file or drop it here..."
               drop-placeholder="Drop image here..."
@@ -47,10 +45,8 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        images: []
-      },
-      show: true
+        name: ''
+      }
     }
   },
   methods: {
