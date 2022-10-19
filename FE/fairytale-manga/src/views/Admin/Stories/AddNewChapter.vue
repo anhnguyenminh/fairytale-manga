@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="width: 60%;">
     <div class="d-flex align-items-center ">
-      <b-button style="background-color: #f1f1f1" @click="goBack">
+      <b-button style="background-color: #f1f1f1" @click="$router.go(-1)">
         <b-icon variant="dark" icon="arrow-left"></b-icon>
       </b-button>
       <h2 style="margin: 0 1.2rem ;">New Chapter</h2>
@@ -20,17 +20,15 @@
 
         <b-form-group id="input-group-2" label="Upload images">
           <b-form-file
-              v-model="form.files"
+              ref="imgInput"
+              v-model="form.images"
+              :state="Boolean(form.images)"
               multiple
-              :state="Boolean(form.files)"
-              placeholder="Choose files or drop it here..."
-              drop-placeholder="Drop files here..."
-          ></b-form-file>
-
-          Selected files
-          <div v-for="file in form.files" :key="file.name">
-            <div>{{ file.name }}</div>
-          </div>
+              placeholder="Choose file or drop it here..."
+              drop-placeholder="Drop image here..."
+              required
+          >
+          </b-form-file>
         </b-form-group>
 
         <div style="text-align: center;">
@@ -38,9 +36,6 @@
         </div>
       </b-form>
     </div>
-    <b-card class="mt-3" header="Preview">
-      <!--      Something to preview here-->
-    </b-card>
   </div>
 </template>
 
@@ -53,27 +48,32 @@ export default {
     return {
       form: {
         name: '',
-        files: []
+        images: []
       },
       show: true
     }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault()
-      axios.post('admins/chapters', this.form)
-          .then((res) => {
-            //Perform Success Action
-            alert("Add new chapter completed!")
-            this.$router.push({path: "/admin/stories/ten-truyen/update/1"})
-          })
-          .catch((error) => {
-            // error.response.status Check status code
-          })
-    },
-    goBack() {
-      this.$router.push({path: "/admin/stories/ten-truyen/update/1"})
+    onSubmit(e) {
+      console.log("Chapter" + this.$refs.imgInput.files);
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("story_id", this.$route.params.id);
+      if (this.$refs.imgInput.files) formData.append("images", this.$refs.imgInput.files);
+      e.preventDefault();
+      axios.post(`/admins/chapters`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(() => {
+        alert("Add new chapter completed!")
+        this.$router.push({path: "/admin/stories"})
+      }).catch(() => {
+        alert("Something wrong happened, please check again!");
+        e.preventDefault();
+      });
     }
+
   }
 }
 </script>
@@ -83,8 +83,8 @@ export default {
   margin: 0 1.5rem;
 }
 
-.custom-file {
-  height: calc(25em + 0.75rem + 2px);
-}
+/*.custom-file {*/
+/*  height: calc(25em + 0.75rem + 2px);*/
+/*}*/
 
 </style>

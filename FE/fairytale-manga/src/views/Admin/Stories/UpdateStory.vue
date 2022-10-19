@@ -56,7 +56,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <h5>Chapters</h5>
               <div>
-                <router-link class="btn btn-success" :to="{ path: '/admin/stories/ten-truyen/new-chapter' }"
+                <router-link class="btn btn-success" :to="{ path: '/admin/stories/'+ this.$route.params.id +'/new-chapter' }"
                              role="button">+ New chapter
                 </router-link>
               </div>
@@ -169,7 +169,6 @@
                   ref="imgInput"
                   placeholder="Choose file or drop it here..."
                   drop-placeholder="Drop image here..."
-                  required
               >
               </b-form-file>
             </div>
@@ -186,7 +185,7 @@
 <script>
 import axios from "@/plugins/axios";
 
-require('@/assets/css/story.css')
+// require('@/assets/css/story.css')
 import {createNamespacedHelpers} from "vuex";
 
 const categoriesStore = createNamespacedHelpers("categories");
@@ -201,8 +200,8 @@ export default {
         description: '',
         end: null,
         status: [
-          {value: true, text: 'On going'},
-          {value: false, text: 'Ended'}
+          {value: false, text: 'On going'},
+          {value: true, text: 'Ended'}
         ],
         selectedCategory: [], // list categories
       }
@@ -214,15 +213,17 @@ export default {
     axios.get('admins/stories/' + this.$route.params.id)
         .then(function (response) {
           // handle success
-          console.log("BBBBBBBBBBBBBBBBB")
-          console.log(response.data.category)
+          // console.log("BBBBBBBBBBBBBBBBB")
+          // console.log(response.data.category)
+          // console.log("CCCCCCCCCCCCCCC")
+          // console.log(response.data.status)
           self.form.name = response.data.name
           self.form.author_id = response.data.author_id
           self.form.description = response.data.description
-          // self.form.status.value = response.data.status
-          // self.form.selectedCategory = response.data.category.map(item =>{
-          //   return item.id
-          // })
+          self.form.end = response.data.status
+          self.form.selectedCategory = response.data.category.map(item =>{
+            return item.id
+          })
 
 
 
@@ -249,18 +250,23 @@ export default {
       console.log(this.$refs.imgInput.files);
       let formData = new FormData();
       formData.append("name", this.form.name);
+      console.log(this.form.name)
       formData.append("author_id", this.form.author_id);
+      console.log(this.form.author_id)
       formData.append("description", this.form.description);
+      console.log(this.form.description)
       formData.append("end", this.form.end);
+      console.log(this.form.end)
       formData.append("categories_id", JSON.stringify(this.form.selectedCategory));
+      console.log(this.form.selectedCategory)
       if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
       e.preventDefault();
-      axios.post(`/admins/stories`, formData, {
+      axios.put(`/admins/stories/`+ this.$route.params.id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       }).then(() => {
-        alert("Add new story successfully!")
+        alert("Update story successfully!")
         this.$router.push({path: "/admin/stories"})
       }).catch(() => {
         alert("Something wrong happened, please check again!");
@@ -287,4 +293,5 @@ export default {
 
 <style scoped>
 
+@import url(@/assets/css/story.css);
 </style>

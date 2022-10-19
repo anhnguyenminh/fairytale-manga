@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <div class="content d-flex flex-column">
+      <div class="admin-wrapped-content d-flex flex-column">
         <div class="container-fluid">
           <div class="card mb-3">
             <div class="card-body pb-0">
@@ -113,7 +113,6 @@
   </div>
 </template>
 <script>
-require("@/assets/css/admin-profile.css")
 
 import axios from "@/plugins/axios";
 
@@ -169,5 +168,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import url(@/assets/css/admin-profile.css);
 </style>

@@ -74,13 +74,11 @@ const routes = [
                 component: () => import('@/views/Admin/Stories/AddNewStory'),
             },
             {
-                // path: 'stories/:story/update/:id',
-                path: 'stories/update/:id', //test url for UI design
+                path: 'stories/update/:id',
                 component: () => import('@/views/Admin/Stories/UpdateStory'),
             },
             {
-                // path: 'stories/:story/new-chapter/',
-                path: 'stories/ten-truyen/new-chapter/',  //test url for UI design
+                path: 'stories/:id/new-chapter/',
                 component: () => import('@/views/Admin/Stories/AddNewChapter'),
             },
             {

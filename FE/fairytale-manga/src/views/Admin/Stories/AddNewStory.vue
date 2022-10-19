@@ -49,53 +49,9 @@
                   required
               ></b-form-textarea>
             </b-form-group>
-
-
-          </div>
-          <div class="content">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5>Chapters</h5>
-              <div>
-                <router-link class="btn btn-success" :to="{ path: '/admin/stories/ten-truyen/new-chapter' }"
-                             role="button">+ New chapter
-                </router-link>
-              </div>
-            </div>
-            <div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                      <th class="col-3">ID</th>
-                      <th class="col-5">Chapter</th>
-                      <th class="col-4 col-last">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!--                  <tr>-->
-                    <!--                    <td class="col-3">1</td>-->
-                    <!--                    <td class="col-5">Chapter 1</td>-->
-                    <!--                    <td class="col-4 actions">-->
-                    <!--                      <a>-->
-                    <!--                        <button class="btn btn-info">Edit</button>-->
-                    <!--                      </a>-->
-                    <!--                      <a href="#">-->
-                    <!--                        <button class="btn btn-danger" >Delete</button>-->
-                    <!--                      </a>-->
-                    <!--                    </td>-->
-                    <!--                  </tr>-->
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="content">
-
+            <br><br>
             <div class="btn-bottom">
-              <b-button class="my-btn" type="submit" variant="success">Save story</b-button>
+              <b-button class="my-btn" type="submit" variant="outline-success">Add new story</b-button>
             </div>
           </div>
 
@@ -138,7 +94,6 @@
 <script>
 import axios from "@/plugins/axios";
 
-require('@/assets/css/story.css')
 import {createNamespacedHelpers} from "vuex";
 
 const categoriesStore = createNamespacedHelpers("categories");
@@ -209,4 +164,5 @@ export default {
 
 <style scoped>
 
+@import url(@/assets/css/story.css);
 </style>
