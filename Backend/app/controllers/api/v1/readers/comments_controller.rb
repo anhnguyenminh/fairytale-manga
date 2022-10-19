@@ -5,17 +5,22 @@ module Api
         before_action :set_commentable, only: [:create, :index]
 
         def create
-          @comment = @commentable.comment.new(comment_params)
-          @comment.reader = @current_reader
-          if @comment.save
-            # Comment.new(@comment)
-            render json: {
-              message: "Save Successfuly",
-            }
+          if current_reader.time_ban == nil || current_reader.time_ban - Time.now >= 7.day
+            current_reader.update(time_ban: nil)
+            @comment = @commentable.comment.new(comment_params)
+            @comment.reader = @current_reader
+            if @comment.save
+              # Comment.new(@comment)
+              render json: {
+                message: "Save Successfuly",
+              }
+            else
+              render json: {
+                message: "Save Failed",
+              }
+            end
           else
-            render json: {
-              message: "Save Failed",
-            }
+            render json: "You can't comment because you 're banned"
           end
         end
 

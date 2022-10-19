@@ -15,9 +15,9 @@ module Api
           if params[:status] == 1 #banned
             @reader = Reader.find(@comment.reader_id)
             @comment.update(status: params[:status])
-            @title = "Warning your comment is toxic."
+            @title = "Warning your comment is toxic. We will ban you.!!"
             @notification = Notification.create(reader_id: @comment.reader_id, title: @title)
-            if @reader.update(ban: 1 + @reader.ban)
+            if @reader.update(time_ban: Time.now)
               render json: "dr"
             else 
               render json: "chua dc"
