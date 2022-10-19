@@ -7,7 +7,7 @@
       <h2 style="margin: 0 1.2rem ;">New Chapter</h2>
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
-      <b-form @submit="onSubmit" >
+      <b-form @submit="onSubmit">
         <b-form-group id="input-group-1" label="Chapter name" label-for="input-1">
           <b-form-input
               id="input-1"
@@ -51,11 +51,19 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      console.log("Chapter" + this.$refs.imgInput.files);
+      console.log("Chapter" + this.$refs.imgInput.files.length);
       let formData = new FormData();
+      let totalFiles = this.$refs.imgInput.files.length;
+
       formData.append("name", this.form.name);
       formData.append("story_id", this.$route.params.id);
-      if (this.$refs.imgInput.files) formData.append("images", this.$refs.imgInput.files);
+      if (this.$refs.imgInput.files) {
+        for (let index = 0; index < totalFiles; index++) {
+          console.log(this.$refs.imgInput.files[index])
+          formData.append("images", this.$refs.imgInput.files[index]);
+        }
+      }
+
       e.preventDefault();
       axios.post(`/admins/chapters`, formData, {
         headers: {
