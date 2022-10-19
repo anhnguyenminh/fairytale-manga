@@ -10,7 +10,6 @@
     line-height: 32px;
 }
 #ul-content-pho-bien{
-    display: flex;
     list-style-type: none;
     padding: 0;
 
@@ -62,11 +61,16 @@ span.time-comic-tab {
     text-overflow: ellipsis;
     font-weight: 600;
 }
-.chapter-comic-tab {
-    width: 100%;
-    display: block;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden!important;
-    text-overflow: ellipsis;
+/*.chapter-comic-tab {*/
+/*    width: 100%;*/
+/*    display: block;*/
+/*    font-size: 13px;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden!important;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+#ul-content-pho-bien.row{
+    margin-bottom: 0;
 }
+

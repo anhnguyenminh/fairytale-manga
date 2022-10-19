@@ -56,7 +56,8 @@
             <div class="d-flex justify-content-between align-items-center">
               <h5>Chapters</h5>
               <div>
-                <router-link class="btn btn-success" :to="{ path: '/admin/stories/'+ this.$route.params.id +'/new-chapter' }"
+                <router-link class="btn btn-success"
+                             :to="{ path: '/admin/stories/'+ this.$route.params.id +'/new-chapter' }"
                              role="button">+ New chapter
                 </router-link>
               </div>
@@ -73,66 +74,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td class="col-3">1</td>
-                      <td class="col-5">Chapter 1</td>
+                    <tr v-for="chap in chapter" :key="chap.id">
+                      <td class="col-3">{{ chap.id }}</td>
+                      <td class="col-5">{{ chap.name }}</td>
                       <td class="col-4 actions">
-                        <a>
-                          <button class="btn btn-info">Edit</button>
-                        </a>
-                        <a>
+                        <div>
+                          <button class="btn btn-info">Details</button>
+                        </div>
+                        <div>
                           <button class="btn btn-danger">Delete</button>
-                        </a>
+                        </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="col-3">2</td>
-                      <td class="col-5">Chapter 2</td>
-                      <td class="col-4 actions">
-                        <a>
-                          <button class="btn btn-info">Edit</button>
-                        </a>
-                        <a>
-                          <button class="btn btn-danger">Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-3">3</td>
-                      <td class="col-5">Chapter 3</td>
-                      <td class="col-4 actions">
-                        <a>
-                          <button class="btn btn-info">Edit</button>
-                        </a>
-                        <a>
-                          <button class="btn btn-danger">Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-3">4</td>
-                      <td class="col-5">Chapter 4</td>
-                      <td class="col-4 actions">
-                        <a>
-                          <button class="btn btn-info">Edit</button>
-                        </a>
-                        <a>
-                          <button class="btn btn-danger">Delete</button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-3">5</td>
-                      <td class="col-5">Chapter 5</td>
-                      <td class="col-4 actions">
-                        <a>
-                          <button class="btn btn-info">Edit</button>
-                        </a>
-                        <a>
-                          <button class="btn btn-danger">Delete</button>
-                        </a>
-                      </td>
-                    </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -142,7 +96,9 @@
           <div class="content">
 
             <div class="btn-bottom">
-              <b-button class="my-btn" type="reset" variant="outline-danger">Delete this story</b-button>
+              <b-button class="my-btn" type="reset" variant="outline-danger" @click="deleteStory($route.params.id)">
+                Delete this story
+              </b-button>
               <b-button class="my-btn-submit" type="submit" variant="outline-success">Save story</b-button>
             </div>
           </div>
@@ -204,7 +160,8 @@ export default {
           {value: true, text: 'Ended'}
         ],
         selectedCategory: [], // list categories
-      }
+      },
+      chapter: {}
     }
   },
   created() {
@@ -213,30 +170,30 @@ export default {
     axios.get('admins/stories/' + this.$route.params.id)
         .then(function (response) {
           // handle success
-          // console.log("BBBBBBBBBBBBBBBBB")
           // console.log(response.data.category)
-          // console.log("CCCCCCCCCCCCCCC")
           // console.log(response.data.status)
           self.form.name = response.data.name
           self.form.author_id = response.data.author_id
           self.form.description = response.data.description
           self.form.end = response.data.status
-          self.form.selectedCategory = response.data.category.map(item =>{
+          self.form.selectedCategory = response.data.category.map(item => {
             return item.id
           })
-
-
-
-          //...
-
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
+        });
+    axios.get('admins/stories/' + this.$route.params.id + '/show_list_chapters')
+        .then(function (response) {
+          // handle success
+          self.chapter = response.data
+          // console.log(response.data);
         })
-        .finally(function () {
-          // always executed
+        .catch(function (error) {
+          // handle error
+          console.log(error);
         });
   },
   methods: {
@@ -250,37 +207,70 @@ export default {
       console.log(this.$refs.imgInput.files);
       let formData = new FormData();
       formData.append("name", this.form.name);
-      console.log(this.form.name)
+      // console.log(this.form.name)
       formData.append("author_id", this.form.author_id);
-      console.log(this.form.author_id)
+      // console.log(this.form.author_id)
       formData.append("description", this.form.description);
-      console.log(this.form.description)
+      // console.log(this.form.description)
       formData.append("end", this.form.end);
-      console.log(this.form.end)
+      // console.log(this.form.end)
       formData.append("categories_id", JSON.stringify(this.form.selectedCategory));
-      console.log(this.form.selectedCategory)
+      // console.log(this.form.selectedCategory)
       if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
       e.preventDefault();
-      axios.put(`/admins/stories/`+ this.$route.params.id, formData, {
+      axios.put(`/admins/stories/` + this.$route.params.id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       }).then(() => {
         alert("Update story successfully!")
-        this.$router.push({path: "/admin/stories"})
       }).catch(() => {
         alert("Something wrong happened, please check again!");
         e.preventDefault();
       });
+    },
+    deleteStory(id) {
+      if (confirm('Are you sure you want to delete this story? (All chapters of this story will be delete completely)')) {
+        // Delete it!
+        axios.delete(`admins/stories/${id}`)
+            .then(response => {
+              alert("Delete successfully")
+              this.$router.push("/admin/stories/")
+            })
+            .catch(function (error) {
+              console.log(error.response)
+            })
+        console.log('Thing was deleted.');
+      } else {
+        // Do nothing!
+        console.log('Thing was not deleted.');
+      }
+    },
+    deleteChapter(id) {
+      if (confirm('Are you sure you want to delete this chapter?')) {
+        // Delete it!
+        axios.delete(`http://localhost:3000/api/v1/admins/categories/${id}`)
+            .then(response => {
+              console.log();
+              this.getCategoryData();
+            })
+            .catch(function (error) {
+              console.log(error.response)
+            })
+        console.log('Thing was deleted.');
+      } else {
+        // Do nothing!
+        console.log('Thing was not deleted.');
+      }
     }
   },
   computed: {
     Categories() {
-      console.log("Categories selected:" + this.form.selectedCategory)
+      // console.log("Categories selected:" + this.form.selectedCategory)
       return this.$store.state.categories
     },
     Authors() {
-      console.log("Author selected:" + this.form.author_id)
+      // console.log("Author selected:" + this.form.author_id)
       return this.$store.state.authors
     }
   },

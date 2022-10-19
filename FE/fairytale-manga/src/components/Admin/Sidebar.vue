@@ -14,8 +14,7 @@
             <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
           </div>
           <div>
-            <router-link :to="{path:'/admin/profile-admin/'}" tag="div" class="admin-name">{{Admin.admin.username}}</router-link>
-            <div class="position">Admin</div>
+            <router-link :to="{path:'/admin/profile-admin/'}" tag="div" class="admin-name">Admin Control</router-link>
           </div>
         </div>
 
@@ -148,12 +147,6 @@ export default {
 }
 .admin-name:hover {
   color: darkblue;
-}
-
-.position {
-  text-align: center;
-  color: #f1f1f1;
-  font-weight: 500;
 }
 
 .navbar-main-content {

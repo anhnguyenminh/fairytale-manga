@@ -25,13 +25,13 @@
                   <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                     <div class="d-flex flex-column">
                       <div class="d-flex align-items-center mb-2">
-                        <div class="username-admin">{{form.username}}</div>
+                        <div class="username-admin">{{ form.username }}</div>
                       </div>
                       <div class="position-admin d-flex flex-wrap">
                         <div>Administrator</div>
                       </div>
                       <div class="position-admin d-flex flex-wrap">
-                        <div>Email: <b>{{ form.email}}</b>
+                        <div>Email: <b>{{ form.email }}</b>
                         </div>
                       </div>
                     </div>
@@ -48,10 +48,10 @@
         </div>
       </div>
       <!--category-->
-      <div class="container-fluid" v-if="show" >
+      <div class="container-fluid" v-if="show">
 
         <div style="background-color: #fafafa; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
-          <b-form @submit="onSubmit" >
+          <b-form @submit="onSubmit">
             <b-form-group id="input-group-1" label="Username" label-for="admin-username">
               <b-form-input
                   id="admin-username"
@@ -78,7 +78,7 @@
                   type="password"
                   placeholder="Please enter old password"
                   autocomplete="off"
-
+                  required
               ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="New Password" label-for="admin-email">
@@ -87,7 +87,7 @@
                   v-model="form.password"
                   type="password"
                   placeholder="Please enter new password"
-
+                  autocomplete="off"
               ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="Re-Enter New Password" label-for="admin-email">
@@ -96,7 +96,7 @@
                   v-model="form.reEnterPwd"
                   type="password"
                   placeholder="Re-enter new password"
-
+                  autocomplete="off"
               ></b-form-input>
             </b-form-group>
 
@@ -123,9 +123,9 @@ export default {
       form: {
         username: '',
         email: '',
-        password:'',
-        oldPassword:'',
-        reEnterPwd:''
+        password: '',
+        oldPassword: '',
+        reEnterPwd: ''
       },
       show: false
     }
@@ -143,18 +143,20 @@ export default {
             this.show = false
           })
           .catch((error) => {
+            event.preventDefault();
+            alert("Wrong password, please try again !!!")
             // error.response.status Check status code
           })
     }
   },
-  created(){
+  created() {
     let self = this;
     axios.get('admins/admins/show_current_admin/')
         .then(function (response) {
           // handle success
           self.form.username = response.data.username
           self.form.email = response.data.email
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
           // handle error
