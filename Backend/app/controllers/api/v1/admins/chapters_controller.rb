@@ -3,13 +3,13 @@ module Api
     module Admins
       class ChaptersController < AdminappController
         def create
-          @chapters = Chapter.new(chapter_params)
+          @chapter = Chapter.new(chapter_params)
           if params[:images].present?
-            @images = JSON.parse (JSON.load params[:images])
-            # @images.each do |image|
-            #   @message.images.attach(image)
+          #   # @images = JSON.load params[:images]
+            # params[:images].each do |image|
+              @chapter.images.attach(params[:images])
             # end
-          @chapter.images.attach(@images)
+          # @chapter.images.attach(params[:images])
           end
           if @chapter.save
             render json: {
