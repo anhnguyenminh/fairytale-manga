@@ -10,7 +10,6 @@ module Api
             @comment = @commentable.comment.new(comment_params)
             @comment.reader = @current_reader
             if @comment.save
-              # Comment.new(@comment)
               render json: {
                 message: "Save Successfuly",
               }

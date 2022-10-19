@@ -43,12 +43,14 @@ module Api
                       }, status: 400
               end
             else
-              render json: "Confirm pass word must be like your password"
+              render json: {
+                message: "Confirm pass word must be like your password"
+              }, status: 400
             end    
           else
             render json: {
               validation: "Nhap sai mk"
-            }
+            }, status: 400
           end
         end
 
