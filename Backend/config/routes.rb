@@ -124,6 +124,12 @@ Rails.application.routes.draw do
           end
         end
           
+        resources :comments do
+          member do
+            put :ban_comment
+          end
+        end
+
         resources :authors
         resources :categories
         resources :readers, only: [:index]
