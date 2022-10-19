@@ -38,7 +38,7 @@ module Api
 
         def index
           stories = Story.order(id: :desc).ransack(params[:q]).result
-          @pagy, @stories = pagy(stories, items: 2)
+          @pagy, @stories = pagy(stories, items: 10)
           response_list(@stories, { adapter: :json,
                                     each_serializer: ::Stories::ShowStoriesSerializer })
         end

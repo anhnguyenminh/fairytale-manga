@@ -4,7 +4,7 @@ module Api
       class ReadersController < AdminappController
         def index
           readers = Reader.order(id: :desc).ransack(params[:q]).result
-          @pagy, @readers = pagy(readers, items: 2)
+          @pagy, @readers = pagy(readers, items: 10)
           response_list(@readers, { adapter: :json,
                                     each_serializer: ReaderSerializer })
         end

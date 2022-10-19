@@ -4,7 +4,7 @@ module Api
       class CommentsController < ApplicationController
         def index
           comment = Comment.where("num_report >= ? and status = 0", 3).order(id: :desc).ransack(params[:q]).result
-          @pagy, @comment = pagy(comment, items: 2)
+          @pagy, @comment = pagy(comment, items: 10)
           response_list(@comment, { adapter: :json,
                                        each_serializer: nil })
         end

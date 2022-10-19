@@ -18,7 +18,7 @@ module Api
 
         def index
           categories = Category.order(id: :desc).ransack(params[:q]).result
-          @pagy, @categories = pagy(categories, items: 2)
+          @pagy, @categories = pagy(categories, items: 10)
           response_list(@categories, { adapter: :json,
                                        each_serializer: nil })
         end

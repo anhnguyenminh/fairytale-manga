@@ -19,7 +19,7 @@ module Api
 
         def index
           authors = Author.order(id: :desc).ransack(params[:q]).result
-          @pagy, @authors = pagy(authors, items: 2)
+          @pagy, @authors = pagy(authors, items: 10)
           response_list(@authors, { adapter: :json,
                                     each_serializer: nil })
         end

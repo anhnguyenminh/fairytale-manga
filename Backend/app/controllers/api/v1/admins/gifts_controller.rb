@@ -22,7 +22,7 @@ module Api
 
         def index
           gifts = Gift.order(id: :desc).ransack(params[:q]).result
-          @pagy, @gifts = pagy(gifts, items: 2)
+          @pagy, @gifts = pagy(gifts, items: 10)
           response_list(@gifts, { adapter: :json,
                                   each_serializer: GiftSerializer })
         end

@@ -28,7 +28,7 @@ module Api
 
         def index
           chapters = Chapter.order(id: :desc).ransack(params[:q]).result
-          @pagy, @chapters = pagy(chapters, items: 2)
+          @pagy, @chapters = pagy(chapters, items: 10)
           response_list(@chapters, { adapter: :json,
                                      each_serializer: nil })
         end
