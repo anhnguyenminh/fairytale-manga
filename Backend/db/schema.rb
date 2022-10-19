@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_030427) do
+ActiveRecord::Schema.define(version: 2022_10_19_040805) do
 
   create_table "Report", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "reader_id"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_030427) do
     t.boolean "activated", default: false
     t.datetime "activated_at"
     t.integer "ban", default: 0, null: false
+    t.datetime "time_ban"
     t.index ["email"], name: "index_readers_on_email", unique: true
   end
 

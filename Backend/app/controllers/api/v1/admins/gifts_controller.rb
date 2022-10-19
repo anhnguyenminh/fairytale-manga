@@ -15,6 +15,9 @@ module Api
               validation: @gift.errors.messages,
             }, status: 400
           end
+          
+          # binding.pry
+          
         end
 
         def index
