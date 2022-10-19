@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_18_092835) do
+ActiveRecord::Schema.define(version: 2022_10_19_030427) do
 
   create_table "Report", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "reader_id"
@@ -176,7 +176,6 @@ ActiveRecord::Schema.define(version: 2022_10_18_092835) do
     t.integer "age", default: 0, null: false
     t.boolean "gender"
     t.string "phonenumber", default: "", null: false
-    t.boolean "ban"
     t.string "address", default: "", null: false
     t.integer "score", default: 0
     t.datetime "created_at", precision: 6, null: false
@@ -184,6 +183,7 @@ ActiveRecord::Schema.define(version: 2022_10_18_092835) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.integer "ban", default: 0, null: false
     t.index ["email"], name: "index_readers_on_email", unique: true
   end
 
