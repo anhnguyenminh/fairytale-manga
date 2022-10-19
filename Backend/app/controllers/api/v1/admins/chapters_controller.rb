@@ -33,7 +33,7 @@ module Api
                                      each_serializer: nil })
         end
 
-        def edit
+        def show
           @chapter = Chapter.find(params[:id])
           render json: @chapter
         end
