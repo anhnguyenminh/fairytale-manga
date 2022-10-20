@@ -20,6 +20,7 @@ export default {
             }
             await axios(CategoriesQuery).then(res => {
                 this.categories = res.data.categories
+                // console.log(res.data)
                 commit('setCategories', this.categories)
             }).catch(err => {
                 console.log(err)
