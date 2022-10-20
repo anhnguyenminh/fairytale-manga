@@ -55,6 +55,12 @@ export default {
       msg: ''
     }
   },
+  created() {
+    if(this.$store.state.token && this.$store.state.token != null  && this.$store.state.token != ''){
+      this.$router.push("/admin/stories")
+    }
+  }
+  ,
   methods: {
     adminAuthenticate() {
       let self = this;
@@ -66,7 +72,7 @@ export default {
             console.log(response);
             //get data lately here
             if (response.status == 200) {
-              self.$router.push({path: "/admin/categories"})
+              self.$router.push({path: "/admin/stories"})
               console.log("You are here");
               self.$store.commit("setToken", response.data.token)
             }
