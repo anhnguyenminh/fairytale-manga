@@ -23,14 +23,9 @@ module Api
                                        each_serializer: nil })
         end
 
-        def edit
-          @category = Category.find(params[:id])
-          render json: @category
-        end
-
         def show
           @category = Category.find(params[:id])
-          render json: @category
+          render json: @category, each_serializer: nil
         end
 
         def update
