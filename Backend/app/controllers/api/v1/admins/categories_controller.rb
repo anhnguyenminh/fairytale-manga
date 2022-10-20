@@ -25,7 +25,7 @@ module Api
 
         def show
           @category = Category.find(params[:id])
-          render json: @category, each_serializer: nil
+          render json: @category
         end
 
         def update
