@@ -20,12 +20,12 @@ module Api
           categories = Category.order(id: :desc).ransack(params[:q]).result
           @pagy, @categories = pagy(categories, items: 10)
           response_list(@categories, { adapter: :json,
-                                       each_serializer: nil })
+                                       each_serializer: CategorySerializer })
         end
 
         def show
           @category = Category.find(params[:id])
-          render json: @category
+          render json: @category, each_serializer: CategorySerializer
         end
 
         def update
