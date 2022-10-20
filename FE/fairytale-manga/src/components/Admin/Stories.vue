@@ -19,20 +19,18 @@
                     <thead>
                     <tr>
                       <th class="col-1">ID</th>
-                      <th class="col-2">Title</th>
-                      <th class="col-2">Author</th>
-                      <th class="col-4">Description</th>
-                      <th class="col-1">Status</th>
+                      <th class="col-4">Title</th>
+                      <th class="col-3">Author</th>
+                      <th class="col-2">Status</th>
                       <th class="col-2 col-last">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="story in Stories.stories" :key="story.id">
                       <td class="col-1">{{ story.id }}</td>
-                      <td class="col-2">{{ story.name }}</td>
-                      <td class="col-2">{{ story.author_name }}</td>
-                      <td class="col-4">{{ story.description }}</td>
-                      <td class="col-1">{{ story.status }}</td>
+                      <td class="col-4">{{ story.name }}</td>
+                      <td class="col-3">{{ story.author_name }}</td>
+                      <td class="col-2">{{ story.status }}</td>
                       <td class="col-2 actions">
                         <router-link :to="{path:`/admin/stories/update/${story.id}`}">
                           <button class="btn btn-info">Details</button>

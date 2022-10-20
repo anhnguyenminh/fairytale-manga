@@ -13,7 +13,7 @@
               id="input-1"
               v-model="form.name"
               type="text"
-              placeholder="Chapter 21..."
+              placeholder="Chapter 1..."
               required
           ></b-form-input>
         </b-form-group>
@@ -22,7 +22,7 @@
           <b-form-file
               ref="imgInput"
               multiple
-              placeholder="Choose file or drop it here..."
+              placeholder="Choose files or drop it here..."
               drop-placeholder="Drop image here..."
               required
           >
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      console.log("Chapter" + this.$refs.imgInput.files.length);
+      // console.log("Chapter " + this.$refs.imgInput.files.length);
       let formData = new FormData();
       let totalFiles = this.$refs.imgInput.files.length;
 
@@ -59,7 +59,7 @@ export default {
       formData.append("story_id", this.$route.params.id);
       if (this.$refs.imgInput.files) {
         for (let index = 0; index < totalFiles; index++) {
-          console.log(this.$refs.imgInput.files[index])
+          // console.log(this.$refs.imgInput.files[index])
           formData.append("images", this.$refs.imgInput.files[index]);
         }
       }
