@@ -68,20 +68,18 @@
                   <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                      <th class="col-3">ID</th>
+                      <th class="col-2">ID</th>
                       <th class="col-5">Chapter</th>
-                      <th class="col-4 col-last">Actions</th>
+                      <th class="col-5 col-last">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="chap in chapter" :key="chap.id">
-                      <td class="col-3">{{ chap.id }}</td>
+                      <td class="col-2">{{ chap.id }}</td>
                       <td class="col-5">{{ chap.name }}</td>
-                      <td class="col-4 actions">
-                        <div>
+                      <td class="col-5 ">
+                        <div class="d-flex justify-content-end actions">
                           <button class="btn btn-info">Details</button>
-                        </div>
-                        <div>
                           <button class="btn btn-danger">Delete</button>
                         </div>
                       </td>
@@ -107,14 +105,11 @@
         <!--      right-->
         <div class="right-side">
           <div class="content">
-
             <b-form>
               <b-form-group label="Status">
                 <b-form-select v-model="form.end" :options="form.status"></b-form-select>
               </b-form-group>
-
             </b-form>
-
           </div>
           <div class="content">
             <div>
@@ -129,7 +124,14 @@
               </b-form-file>
             </div>
           </div>
-
+          <div class="content">
+            <div>
+              <h6>Preview</h6>
+            </div>
+            <div class="wrapped-image d-flex justify-content-center">
+              <b-img :src="form.images_url" fluid alt="Responsive image"></b-img>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -154,6 +156,7 @@ export default {
         name: '',
         author_id: null,
         description: '',
+        images_url:'',
         end: null,
         status: [
           {value: false, text: 'On going'},
@@ -161,7 +164,8 @@ export default {
         ],
         selectedCategory: [], // list categories
       },
-      chapter: {}
+      chapter: {
+      }
     }
   },
   created() {
@@ -176,10 +180,11 @@ export default {
           self.form.author_id = response.data.author_id
           self.form.description = response.data.description
           self.form.end = response.data.status
+          self.form.images_url = response.data.image_url
           self.form.selectedCategory = response.data.category.map(item => {
             return item.id
           })
-          // console.log(response);
+          console.log(response);
         })
         .catch(function (error) {
           // handle error
@@ -224,6 +229,7 @@ export default {
         },
       }).then(() => {
         alert("Update story successfully!")
+        this.$router.push('/admin/stories')
       }).catch(() => {
         alert("Something wrong happened, please check again!");
         e.preventDefault();

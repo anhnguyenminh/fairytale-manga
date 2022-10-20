@@ -15,7 +15,7 @@ export default {
         async getAuthorsData({commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/authors?page=2'
+                url: 'admins/authors'
             }
             await axios(DataQuery).then(res => {
                 this.authors = res.data
@@ -30,7 +30,7 @@ export default {
                 url: 'admins/stories/get_authors'
             }
             await axios(DataQuery).then(res => {
-                this.authors = res.data
+                this.authors = res.data.authors
                 commit('setAuthorsOptions', this.authors)
             }).catch(err => {
                 console.log(err)
