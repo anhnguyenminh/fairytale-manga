@@ -9,16 +9,9 @@
     </div>
     <!--  main chapter  -->
     <div style="margin: 1.5rem 0 ;">
-      <div>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
-        <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
+      <div v-for="{image, index} in images_url" :key="index">
+        <b-img :src="image" fluid></b-img>
+
       </div>
     </div>
   </div>
@@ -28,13 +21,32 @@
 import axios from "@/plugins/axios";
 
 export default {
-  name: 'AddNewChapter',
+  name: 'DetailSingleChapter',
   data() {
     return {
-
+      images_url: []
     }
   },
-  methods: {}
+  methods: {},
+  created() {
+    let self = this;
+    // console.log(this.$route.params.param)
+    axios.get('admins/chapters/' + this.$route.params.param)
+        .then(function (response) {
+          // handle success
+          // console.log(response.data.category)
+          console.log("AAAAAAAAAAAAAA")
+          console.log(response.data.images_url)
+          self.images_url = response.data.images_url
+          //     .map(item => {
+          //   return item.image_url
+          // })
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+  }
 }
 </script>
 

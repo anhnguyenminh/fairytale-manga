@@ -82,7 +82,7 @@ const routes = [
                 component: () => import('@/views/Admin/Stories/AddNewChapter'),
             },
             {
-                path: 'stories/:id/chapter/:params',
+                path: 'stories/:id/chapter/:param',
                 component: () => import('@/views/Admin/Stories/DetailSingleChapter'),
             },
             {
