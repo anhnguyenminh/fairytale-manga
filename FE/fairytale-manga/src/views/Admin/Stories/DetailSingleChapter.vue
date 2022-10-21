@@ -9,7 +9,7 @@
     </div>
     <!--  main chapter  -->
     <div style="margin: 1.5rem 0 ;">
-      <div v-for="{image, index} in images_url" :key="index">
+      <div v-for="image in images_url" :key="image.index">
         <b-img :src="image" fluid></b-img>
 
       </div>
