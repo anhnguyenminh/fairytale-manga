@@ -4,10 +4,11 @@ module Api
       class ChaptersController < AdminappController
         def create
           @chapter = Chapter.new(chapter_params)
+          # binding.pry
           # if params[:images].present?
           #   # @images = JSON.load params[:images]
             # params[:images].each do |image|
-              @chapter.images.attach(params[:images])
+              # @chapter.images.attach(params[:images])
             # end
           # @chapter.images.attach(params[:images])
           # end
