@@ -83,8 +83,12 @@ module Api
         def show_list_chapters
           chapters = Chapter.where(story_id: params[:id]).order(id: :desc).ransack(params[:q]).result
           @pagy, @chapters = pagy(chapters, items: 10)
-          response_list(@chapters, { adapter: :json,
+          if @chapter.count == 0
+            render json: "No have chapter, please add new chapter!"
+          else
+            response_list(@chapters, { adapter: :json,
                                      each_serializer: nil })
+          end
         end
 
         private

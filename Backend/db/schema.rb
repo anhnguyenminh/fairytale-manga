@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2022_10_19_040805) do
 
-  create_table "Report", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "reader_id"
-    t.bigint "comment_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_Report_on_comment_id"
-    t.index ["reader_id"], name: "index_Report_on_reader_id"
-  end
-
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
