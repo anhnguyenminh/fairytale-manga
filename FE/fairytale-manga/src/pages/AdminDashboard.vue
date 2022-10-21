@@ -34,13 +34,13 @@ export default {
 <style scoped>
 .left-sidebar{
   padding-right: 0!important;
-  height: 1400px;
+  min-height: 1400px;
 }
 .right-content{
   padding-left: 0!important;
 }
 .main-content{
-  height: 1242px
+  min-height: 1242px
 }
 
 </style>

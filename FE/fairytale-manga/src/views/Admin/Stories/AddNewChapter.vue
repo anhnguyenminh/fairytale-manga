@@ -8,12 +8,12 @@
     </div>
     <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
       <b-form @submit="onSubmit">
-        <b-form-group id="input-group-1" label="Chapter name" label-for="input-1">
+        <b-form-group id="input-group-1" label="Chapter" label-for="input-1">
           <b-form-input
               id="input-1"
               v-model="form.name"
-              type="text"
-              placeholder="Chapter 1..."
+              type="number"
+              placeholder="Enter chapter number"
               required
           ></b-form-input>
         </b-form-group>
@@ -71,7 +71,7 @@ export default {
         },
       }).then(() => {
         alert("Add new chapter completed!")
-        this.$router.push({path: "/admin/stories"})
+        this.$router.push({path: "/admin/stories/update/" + this.$route.params.id})
       }).catch(() => {
         alert("Something wrong happened, please check again!");
         e.preventDefault();
