@@ -3,25 +3,26 @@ module Api
     module Admins
       class ChaptersController < AdminappController
         def create
-          # @chapter = Chapter.new(chapter_params)
-          # # if params[:images].present?
-          # #   # @images = JSON.load params[:images]
-          #   # params[:images].each do |image|
-          #     @chapter.images.attach(params[:images])
-          #   # end
-          # # @chapter.images.attach(params[:images])
-          # # end
-          # if @chapter.save
-          #   render json: {
-          #     message: "success",
-          #   }
-          # else
-          #   render json: {
-          #     message: "failed",
-          #     validation: @chapter.errors.messages,
-          #   }, status: 400
+          @chapter = Chapter.new(chapter_params)
+          # if params[:images].present?
+          #   # @images = JSON.load params[:images]
+            # params[:images].each do |image|
+              @chapter.images.attach(params[:images])
+            # end
+          # @chapter.images.attach(params[:images])
           # end
-          
+          if @chapter.save
+            render json: {
+              message: "success",
+            }
+          else
+            render json: {
+              message: "failed",
+              validation: @chapter.errors.messages,
+            }, status: 400
+          end
+          # chapter.images.attach(params[:images])
+
           # binding.pry
           
         end
@@ -59,7 +60,7 @@ module Api
         private
 
         def chapter_params
-          params.permit(:name, :story_id, :images )
+          params.permit(:name, :story_id, images: [])
         end
       end
     end
