@@ -190,8 +190,9 @@ export default {
     axios.get('admins/stories/' + this.$route.params.id + '/show_list_chapters')
         .then(function (response) {
           // handle success
-          self.chapter = response.data
-          console.log(response.data);
+          // console.log("AAAAAAAAAAAAAA")
+          self.chapter = response.data.chapters
+          // console.log(response.data.chapters);
         })
         .catch(function (error) {
           // handle error
@@ -217,9 +218,9 @@ export default {
       axios.get('admins/stories/' + this.$route.params.id + '/show_list_chapters')
           .then(function (response) {
             // handle success
-            self.chapter = response.data
-            console.log("GGGGGGGG")
-            console.log(response.data);
+            self.chapter = response.data.chapters
+            // console.log("GGGGGGGG")
+            // console.log(response.data.chapters);
           })
           .catch(function (error) {
             // handle error
