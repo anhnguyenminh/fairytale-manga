@@ -51,20 +51,22 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      // console.log("Chapter " + this.$refs.imgInput.files.length);
+      e.preventDefault();
+      console.log("Chapter " + this.$refs.imgInput.files.length);
+      console.log(this.$refs.imgInput.files);
       let formData = new FormData();
       let totalFiles = this.$refs.imgInput.files.length;
 
       formData.append("name", this.form.name);
+      console.log(this.form.name);
       formData.append("story_id", this.$route.params.id);
+      console.log(this.$route.params.id);
       if (this.$refs.imgInput.files) {
         for (let index = 0; index < totalFiles; index++) {
-          // console.log(this.$refs.imgInput.files[index])
-          formData.append("images", this.$refs.imgInput.files[index]);
+          console.log(this.$refs.imgInput.files[index])
+          formData.append("images[]", this.$refs.imgInput.files[index]);
         }
       }
-
-      e.preventDefault();
       axios.post(`/admins/chapters`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
