@@ -27,6 +27,7 @@ module Response
       from: @pagy.from,
       to: @pagy.to,
       pages: @pagy.pages,
+      perpage: @pagy.in
     }
   end
 end
