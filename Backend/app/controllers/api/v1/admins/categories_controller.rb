@@ -5,14 +5,16 @@ module Api
         def create
           @category = Category.new(category_params)
           if @category.save
-            render json: {
-              message: "success",
-            }
+            # render json: {
+            #   message: "success",
+            # }
+            response_success(message: "success")
           else
-            render json: {
-              message: "failed",
-              validation: @category.errors.messages,
-            }, status: 400
+            # render json: {
+            #   message: "failed",
+            #   validation: @category.errors.messages,
+            # }, status: 400
+            response_error(validation: @category.errors.messages)
           end
         end
 
@@ -25,18 +27,24 @@ module Api
 
         def show
           @category = Category.find(params[:id])
-          render json: @category, each_serializer: CategorySerializer
+          if @category
+          # render json: @category, each_serializer: CategorySerializer
+            response_success(@product, { each_serializer: CategorySerializer })
+          else
+            response_not_found(message: "This category not found")
         end
 
         def update
           @category = Category.find(params[:id])
           if @category.update(category_params)
-            render json: "Update Successfully"
+            # render json: "Update Successfully"
+            response_success("Update Successfully")
           else
-            render json: {
-                     message: "Failed",
-                     validation: @category.errors.messages,
-                   }, status: 400
+            # render json: {
+            #          message: "Failed",
+            #          validation: @category.errors.messages,
+            #        }, status: 400
+            response_error(validation: @category.errors.messages)
           end
         end
 
@@ -44,13 +52,15 @@ module Api
           @category = Category.find(params[:id])
           if @category.story.destroy_all
             @category.destroy
-            render json: {
-              message: "destroy successfuly",
-            }
+            # render json: {
+            #   message: "destroy successfuly",
+            # }
+            response_success(message: "destroy successfully")
           else
-            render json: {
-              message: "destroy failed",
-            }, status: 400
+            # render json: {
+            #   message: "destroy failed",
+            # }, status: 400
+            response_error(message: "destroy failed")
           end
         end
 
