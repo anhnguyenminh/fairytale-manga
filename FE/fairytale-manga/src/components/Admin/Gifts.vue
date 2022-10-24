@@ -28,7 +28,7 @@
                     </thead>
                     <!-- admin account data -->
                     <tbody>
-                    <tr v-for="gift in Gifts.gifts" :key="gift.id">
+                    <tr v-for="gift in gifts" :key="gift.id">
                       <th class="col-1">{{ gift.id }}</th>
                       <td class="col-2">{{ gift.name }}</td>
                       <td class="col-2 text-center"><img :src="gift.image_url" style="max-width: 200px;"/></td>
@@ -46,6 +46,26 @@
                     </tbody>
                   </table>
                 </div>
+                <div class="d-flex justify-content-center">
+                  <ul v-if="meta.pages > 1" class="pagination">
+
+                    <li v-if="meta.page > 1" @click="goToPage(meta.page-1)">&laquo;</li>
+                    <li v-else class="disabled ">{{ meta.page }}</li>
+
+                    <li
+                        v-for="page in meta.pages"
+                        :class="{ active: (currentPage == page) }"
+                        @click="goToPage(page)"
+                    >{{ page }}
+                    </li>
+
+                    <li v-if="meta.page < meta.pages"
+                        @click="goToPage(meta.page +1)">&raquo;
+                    </li>
+                    <li v-else class="disabled ">&raquo;
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -62,18 +82,20 @@
 <script>
 import {createNamespacedHelpers} from "vuex";
 
-const {mapActions} = createNamespacedHelpers("gifts");
+const {mapActions, mapState} = createNamespacedHelpers("gifts");
 import axios from "@/plugins/axios";
 
 export default {
   name: "Gifts",
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions([
-      'getGift'
+      'getGift',
+      'setCurrentPage'
     ]),
+    goToPage(page) {
+      this.setCurrentPage(page);
+      this.getGift()
+    },
     //delete data
     //UNDONE
     deleteData(id) {
@@ -94,10 +116,11 @@ export default {
     }
   },
   computed: {
-    Gifts() {
-      console.log(this.$store.state.gifts)
-      return this.$store.state.gifts
-    }
+    ...mapState([
+      "gifts",
+      "meta",
+      "currentPage"
+    ])
   },
   mounted() {
     this.getGift();
@@ -118,5 +141,33 @@ export default {
 
 .actions button {
   margin: 0 5px;
+}
+
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination li.active {
+  background-color: #6959CD;
+  color: white;
+  border: 1px solid #6959CD;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.disabled {
+  display: none;
 }
 </style>

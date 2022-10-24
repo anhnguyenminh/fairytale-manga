@@ -8,23 +8,29 @@ export default {
     namespaced: true,
     state: {
         categories: [],
-        option2:[]
+        option2: [],
+        meta: {},
+        currentPage: 1
     },
     actions: {
         // with old paginate
-        async getCategoryData({commit}) {
+        async getCategoryData({state, commit}) {
             const CategoriesQuery = {
                 method: 'GET',
-                url: 'admins/categories'
+                url: `admins/categories?page=${state.currentPage}`
 
             }
             await axios(CategoriesQuery).then(res => {
                 this.categories = res.data.categories
                 // console.log(res.data)
                 commit('setCategories', this.categories)
+                commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
             })
+        },
+        setCurrentPage({commit}, payload) {
+            commit("setCurrentPage", payload)
         },
         //get all data
         async getAllCategories({commit}) {
@@ -39,7 +45,8 @@ export default {
                 console.log(err)
             })
         }
-    },
+    }
+    ,
     getters: {}
     ,
     mutations: {
@@ -59,6 +66,12 @@ export default {
                     text: item.name
                 }
             })
+        },
+        setMeta(state, payload) {
+            state.meta = payload;
+        },
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
         }
-    },
+    }
 }

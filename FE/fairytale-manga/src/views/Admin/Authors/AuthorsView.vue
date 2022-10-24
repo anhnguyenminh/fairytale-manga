@@ -28,7 +28,7 @@
                     </thead>
                     <!-- admin account data -->
                     <tbody id="admAccData">
-                    <tr v-for="author in Authors.authors" :key="author.id">
+                    <tr v-for="author in authors" :key="author.id">
                       <td class="col-1">{{ author.id }}</td>
                       <td class="col-4">{{ author.name }}</td>
                       <td class="col-4">{{ author.description }}</td>
@@ -43,6 +43,26 @@
                     </tr>
                     </tbody>
                   </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <ul v-if="meta.pages > 1" class="pagination">
+
+                    <li v-if="meta.page > 1" @click="goToPage(meta.page-1)">&laquo;</li>
+                    <li v-else class="disabled ">{{ meta.page }}</li>
+
+                    <li
+                        v-for="page in meta.pages"
+                        :class="{ active: (currentPage == page) }"
+                        @click="goToPage(page)"
+                    >{{ page }}
+                    </li>
+
+                    <li v-if="meta.page < meta.pages"
+                        @click="goToPage(meta.page +1)">&raquo;
+                    </li>
+                    <li v-else class="disabled ">&raquo;
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -61,18 +81,20 @@
 import {createNamespacedHelpers} from "vuex";
 import axios from "@/plugins/axios";
 
-const {mapActions} = createNamespacedHelpers("authors");
+const {mapActions, mapState} = createNamespacedHelpers("authors");
 
 
 export default {
   name: "AuthorsView",
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions([
-      'getAuthorsData'
+      'getAuthorsData',
+      'setCurrentPage'
     ]),
+    goToPage(page) {
+      this.setCurrentPage(page);
+      this.getAuthorsData()
+    },
     deleteData(id) {
       //need to check if author dont compose any story
       //check if admin create typo author
@@ -95,14 +117,14 @@ export default {
     }
   },
   computed: {
-    Authors() {
-      console.log(this.$store.state.authors)
-      console.log(this.$store.state.token)
-      return this.$store.state.authors
-    }
+    ...mapState([
+      'authors',
+      'meta',
+      'currentPage'
+    ])
   },
-  async mounted() {
-    await this.getAuthorsData();
+  mounted() {
+    this.getAuthorsData();
   }
 }
 
@@ -120,5 +142,33 @@ export default {
 
 .actions button {
   margin: 0 5px;
+}
+
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination li.active {
+  background-color: #6959CD;
+  color: white;
+  border: 1px solid #6959CD;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.disabled {
+  display: none;
 }
 </style>

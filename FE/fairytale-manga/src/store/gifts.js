@@ -8,21 +8,25 @@ export default {
     namespaced: true,
     state: {
         gifts: [],
+        meta: {},
+        currentPage: 1
     },
     actions: {
-        async getGift({commit}) {
+        async getGift({state, commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/gifts'
+                url: `admins/gifts?page=${state.currentPage}`
             }
             await axios(DataQuery).then(res => {
-                this.gifts = res.data.gifts
-                // console.log(this.gifts)
-                commit('setGift', this.gifts)
+                commit('setGift', res.data.gifts)
+                commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
             })
         },
+        setCurrentPage({commit}, payload) {
+            commit("setCurrentPage", payload)
+        }
     },
     getters: {}
     ,
@@ -37,6 +41,12 @@ export default {
                     image_url: item.image_url
                 }
             })
+        },
+        setMeta(state, payload) {
+            state.meta = payload;
+        },
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
         }
-    },
+    }
 }

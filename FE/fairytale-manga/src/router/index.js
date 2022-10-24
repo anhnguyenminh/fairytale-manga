@@ -152,7 +152,7 @@ const routes = [
         path: '/admin/login',
         name: 'LoginAdminView',
         component: LoginAdminView
-    },
+    }
 ]
 
 const router = new VueRouter({

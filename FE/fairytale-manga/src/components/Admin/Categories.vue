@@ -26,7 +26,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="category in Categories.categories" :key="category.id">
+                    <tr v-for="category in categories" :key="category.id">
                       <td class="col-1">{{ category.id }}</td>
                       <td class="col-4">{{ category.name }}</td>
                       <td class="col-4">{{ category.description }}</td>
@@ -41,6 +41,26 @@
                     </tr>
                     </tbody>
                   </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <ul v-if="meta.pages > 1" class="pagination">
+
+                    <li v-if="meta.page > 1" @click="goToPage(meta.page-1)">&laquo;</li>
+                    <li v-else class="disabled ">{{ meta.page }}</li>
+
+                    <li
+                        v-for="page in meta.pages"
+                        :class="{ active: (currentPage == page) }"
+                        @click="goToPage(page)"
+                    >{{ page }}
+                    </li>
+
+                    <li v-if="meta.page < meta.pages"
+                        @click="goToPage(meta.page +1)">&raquo;
+                    </li>
+                    <li v-else class="disabled ">&raquo;
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -58,21 +78,22 @@
 <script>
 import {createNamespacedHelpers} from "vuex";
 
-const {mapActions} = createNamespacedHelpers("categories");
+const {mapActions, mapState} = createNamespacedHelpers("categories");
 
 import axios from "@/plugins/axios";
 
 export default {
   name: "Categories",
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions([
-      'getCategoryData'
+      'getCategoryData',
+      'setCurrentPage'
     ]),
+    goToPage(page) {
+      this.setCurrentPage(page);
+      this.getCategoryData()
+    },
     //delete data
-
     deleteData(id) {
       if (confirm('Are you sure you want to delete this category?')) {
         // Delete it!
@@ -92,11 +113,11 @@ export default {
     }
   },
   computed: {
-    Categories() {
-      // console.log(this.$store.state.categories)
-      // console.log(this.$store.state.token)
-      return this.$store.state.categories
-    }
+    ...mapState([
+      'categories',
+      'meta',
+      'currentPage'
+    ])
   },
   mounted() {
     this.getCategoryData();
@@ -116,5 +137,33 @@ export default {
 
 .actions button {
   margin: 0 5px;
+}
+
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination li.active {
+  background-color: #6959CD;
+  color: white;
+  border: 1px solid #6959CD;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.disabled {
+  display: none;
 }
 </style>
