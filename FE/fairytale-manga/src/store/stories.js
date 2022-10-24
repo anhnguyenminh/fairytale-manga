@@ -8,21 +8,25 @@ export default {
     namespaced: true,
     state: {
         stories: [],
+        meta: {},
+        currentPage: 1
     },
     actions: {
-        async getStoriesData({commit}) {
+        async getStoriesData({state, commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/stories'
+                url: `admins/stories?page=${state.currentPage}`
             }
             await axios(DataQuery).then(res => {
-                this.stories = res.data.stories
-                // console.log("AAAAAAAAAAAAAAAAAAA")
                 // console.log(res.data)
-                commit('setStories', this.stories)
+                commit('setStories', res.data.stories)
+                commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
             })
+        },
+        setCurrentPage({commit}, payload) {
+            commit("setCurrentPage", payload)
         }
     },
     getters: {}
@@ -39,6 +43,12 @@ export default {
                     category: item.category
                 }
             })
+        },
+        setMeta(state, payload) {
+            state.meta = payload;
+        },
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
         }
-    },
+    }
 }

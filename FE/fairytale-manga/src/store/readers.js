@@ -8,22 +8,25 @@ export default {
     namespaced: true,
     state: {
         readers: [],
+        meta: {},
+        currentPage: 1
     },
     actions: {
-        async getReadersData({commit}) {
+        async getReadersData({state,commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/readers'
+                url: `admins/readers?page=${state.currentPage}`
             }
             await axios(DataQuery).then(res => {
-                console.log("Get here")
-                this.readers = res.data.readers
-                // console.log(this.readers)
-                commit('setReader', this.readers)
+                commit('setReader', res.data.readers)
+                commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
             })
         },
+        setCurrentPage({commit}, payload) {
+            commit("setCurrentPage", payload)
+        }
     },
     getters: {}
     ,
@@ -42,6 +45,12 @@ export default {
                     show_gender: item.show_gender
                 }
             })
+        },
+        setMeta(state, payload) {
+            state.meta = payload;
+        },
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
         }
-    },
+    }
 }

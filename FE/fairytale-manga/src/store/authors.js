@@ -8,21 +8,26 @@ export default {
     namespaced: true,
     state: {
         authors: [],
-        options: []
+        options: [],
+        meta: {},
+        currentPage: 1
     },
     actions: {
         // with old paginate
-        async getAuthorsData({commit}) {
+        async getAuthorsData({state, commit}) {
             const DataQuery = {
                 method: 'GET',
-                url: 'admins/authors'
+                url: `admins/authors?page=${state.currentPage}`
             }
             await axios(DataQuery).then(res => {
-                this.authors = res.data.authors
-                commit('setAuthor', this.authors)
+                commit('setAuthor', res.data.authors);
+                commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
             })
+        },
+        setCurrentPage({commit}, payload) {
+            commit("setCurrentPage", payload)
         },
         async getAllAuthors({commit}) {
             const DataQuery = {
@@ -39,7 +44,7 @@ export default {
     },
     getters: {}
     ,
-    mutations: {
+    mutations:{
         setAuthor(state, newAuthor) {
             state.authors = newAuthor.map(item => {
                 return {
@@ -56,6 +61,12 @@ export default {
                     text: item.name
                 }
             })
+        },
+        setMeta(state, payload) {
+            state.meta = payload;
+        },
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
         }
-    },
+    }
 }
