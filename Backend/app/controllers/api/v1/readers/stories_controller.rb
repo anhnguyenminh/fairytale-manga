@@ -6,47 +6,40 @@ module Api
 
         def index
           @stories = Story.all.order("created_at DESC").limit(5)
-          render json: @stories, each_serializer: StorySerializer
+          response_success(@stories, {each_serializer: StorySerializer})
         end
 
         def search_stories
           @q = Story.ransack(params[:q])
           @stories = @q.result(distinct: true)
-          render json: @stories
+          response_success(@stories)
         end
 
         def read_story
           story = ReaderStory.find_by(reader_id: @current_reader.id, story_id: params[:id])
-           
           if !story
             @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
             if @readerstory.save
-              render json: {
-                message: "ok",
-              }
+              response_success(message: "ok")
             else
-              render json: {
-                message: "failed"
-              }
+              response_error(message: "failed")
             end
           else
             story.update(chap: params[:chap])
-            render json: {
-              message: "Success"
-            }
+            response_success(message: "Success")
           end
           # render json: story
         end
 
         def show
           @story = Story.find(params[:id])
-          render json: @story, each_serializer: StorySerializer
+          response_success(@story, each_serializer: StorySerializer)
         end
 
         def show_chapter
           @story = Story.find_by(name: params[:name_story])
           @chapter = Chapter.find_by(story_id: @story.id, name: params[:name_chapter])
-          render json: @chapter
+          response_success(@chapter)
         end
 
         private

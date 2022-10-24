@@ -9,25 +9,18 @@ module Api
           if @reader.save
             @reader.image.attach(params[:reader][:image])
             UserMailer.reader_activation(@reader).deliver_now
-            render json: {
-              message: "Wait email message",
-            }
+              response_success(message: "Wait email message")
           else
-            render json: {
-              message: "failed",
-              validation: @reader.errors.messages,
-            }, status: 400
+              response_error(validation: @reader.errors.messages)
           end
         end
 
         def update
           @reader = Reader.find(params[:id])
             if @reader.update(reader_params)
-              render json: "ok"
+              response_success("ok")
             else
-              render json: {
-                validate: @reader.errors.messages
-              }
+              response_error(validate: @reader.errors.messages)
             end
         end
         

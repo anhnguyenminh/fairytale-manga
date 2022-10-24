@@ -4,7 +4,8 @@ module Api
       class RecommendsController < ApplicationController
         def recommend_story
           @stories = Story.order("created_at DESC").limit(10)
-          render json: @stories, each_serializer: nil
+          # render json: @stories, each_serializer: nil
+          response_success(@stories)
         end
       end
     end

@@ -11,13 +11,10 @@ module Api
               message: "success",
               token: ::JsonWebToken.encode({
                 reader_id: reader.id,
-              }),
+              })
             }
           else
-            render json: {
-              message: "failed",
-              validate: "Wrong Email Or Password",
-            }, status: 400
+              response_error(validate: "Wrong Email Or Password")
           end
         end
       end

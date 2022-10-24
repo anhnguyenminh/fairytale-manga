@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   # before_action :authenticate_request
   def show_categories
     @categories = Category.all
-    render json: @categories
+    response_success(@categories)
   end
 
   # def current_admin

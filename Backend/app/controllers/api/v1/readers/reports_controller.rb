@@ -12,9 +12,7 @@ module Api
           else
             @comment.update(num_report: @comment.num_report+1 )
             Report.create(reader_id: current_reader.id, comment_id: params[:id])
-            render json: {
-              message: "We will check your report"
-            }
+              response_success(message: "We will check your report")
           end
         end
       end
