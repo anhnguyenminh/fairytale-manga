@@ -4,12 +4,14 @@ module Api
       class StoriesController < AdminappController
         def get_authors
           @authors = Author.all
-          render json: @authors
+          # render json: @authors
+          response_success(@authors)
         end
 
         def get_categories
           @categories = Category.all
-          render json: @categories
+          # render json: @categories
+          response_success(@categories)
         end
 
         def create
@@ -21,19 +23,18 @@ module Api
               @category = Category.find(c)
               @story.category << @category
             end
-            render json: {
-              message: "Success",
-            }
+            # render json: {
+              # message: "Success",
+            response_success(message: "Success")
+            # }
             # render json: @ca
           else
-            render json: {
-              message: "failed",
-              validation: @story.errors.messages,
-            }, status: 400
+            # render json: {
+            #   message: "failed",
+            #   validation: @story.errors.messages,
+            # }, status: 400
+            response_error(validation: @story.errors.messages)
           end
-          
-          # binding.pry
-
         end
 
         def index
@@ -45,7 +46,8 @@ module Api
 
         def show
           @story = Story.find(params[:id])
-          render json: @story, each_serializer: StorySerializer
+          # render json: @story, each_serializer: StorySerializer
+          response_success(@story, {each_serializer: StorySerializer})
         end
 
         def update
@@ -57,12 +59,10 @@ module Api
               @category = Category.find(c)
               @story.category << @category
             end
-            render json: "Update Successfully"
+            # render json: "Update Successfully"
+            response_success("Update Successfully")
           else
-            render json: {
-                     message: "Failed",
-                     validation: @story.errors.messages,
-                   }, status: 400
+            response_error(validation: @story.errors.messages)
           end
         end
 
@@ -70,23 +70,16 @@ module Api
           @story = Story.find(params[:id])
           if @story.chapter.destroy_all && @story.category.destroy_all
             @story.destroy
-            render json: {
-              message: "destroy successfuly",
-            }
+              response_success(message: "destroy successfuly")
           else
-            render json: {
-              message: "destroy failed",
-            }, status: 400
+              response_error(message: "destroy failed")
           end
         end
 
         def show_list_chapters
           chapters = Chapter.where(story_id: params[:id]).order(id: :desc).ransack(params[:q]).result
           @pagy, @chapters = pagy(chapters, items: 10)
-         
-            response_list(@chapters, { adapter: :json,
-                                     each_serializer: ChapterSerializer })
-          
+          response_list(@chapters, { adapter: :json, each_serializer: ChapterSerializer })
         end
 
         private

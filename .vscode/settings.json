@@ -1,0 +1,6 @@
+{
+  "rufo.useBundler": true,
+  "javascript.format.insertSpaceAfterConstructor": true,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "files.autoSave": "onFocusChange"
+}

@@ -7,14 +7,16 @@ module Api
         def create
           @admin = Admin.new(admin_params)
           if @admin.save
-            render json: {
-                     message: "success",
-                   }
+            # render json: {
+            #          message: "success",
+            #        }
+            response_success(message: "Ok")
           else
-            render json: {
-                     message: "failed",
-                     validation: @category.errors.messages,
-                   }, status: 400
+            # render json: {
+            #          message: "failed",
+            #          validation: @category.errors.messages,
+            #        }, status: 400
+            response_error(validation: @category.errors.messages)
           end
         end
 
@@ -26,7 +28,8 @@ module Api
         end
 
         def show_current_admin
-          render json: current_admin
+          # render json: current_admin
+          response_success(current_admin)
         end
 
         def update_admin
@@ -37,20 +40,23 @@ module Api
                         message: "Update Successfully",
                       }
               else
-                render json: {
-                        message: "Failed",
-                        validation: @admin.errors.messages,
-                      }, status: 400
+                # render json: {
+                #         message: "Failed",
+                #         validation: @admin.errors.messages,
+                #       }, status: 400
+                response_error(@admin.errors.message)
               end
             else
-              render json: {
-                message: "Confirm pass word must be like your password"
-              }, status: 400
+              # render json: {
+              #   message: "Confirm pass word must be like your password"
+              # }, status: 400
+              response_error(message: "Confirm pass word must be like your password")
             end    
           else
-            render json: {
-              validation: "Nhap sai mk"
-            }, status: 400
+            # render json: {
+            #   validation: "Nhap sai mk"
+            # }, status: 400
+            response_error(message: "Nhap sai mk kia man")
           end
         end
 

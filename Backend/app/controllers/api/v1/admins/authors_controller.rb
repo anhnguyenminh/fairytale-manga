@@ -6,14 +6,16 @@ module Api
           @author = Author.new(author_params)
           @author.image.attach(params[:author][:image])
           if @author.save
-            render json: {
-              message: "Success",
-            }
+            # render json: {
+            #   message: "Success",
+            # }
+            response_success(message: "Success")
           else
-            render json: {
-              message: "Failded",
-              validation: @author.errors.messages,
-            }, status: 400
+            # render json: {
+            #   message: "Failded",
+            #   validation: @author.errors.messages,
+            # }, status: 400
+            response_error(validation: @author.errors.messages)
           end
         end
 
@@ -26,33 +28,42 @@ module Api
 
         def show
           @author = Author.find(params[:id])
-          render json: @author
+          # render json: @author
+          if @author
+            response_success(@author)
+          else
+            response_not_found(message: "Author don't already")
+          end
         end
 
         def update
           @author = Author.find(params[:id])
           if @author.update(author_params)
-            render json: "Update Successfully"
+            # render json: "Update Successfully"
+            response_success("Update Successfully")
           else
-            render json: {
-                     message: "Failed",
-                     validation: @author.errors.messages,
-                   }, status: 400
+            # render json: {
+            #          message: "Failed",
+            #          validation: @author.errors.messages,
+            #        }, status: 400
+            response_error(validation: @author.errors.messages)
           end
         end
 
         def destroy
-          @author = Author.find(params[:id])
+          author = Author.find(params[:id])
           # render json: @author.story
-          if @author.story.length == 0
-            @author.destroy
-            render json: {
-              message: "destroy successfuly",
-            }
+          if !Author.has_story(author) #@author.story.blank? #!Author.has_story(@author)
+            author.destroy
+            # render json: {
+            #   message: "destroy successfuly",
+            # }
+            response_success(message: "destroy successfully")
           else
-            render json: {
-              message: "destroy failed because author has many story",
-            }, status: 400
+            # render json: {
+            #   message: "destroy failed because author has many story",
+            # }, status: 400
+            response_error(message: "destroy failed because author has many story")
           end
         end
 

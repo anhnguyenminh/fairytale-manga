@@ -4,4 +4,8 @@ class Author < ApplicationRecord
   has_many :story
   has_many :comment, as: :commentable
   has_many :like, as: :liketable
+
+  def self.has_story(author)
+    return true if author.story.present? 
+  end
 end

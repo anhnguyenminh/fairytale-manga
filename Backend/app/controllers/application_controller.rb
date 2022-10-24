@@ -23,17 +23,20 @@ class ApplicationController < ActionController::API
     header = request.headers["Authorization"]
     if header
       header = header.split(" ").last
-      decode = JsonWebToken.decode(header)
-      @current_admin = Admin.find_by(id: decode[:admin_id])
-      if !@current_admin
-        render json: {
-                 message: "You aren't admin",
-               }
+      if JsonWebToken.decode(header)
+        decode = JsonWebToken.decode(header)
+        @current_admin = Admin.find_by(id: decode[:admin_id])
+        if !@current_admin
+          # render json: {
+          #         message: "Please login",
+          #       }, status:400
+          response_error(message: "please login, you aren't admin")
+        end
+      else
+        response_error(message: "please login, because your session is signature")
       end
     else
-      render json: {
-               message: "You need login",
-             }
+      response_error(message: "You need to login")
     end
   end
 
@@ -41,17 +44,17 @@ class ApplicationController < ActionController::API
     header = request.headers["Authorization"]
     if header
       header = header.split(" ").last
-      decode = JsonWebToken.decode(header)
-      @current_reader = Reader.find_by(id: decode[:reader_id])
-      if !@current_reader
-        render json: {
-                 message: "You aren't reader",
-               }
+      if JsonWebToken.decode(header)
+        decode = JsonWebToken.decode(header)
+        @current_reader = Reader.find_by(id: decode[:reader_id])
+        if !@current_reader
+          response_error(message: "please login, you aren't reader")
+        end
+      else
+        response_error(message: "please login, because your session is signature")
       end
     else
-      render json: {
-               message: "You need login",
-             }
+      response_error(message: "you nees to login")
     end
   end
 end

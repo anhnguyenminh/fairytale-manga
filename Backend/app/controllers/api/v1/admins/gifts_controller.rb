@@ -6,14 +6,16 @@ module Api
           @gift = Gift.new(gift_params)
           @gift.image.attach(params[:image])
           if @gift.save
-            render json: {
-              id: @gift.id,
-            }
+            # render json: {
+            #   id: @gift.id,
+            # }
+            response_success(id: @gift.id)
           else
-            render json: {
-              message: "failed",
-              validation: @gift.errors.messages,
-            }, status: 400
+            # render json: {
+            #   message: "failed",
+            #   validation: @gift.errors.messages,
+            # }, status: 400
+            response_error(validation: @gift.errors.messages)
           end
           
           # binding.pry
@@ -29,36 +31,38 @@ module Api
 
         def show
           @gift = Gift.find(params[:id])
-          render json: @gift, each_serializer: GiftSerializer
+          # render json: @gift, each_serializer: GiftSerializer
+          response_success(@gift, {each_serializer: GiftSerializer})
         end
 
-        def update
-          @gift = Gift.find(params[:id])
-          if @gift.update(gift_params)
-            render json: "Update Successfully"
-          else
-            render json: {
-                     message: "Failed",
-                     validation: @gift.errors.messages,
-                   }, status: 400
-          end
-        end
+        # def update
+        #   @gift = Gift.find(params[:id])
+        #   if @gift.update(gift_params)
+        #     render json: "Update Successfully"
+        #   else
+        #     render json: {
+        #              message: "Failed",
+        #              validation: @gift.errors.messages,
+        #            }, status: 400
+        #   end
+        # end
 
         def destroy
           @gift = Gift.find(params[:id])
-          @readergift = ReaderGift.where(reader_id: params[:id])
+          readergift = ReaderGift.where(reader_id: params[:id])
           # render json: @gift
-          if @readergift.count == 0
+          if change_gift?(readergift)
             if @gift.destroy
-              render json: {
-                message: "destroy successfuly",
-              }
+              # render json: {
+              response_success(message: "destroy successfuly")
+              # }
             else
-              render json: {
-                message: "destroy failed",
-              }, status: 400
+              # render json: {
+              #   message: "destroy failed",
+              # }, status: 400
+              response_error(message: "destroy failed")
             end
-          elsif @readergift.count != 0
+          elsif !change_gift?(readergift)
             render json: {
               message: "This Gift has been changed by reader. Do you want compensation?",
             }
@@ -69,16 +73,17 @@ module Api
           @gift = Gift.find(params[:id])
           @readergift = ReaderGift.where(gift_id: params[:id])
           @readergift.each do |rg|
-            if rg.received == false
+            if !received?(rg)
               @reader = Reader.find(rg.reader_id)
               @gift = Gift.find(rg.gift_id)
               if @reader.update(score: @gift.score + @reader.score)
-                render json: "dc r"
+                response_success("dc r")
               else
-                render json: {
-                  message: "ko dc",
-                  validates: @reader.errors.messages
-                }
+                # render json: {
+                #   message: "ko dc",
+                #   validates: @reader.errors.messages
+                # }
+                response_error(validation: @reader.errors.message)
               end
               @title = "Opp. Your gift is "+ @gift.name+ " has been deleted. I am sorry because this trouble. Your score has been restored"
               @notification = Notification.create(reader_id: rg.reader_id, title: @title)
@@ -99,15 +104,24 @@ module Api
           @gift = Gift.find_by(id: params[:id])
           title = "Your gift is" + @gift.name + "has been received. Please check!"
           Notification.create(title: title,reader_id: params[:reader_id])
-          render json: {
-            message: "User are received",
-          }
+          # render json: {
+          #   message: "User are received",
+          # }
+          response_success(message: "Users are received")
         end
 
         private
 
         def gift_params
           params.permit(:name, :score, :stock, :image)
+        end
+
+        def change_gift?(readergift)
+          return true if readergift.blank?
+        end
+
+        def received?(rg)
+          return true if rg.received == true
         end
       end
     end

@@ -13,14 +13,16 @@ module Api
           # @chapter.images.attach(params[:images])
           # end
           if @chapter.save
-            render json: {
-              message: "success",
-            }
+            # render json: {
+            #   message: "success",
+            # }
+            response_success(message: "success")
           else
-            render json: {
-              message: "failed",
-              validation: @chapter.errors.messages,
-            }, status: 400
+            # render json: {
+            #   message: "failed",
+            #   validation: @chapter.errors.messages,
+            # }, status: 400
+            response_error(validation: @chapter.errors.messages)
           end
           # chapter.images.attach(params[:images])
 
@@ -30,7 +32,8 @@ module Api
 
         def show
           @chapter = Chapter.find(params[:id])
-          render json: @chapter
+          # render json: @chapter
+          response_success(@chapter)
         end
 
         # def update
@@ -48,13 +51,15 @@ module Api
         def destroy
           @chapter = Chapter.find(params[:id])
           if @chapter.destroy
-            render json: {
-              message: "destroy successfuly",
-            }
+            # render json: {
+            #   message: "destroy successfuly",
+            # }
+            response_success(message: "destroy successfully")
           else
-            render json: {
-              message: "destroy failed",
-            }, status: 400
+            # render json: {
+            #   message: "destroy failed",
+            # }, status: 400
+            response_error(message: "destroy failed")
           end
         end
 
