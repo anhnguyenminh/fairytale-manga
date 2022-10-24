@@ -35,9 +35,6 @@ module Api
             # }, status: 400
             response_error(validation: @story.errors.messages)
           end
-          
-          # binding.pry
-
         end
 
         def index
@@ -64,7 +61,7 @@ module Api
             end
             # render json: "Update Successfully"
             response_success("Update Successfully")
-          else            
+          else
             response_error(validation: @story.errors.messages)
           end
         end
@@ -82,10 +79,7 @@ module Api
         def show_list_chapters
           chapters = Chapter.where(story_id: params[:id]).order(id: :desc).ransack(params[:q]).result
           @pagy, @chapters = pagy(chapters, items: 10)
-         
-            response_list(@chapters, { adapter: :json,
-                                     each_serializer: ChapterSerializer })
-          
+          response_list(@chapters, { adapter: :json, each_serializer: ChapterSerializer })
         end
 
         private
