@@ -108,6 +108,7 @@ export default {
         description: '',
         end: null,
         status: [
+          { value: null, text: 'Please select an option'},
           {value: false, text: 'On going'},
           {value: true, text: 'Ended'}
         ],
@@ -139,7 +140,8 @@ export default {
       }).then(() => {
         alert("Add new story successfully!")
         this.$router.push({path: "/admin/stories"})
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error)
         alert("Something wrong happened, please check again!");
         e.preventDefault();
       });

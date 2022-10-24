@@ -78,8 +78,9 @@ export default {
             }
           })
           .catch(function (error) {
+            alert(error.response.data.validation)
             console.log(error);
-            alert("There is something wrong, please check again !!!");
+            // alert("There is something wrong, please check again !!!");
           });
     }
 
