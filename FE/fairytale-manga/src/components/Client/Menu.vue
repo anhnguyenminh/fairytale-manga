@@ -13,8 +13,8 @@
                       aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-8">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">NỔI BẬT</a>
                   </li>
@@ -54,7 +54,7 @@
                     <a class="nav-link " href="#" tabindex="-1">TÌM TRUYỆN</a>
                   </li>
                 </ul>
-                <div class="d-flex wrapped-right-side-nav">
+                <div class="d-flex wrapped-right-side-nav col-4">
                   <div
                       style="display: flex; align-items: center; justify-content: center; background-color: white; border-radius: 1.075rem;">
                     <i class="fas fa-search"></i>
@@ -154,7 +154,8 @@ a:hover {
 .wrapped-right-side-nav {
   align-items: center;
   justify-content: center;
-
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .wrapped-right-side-nav .form-control {

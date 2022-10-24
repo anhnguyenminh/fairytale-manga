@@ -1,36 +1,38 @@
-.row-header-title{
+/* box-noi-bat */
+.row-header-title {
     height: 35px;
     margin: 8px 0;
 }
+
 .h1-title {
     font-weight: 700;
     font-size: 18px;
-    /*padding: 6px 0;*/
-    /*padding-bottom: 2px;*/
     line-height: 32px;
 }
-#ul-content-pho-bien{
+
+#ul-content-pho-bien {
     list-style-type: none;
     padding: 0;
-
 }
 
-#ul-content-pho-bien li{
+#ul-content-pho-bien li {
     width: 15.6%;
     margin-right: 10px;
     margin-bottom: 1%;
 }
 
-.image-comic-tab{
+.image-comic-tab {
     width: 100%;
     height: 220px;
     position: relative;
 }
+
 .content-tab a {
     width: 100%;
     height: 100%;
     display: block;
 }
+
 .image-comic-tab img {
     width: 100%;
     height: 100%;
@@ -50,6 +52,7 @@ span.time-comic-tab {
     padding: 0 2px;
     margin-top: -22px;
 }
+
 .title-comic-tab {
     display: block;
     padding: 0 2px;
@@ -57,10 +60,11 @@ span.time-comic-tab {
     line-height: 24px;
     font-size: 14px;
     white-space: nowrap;
-    overflow: hidden!important;
+    overflow: hidden !important;
     text-overflow: ellipsis;
     font-weight: 600;
 }
+
 /*.chapter-comic-tab {*/
 /*    width: 100%;*/
 /*    display: block;*/
@@ -70,7 +74,103 @@ span.time-comic-tab {
 /*    text-overflow: ellipsis;*/
 /*}*/
 
-#ul-content-pho-bien.row{
+#ul-content-pho-bien.row {
     margin-bottom: 0;
 }
 
+/* top-bxh */
+
+
+.top-bxh-row-header-title {
+    /*display: block;*/
+    height: 28px;
+    margin-bottom: 10px;
+}
+
+.top-bxh-row-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.row-top-bxh {
+    display: flex;
+    padding: 0;
+    /*height: 66px;*/
+    margin-bottom: 8px;
+}
+
+.number-top-bhx-1 {
+    background-color: #ffba1e;
+}
+
+.number-top-bhx {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    margin-right: 2px;
+}
+
+.comic-image-top-bxh {
+    width: 100px;
+    min-height: 120px;
+    margin-bottom: 1em;
+}
+
+/*.row-top-bxh a {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    display: block;*/
+/*}*/
+
+.comic-image-top-bxh img {
+    width: 100%;
+    height: 100%;
+}
+
+.desc-top-bxh {
+    width: calc(100% - 131px);
+    padding-left: 6px;
+}
+
+.desc-top-bxh h5 {
+    display: block;
+    padding: 3px;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.desc-top-bxh p {
+    font-size: 13px;
+    display: block;
+    padding: 3px;
+    font-style: italic;
+    margin: 0;
+}
+
+.number-top-bhx-2 {
+    background: #7e4a4f;
+    padding: 1px 8px;
+}
+
+.number-top-bhx-3 {
+    background: #4ed0e0;
+    padding: 1px 7px;
+}
+
+.number-top-bhx-4 {
+    background: #434754;
+    padding: 1px 7px;
+}
+
+.number-top-bhx-5 {
+    background: #8c8c8c;
+    padding: 1px 7px;
+}
