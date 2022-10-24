@@ -17,23 +17,19 @@ module Api
         def create
           @story = Story.new(story_params)
           @story.image.attach(params[:image])
-          if @story.save
-            @ca = JSON.parse params[:categories_id]
-            @ca.each do |c|
-              @category = Category.find(c)
-              @story.category << @category
+          if !params[:categories_id].blank?
+            if @story.save
+              @ca = JSON.parse params[:categories_id]
+              @ca.each do |c|
+                @category = Category.find(c)
+                @story.category << @category
+              end
+              response_success(message: "Success")
+            else
+              response_error(validation: @story.errors.messages)
             end
-            # render json: {
-              # message: "Success",
-            response_success(message: "Success")
-            # }
-            # render json: @ca
           else
-            # render json: {
-            #   message: "failed",
-            #   validation: @story.errors.messages,
-            # }, status: 400
-            response_error(validation: @story.errors.messages)
+            response_error(validation: {category: ["Categories can't be empty"]})
           end
         end
 
@@ -53,6 +49,7 @@ module Api
         def update
           @story = Story.find(params[:id])
           if @story.update(story_params)
+            # if !params[:categories_id].blank?
             @story.category.destroy_all
             @ca = JSON.parse params[:categories_id]
             @ca.each do |c|
