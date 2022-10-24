@@ -33,7 +33,7 @@ class ApplicationController < ActionController::API
           response_error(message: "please login, you aren't admin")
         end
       else
-        response_error(message: "please login, because your session is signature")
+        response_error(message: "please login, because your session is expried or you don't login before")
       end
     else
       response_error(message: "You need to login")
