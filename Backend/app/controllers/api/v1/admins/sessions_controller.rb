@@ -1,4 +1,4 @@
-require "json_web_token"
+require 'json_web_token'
 
 module Api
   module V1
@@ -11,15 +11,15 @@ module Api
           if @admin && @admin.valid_password?(params[:password])
             sign_in(:admin, @admin)
             render json: {
-              message: "success",
+              message: 'success',
               token: ::JsonWebToken.encode({
-                admin_id: @admin.id,
-              }),
+                                            admin_id: @admin.id
+                                           })
             }
           else
             render json: {
-              message: "failed",
-              validate: "Password Or Username failed.",
+              message: 'failed',
+              validate: 'Password Or Username failed.'
             }, status: 400
           end
         end
