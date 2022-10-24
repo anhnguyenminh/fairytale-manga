@@ -17,10 +17,7 @@ module Api
                                            })
             }
           else
-            render json: {
-              message: 'failed',
-              validate: 'Password Or Username failed.'
-            }, status: 400
+            response_error(validation: "Wrong email or password")
           end
         end
       end
