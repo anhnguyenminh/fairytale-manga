@@ -108,6 +108,7 @@ export default {
         description: '',
         end: null,
         status: [
+          { value: null, text: 'Please select an option'},
           {value: false, text: 'On going'},
           {value: true, text: 'Ended'}
         ],
