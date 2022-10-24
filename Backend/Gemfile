@@ -51,3 +51,4 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rufo'
 gem 'pagy'
 gem 'pry-rails', :group => :development
+gem 'rubocop', require: false

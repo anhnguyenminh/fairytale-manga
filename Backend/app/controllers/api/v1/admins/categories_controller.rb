@@ -32,6 +32,7 @@ module Api
             response_success(@product, { each_serializer: CategorySerializer })
           else
             response_not_found(message: "This category not found")
+          end
         end
 
         def update
