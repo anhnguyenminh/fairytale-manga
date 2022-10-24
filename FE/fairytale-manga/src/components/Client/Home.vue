@@ -254,38 +254,334 @@
           <a href="#" class="more-btn"></a>
         </div>
       </div>
-
+      <!-- top-bxh-->
       <div class="container-fluid center-container">
         <div class="container top-bxh">
-          <h1 class="h1-title h1-title-bxh text-uppercase"><i class="fas fa-star-shooting" style="color: gold"></i> Bảng xếp hạng
+          <h1 class="h1-title h1-title-bxh text-uppercase"><i class="fas fa-star-shooting" style="color: gold"></i> Bảng
+            xếp hạng
           </h1>
           <div class="row">
             <div class="col-md-4 col-sm-12">
-            <div class="top-bxh-row-header">
-              <div class="top-bxh-row-header-title">
-                <h3 class="text-uppercase">Top ngày</h3>
-              </div>
-              <div class="row-top-bxh">
-                <div class="number-top-bhx number-top-bhx-1">
-                  1
+              <div class="top-bxh-row-header">
+                <div class="top-bxh-row-header-title">
+                  <h3 class="text-uppercase">Top ngày</h3>
                 </div>
-                <div class="comic-image-top-bxh">
-                  <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
-                    <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg" alt="">
-                  </a>
+                <!--                top 1-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-1">
+                    1
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
                 </div>
-                <div class="desc-top-bxh">
-                  <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
-                    <h5>Đối tác Bán thời gian</h5>
-                  </a>
-                  <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
-                    <p>Chapter 15 &lt;Ngang Raw&gt;</p>
-                  </a>
+                <!--top 2-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-2">
+                    2
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 3-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-3">
+                    3
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+<!--                top 4-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-4">
+                    4
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+<!--                top 5-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-5">
+                    5
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="top-bxh-row-header">
+                <div class="top-bxh-row-header-title">
+                  <h3 class="text-uppercase">Top tuần</h3>
+                </div>
+                <!--                top 1-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-1">
+                    1
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--top 2-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-2">
+                    2
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 3-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-3">
+                    3
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 4-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-4">
+                    4
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 5-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-5">
+                    5
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-
+            <div class="col-md-4 col-sm-12">
+              <div class="top-bxh-row-header">
+                <div class="top-bxh-row-header-title">
+                  <h3 class="text-uppercase">Top tháng</h3>
+                </div>
+                <!--                top 1-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-1">
+                    1
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--top 2-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-2">
+                    2
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 3-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-3">
+                    3
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 4-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-4">
+                    4
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+                <!--                top 5-->
+                <div class="row-top-bxh">
+                  <div class="number-top-bhx number-top-bhx-5">
+                    5
+                  </div>
+                  <div class="comic-image-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
+                           alt="">
+                    </a>
+                  </div>
+                  <div class="desc-top-bxh">
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <h5>Đối tác Bán thời gian</h5>
+                    </a>
+                    <a href="https://qmanga3.net/doi-tac-ban-thoi-gian-bl.html">
+                      <p>Chapter 15 &lt;Ngang Raw&gt;</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -297,11 +593,6 @@
 require("@/assets/css/home.css")
 export default {
   name: "Home",
-  data() {
-    return {
-      file1: []
-    };
-  },
   methods: {
     onSlideStart(slide) {
       this.sliding = true
@@ -327,15 +618,5 @@ export default {
   background-color: #252525;
 }
 
-.banner-puzzle {
-  height: 380px;
-  overflow: hidden;
-}
-
-.banner-puzzle.container {
-  width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-}
 
 </style>
