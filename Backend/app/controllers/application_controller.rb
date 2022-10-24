@@ -54,7 +54,7 @@ class ApplicationController < ActionController::API
         response_error(message: "please login, because your session is signature")
       end
     else
-      response_error(message: "you nees to login")
+      response_error(message: "you need to login")
     end
   end
 end
