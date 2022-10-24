@@ -1,5 +1,5 @@
 class Chapter < ApplicationRecord
-  # validates :name, :story_id, presence :true
+  validates :name, presence: true, message: "name must exist"
   belongs_to :story
   has_many_attached :images
   has_many :comment, as: :commentable
