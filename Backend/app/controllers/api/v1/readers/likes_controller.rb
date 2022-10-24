@@ -9,19 +9,15 @@ module Api
             c.reader = current_reader
           end
           if @like.save
-            render json: {
-              message: "You 're liked that",
-            }
+            response_success(message: "You 're liked that")
           else
-            render json: {
-              message: "u can't like that",
-            }
+            response_error(message: "u can't like that")
           end
         end
 
         def index
           @likes = @liketable.like.length
-          render json: @likes
+          response_success(@likes)
         end
 
         def destroy
@@ -29,9 +25,10 @@ module Api
           if @like.reader_id == current_reader.id
             @like.destroy
           else
-            render json: {
-              message: "You can't dislike ",
-            }
+            # render json: {
+            #   message: "You can't dislike ",
+            # }
+            response_error("You can't dislike")
           end
         end
       end

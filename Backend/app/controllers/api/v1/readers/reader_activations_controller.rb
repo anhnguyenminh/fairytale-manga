@@ -11,13 +11,15 @@ module Api
           if reader && !reader.activated?
             reader.update_attribute(:activated, true)
             reader.update_attribute(:activated_at, Time.zone.now)
-            render json: {
-              message: "ok",
-            }
+            # render json: {
+            #   message: "ok",
+            # }
+            response_success(message: "ok")
           else
-            render json: {
-              message: "cc",
-            }
+            # render json: {
+            #   message: "cc",
+            # }
+            response_error(message: "not ok")
           end
         end
       end
