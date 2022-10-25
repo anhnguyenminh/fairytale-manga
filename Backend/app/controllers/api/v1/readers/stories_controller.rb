@@ -3,6 +3,7 @@ module Api
     module Readers
       class StoriesController < ApplicationController
         before_action :authenticate_request_reader
+        skip_before_action :authenticate_request_reader, only: [:show, :show_chapter]
 
         def index
           @stories = Story.all.order("created_at DESC").limit(5)

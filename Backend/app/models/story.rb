@@ -20,5 +20,6 @@ class Story < ApplicationRecord
       .group("stories.id")
       .where("stories.created_at" => time_range)
       .order("read_count DESC")
+      .limit(5)
   end
 end
