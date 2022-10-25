@@ -4,14 +4,14 @@ module Api
       class CommentsController < ApplicationController
         def index
           # comment = Comment.where("num_report >= ? and status = 0", 3).order(id: :desc).ransack(params[:q]).result
-          comment = Comment.comment_be_report
+          @comment = Comment.comment_be_report
           @pagy, @comment = pagy(comment, items: 10)
           response_list(@comment, { adapter: :json,
                                        each_serializer: nil })
         end
 
         def ban_comment
-          comment = Comment.find(params[:id])
+          @comment = Comment.find(params[:id])
           # @comment.update(status: params[:status])
           if params[:status] == 1 #user enter key banned
             @reader = Reader.find(@comment.reader_id)
