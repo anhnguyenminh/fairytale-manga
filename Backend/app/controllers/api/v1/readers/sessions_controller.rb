@@ -14,7 +14,7 @@ module Api
               })
             }
           else
-              response_error(validate: "Wrong Email Or Password")
+              response_error(validation: "Wrong Email Or Password")
           end
         end
       end
