@@ -15,7 +15,7 @@ module Api
             #   message: "Failded",
             #   validation: @author.errors.messages,
             # }, status: 400
-            response_error(validation: @author.errors.messages)
+            response_error(validation: @author.errors.full_messages)
           end
         end
 
@@ -46,7 +46,7 @@ module Api
             #          message: "Failed",
             #          validation: @author.errors.messages,
             #        }, status: 400
-            response_error(validation: @author.errors.messages)
+            response_error(validation: @author.errors.full_messages)
           end
         end
 

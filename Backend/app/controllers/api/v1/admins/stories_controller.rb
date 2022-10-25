@@ -26,10 +26,10 @@ module Api
               end
               response_success(message: "Success")
             else
-              response_error(validation: @story.errors.messages)
+              response_error(validation: @story.errors.full_messages)
             end
           else
-            response_error(validation: {category: ["Categories can't be empty"]})
+            response_error(validation: "Categories can't be empty")
           end
         end
 
@@ -59,7 +59,7 @@ module Api
             # render json: "Update Successfully"
             response_success("Update Successfully")
           else
-            response_error(validation: @story.errors.messages)
+            response_error(validation: @story.errors.full_messages)
           end
         end
 

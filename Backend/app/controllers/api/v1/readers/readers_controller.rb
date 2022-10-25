@@ -11,7 +11,7 @@ module Api
             # UserMailer.reader_activation(@reader).deliver_now
               response_success(message: "hello")
           else
-              response_error(validation: @reader.errors.messages)
+              response_error(validation: @reader.errors.full_messages)
           end
         end
 

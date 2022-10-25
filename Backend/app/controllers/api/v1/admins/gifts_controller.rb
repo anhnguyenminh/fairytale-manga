@@ -15,7 +15,7 @@ module Api
             #   message: "failed",
             #   validation: @gift.errors.messages,
             # }, status: 400
-            response_error(validation: @gift.errors.messages)
+            response_error(validation: @gift.errors.full_messages)
           end
           
           # binding.pry
@@ -83,7 +83,7 @@ module Api
                 #   message: "ko dc",
                 #   validates: @reader.errors.messages
                 # }
-                response_error(validation: @reader.errors.message)
+                response_error(validation: @reader.errors.full_messages)
               end
               @title = "Opp. Your gift is "+ @gift.name+ " has been deleted. I am sorry because this trouble. Your score has been restored"
               @notification = Notification.create(reader_id: rg.reader_id, title: @title)

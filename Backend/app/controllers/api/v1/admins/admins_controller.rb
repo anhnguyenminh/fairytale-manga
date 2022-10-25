@@ -16,7 +16,7 @@ module Api
             #          message: "failed",
             #          validation: @category.errors.messages,
             #        }, status: 400
-            response_error(validation: @category.errors.messages)
+            response_error(validation: @category.errors.full_messages)
           end
         end
 
@@ -44,7 +44,7 @@ module Api
                 #         message: "Failed",
                 #         validation: @admin.errors.messages,
                 #       }, status: 400
-                response_error(@admin.errors.message)
+                response_error(@admin.errors.full_messages)
               end
             else
               # render json: {

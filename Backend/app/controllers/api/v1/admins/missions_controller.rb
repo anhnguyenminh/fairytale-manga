@@ -13,7 +13,7 @@ module Api
             # render json: {
             #   valid: @mission.messages.errors,
             # }, status: 400
-            response_error(valid: @mission.message.errors)
+            response_error(valid: @mission.errors.full_messages)
           end
         end
 
@@ -33,7 +33,7 @@ module Api
             #          message: "Failed",
             #          validation: @mission.errors.messages,
             #        }, status: 400
-            response_error(validation: @mission.errors.messages)
+            response_error(validation: @mission.errors.full_messages)
           end
         end
 

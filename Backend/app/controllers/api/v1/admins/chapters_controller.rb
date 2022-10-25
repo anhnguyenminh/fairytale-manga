@@ -22,7 +22,7 @@ module Api
             #   message: "failed",
             #   validation: @chapter.errors.messages,
             # }, status: 400
-            response_error(validation: @chapter.errors.messages)
+            response_error(validation: @chapter.errors.full_messages)
           end
           # chapter.images.attach(params[:images])
 
