@@ -8,8 +8,8 @@ module Api
           @reader = Reader.new(reader_params)
           if @reader.save
             @reader.image.attach(params[:reader][:image])
-            UserMailer.reader_activation(@reader).deliver_now
-              response_success(message: "Wait email message")
+            # UserMailer.reader_activation(@reader).deliver_now
+              response_success(message: "hello")
           else
               response_error(validation: @reader.errors.messages)
           end
