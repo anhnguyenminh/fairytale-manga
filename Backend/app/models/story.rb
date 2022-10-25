@@ -5,7 +5,8 @@ class Story < ApplicationRecord
   # has_and_belongs_to_many :category, join_table: "category_story"
   has_many :reader_story
   has_many :reader, :through => :reader_story
-  validates :name, :author_id, presence: true
+  validates :name, presence: true, message: "Story name must exist"
+  validates :author_id, presence: true, message: "Story must has author"
   # validates :categories_id, presence: true
   has_many :chapter
   has_many :comment, as: :commentable

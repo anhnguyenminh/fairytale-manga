@@ -1,6 +1,6 @@
 class Author < ApplicationRecord
-  validates :name, presence: true, message: "name must exist"
-  validates :description, presence: true, message: "description must exist"
+  validates :name, presence: true, message: "Author name must exist"
+  validates :description, presence: true, message: "Author description must exist"
   has_one_attached :image
   has_many :story
   has_many :comment, as: :commentable

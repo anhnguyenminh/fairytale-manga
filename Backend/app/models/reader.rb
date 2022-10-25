@@ -4,9 +4,9 @@ class Reader < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable
-  validates :name, presence: true,message: "name must exist", on: :update
+  validates :name, presence: true,message: "Your name must exist", on: :update
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX , message: "email wrong form(has key @)"}
+  validates :email, format: { with: VALID_EMAIL_REGEX , message: "Your email wrong form(has key @)"}
   validates :age, presence: true, numericality: { greater_than: 0, less_than: 100, message: "Age must from 0 to 100" }, on: :update
   validates :phonenumber, presence: true, numericality: { only_integer: true , message: "Phone number must have character is number"}, length: { is: 10 , message: "Phone number must have 10 characters"}, on: :update
   validates :address, presence: true, length: { minimum: 8, maximum: 255 , message: "Address must have more than 8 characters and lessthan 255 characters"}, on: :update
