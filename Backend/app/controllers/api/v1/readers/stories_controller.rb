@@ -2,12 +2,10 @@ module Api
   module V1
     module Readers
       class StoriesController < ApplicationController
-        before_action :authenticate_request_reader
-        skip_before_action :authenticate_request_reader, only: [:show, :show_chapter]
-
+        # before_action :authenticate_request_reader, only: [:read_story]
         def index
-          @stories = Story.all.order("created_at DESC").limit(5)
-          response_success(@stories, {each_serializer: StorySerializer})
+          @stories = Story.all.order("created_at DESC")#.limit(5)
+          response_success(@stories, {each_serializer: ::Stories::ShowStoriesSerializer})
         end
 
         def search_stories
@@ -17,17 +15,21 @@ module Api
         end
 
         def read_story
-          story = ReaderStory.find_by(reader_id: @current_reader.id, story_id: params[:id])
-          if !story
-            @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
-            if @readerstory.save
-              response_success(message: "ok")
+          if is_login?
+            story = ReaderStory.find_by(reader_id: @current_reader.id, story_id: params[:id])
+            if !story
+              @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
+              if @readerstory.save
+                response_success(message: "ok")
+              else
+                response_error(message: "failed")
+              end
             else
-              response_error(message: "failed")
+              story.update(chap: params[:chap])
+              response_success(message: "Success")
             end
           else
-            story.update(chap: params[:chap])
-            response_success(message: "Success")
+            response_success(message: "Doc truyen di")
           end
           # render json: story
         end
@@ -47,6 +49,11 @@ module Api
 
         def story_params
           params.permit(:reader_id, :story_id, :chap)
+        end
+
+        def is_login?
+          check_authen
+          return false if @current_reader.blank?
         end
       end
     end

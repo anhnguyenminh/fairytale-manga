@@ -57,4 +57,15 @@ class ApplicationController < ActionController::API
       response_error(message: "you need to login")
     end
   end
+
+  def check_authen
+    header = request.headers["Authorization"]
+    if JsonWebToken.decode(header)
+      header = header.split(" ").last
+      decode = JsonWebToken.decode(header)
+      @current_reader = Reader.find_by(id: decode[:reader_id])
+    else
+      @current_reader = nil
+    end
+  end
 end
