@@ -8,7 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
   def set_images_url
     self.images_url = []
     if images.attached?
-      images.reverse.each do |image|
+      images.each do |image|
         self.images_url << Rails.application.routes.url_helpers.url_for(image) 
       end
     end

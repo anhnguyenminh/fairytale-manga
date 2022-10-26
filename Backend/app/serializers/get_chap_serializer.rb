@@ -3,7 +3,11 @@ class GetChapSerializer < ActiveModel::Serializer
 
   def time
     time  = Time.now - object.updated_at
-    month = Time.now.month - object.updated_at.month
+    if Time.now.month - object.updated_at.month == 1 && Time.now.date >= object.updated_at.date
+      month =1
+    else
+      month = Time.now.month - object.updated_at.month
+    end
     day   = time./86400
     hour  = time/3600
     min   = time/ 60 
