@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_040805) do
+ActiveRecord::Schema.define(version: 2022_10_26_043122) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -169,13 +169,13 @@ ActiveRecord::Schema.define(version: 2022_10_19_040805) do
     t.string "phonenumber", default: "", null: false
     t.string "address", default: "", null: false
     t.integer "score", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
     t.integer "ban", default: 0, null: false
     t.datetime "time_ban"
+    t.datetime "created_at", default: "2022-10-26 04:34:58", null: false
+    t.datetime "updated_at", default: "2022-10-26 04:34:58", null: false
     t.index ["email"], name: "index_readers_on_email", unique: true
   end
 

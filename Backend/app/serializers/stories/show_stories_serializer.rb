@@ -1,6 +1,6 @@
 module Stories
   class ShowStoriesSerializer < ActiveModel::Serializer
-    attributes :id, :name, :status, :author_name, :description
+    attributes :id, :name, :status, :author_name, :chapter, :views
 
     def author_name
       object.author.name
@@ -9,9 +9,8 @@ module Stories
     def author_id
       object.author.id
     end
-    
-    
-    has_many :category, each_serializer: CategorySerializer
+
+    has_many :chapter, serializer: GetChapSerializer
   
     def cat_id
       object.category.ids
@@ -25,7 +24,13 @@ module Stories
       end
     end
 
-    
+    def views
+      object.reader.length
+    end
+
+    def chapter
+      object.chapter.last
+    end
   end
 end
 

@@ -14,6 +14,7 @@ class Story < ApplicationRecord
   attribute :image_url
   after_find :set_image_url
 
+
   def self.hot_story(time_range)
     @stories = Story.joins(:reader)
       .select("stories.*, COUNT(readers.id) as read_count")
