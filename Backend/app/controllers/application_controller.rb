@@ -33,7 +33,7 @@ class ApplicationController < ActionController::API
           response_error(message: "please login, you aren't admin")
         end
       else
-        response_error(message: "please login, because your session is expried or you don't login before")
+        response_error(message: "please login, because your session is expried or you don't login by admin account")
       end
     else
       response_error(message: "You need to login")

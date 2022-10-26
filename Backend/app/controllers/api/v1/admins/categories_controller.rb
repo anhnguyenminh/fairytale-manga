@@ -29,7 +29,7 @@ module Api
           @category = Category.find(params[:id])
           if @category
           # render json: @category, each_serializer: CategorySerializer
-            response_success(@product, { each_serializer: CategorySerializer })
+            response_success(@category, { each_serializer: CategorySerializer })
           else
             response_not_found(message: "This category not found")
           end
@@ -39,7 +39,7 @@ module Api
           @category = Category.find(params[:id])
           if @category.update(category_params)
             # render json: "Update Successfully"
-            response_success("Update Successfully")
+            response_success(message: "Update Successfully")
           else
             # render json: {
             #          message: "Failed",

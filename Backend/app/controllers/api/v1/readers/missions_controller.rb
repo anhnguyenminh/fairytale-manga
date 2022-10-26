@@ -1,7 +1,7 @@
 module Api
   module V1
     module Readers
-      class MissionsController < ApplicationController
+      class MissionsController < ReaderappController
         def mission_login
           @mission = MissionReader.find_by(reader_id: @current_reader.id, mission_id: params[:id])
           if @mission && @mission.time_login < Time.now - 1.day
