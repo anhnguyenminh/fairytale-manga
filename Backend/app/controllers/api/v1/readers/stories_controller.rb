@@ -4,8 +4,10 @@ module Api
       class StoriesController < ApplicationController
         # before_action :authenticate_request_reader, only: [:read_story]
         def index
-          @stories = Story.all.order("created_at DESC")#.limit(5)
-          response_success(@stories, {each_serializer: ::Stories::ShowStoriesSerializer})
+          # chapter_exists_story_ids = Chapter.pluck(:story_id).uniq
+          # stories = Story.where(id: chapter_exists_story_ids)
+          stories = Story.joins(:chapter).uniq
+          response_success(stories, {each_serializer: ::Stories::ShowStoriesSerializer})
         end
 
         def search_stories
