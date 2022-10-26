@@ -99,7 +99,7 @@ export default {
     ])
   },
   mounted() {
-    this.getStoriesData();
+      this.getStoriesData();
   }
 }
 

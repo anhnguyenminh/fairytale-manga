@@ -10,12 +10,12 @@
                 <h3 class="mb-5">Login</h3>
 
                 <div class="form-outline mb-4">
-                  <input type="email" class="form-control form-control-lg" v-model.lazy="admin.adminEmail"
+                  <input type="email" class="form-control form-control-lg" v-model="admin.adminEmail"
                          placeholder="Email" required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" class="form-control form-control-lg" v-model.lazy="admin.adminPwd"
+                  <input type="password" class="form-control form-control-lg" v-model="admin.adminPwd"
                          placeholder="Password" required/>
                 </div>
 
@@ -41,8 +41,6 @@
 
 <script>
 import axios from "axios";
-import {createNamespacedHelpers} from "vuex";
-const {maps} = createNamespacedHelpers("categories");
 
 export default {
   name: 'AdminLogin',
@@ -56,11 +54,10 @@ export default {
     }
   },
   created() {
-    if(this.$store.state.token && this.$store.state.token != null  && this.$store.state.token != ''){
+    if (this.$store.state.token) {
       this.$router.push("/admin/stories")
     }
-  }
-  ,
+  },
   methods: {
     adminAuthenticate() {
       let self = this;

@@ -1,6 +1,6 @@
 <template>
   <div class="login-view">
-    <login></login>
+<!--    <login></login>-->
     <login-default></login-default>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="vh-100">
-      <div class="container">
+      <div class="container wrapped-container">
         <div class="row wrapped-card">
           <div class="col col-xl-10">
             <div class="card">
@@ -20,24 +20,27 @@
                       <div class="form-outline">
                         <label class="form-label" for="userEmail">Email</label>
                         <input type="email" id="userEmail" class="form-control form-control-lg"
-                               placeholder="Nhập vào địa chỉ email" required v-model="email" @keyup="emailValidation" />
-                        <span class="error-msg">{{ emailError }}</span>
+                               placeholder="Nhập vào địa chỉ email" v-model="email" @keyup="emailValidation" required/>
+
                       </div>
 
                       <div class="form-outline">
                         <label class="form-label" for="userPwd">Mật khẩu</label>
                         <input type="password" id="userPwd" class="form-control form-control-lg"
-                               placeholder="Nhập vào mật khẩu" required  v-model="password" @keyup="passwordValidation"/>
-                        <span class="error-msg">{{ passwordError }}</span>
+                               placeholder="Nhập vào mật khẩu" v-model="password" @keyup="passwordValidation" required/>
+
                       </div>
 
                       <div class="form-btn">
-                        <button class="btn btn-dark" type="button">Đăng nhập</button>
+                        <button class="btn btn-dark" type="submit" @click.prevent="userAuthenticate">Đăng nhập</button>
                       </div>
 
-                      <p class="mb-5 pb-lg-2 suggest">Chưa có tài khoản? <router-link :to="{ name: 'RegisterView' }" tag="a"
-                          >Đăng kí tại đây</router-link></p>
-
+                      <p class="mb-4 pb-lg-2 suggest">Chưa có tài khoản?
+                        <router-link :to="{ name: 'RegisterView' }" tag="a"
+                        >Đăng kí tại đây
+                        </router-link>
+                      </p>
+                      <span class="error-msg">{{ error }}</span>
                     </form>
                   </div>
                 </div>
@@ -52,150 +55,75 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/plugins/user_axios';
 
 export default {
   name: "Login",
   data() {
     return {
-      email: '',
-      emailError: '',
-      password: '',
-      passwordError: ''
+      error: '',
+      email:'',
+      password:''
     };
+  },
+  created() {
+    if(this.$store.state.user_token){
+      this.$router.push("/")
+    }
   },
   methods: {
     emailValidation() {
       if (this.email == null || this.email.length === 0) {
-        this.emailError = 'Email can not be empty!!!';
+        this.error = 'Email can not be empty!!!';
         return false;
       } else {
-
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
-          this.emailError = '';
+          this.error = '';
           return (true);
         }
-        this.emailError = "You have entered an invalid email address!";
+        this.error = "You have entered an invalid email address!";
         return (false)
       }
     },
-
     passwordValidation() {
       if (this.password == null || this.password.length < 8) {
-        this.passwordErrorError = 'Password can not be empty and must be rather than 8 characters!!!';
+        this.error = 'Password can not be empty and must be rather than 8 characters!!!';
         return false;
       } else {
-        this.passwordErrorError = '';
+        this.error = '';
         return (true);
       }
+    },
+
+    userAuthenticate(event){
+      event.preventDefault();
+      let self = this;
+      axios.post('readers/sessions', {
+        email: this.email,
+        password: this.password
+      })
+          .then(function (response) {
+            console.log(response);
+            //get data lately here
+            if (response.status == 200) {
+              self.$router.push({path: "/"})
+              console.log("You are here");
+              self.$store.commit("setUserToken", response.data.token)
+              console.log(response.data.token)
+            }
+          })
+          .catch(function (error) {
+            alert(error.response.data.validation)
+            console.log(error);
+            // alert("There is something wrong, please check again !!!");
+          });
+
     }
   }
 
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
-* {
-  font-family: 'Alegreya', serif;
-  color: black;
-}
-
-.form-control:focus {
-  border-color: black !important;
-  box-shadow: none;
-}
-
-section {
-  /*background-color: #9A616D;*/
-  background: url('http://storage.googleapis.com/cheritz/msg/images/general/bg.png') no-repeat top center fixed;
-  color: white;
-  background-size: cover;
-}
-
-.container {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  height: 100%;
-}
-
-.wrapped-card {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center !important;
-}
-
-.wrapped-card .card {
-  border-radius: 1rem;
-  background: linear-gradient(120deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-}
-
-.card-image {
-  border-radius: 1rem 0 0 1rem;
-  max-width: 100%;
-  height: 100%;
-}
-
-.card-details {
-  display: flex;
-  align-items: center;
-}
-
-.card-body {
-  color: black;
-  opacity: 1;
-}
-
-.fairytale-wrapper {
-  padding-bottom: 0.25rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.fairytale-wrapper span {
-  font-weight: 700;
-  margin-bottom: 0;
-  font-size: calc(1.375rem + 1.5vw);
-}
-
-h5 {
-  letter-spacing: 1px;
-  font-weight: 600;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
-
-.form-outline {
-  margin-bottom: 1.5rem
-}
-
-.form-outline label {
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
-.form-btn {
-  padding-top: 0.25rem;
-  margin-bottom: 1.5rem
-}
-
-.form-btn button {
-  width: -webkit-fill-available;
-}
-
-.suggest {
-  color: #393f81;
-  font-weight: 500;
-}
-
-p a {
-  color: #393f81;
-}
-
-.error-msg{
-  color: darkred;
-}
+@import url(@/assets/css/login.css);
 </style>

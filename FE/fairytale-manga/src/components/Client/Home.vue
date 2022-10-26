@@ -12,7 +12,6 @@
             img-height="480"
         >
           <b-carousel-slide
-
               img-src="https://adsmg.fanfox.net/4/2018/12/28/63903f3765294921.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
@@ -36,227 +35,42 @@
 
       <div class="container box-pho-bien">
         <div class="row-header-title">
-          <h1 class="h1-title h1-title-pho-bien text-uppercase"><i class="fas fa-fire" style="color: gold"></i> Nổi bật
+          <h1 class="h1-title text-uppercase">
+            <i class="fas fa-fire" style="color: gold"></i> Nổi bật
           </h1>
         </div>
+
         <div class="content-tab">
           <ul id="ul-content-pho-bien" class="row">
-            <li class="comic-hover">
+            <li class="comic-hover" v-for="story in stories">
               <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview">
+                  <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg">
                 </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
+                <span class="time-comic-tab d-flex justify-content-around ">
+                  <span>1 giờ trước{{story.chapter.time}}</span>
+                  <span class="d-flex align-items-center ">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span style="margin-left: 3px">1,517{{story.view}}</span>
+                  </span>
                 </span>
               </div>
               <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
+                <h3 class="title-comic-tab">{{ story.name }}</h3>
               </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
+              <span class="chapter-comic-tab">
+                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter {{ story.chapter.name }}</a>
+              </span>
             </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-            <li class="comic-hover">
-              <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview"
-                   title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                  <img class=" lazyloaded"
-                       src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg"
-
-                       alt="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ" title="Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ">
-                </a>
-                <span class="time-comic-tab">1 giờ trước &nbsp;
-                  <i class="fa fa-eye" aria-hidden="true"></i>1,517&nbsp;
-                 <i class="far fa-heart" aria-hidden="true"></i>1
-                </span>
-              </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
-                <h3 class="title-comic-tab">11111111</h3>
-              </a>
-              <!--              <span class="chapter-comic-tab">-->
-              <!--                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter 14-->
-              <!--                <h3 class="title-comic-tab">Từ Ác Nữ, Tôi Trở Thành Một Người Mẹ-->
-              <!--                </h3></a>-->
-              <!--              </span>-->
-            </li>
-
-
           </ul>
-          <a href="#" class="more-btn"></a>
+          <router-link :to="{path: '/categories/trending-stories'}" class="more-btn">
+            <b-button variant="danger">Xem thêm</b-button>
+          </router-link>
         </div>
       </div>
       <!-- top-bxh-->
-      <div class="container-fluid center-container">
-        <div class="container top-bxh">
+      <div class="container center-container">
+        <div class="top-bxh">
           <h1 class="h1-title h1-title-bxh text-uppercase"><i class="fas fa-star-shooting" style="color: gold"></i> Bảng
             xếp hạng
           </h1>
@@ -326,7 +140,7 @@
                     </a>
                   </div>
                 </div>
-<!--                top 4-->
+                <!--                top 4-->
                 <div class="row-top-bxh">
                   <div class="number-top-bhx number-top-bhx-4">
                     4
@@ -346,7 +160,7 @@
                     </a>
                   </div>
                 </div>
-<!--                top 5-->
+                <!--                top 5-->
                 <div class="row-top-bxh">
                   <div class="number-top-bhx number-top-bhx-5">
                     5
@@ -482,7 +296,7 @@
                 </div>
                 <!--                top 1-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-1">
+                  <div class="number-top-bhx ">
                     1
                   </div>
                   <div class="comic-image-top-bxh">
@@ -502,7 +316,7 @@
                 </div>
                 <!--top 2-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-2">
+                  <div class="number-top-bhx ">
                     2
                   </div>
                   <div class="comic-image-top-bxh">
@@ -522,7 +336,7 @@
                 </div>
                 <!--                top 3-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-3">
+                  <div class="number-top-bhx ">
                     3
                   </div>
                   <div class="comic-image-top-bxh">
@@ -542,7 +356,7 @@
                 </div>
                 <!--                top 4-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-4">
+                  <div class="number-top-bhx">
                     4
                   </div>
                   <div class="comic-image-top-bxh">
@@ -562,7 +376,7 @@
                 </div>
                 <!--                top 5-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-5">
+                  <div class="number-top-bhx ">
                     5
                   </div>
                   <div class="comic-image-top-bxh">
@@ -590,9 +404,19 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 require("@/assets/css/home.css")
 export default {
   name: "Home",
+  data() {
+    return {
+      stories: [],
+      topDayStories: [],
+      topWeekStories: [],
+      topMonthStories: []
+    }
+  },
   methods: {
     onSlideStart(slide) {
       this.sliding = true
@@ -600,6 +424,54 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false
     }
+  }, mounted() {
+    let self = this;
+    axios.get('http://localhost:3000/api/v1/readers/stories/')
+        .then(function (response) {
+          // handle success
+          console.log(response.data)
+          self.stories = response.data
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+//top ngay
+    axios.get('http://localhost:3000/api/v1/readers/hotstories/hot_day')
+        .then(function (response) {
+          // handle success
+          console.log("DAY")
+          console.log(response.data)
+          self.topDayStories = response.data
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    //top tuan
+    axios.get('http://localhost:3000/api/v1/readers/hotstories/hot_week')
+        .then(function (response) {
+          // handle success
+          console.log("WEEK")
+          console.log(response.data)
+          self.topWeekStories = response.data
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    //top thang
+    axios.get('http://localhost:3000/api/v1/readers/hotstories/hot_month')
+        .then(function (response) {
+          // handle success
+          console.log("MONTH")
+          console.log(response.data)
+          self.topMonthStories = response.data
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
   }
 }
 
