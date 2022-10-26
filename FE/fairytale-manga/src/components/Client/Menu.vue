@@ -5,9 +5,9 @@
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light my-menu">
             <div class="container-fluid" style="padding: 0;">
-              <a class="navbar-brand" href="#"><img src="https://qmanga3.net/image/logo-while.png" style="    width: 90%;
+              <router-link :to="{ path:'/' }" tag="a" class="navbar-brand" href="#"><img src="https://qmanga3.net/image/logo-while.png" style="    width: 90%;
                             height: 100%;
-                            padding: 2%;"/></a>
+                            padding: 2%;"/></router-link>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                       aria-expanded="false" aria-label="Toggle navigation">

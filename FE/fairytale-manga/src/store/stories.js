@@ -18,19 +18,20 @@ export default {
                 url: `admins/stories?page=${state.currentPage}`
             }
             await axios(DataQuery).then(res => {
-                // console.log(res.data)
+                console.log(res.data)
                 commit('setStories', res.data.stories)
                 commit('setMeta', res.data.meta);
             }).catch(err => {
                 console.log(err)
+                // alert("Your authenticate is expired, please login again.!")
+                // goSomeWhere
             })
         },
         setCurrentPage({commit}, payload) {
             commit("setCurrentPage", payload)
         }
     },
-    getters: {}
-    ,
+    getters: {},
     mutations: {
         setStories(state, newStories) {
             state.stories = newStories.map(item => {

@@ -11,14 +11,16 @@ import readers from "@/store/readers";
 import stories from "@/store/stories"
 import admins from "@/store/admins";
 import chapters from "@/store/chapters";
+
 const dataState = createPersistedState({
-    paths: ['token']
+    paths: ['token', 'user_token']
 })
 
 export default new Vuex.Store({
     namespaced: true,
     state: {
-        token: ''
+        token: '',
+        user_token: ''
     },
     getters: {},
     mutations: {
@@ -26,7 +28,11 @@ export default new Vuex.Store({
             state.token = newToken
         },
         clearToken(state) {
-            state.token = ''
+            state.token = '',
+                state.user_token = ''
+        },
+        setUserToken(state, newToken) {
+            state.user_token = newToken
         }
     },
     actions: {},

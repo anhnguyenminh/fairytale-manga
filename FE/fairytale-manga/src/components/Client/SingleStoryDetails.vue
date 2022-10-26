@@ -326,7 +326,7 @@
               <div class="replyComment" id="replyCommentID114822"></div>
             </li>
 
-<!--            second comment-->
+            <!--            second comment-->
             <li class="single-comment" id="commentID114812">
               <div class="image-li-content-comment">
                 <img class=" lazyloaded" src="https://graph.facebook.com/v3.0/1104705490285804/picture?type=normal">
@@ -362,11 +362,9 @@
   </div>
 </template>
 <script>
-require("@/assets/css/story-details.css")
 export default {
   name: 'SingleStoryDetails',
   data() {
-
   },
   methods: {}
 }
@@ -374,6 +372,8 @@ export default {
 </script>
 
 <style scoped>
+@import url(@/assets/css/story-details.css);
+
 .container {
   padding: 0;
   background-color: #252525;

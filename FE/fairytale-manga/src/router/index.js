@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginView from '@/views/User/LoginView'
 import RegisterView from '@/views/User/RegisterView'
-import LoginAdminView from '@/views/Admin/LoginAdminView'
-
 
 Vue.use(VueRouter)
 
@@ -20,27 +17,26 @@ const routes = [
             },
             {
                 path: '/categories/trending-stories',
-                // name: 'LoginView',
-                component: LoginView,
-            },
-            {
-                path: '/categories/recommended-stories',
-                component: LoginView,
+                component: () => import('@/views/User/CollectionView')
             },
             // {
-            //     path: '/categories',
-            //     name: 'LoginView',
-            //     component: LoginView,
+            //     path: '/categories/recommended-stories',
+            //     component: () => import('@/components/Client/Login')
             // },
+            {
+                path: '/categories/:collection',
+                name: 'CollectionView',
+                component: () => import('@/views/User/CollectionView')
+            },
             // {
             //     path: '/search-advanced/',
             //     name: 'LoginView',
-            //     component: LoginView,
+            //     component: LoginView
             // },
             {
                 path: '/auth/sign-in',
                 name: 'LoginView',
-                component: LoginView,
+                component: () => import('@/views/User/LoginView'),
             },
             {
                 path: '/auth/register',
@@ -59,7 +55,7 @@ const routes = [
         children: [
             {
                 path: '',
-                component: () => import('@/views/AboutView'),
+                component: () => import('@/views/Admin/Stories/StoriesView'),
             },
             {
                 path: 'profile-admin/',
@@ -146,12 +142,12 @@ const routes = [
     {
         path: '/auth/register',
         name: 'RegisterView',
-        component: RegisterView
+        component: () =>import('@/views/User/RegisterView')
     },
     {
         path: '/admin/login',
         name: 'LoginAdminView',
-        component: LoginAdminView
+        component: () => import('@/views/Admin/LoginAdminView')
     }
 ]
 
