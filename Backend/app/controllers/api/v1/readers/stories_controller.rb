@@ -32,7 +32,7 @@ module Api
 
         def show
           @story = Story.find(params[:id])
-          response_success(@story, each_serializer: StorySerializer)
+          response_success(@story, serializer: ::Reader::StorySerializer)
         end
 
         def show_chapter
