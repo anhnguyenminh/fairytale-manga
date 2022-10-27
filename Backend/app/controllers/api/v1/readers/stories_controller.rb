@@ -36,8 +36,8 @@ module Api
         end
 
         def show_chapter
-          @story = Story.find_by(name: params[:name_story])
-          @chapter = Chapter.find_by(story_id: @story.id, name: params[:name_chapter])
+          # @story = Story.find_by(name: params[:name_story])
+          @chapter = Chapter.find_by(id: params[:id])
           response_success(@chapter)
         end
 
