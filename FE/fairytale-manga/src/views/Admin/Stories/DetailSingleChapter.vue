@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="width: 60%; position: relative">
+  <div class="container" style="width: 60%; position: relative;">
     <!--    button go back page -->
     <div class="d-flex align-items-center ">
       <b-button style="background-color: #f1f1f1" @click="$router.go(-1)">

@@ -45,13 +45,13 @@
             <li class="comic-hover" v-for="story in stories">
               <div class="image-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview">
-                  <img src="https://st.nettruyenme.com/data/comics/139/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.jpg">
+                  <img :src="story.image_url">
                 </a>
                 <span class="time-comic-tab d-flex justify-content-around ">
-                  <span>1 giờ trước{{story.chapter.time}}</span>
+                  <span>{{story.chapter.time}}</span>
                   <span class="d-flex align-items-center ">
                     <i class="fa fa-eye" aria-hidden="true"></i>
-                    <span style="margin-left: 3px">1,517{{story.view}}</span>
+                    <span class="story-view">{{story.views}}</span>
                   </span>
                 </span>
               </div>
@@ -63,8 +63,8 @@
               </span>
             </li>
           </ul>
-          <router-link :to="{path: '/categories/trending-stories'}" class="more-btn">
-            <b-button variant="danger">Xem thêm</b-button>
+          <router-link tag="div" :to="{path: '/categories/trending-stories'}" class="more-btn">
+            <button>Xem thêm</button>
           </router-link>
         </div>
       </div>
@@ -75,14 +75,14 @@
             xếp hạng
           </h1>
           <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-top-bxh col-md-4 col-sm-12">
               <div class="top-bxh-row-header">
                 <div class="top-bxh-row-header-title">
                   <h3 class="text-uppercase">Top ngày</h3>
                 </div>
                 <!--                top 1-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-1">
+                  <div class="number-top-bhx ">
                     1
                   </div>
                   <div class="comic-image-top-bxh">
@@ -102,7 +102,7 @@
                 </div>
                 <!--top 2-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-2">
+                  <div class="number-top-bhx ">
                     2
                   </div>
                   <div class="comic-image-top-bxh">
@@ -122,7 +122,7 @@
                 </div>
                 <!--                top 3-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-3">
+                  <div class="number-top-bhx ">
                     3
                   </div>
                   <div class="comic-image-top-bxh">
@@ -142,7 +142,7 @@
                 </div>
                 <!--                top 4-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-4">
+                  <div class="number-top-bhx">
                     4
                   </div>
                   <div class="comic-image-top-bxh">
@@ -162,7 +162,7 @@
                 </div>
                 <!--                top 5-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-5">
+                  <div class="number-top-bhx ">
                     5
                   </div>
                   <div class="comic-image-top-bxh">
@@ -182,14 +182,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-top-bxh col-md-4 col-sm-12">
               <div class="top-bxh-row-header">
                 <div class="top-bxh-row-header-title">
                   <h3 class="text-uppercase">Top tuần</h3>
                 </div>
                 <!--                top 1-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-1">
+                  <div class="number-top-bhx ">
                     1
                   </div>
                   <div class="comic-image-top-bxh">
@@ -209,7 +209,7 @@
                 </div>
                 <!--top 2-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-2">
+                  <div class="number-top-bhx ">
                     2
                   </div>
                   <div class="comic-image-top-bxh">
@@ -229,7 +229,7 @@
                 </div>
                 <!--                top 3-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-3">
+                  <div class="number-top-bhx ">
                     3
                   </div>
                   <div class="comic-image-top-bxh">
@@ -249,7 +249,7 @@
                 </div>
                 <!--                top 4-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-4">
+                  <div class="number-top-bhx">
                     4
                   </div>
                   <div class="comic-image-top-bxh">
@@ -269,7 +269,7 @@
                 </div>
                 <!--                top 5-->
                 <div class="row-top-bxh">
-                  <div class="number-top-bhx number-top-bhx-5">
+                  <div class="number-top-bhx ">
                     5
                   </div>
                   <div class="comic-image-top-bxh">
@@ -289,7 +289,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-top-bxh col-md-4 col-sm-12">
               <div class="top-bxh-row-header">
                 <div class="top-bxh-row-header-title">
                   <h3 class="text-uppercase">Top tháng</h3>
