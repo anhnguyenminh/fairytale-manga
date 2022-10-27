@@ -7,7 +7,7 @@ module Api
           # chapter_exists_story_ids = Chapter.pluck(:story_id).uniq
           # stories = Story.where(id: chapter_exists_story_ids)
           stories = Story.joins(:chapter).uniq
-          response_success(stories, {each_serializer: ::Stories::ShowStoriesSerializer})
+          response_success(stories, { each_serializer: ::Stories::ShowStoriesSerializer })
         end
 
         def search_stories
@@ -20,12 +20,12 @@ module Api
           if is_login?
             @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
             if @readerstory.save
-              response_success(message: "ok")
+              response_success(message: 'ok')
             else
-              response_error(message: "failed")
+              response_error(message: 'failed')
             end
           else
-            response_success(message: "Doc truyen di")
+            response_success(message: 'Doc truyen di')
           end
           # render json: story
         end

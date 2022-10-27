@@ -1,5 +1,5 @@
 class Reader::StorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :status, :author_name, :description, :image_url, :chapter, :views
+  attributes :id, :name, :status, :author_name, :description, :image_url, :views
 
   def author_name
     object.author.name
@@ -10,11 +10,8 @@ class Reader::StorySerializer < ActiveModel::Serializer
   end
 
   has_many :category, each_serializer: CategorySerializer
-
-  def chapter
-    object.chapter
-  end
-
+  has_many :chapter, each_serializer: ChapterSerializer
+  
   def status
     if object.end == 0
       return "On going"

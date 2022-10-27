@@ -5,6 +5,8 @@ class GetChapSerializer < ActiveModel::Serializer
     time  = Time.now - object.updated_at
     if Time.now.month - object.updated_at.month == 1 && Time.now.date >= object.updated_at.date
       month =1
+    elsif Time.now.month - object.updated_at.month == 1 && Time.now.date < object.updated_at.date
+      month =0
     else
       month = Time.now.month - object.updated_at.month
     end
