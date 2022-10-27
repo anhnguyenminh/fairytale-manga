@@ -3,7 +3,10 @@ module Api
     module Readers
       class HotstoriesController < ApplicationController
         def hot_day
-          time_range = (Time.now.midnight - 1.day)..Time.now.midnight
+          
+          # binding.pry
+          
+          time_range = (Time.now - 1.day+ 7.hour)..Time.now+7.hour
           @stories = Story.hot_story(time_range)
           # render json: @stories, each_serializer: nil
           response_success(@stories)

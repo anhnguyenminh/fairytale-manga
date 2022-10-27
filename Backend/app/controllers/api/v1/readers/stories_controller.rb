@@ -18,17 +18,11 @@ module Api
 
         def read_story
           if is_login?
-            story = ReaderStory.find_by(reader_id: @current_reader.id, story_id: params[:id])
-            if !story
-              @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
-              if @readerstory.save
-                response_success(message: "ok")
-              else
-                response_error(message: "failed")
-              end
+            @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
+            if @readerstory.save
+              response_success(message: "ok")
             else
-              story.update(chap: params[:chap])
-              response_success(message: "Success")
+              response_error(message: "failed")
             end
           else
             response_success(message: "Doc truyen di")
