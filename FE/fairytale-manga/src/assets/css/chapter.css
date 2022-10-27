@@ -1,0 +1,76 @@
+div.container-fluid {
+    padding: 0;
+}
+
+.manga-read {
+    position: relative;
+    background: url(http://storage.googleapis.com/cheritz/msg/images/general/bg.png) no-repeat top center fixed;
+}
+
+/* button go to top*/
+.arrow-to-top {
+    position: sticky;
+    z-index: 20;
+    text-align: right;
+    bottom: 10em;
+    width: 100%;
+    background: transparent;
+}
+
+.arrow-to-top button {
+    border-radius: 50%;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    margin-right: 3em;
+}
+
+/* header title */
+
+.title-manga-read {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    padding: 6px;
+    color: #fff;
+}
+
+/* main content */
+
+.area-show-content {
+    margin: 1em auto;
+    min-height: 400px;
+    padding: 1em 0;
+    background: #282828;
+}
+
+.image-chapter {
+    text-align: center;
+}
+
+/* top-head btn*/
+
+.btn-pre, .btn-nex, .btn-read {
+    color: #fff;
+    font-weight: 800;
+    font-size: 15px;
+    background-color: darkred;
+}
+
+.btn-pre:hover, .btn-nex:hover, .btn-read:hover {
+    background-color: crimson;
+}
+
+.btn-read {
+    width: 100px;
+}
+
+.custom-select {
+    margin-left: 10px;
+}
+
+.comment-chapter {
+    background-color: #252525;
+}

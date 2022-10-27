@@ -1,6 +1,6 @@
 <template>
   <div>
-    Collection View
+hellllooo
   </div>
 </template>
 <script>
