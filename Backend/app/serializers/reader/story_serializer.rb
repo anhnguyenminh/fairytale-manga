@@ -1,5 +1,5 @@
 class Reader::StorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :status, :author_name, :description, :image_url, :views, :first_chap
+  attributes :id, :name, :status, :author_name, :description, :image_url, :views, :first_chap, :last_chap
 
   def author_name
     object.author.name
@@ -26,6 +26,10 @@ class Reader::StorySerializer < ActiveModel::Serializer
 
   def first_chap
     object.chapter.first
+  end
+
+  def last_chap
+    object.chapter.last
   end
 end
 
