@@ -38,14 +38,12 @@ module Api
 
         def show_chapter
           # @story = Story.find_by(name: params[:name_story])
-          @chapter = Chapter.find_by(id: params[:id])
-          @next_chap = Chapter.where("id > ?", params[:id])
-                              .limit(1)
-          # render json: [
-          #   {@chapter, each_serializer: ::Reader::ChapterSerializer},
-          #   { @next_chap}, status: 200
-          # ]
-          # response_success(@chapter, serializer: ::Reader::ChapterSerializer)
+          chapter = Chapter.find_by(id: params[:id])
+          next_chap = Chapter.set_next_chap(chapter)
+          prev_chap = Chapter.set_prev_chap(chapter)
+          # render json: {chapter, serializer: ::Reader::ChapterSerializer, {meta: next_chap, prev_chap}}
+          # response_success(chapter, serializer: ::Reader::ChapterSerializer)
+          render json: chapter, meta: [next: next_chap,prev: prev_chap], adapter: :json
         end
 
         def show_list_chapters
