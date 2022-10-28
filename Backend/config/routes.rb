@@ -38,6 +38,7 @@ Rails.application.routes.draw do
           member do
             post :read_story
             get :show_chapter
+            get :show_list_chapters
           end
           collection do
             get :search_stories
@@ -57,6 +58,9 @@ Rails.application.routes.draw do
         resources :recommends do
           collection do
             get :recommend_story
+          end
+          member do
+            get :get_story_by_category
           end
         end
         # Gift

@@ -48,6 +48,11 @@ module Api
           # response_success(@chapter, serializer: ::Reader::ChapterSerializer)
         end
 
+        def show_list_chapters
+          chapters = Chapter.where(story_id: params[:id]).order(id: :desc)
+          response_success(chapters, { adapter: :json, serializer: ::Reader::ChapterSerializer })
+        end
+
         private
 
         def story_params
