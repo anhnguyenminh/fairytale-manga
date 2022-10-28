@@ -43,8 +43,12 @@ const routes = [
                 component: () => import('@/views/User/RegisterView'),
             },
             {
-                path: '/story-details',
+                path: '/story/:details',
                 component: () => import('@/components/Client/SingleStoryDetails')
+            },
+            {
+                path: 'story/:details/chapter/:chap',
+                component: ()=> import('@/views/User/Chapter')
             }
         ],
     },
@@ -129,13 +133,7 @@ const routes = [
                 path: 'gifts/update/:id',
                 name: 'UpdateGift',
                 component: () => import('@/views/Admin/Gifts/UpdateGift'),
-            },
-            {
-                path: 'profile-admin',
-                // name: 'CategoriesView',
-                component: () => import('@/views/Admin/Categories/CategoriesView'),
-            },
-
+            }
 
         ],
     },

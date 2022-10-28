@@ -44,9 +44,9 @@
           <ul id="ul-content-pho-bien" class="row">
             <li class="comic-hover" v-for="story in stories">
               <div class="image-comic-tab">
-                <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html" class="load-preview">
+                <router-link :to="{path: `/story/${story.id}`}" class="load-preview">
                   <img :src="story.image_url">
-                </a>
+                </router-link>
                 <span class="time-comic-tab d-flex justify-content-around ">
                   <span>{{story.chapter.time}}</span>
                   <span class="d-flex align-items-center ">
@@ -55,16 +55,16 @@
                   </span>
                 </span>
               </div>
-              <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me.html">
+              <router-link :to="{path: `/${story.id}`}">
                 <h3 class="title-comic-tab">{{ story.name }}</h3>
-              </a>
+              </router-link>
               <span class="chapter-comic-tab">
                 <a href="https://qmanga3.net/tu-ac-nu-toi-tro-thanh-mot-nguoi-me/chapter-14_698848.html">Chapter {{ story.chapter.name }}</a>
               </span>
             </li>
           </ul>
-          <router-link tag="div" :to="{path: '/categories/trending-stories'}" class="more-btn">
-            <button>Xem thêm</button>
+          <router-link tag="div" :to="{path: '/categories/trending-stories'}" class="more-btn d-flex align-items-center">
+            <button>Xem thêm <i class="far fa-long-arrow-right"></i></button>
           </router-link>
         </div>
       </div>
@@ -405,8 +405,6 @@
 </template>
 <script>
 import axios from "axios";
-
-require("@/assets/css/home.css")
 export default {
   name: "Home",
   data() {
@@ -478,6 +476,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(@/assets/css/home.css);
 * {
   color: white;
 }
@@ -489,6 +488,4 @@ export default {
 .container {
   background-color: #252525;
 }
-
-
 </style>
