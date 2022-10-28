@@ -102,7 +102,7 @@ module Api
           @readergift = ReaderGift.find_by(gift_id: params[:id], reader_id: params[:reader_id])
           @readergift.update(received: true)
           @gift = Gift.find_by(id: params[:id])
-          title = "Your gift is" + @gift.name + "has been received. Please check!"
+          title = "Your gift is " + @gift.name + " has been received. Please check!"
           Notification.create(title: title,reader_id: params[:reader_id])
           # render json: {
           #   message: "User are received",

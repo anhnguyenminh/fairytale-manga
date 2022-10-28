@@ -17,17 +17,18 @@ module Api
         end
 
         def read_story
-          if is_login?
-            @readerstory = ReaderStory.new(reader_id: @current_reader.id, story_id: params[:id], chap: params[:chap])
+          authenticate_request_reader
+          current_reader = @current_reader
+          if current_reader.blank?
+            response_success(message: 'Doc truyen di')
+          else
+            @readerstory = ReaderStory.new(reader_id: current_reader.id, story_id: params[:id], chap: params[:chap])
             if @readerstory.save
               response_success(message: 'ok')
             else
               response_error(message: 'failed')
             end
-          else
-            response_success(message: 'Doc truyen di')
           end
-          # render json: story
         end
 
         def show
@@ -38,7 +39,13 @@ module Api
         def show_chapter
           # @story = Story.find_by(name: params[:name_story])
           @chapter = Chapter.find_by(id: params[:id])
-          response_success(@chapter)
+          @next_chap = Chapter.where("id > ?", params[:id])
+                              .limit(1)
+          # render json: [
+          #   {@chapter, each_serializer: ::Reader::ChapterSerializer},
+          #   { @next_chap}, status: 200
+          # ]
+          # response_success(@chapter, serializer: ::Reader::ChapterSerializer)
         end
 
         private

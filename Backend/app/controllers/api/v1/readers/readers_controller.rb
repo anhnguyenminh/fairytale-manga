@@ -23,7 +23,6 @@ module Api
               response_error(validate: @reader.errors.messages)
             end
         end
-        
 
         private
 
