@@ -41,7 +41,7 @@
         </div>
 
         <div class="content-tab">
-          <ul id="ul-content-pho-bien" class="row">
+          <ul  class="row ul-content-pho-bien">
             <li class="comic-hover" v-for="story in stories">
               <div class="image-comic-tab">
                 <router-link :to="{path: `/story/${story.id}`}" class="load-preview">

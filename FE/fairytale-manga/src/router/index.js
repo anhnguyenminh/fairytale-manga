@@ -19,10 +19,10 @@ const routes = [
                 path: '/categories/trending-stories',
                 component: () => import('@/views/User/CollectionView')
             },
-            // {
-            //     path: '/categories/recommended-stories',
-            //     component: () => import('@/components/Client/Login')
-            // },
+            {
+                path: '/categories/recommended-stories',
+                component: () => import('@/views/User/RecommendStoryView')
+            },
             {
                 path: '/categories/:collection',
                 name: 'CollectionView',
@@ -30,8 +30,7 @@ const routes = [
             },
             // {
             //     path: '/search-advanced/',
-            //     name: 'LoginView',
-            //     component: LoginView
+            //     component: () => import('@/views/User/search-advanced')
             // },
             {
                 path: '/auth/sign-in',

@@ -13,7 +13,6 @@ export default {
         currentPage: 1
     },
     actions: {
-        // with old paginate
         async getCategoryData({state, commit}) {
             const CategoriesQuery = {
                 method: 'GET',
@@ -49,7 +48,7 @@ export default {
     ,
     getters: {}
     ,
-    mutations: {
+    mutations:{
         setCategories(state, newCategories) {
             state.categories = newCategories.map(item => {
                 return {

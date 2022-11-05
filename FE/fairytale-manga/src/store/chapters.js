@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from '../plugins/axios'
+import axios from '../plugins/user_axios'
 
 Vue.use(Vuex)
 

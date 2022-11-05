@@ -39,7 +39,7 @@
       </div>
 
       <div class="container-fuild bottom-footer text-center" style="background-color: black;padding-top: 2em;">
-        <a href="#" class="logo-bottom"><img src="https://qmanga3.net/image/logo-while.png"
+        <a href="#" class="logo-bottom"><img src="@/assets/images/logo-while.png"
                                              style="max-width: 100%;" class="img-responsive"></a>
         <h2 style="font-size: 1.75rem;">Fairytale Manga</h2>
         <span>Quality - Quickly - Quantity</span>

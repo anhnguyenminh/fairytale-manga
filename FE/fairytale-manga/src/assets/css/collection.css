@@ -1,0 +1,32 @@
+.form-search-cate h2 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+.collection{
+    background: url('http://storage.googleapis.com/cheritz/msg/images/general/bg.png') no-repeat top center fixed;
+}
+
+.collection-description {
+    width: 60%;
+}
+
+.collection-header h1 {
+    font-size: 35px;
+}
+
+.collection-container {
+    background: #252525;
+    color: white;
+}
+.btn-sort button:hover{
+    background-color: transparent;
+
+}
+.btn-sort button:active{
+    background-color: transparent;
+}
+
+h3.title-comic-tab, .chapter-comic-tab a{
+    color: #fff;
+}

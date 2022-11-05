@@ -89,8 +89,5 @@ export default {
   margin: 0 1.5rem;
 }
 
-/*.custom-file {*/
-/*  height: calc(25em + 0.75rem + 2px);*/
-/*}*/
 
 </style>

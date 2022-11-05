@@ -5,7 +5,7 @@
         <!--        <div class="wrapped-navbar">-->
         <div class="navbar-header">
           <div class="app-logo">
-            <img src="https://qmanga3.net/image/logo-while.png" alt="app-logo"/>
+            <img src="@/assets/images/logo-while.png" alt="app-logo"/>
           </div>
         </div>
 

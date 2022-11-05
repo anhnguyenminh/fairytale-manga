@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <home></home>
+    <Home></Home>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import Home from '@/components/Client/Home.vue'
 export default {
   name: 'HomeView',
   components: {
-    'home': Home
+    'Home': Home
   }
 }
 </script>

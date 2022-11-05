@@ -1,3 +1,8 @@
+
+a{
+    text-decoration: none !important;
+}
+
 /* box-noi-bat */
 .row-header-title {
     height: 35px;
@@ -11,12 +16,12 @@
     margin-left: -15px;
 }
 
-#ul-content-pho-bien {
+.ul-content-pho-bien {
     list-style-type: none;
     padding: 0;
 }
 
-#ul-content-pho-bien li {
+.ul-content-pho-bien li {
     width: 15.6%;
     margin-right: 10px;
     margin-bottom: 1%;
@@ -78,7 +83,7 @@ span.time-comic-tab {
     text-decoration: none !important;
 }
 
-#ul-content-pho-bien.row {
+.ul-content-pho-bien.row {
     margin-bottom: 0;
 }
 .more-btn{
