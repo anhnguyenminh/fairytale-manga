@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, shallowRef } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { isAxiosError } from 'axios'
@@ -10,6 +10,7 @@ const router = useRouter()
 const auth = useAuthStore()
 
 const admin = reactive({ email: '', password: '' })
+const remember = shallowRef(false)
 
 if (auth.adminToken) router.push('/admin/stories')
 
@@ -20,7 +21,7 @@ async function adminAuthenticate() {
       password: admin.password,
     })
     if (response.status === 200) {
-      auth.setAdminToken(response.data.token)
+      auth.setAdminToken(response.data.token, remember.value)
       router.push({ path: '/admin/stories' })
     }
   } catch (error) {
@@ -42,7 +43,7 @@ async function adminAuthenticate() {
           <a-input-password v-model:value="admin.password" size="large" placeholder="Password" required />
         </a-form-item>
         <a-form-item>
-          <a-checkbox>Remember password</a-checkbox>
+          <a-checkbox v-model:checked="remember">Remember me</a-checkbox>
         </a-form-item>
         <a-button type="primary" size="large" block html-type="submit">Login</a-button>
       </a-form>
