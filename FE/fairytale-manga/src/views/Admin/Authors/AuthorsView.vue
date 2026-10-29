@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { Modal, message } from 'ant-design-vue'
 import { adminApi } from '@/api/client'
+import { getApiError } from '@/api/errors'
 import { useAuthorsStore } from '@/stores/authors'
 
 const store = useAuthorsStore()
-const { authors, meta, currentPage } = storeToRefs(store)
+const { authors, currentPage, totalPages, totalCount, pageSize } = storeToRefs(store)
+const { goToPage } = store
 
 const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '8%' },
@@ -15,16 +17,8 @@ const columns = [
   { title: 'Actions', key: 'actions', align: 'right' as const, width: 200 },
 ]
 
-const totalPages = computed(() => Number(meta.value.pages ?? 0))
-const totalCount = computed(() => Number(meta.value.total ?? 0))
-const pageSize = computed(() => Number(meta.value.perpage ?? 20))
 
-function goToPage(page: number) {
-  store.setCurrentPage(page)
-  store.fetchPage()
-}
-
-function deleteData(id: number) {
+function confirmDeleteAuthor(id: number) {
   Modal.confirm({
     title: 'Are you sure you want to delete this author?',
     async onOk() {
@@ -32,7 +26,7 @@ function deleteData(id: number) {
         await adminApi.delete(`admins/authors/${id}`)
         await store.fetchPage()
       } catch (err) {
-        message.error('Delete author failed because author has many story')
+        message.error(getApiError(err, 'Delete author failed because author has many story'))
       }
     },
   })
@@ -59,7 +53,7 @@ onMounted(() => store.fetchPage())
             <router-link :to="{ path: `/admin/authors/update/${record.id}` }">
               <a-button type="primary" class="mx-1">Edit</a-button>
             </router-link>
-            <a-button danger class="mx-1" @click="deleteData(record.id)">Delete</a-button>
+            <a-button danger class="mx-1" @click="confirmDeleteAuthor(record.id)">Delete</a-button>
           </template>
         </template>
       </a-table>

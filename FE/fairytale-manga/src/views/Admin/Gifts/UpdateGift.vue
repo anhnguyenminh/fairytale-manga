@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { firstFile } from '@/utils/dom'
 import { reactive, shallowRef, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { message } from 'ant-design-vue'
@@ -14,7 +15,7 @@ const file = shallowRef<File | null>(null)
 const fileKey = shallowRef(0)
 
 function onFileChange(e: Event) {
-  file.value = (e.target as HTMLInputElement).files?.[0] ?? null
+  file.value = firstFile(e)
 }
 
 function goBack() {

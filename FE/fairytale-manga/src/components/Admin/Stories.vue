@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useStoriesStore } from '@/stores/stories'
 
 const store = useStoriesStore()
-const { stories, meta, currentPage } = storeToRefs(store)
+const { stories, currentPage, totalPages, totalCount, pageSize } = storeToRefs(store)
+const { goToPage } = store
 
 const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '8%' },
@@ -14,14 +15,6 @@ const columns = [
   { title: 'Actions', key: 'actions', align: 'right' as const },
 ]
 
-const pages = computed(() => Number(meta.value.pages ?? 1))
-const pageSize = computed(() => Number(meta.value.perpage ?? 20))
-const total = computed(() => Number(meta.value.total ?? 0))
-
-function onPageChange(page: number) {
-  store.setCurrentPage(page)
-  store.fetchPage()
-}
 
 onMounted(() => store.fetchPage())
 </script>
@@ -47,13 +40,13 @@ onMounted(() => store.fetchPage())
           </template>
         </template>
       </a-table>
-      <div v-if="pages > 1" class="flex justify-center mt-4">
+      <div v-if="totalPages > 1" class="flex justify-center mt-4">
         <a-pagination
           :current="currentPage"
-          :total="total"
+          :total="totalCount"
           :page-size="pageSize"
           :show-size-changer="false"
-          @change="onPageChange"
+          @change="goToPage"
         />
       </div>
     </a-card>

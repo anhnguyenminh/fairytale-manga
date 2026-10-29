@@ -23,28 +23,31 @@ const topDayStories = shallowRef<ReaderStory[]>([])
 const topWeekStories = shallowRef<ReaderStory[]>([])
 const topMonthStories = shallowRef<ReaderStory[]>([])
 
-async function load(path: string, target: { value: ReaderStory[] }) {
+async function fetchStories(path: string): Promise<ReaderStory[]> {
   try {
-    target.value = (await readerApi.get<ReaderStory[]>(path)).data
+    return (await readerApi.get<ReaderStory[]>(path)).data
   } catch (err) {
     console.error(err)
+    return []
   }
 }
 
 // Suggestions follow the visitor's chosen gender; untargeted categories show for both.
 watch(
   () => preferences.gender,
-  (gender) => {
-    if (gender) load(`readers/recommends/for_gender?gender=${gender}`, forYouStories)
+  async (gender) => {
+    if (gender) forYouStories.value = await fetchStories(`readers/recommends/for_gender?gender=${gender}`)
   },
   { immediate: true },
 )
 
-onMounted(() => {
-  load('readers/stories/', stories)
-  load('readers/hotstories/hot_day', topDayStories)
-  load('readers/hotstories/hot_week', topWeekStories)
-  load('readers/hotstories/hot_month', topMonthStories)
+onMounted(async () => {
+  ;[stories.value, topDayStories.value, topWeekStories.value, topMonthStories.value] = await Promise.all([
+    fetchStories('readers/stories/'),
+    fetchStories('readers/hotstories/hot_day'),
+    fetchStories('readers/hotstories/hot_week'),
+    fetchStories('readers/hotstories/hot_month'),
+  ])
 })
 </script>
 

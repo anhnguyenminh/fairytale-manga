@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { message, Modal } from 'ant-design-vue'
 import { adminApi } from '@/api/client'
 import { useGiftsStore } from '@/stores/gifts'
 
 const store = useGiftsStore()
-const { gifts, meta, currentPage } = storeToRefs(store)
+const { gifts, currentPage, totalPages, totalCount, pageSize } = storeToRefs(store)
+const { goToPage } = store
 
 const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id' },
@@ -17,16 +18,8 @@ const columns = [
   { title: 'Actions', key: 'actions', align: 'right' as const },
 ]
 
-const totalPages = computed(() => Number(meta.value.pages ?? 0))
-const totalCount = computed(() => Number(meta.value.total ?? 0))
-const pageSize = computed(() => Number(meta.value.perpage ?? 20))
 
-function goToPage(page: number) {
-  store.setCurrentPage(page)
-  store.fetchPage()
-}
-
-function deleteData(id: number) {
+function confirmDeleteGift(id: number) {
   Modal.confirm({
     title: 'Are you sure you want to delete this item? (If readers have changed this item, action cannot be completed)',
     async onOk() {
@@ -62,7 +55,7 @@ onMounted(() => store.fetchPage())
             <router-link :to="{ path: `/admin/gifts/update/${record.id}` }">
               <a-button type="primary" class="mx-1">Edit</a-button>
             </router-link>
-            <a-button danger type="primary" class="mx-1" @click="deleteData(record.id)">Delete</a-button>
+            <a-button danger type="primary" class="mx-1" @click="confirmDeleteGift(record.id)">Delete</a-button>
           </template>
         </template>
       </a-table>

@@ -15,6 +15,13 @@ class Story < ApplicationRecord
   after_find :set_image_url
 
 
+  # Stories that have chapters and at least one category that is untargeted or targets `gender`.
+  def self.for_gender(gender)
+    joins(:category, :chapter)
+      .where(categories: { target_gender: [nil, gender] })
+      .distinct
+  end
+
   def self.hot_story(time_range)
     ids = ReaderStory.where(created_at: time_range)
                      .group(:story_id)

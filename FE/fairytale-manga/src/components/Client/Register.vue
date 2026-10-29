@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isValidEmail } from '@/utils/email'
 import { shallowRef } from 'vue'
 
 const email = shallowRef('')
@@ -7,14 +8,13 @@ const emailError = shallowRef('')
 const passwordError = shallowRef('')
 const rePwdError = shallowRef('')
 
-const EMAIL_RE = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 function emailValidation(): boolean {
   if (!email.value) {
     emailError.value = 'Email can not be empty!!!'
     return false
   }
-  if (EMAIL_RE.test(email.value)) {
+  if (isValidEmail(email.value)) {
     emailError.value = ''
     return true
   }
