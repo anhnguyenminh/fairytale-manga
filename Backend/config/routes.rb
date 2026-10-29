@@ -58,6 +58,7 @@ Rails.application.routes.draw do
         resources :recommends do
           collection do
             get :recommend_story
+            get :for_gender
           end
           member do
             get :get_story_by_category

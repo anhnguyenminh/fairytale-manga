@@ -16,11 +16,11 @@ class Story < ApplicationRecord
 
 
   def self.hot_story(time_range)
-    @id = ReaderStory.select("COUNT(reader_stories.story_id) as read_count")
-                      .group("reader_stories.story_id")
-                      .pluck("reader_stories.story_id")
-                      .where("reader_stories.created_at" => time_range)
-                      .limit(5)
-    @stories = Story.where(id: @id)
+    ids = ReaderStory.where(created_at: time_range)
+                     .group(:story_id)
+                     .order(Arel.sql("COUNT(*) DESC"))
+                     .limit(5)
+                     .pluck(:story_id)
+    where(id: ids)
   end
 end
