@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { Modal, message } from 'ant-design-vue'
 import { adminApi } from '@/api/client'
@@ -7,7 +7,8 @@ import { useCategoriesStore } from '@/stores/categories'
 import { TARGET_GENDER_OPTIONS } from '@/constants/gender'
 
 const store = useCategoriesStore()
-const { categories, meta, currentPage } = storeToRefs(store)
+const { categories, currentPage, totalPages, totalCount, pageSize } = storeToRefs(store)
+const { goToPage } = store
 
 const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '8%' },
@@ -17,16 +18,8 @@ const columns = [
   { title: 'Actions', key: 'actions', align: 'right' as const, width: 200 },
 ]
 
-const totalPages = computed(() => Number(meta.value.pages ?? 0))
-const totalCount = computed(() => Number(meta.value.total ?? 0))
-const pageSize = computed(() => Number(meta.value.perpage ?? 20))
 
-function goToPage(page: number) {
-  store.setCurrentPage(page)
-  store.fetchPage()
-}
-
-function deleteData(id: number) {
+function confirmDeleteCategory(id: number) {
   Modal.confirm({
     title: 'Are you sure you want to delete this category?',
     async onOk() {
@@ -64,7 +57,7 @@ onMounted(() => store.fetchPage())
             <router-link :to="{ path: `/admin/categories/update/${record.id}` }">
               <a-button type="primary" class="mx-1">Edit</a-button>
             </router-link>
-            <a-button danger class="mx-1" @click="deleteData(record.id)">Delete</a-button>
+            <a-button danger class="mx-1" @click="confirmDeleteCategory(record.id)">Delete</a-button>
           </template>
         </template>
       </a-table>

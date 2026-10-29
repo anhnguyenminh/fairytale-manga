@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isValidEmail } from '@/utils/email'
 import { computed, onMounted, shallowRef } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
@@ -18,7 +19,6 @@ const email = shallowRef('')
 const password = shallowRef('')
 const loading = shallowRef(false)
 
-const EMAIL_RE = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 onMounted(() => {
   if (auth.readerToken) router.push('/')
@@ -29,7 +29,7 @@ function emailValidation(): boolean {
     error.value = 'Email can not be empty!!!'
     return false
   }
-  if (EMAIL_RE.test(email.value)) {
+  if (isValidEmail(email.value)) {
     error.value = ''
     return true
   }

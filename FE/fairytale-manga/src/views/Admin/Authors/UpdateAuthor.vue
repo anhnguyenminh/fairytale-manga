@@ -4,6 +4,7 @@ import { onMounted, reactive, shallowRef } from 'vue'
 import { message } from 'ant-design-vue'
 import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import { adminApi } from '@/api/client'
+import { getApiError } from '@/api/errors'
 import type { Author } from '@/types/models'
 
 const route = useRoute()
@@ -30,8 +31,7 @@ async function onSubmit() {
     message.success('Update author completed!')
     router.push({ path: '/admin/authors' })
   } catch (err) {
-    const e = err as { response?: { data?: { message?: string } } }
-    message.error(e.response?.data?.message ?? 'Request failed')
+    message.error(getApiError(err))
   } finally {
     saving.value = false
   }

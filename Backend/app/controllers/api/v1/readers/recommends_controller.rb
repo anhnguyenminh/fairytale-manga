@@ -13,11 +13,7 @@ module Api
         def for_gender
           return recommend_story unless Category::GENDERS.include?(params[:gender])
 
-          @stories = Story.joins(:category, :chapter)
-                          .where(categories: { target_gender: [nil, params[:gender]] })
-                          .distinct
-                          .order("stories.created_at DESC")
-                          .limit(10)
+          @stories = Story.for_gender(params[:gender]).order("stories.created_at DESC").limit(10)
           response_success(@stories, each_serializer: ::Reader::StorySerializer)
         end
 
