@@ -17,7 +17,7 @@ const columns = [
   { title: 'Author', dataIndex: 'author_name', key: 'author_name', width: '25%' },
   { title: 'Status', dataIndex: 'status', key: 'status', width: '12%' },
   { title: 'Xuất bản', key: 'publish_status', width: 160 },
-  { title: 'Actions', key: 'actions', align: 'right' as const },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const },
 ]
 
 
@@ -55,7 +55,7 @@ onMounted(() => store.fetchPage())
               class="w-full"
               :value="record.publish_status"
               :options="PUBLISH_OPTIONS"
-              @change="(value) => setPublishStatus(record.id, value as PublishStatus)"
+              @change="(value: unknown) => setPublishStatus(record.id, value as PublishStatus)"
             />
           </template>
           <template v-else-if="column.key === 'actions'">

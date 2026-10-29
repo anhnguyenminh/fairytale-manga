@@ -27,7 +27,7 @@ onMounted(() => {
     </a-drawer>
     <div class="flex min-w-0 flex-1 flex-col">
       <Searchbar @toggle-menu="menuOpen = true" />
-      <router-view class="min-h-[1200px] flex-1" />
+      <router-view class="flex-1" />
       <Copyright />
     </div>
   </div>

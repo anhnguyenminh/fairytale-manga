@@ -114,6 +114,7 @@ Rails.application.routes.draw do
         end
       end
       namespace :admins do
+        get :search, to: "search#index"
         resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
         resources :admins, only: [:index, :create, :update, :destroy] do

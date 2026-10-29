@@ -18,7 +18,7 @@ const columns = [
   { title: 'Username', dataIndex: 'username', key: 'username' },
   { title: 'Email', dataIndex: 'email', key: 'email' },
   { title: 'Vai trò', key: 'role', width: 190 },
-  { title: 'Actions', key: 'actions', align: 'right' as const, width: 120 },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const, width: 120 },
 ]
 
 const modalOpen = shallowRef(false)
@@ -98,7 +98,7 @@ onMounted(fetchPage)
               :value="record.role"
               :options="ROLE_OPTIONS"
               :disabled="!canChangeRole(record as AdminProfile)"
-              @change="(value) => changeRole(record as AdminProfile, value as AdminRole)"
+              @change="(value: unknown) => changeRole(record as AdminProfile, value as AdminRole)"
             />
           </template>
           <template v-else-if="column.key === 'actions'">

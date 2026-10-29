@@ -35,21 +35,23 @@ async function adminAuthenticate() {
 </script>
 
 <template>
-  <section class="flex min-h-screen items-center justify-center bg-[#6959CD] px-4 py-12">
-    <div class="w-full max-w-md rounded-2xl bg-white p-10 shadow-lg">
-      <h3 class="mb-8 text-center text-2xl">Login</h3>
-      <a-form layout="vertical" :model="admin" @finish="adminAuthenticate">
-        <a-form-item name="email">
-          <a-input v-model:value="admin.email" type="email" size="large" placeholder="Email" required />
-        </a-form-item>
-        <a-form-item name="password">
-          <a-input-password v-model:value="admin.password" size="large" placeholder="Password" required />
-        </a-form-item>
-        <a-form-item>
-          <a-checkbox v-model:checked="remember">Remember me</a-checkbox>
-        </a-form-item>
-        <a-button type="primary" size="large" block html-type="submit">Login</a-button>
-      </a-form>
-    </div>
-  </section>
+  <a-config-provider :theme="{ token: { colorPrimary: '#4A3F8F' } }">
+    <section class="flex min-h-screen items-center justify-center bg-gradient-to-br from-admin to-admin-dark px-4 py-12">
+      <div class="w-full max-w-md rounded-2xl bg-white p-10 shadow-lg">
+        <h3 class="mb-8 text-center text-2xl">Login</h3>
+        <a-form layout="vertical" :model="admin" @finish="adminAuthenticate">
+          <a-form-item name="email">
+            <a-input v-model:value="admin.email" type="email" size="large" placeholder="Email" required />
+          </a-form-item>
+          <a-form-item name="password">
+            <a-input-password v-model:value="admin.password" size="large" placeholder="Password" required />
+          </a-form-item>
+          <a-form-item>
+            <a-checkbox v-model:checked="remember">Remember me</a-checkbox>
+          </a-form-item>
+          <a-button type="primary" size="large" block html-type="submit">Login</a-button>
+        </a-form>
+      </div>
+    </section>
+  </a-config-provider>
 </template>

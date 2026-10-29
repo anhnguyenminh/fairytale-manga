@@ -49,7 +49,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="mx-auto w-3/5">
+  <div class="mx-auto w-full p-4 lg:w-3/5 lg:p-0">
     <div class="flex items-center">
       <a-button @click="goBack"><template #icon><ArrowLeftOutlined /></template></a-button>
       <h2 class="mx-5 my-0">Create New Gift</h2>
@@ -59,7 +59,7 @@ async function onSubmit() {
         <a-form-item label="Title">
           <a-input v-model:value="form.name" placeholder="Gift name..." required />
         </a-form-item>
-        <div class="flex gap-20">
+        <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2">
           <a-form-item label="Score to Achieved">
             <a-input v-model:value="form.score" type="number" placeholder="10.000..." required />
           </a-form-item>
@@ -70,7 +70,7 @@ async function onSubmit() {
         <a-form-item label="Select image">
           <input class="w-full max-w-full" :key="fileKey" type="file" accept="image/*" required @change="onFileChange" />
         </a-form-item>
-        <div class="flex justify-center gap-6">
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
           <a-button @click="onReset">Reset</a-button>
           <a-button type="primary" html-type="submit">Save</a-button>
         </div>

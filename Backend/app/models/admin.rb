@@ -21,6 +21,7 @@ class Admin < ApplicationRecord
   MODERATOR_PERMISSIONS = {
     "stories" => %w[index show create update get_authors get_categories show_list_chapters set_publish_status],
     "chapters" => %w[show create],
+    "search" => %w[index],
   }.freeze
 
   validates :role, inclusion: { in: ROLES }
