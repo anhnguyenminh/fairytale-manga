@@ -52,7 +52,7 @@ function logout() {
       <img class="mb-4 h-[75px] w-[75px] rounded-md object-cover" :src="profile.adminAvatar" alt="avatar" />
       <router-link
         to="/admin/profile-admin/"
-        class="rounded px-2 text-lg font-semibold no-underline transition-colors !text-white hover:bg-white/20"
+        class="rounded px-2 text-lg font-semibold no-underline !text-white"
         :class="{ 'bg-white/25': profileActive }"
         :aria-current="profileActive ? 'page' : undefined"
       >
