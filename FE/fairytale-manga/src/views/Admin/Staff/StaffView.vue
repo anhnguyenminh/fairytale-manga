@@ -98,7 +98,7 @@ onMounted(fetchPage)
               :value="record.role"
               :options="ROLE_OPTIONS"
               :disabled="!canChangeRole(record as AdminProfile)"
-              @change="(value) => changeRole(record as AdminProfile, value as AdminRole)"
+              @change="(value: unknown) => changeRole(record as AdminProfile, value as AdminRole)"
             />
           </template>
           <template v-else-if="column.key === 'actions'">
