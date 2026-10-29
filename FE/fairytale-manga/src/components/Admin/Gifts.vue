@@ -15,7 +15,7 @@ const columns = [
   { title: 'Image', dataIndex: 'image_url', key: 'image' },
   { title: 'Score', dataIndex: 'score', key: 'score' },
   { title: 'Stock', dataIndex: 'stock', key: 'stock' },
-  { title: 'Actions', key: 'actions', align: 'right' as const },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const },
 ]
 
 

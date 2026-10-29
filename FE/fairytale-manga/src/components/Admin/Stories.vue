@@ -17,7 +17,7 @@ const columns = [
   { title: 'Author', dataIndex: 'author_name', key: 'author_name', width: '25%' },
   { title: 'Status', dataIndex: 'status', key: 'status', width: '12%' },
   { title: 'Xuất bản', key: 'publish_status', width: 160 },
-  { title: 'Actions', key: 'actions', align: 'right' as const },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const },
 ]
 
 

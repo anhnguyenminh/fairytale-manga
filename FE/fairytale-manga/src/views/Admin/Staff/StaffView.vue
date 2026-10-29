@@ -18,7 +18,7 @@ const columns = [
   { title: 'Username', dataIndex: 'username', key: 'username' },
   { title: 'Email', dataIndex: 'email', key: 'email' },
   { title: 'Vai trò', key: 'role', width: 190 },
-  { title: 'Actions', key: 'actions', align: 'right' as const, width: 120 },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const, width: 120 },
 ]
 
 const modalOpen = shallowRef(false)

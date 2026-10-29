@@ -14,7 +14,7 @@ const columns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '8%' },
   { title: 'Author', dataIndex: 'name', key: 'name', width: '30%' },
   { title: 'Description', dataIndex: 'description', key: 'description' },
-  { title: 'Actions', key: 'actions', align: 'right' as const, width: 200 },
+  { title: 'Actions', key: 'actions', align: 'right' as const, fixed: 'right' as const, width: 200 },
 ]
 
 

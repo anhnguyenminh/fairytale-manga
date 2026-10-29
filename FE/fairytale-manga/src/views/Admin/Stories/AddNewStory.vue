@@ -67,8 +67,8 @@ onMounted(() => {
       <h2 class="mx-5 my-0 text-2xl">Add New Story</h2>
     </div>
     <a-form layout="vertical" :model="form" @finish="onSubmit">
-      <div class="flex items-start justify-center gap-5">
-        <div class="min-w-[66%]">
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-center">
+        <div class="min-w-0 lg:min-w-[66%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
             <a-form-item label="Title" name="name" :rules="[{ required: true, message: 'Enter story name' }]">
               <a-input v-model:value="form.name" placeholder="Enter story name..." />
@@ -77,7 +77,7 @@ onMounted(() => {
               <a-select v-model:value="form.author_id" :options="authorOptions" placeholder="Please select an option" />
             </a-form-item>
             <a-form-item label="Category">
-              <a-checkbox-group v-model:value="form.selectedCategory" :options="categoryOptions" class="grid grid-cols-3 gap-1" />
+              <a-checkbox-group v-model:value="form.selectedCategory" :options="categoryOptions" class="grid grid-cols-2 gap-1 sm:grid-cols-3" />
             </a-form-item>
             <a-form-item label="Description" name="description" :rules="[{ required: true, message: 'Enter a summary' }]">
               <a-textarea v-model:value="form.description" placeholder="Enter short summary for this story" :auto-size="{ minRows: 3, maxRows: 6 }" />
@@ -87,7 +87,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="min-w-[30%]">
+        <div class="min-w-0 lg:min-w-[30%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
             <a-form-item label="Status">
               <a-select v-model:value="form.end" :options="statusOptions" placeholder="Please select an option" />
