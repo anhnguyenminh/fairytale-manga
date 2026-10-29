@@ -50,10 +50,12 @@ onMounted(() => store.fetchPage())
       <a-table :scroll="{ x: 'max-content' }" :columns="columns" :data-source="authors" row-key="id" :pagination="false" bordered>
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'actions'">
-            <router-link :to="{ path: `/admin/authors/update/${record.id}` }">
-              <a-button type="primary" class="mx-1">Edit</a-button>
-            </router-link>
-            <a-button danger class="mx-1" @click="confirmDeleteAuthor(record.id)">Delete</a-button>
+            <div class="flex items-center justify-end gap-2">
+              <router-link :to="{ path: `/admin/authors/update/${record.id}` }">
+                <a-button type="primary">Edit</a-button>
+              </router-link>
+              <a-button danger @click="confirmDeleteAuthor(record.id)">Delete</a-button>
+            </div>
           </template>
         </template>
       </a-table>

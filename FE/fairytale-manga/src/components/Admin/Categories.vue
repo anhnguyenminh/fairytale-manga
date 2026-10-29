@@ -54,10 +54,12 @@ onMounted(() => store.fetchPage())
             {{ TARGET_GENDER_OPTIONS.find((o) => o.value === (record.target_gender ?? ''))?.label }}
           </template>
           <template v-else-if="column.key === 'actions'">
-            <router-link :to="{ path: `/admin/categories/update/${record.id}` }">
-              <a-button type="primary" class="mx-1">Edit</a-button>
-            </router-link>
-            <a-button danger class="mx-1" @click="confirmDeleteCategory(record.id)">Delete</a-button>
+            <div class="flex items-center justify-end gap-2">
+              <router-link :to="{ path: `/admin/categories/update/${record.id}` }">
+                <a-button type="primary">Edit</a-button>
+              </router-link>
+              <a-button danger @click="confirmDeleteCategory(record.id)">Delete</a-button>
+            </div>
           </template>
         </template>
       </a-table>

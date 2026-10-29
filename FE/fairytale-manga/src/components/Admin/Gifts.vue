@@ -52,10 +52,12 @@ onMounted(() => store.fetchPage())
             <img :src="record.image_url" class="mx-auto max-w-[200px]" alt="" />
           </template>
           <template v-else-if="column.key === 'actions'">
-            <router-link :to="{ path: `/admin/gifts/update/${record.id}` }">
-              <a-button type="primary" class="mx-1">Edit</a-button>
-            </router-link>
-            <a-button danger type="primary" class="mx-1" @click="confirmDeleteGift(record.id)">Delete</a-button>
+            <div class="flex items-center justify-end gap-2">
+              <router-link :to="{ path: `/admin/gifts/update/${record.id}` }">
+                <a-button type="primary">Edit</a-button>
+              </router-link>
+              <a-button danger type="primary" @click="confirmDeleteGift(record.id)">Delete</a-button>
+            </div>
           </template>
         </template>
       </a-table>
