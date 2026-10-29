@@ -1,20 +1,11 @@
-<template>
-  <div class="register-view">
-    <register></register>
-    <register-default></register-default>
-  </div>
-</template>
-
-<script>
-// @ is an alias to /src
+<script setup lang="ts">
 import Register from '@/components/Client/Register.vue'
 import Register2 from '@/components/Client/Register2.vue'
-
-export default {
-  name: "RegisterView",
-  components: {
-    "register-default": Register,
-    "register": Register2
-  },
-};
 </script>
+
+<template>
+  <div class="register-view">
+    <Register2 />
+    <Register />
+  </div>
+</template>

@@ -4,7 +4,7 @@
     margin-bottom: 0;
 }
 .collection{
-    background: url('http://storage.googleapis.com/cheritz/msg/images/general/bg.png') no-repeat top center fixed;
+    background: url('../images/bg.png') no-repeat top center fixed;
 }
 
 .collection-description {

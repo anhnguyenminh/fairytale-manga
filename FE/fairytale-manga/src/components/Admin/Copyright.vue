@@ -1,22 +1,7 @@
 <template>
-  <div>
-    <!-- Footer -->
-    <footer class="sticky-footer bg-dark">
-      <div class="container my-auto">
-        <div class="copyright text-center text-light my-auto">
-          <span>Copyright &copy; 2022 Fairytale Manga</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-  </div>
+  <footer class="bg-neutral-800 py-5 shrink-0">
+    <div class="text-center text-white">
+      <span>Copyright &copy; 2022 Fairytale Manga</span>
+    </div>
+  </footer>
 </template>
-<script>
-
-</script>
-<style scoped>
-footer.sticky-footer {
-  padding: 1.25rem 0;
-  flex-shrink: 0;
-}
-</style>

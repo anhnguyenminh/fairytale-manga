@@ -4,7 +4,7 @@ div.container-fluid {
 
 .manga-read {
     position: relative;
-    background: url(http://storage.googleapis.com/cheritz/msg/images/general/bg.png) no-repeat top center fixed;
+    background: url('../images/bg.png') no-repeat top center fixed;
 }
 
 /* button go to top*/

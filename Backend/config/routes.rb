@@ -58,6 +58,7 @@ Rails.application.routes.draw do
         resources :recommends do
           collection do
             get :recommend_story
+            get :for_gender
           end
           member do
             get :get_story_by_category
@@ -113,11 +114,13 @@ Rails.application.routes.draw do
         end
       end
       namespace :admins do
+        get :search, to: "search#index"
         resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
-        resources :admins do
+        resources :admins, only: [:index, :create, :update, :destroy] do
           collection do
             get :show_current_admin
+            put :update_profile
             put :update_admin
           end
         end
@@ -144,6 +147,7 @@ Rails.application.routes.draw do
           end
           member do
             get :show_list_chapters
+            put :set_publish_status
           end
         end
         resources :chapters

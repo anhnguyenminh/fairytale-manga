@@ -73,6 +73,16 @@ module Api
           end
         end
 
+        # Draft / published switch; moderators may do this too.
+        def set_publish_status
+          @story = Story.find(params[:id])
+          if @story.update(publish_status: params[:publish_status])
+            response_success(message: "Update Successfully")
+          else
+            response_error(validation: @story.errors.full_messages)
+          end
+        end
+
         def show_list_chapters
           chapters = Chapter.where(story_id: params[:id]).order(id: :desc).ransack(params[:q]).result
           @pagy, @chapters = pagy(chapters, items: 10)
@@ -82,7 +92,7 @@ module Api
         private
 
         def story_params
-          params.permit(:name, :author_id, :description, :end, :image, categories_id: [])
+          params.permit(:name, :author_id, :description, :end, :image, :publish_status, categories_id: [])
         end
 
         # def test_params

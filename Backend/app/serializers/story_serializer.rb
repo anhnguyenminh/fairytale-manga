@@ -1,5 +1,5 @@
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :status, :author_name, :author_id, :description, :cat_id, :image_url, :chapter, :views
+  attributes :id, :name, :publish_status, :status, :author_name, :author_id, :description, :cat_id, :image_url, :chapter, :views
 
   def author_name
     object.author.name

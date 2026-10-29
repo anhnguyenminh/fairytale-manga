@@ -1,6 +1,6 @@
 .single-story-details {
     color: #fff;
-    background: url('http://storage.googleapis.com/cheritz/msg/images/general/bg.png') no-repeat top center fixed;
+    background: url('../images/bg.png') no-repeat top center fixed;
 }
 
 .single-story-details .wrapped-story-detail {
@@ -312,5 +312,5 @@ ul {
     color: #fff;
 }
 .wrapped-comment{
-    background: url(http://storage.googleapis.com/cheritz/msg/images/general/bg.png) no-repeat top center fixed;
+    background: url('../images/bg.png') no-repeat top center fixed;
 }

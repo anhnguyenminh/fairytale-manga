@@ -6,6 +6,9 @@ class Story < ApplicationRecord
   has_many :reader_story
   has_many :reader, through: :reader_story
   validates :name, presence: true
+  PUBLISH_STATUSES = %w[draft published].freeze
+  validates :publish_status, inclusion: { in: PUBLISH_STATUSES }
+  scope :published, -> { where(publish_status: "published") }
   validates :author_id, presence: true
   # validates :categories_id, presence: true
   has_many :chapter
@@ -15,12 +18,19 @@ class Story < ApplicationRecord
   after_find :set_image_url
 
 
+  # Stories that have chapters and at least one category that is untargeted or targets `gender`.
+  def self.for_gender(gender)
+    joins(:category, :chapter)
+      .where(categories: { target_gender: [nil, gender] })
+      .distinct
+  end
+
   def self.hot_story(time_range)
-    @id = ReaderStory.select("COUNT(reader_stories.story_id) as read_count")
-                      .group("reader_stories.story_id")
-                      .pluck("reader_stories.story_id")
-                      .where("reader_stories.created_at" => time_range)
-                      .limit(5)
-    @stories = Story.where(id: @id)
+    ids = ReaderStory.where(created_at: time_range)
+                     .group(:story_id)
+                     .order(Arel.sql("COUNT(*) DESC"))
+                     .limit(5)
+                     .pluck(:story_id)
+    published.where(id: ids)
   end
 end

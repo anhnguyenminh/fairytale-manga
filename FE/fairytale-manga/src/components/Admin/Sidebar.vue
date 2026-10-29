@@ -1,187 +1,85 @@
-<template>
-  <div>
-    <nav class="sidebar-nav">
-      <div class="container">
-        <!--        <div class="wrapped-navbar">-->
-        <div class="navbar-header">
-          <div class="app-logo">
-            <img src="@/assets/images/logo-while.png" alt="app-logo"/>
-          </div>
-        </div>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import { useProfileStore } from '@/stores/profile'
+import { ROLE_LABELS } from '@/constants/admin'
 
-        <div class="navbar-avt">
-          <div>
-            <img src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"/>
-          </div>
-          <div>
-            <router-link :to="{path:'/admin/profile-admin/'}" tag="div" class="admin-name">Admin Control</router-link>
-          </div>
-        </div>
+interface MenuLink { to: string; icon: string; label: string; managerOnly?: boolean }
 
-        <div class="navbar-main-content">
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-books"></i>
-            </div>
-            <router-link :to="{path:'/admin/stories/'}" tag="div" class="single-item">Stories</router-link>
-          </div>
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-th-large"></i>
-            </div>
-            <router-link :to="{path:'/admin/categories'}" tag="div" class="single-item">Categories</router-link>
-          </div>
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-marker"></i>
-            </div>
-            <router-link :to="{path:'/admin/authors'}" tag="div" class="single-item">Authors</router-link>
-          </div>
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-book-reader"></i>
-            </div>
-            <router-link :to="{path:'/admin/readers'}" tag="div" class="single-item">Readers</router-link>
-          </div>
-          <!--            <div class="menu-item">-->
-          <!--              <div class="icon-item">-->
-          <!--                <i class="fas fa-comments"></i>-->
-          <!--              </div>-->
-          <!--              <div>Comment</div>-->
-          <!--            </div>-->
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-gift"></i>
-            </div>
-            <router-link :to="{path:'/admin/gifts'}" tag="div" class="single-item">Gifts</router-link>
-          </div>
-          <div class="menu-item">
-            <div class="icon-item">
-              <i class="fas fa-sign-out-alt"></i>
-            </div>
-            <div @click="logout" class="single-item" style="width: 100%">Logout</div>
-          </div>
-        </div>
-        <!--        </div>-->
-        <!--        <div class="navbar-footer" >-->
-        <!--          <div class="menu-item">-->
-        <!--            <div class="icon-item">-->
-        <!--              <i class="fas fa-sign-out-alt"></i>-->
-        <!--            </div>-->
-        <!--            <div>Logout</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
-    </nav>
-  </div>
-</template>
-<script>
-import {createNamespacedHelpers} from "vuex";
-const {mapActions} = createNamespacedHelpers("admins");
+const allLinks: MenuLink[] = [
+  { to: '/admin/stories/', icon: 'fa-books', label: 'Stories' },
+  { to: '/admin/categories', icon: 'fa-th-large', label: 'Categories', managerOnly: true },
+  { to: '/admin/authors', icon: 'fa-marker', label: 'Authors', managerOnly: true },
+  { to: '/admin/readers', icon: 'fa-book-reader', label: 'Readers', managerOnly: true },
+  { to: '/admin/gifts', icon: 'fa-gift', label: 'Gifts', managerOnly: true },
+  { to: '/admin/staff', icon: 'fa-user-shield', label: 'Staff', managerOnly: true },
+]
 
-export default {
-  methods: {
-    logout() {
-      this.$store.commit("clearToken");
-      this.$router.push({path: "/admin/login"});
-    },
-    ...mapActions([
-        'getAdminDetail'
-    ])
-  },
-  mounted() {
-    this.getAdminDetail();
-  },
-  computed:{
-    Admin(){
-      // console.log(this.$store.state.admins)
-      return this.$store.state.admins
-    }
-  }
+const router = useRouter()
+const route = useRoute()
+const auth = useAuthStore()
+const profile = useProfileStore()
 
+// Moderators only see the story tools.
+const links = computed(() => allLinks.filter((link) => !link.managerOnly || profile.isManager))
+const roleLabel = computed(() => (profile.admin ? ROLE_LABELS[profile.admin.role] : ''))
 
+// A link is active on its own page and on every page below it (e.g. /admin/stories/update/3).
+// The dashboard root (/admin) shows the stories list, so it counts for Stories too.
+function isActive(link: MenuLink): boolean {
+  const base = link.to.replace(/\/$/, '')
+  if (link.to === '/admin/stories/' && /^\/admin\/?$/.test(route.path)) return true
+  return route.path === base || route.path.startsWith(`${base}/`)
+}
+
+const profileActive = computed(() => route.path.startsWith('/admin/profile-admin'))
+
+function logout() {
+  auth.clearTokens()
+  profile.resetAdmin()
+  router.push({ path: '/admin/login' })
 }
 </script>
-<style scoped>
-.sidebar-nav {
-  height: 100%;
-}
 
-.sidebar-nav .container {
-  padding: 0;
-  background: #6959CD;
-  color: #fff;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  /*justify-content: space-between;*/
-}
+<template>
+  <nav class="flex flex-col bg-admin text-white">
+    <div class="mt-8 flex flex-col items-center">
+      <img src="@/assets/images/logo-while.png" alt="app-logo" />
+    </div>
 
-/*.wrapped-navbar */
-.navbar-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-}
+    <div class="mt-10 flex flex-col items-center">
+      <img class="mb-4 h-[75px] w-[75px] rounded-md object-cover" :src="profile.adminAvatar" alt="avatar" />
+      <router-link
+        to="/admin/profile-admin/"
+        class="rounded px-2 text-lg font-semibold no-underline !text-white"
+        :class="{ 'bg-white/25': profileActive }"
+        :aria-current="profileActive ? 'page' : undefined"
+      >
+        {{ profile.adminName }}
+      </router-link>
+      <span v-if="roleLabel" class="mt-1 rounded bg-white/20 px-2 py-0.5 text-xs">{{ roleLabel }}</span>
+    </div>
 
-.navbar-avt {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-}
-
-.navbar-avt img {
-  width: 75px;
-  height: 75px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-}
-
-.admin-name {
-  font-weight: 600;
-  font-size: 1.125rem;
-  cursor: pointer;
-}
-.admin-name:hover {
-  color: darkblue;
-}
-
-.navbar-main-content {
-  display: flex;
-  flex-direction: column;
-  height: 90%;
-  margin-top: 1.5rem;
-}
-
-.menu-item {
-  display: flex;
-  padding: 0.65rem 1rem;
-  font-weight: 700;
-  font-size: 1.125rem;
-  cursor: pointer;
-}
-
-.menu-item:hover {
-  background-color: #F4F6FA;
-  color: #6959CD;
-}
-
-.menu-item div:first-child {
-  padding-left: 15px;
-  justify-content: center;
-}
-
-.menu-item div:nth-child(2) {
-  padding-left: 15px;
-}
-
-.single-item{
-  width: 100%;
-}
-/*.navbar-footer{*/
-/*  margin-bottom: 0.5rem;*/
-/*}*/
-</style>
+    <div class="mt-6 flex flex-col">
+      <router-link
+        v-for="link in links"
+        :key="link.to"
+        :to="link.to"
+        class="menu-item flex items-center gap-4 border-l-4 px-6 py-3 text-lg font-bold no-underline transition-colors"
+        :class="isActive(link) ? 'border-white bg-admin-light !text-admin' : 'border-transparent !text-white hover:bg-white/20'"
+        :aria-current="isActive(link) ? 'page' : undefined"
+      >
+        <i :class="['fas', 'w-6 text-center', link.icon]"></i>
+        <span>{{ link.label }}</span>
+      </router-link>
+      <div
+        class="menu-item flex cursor-pointer items-center gap-4 border-l-4 border-transparent px-6 py-3 text-lg font-bold no-underline transition-colors hover:bg-white/20"
+        @click="logout"
+      >
+        <i class="fas fa-sign-out-alt w-6 text-center"></i>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+</template>

@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Preflight is off (Ant Design has its own reset), but the old Bootstrap-based CSS and
+   Tailwind's sizing utilities both assume border-box, so restore just that rule. */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
