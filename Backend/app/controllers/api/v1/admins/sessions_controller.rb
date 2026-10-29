@@ -5,6 +5,7 @@ module Api
     module Admins
       class SessionsController < AdminappController
         skip_before_action :authenticate_request_admin, only: [:create]
+        skip_before_action :authorize_admin!, only: [:create]
 
         def create
           @admin = Admin.find_by(email: params[:email])

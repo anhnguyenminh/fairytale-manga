@@ -6,12 +6,12 @@ module Api
         def index
           # chapter_exists_story_ids = Chapter.pluck(:story_id).uniq
           # stories = Story.where(id: chapter_exists_story_ids)
-          stories = Story.joins(:chapter).uniq
+          stories = Story.published.joins(:chapter).uniq
           response_success(stories, { each_serializer: ::Stories::ShowStoriesSerializer })
         end
 
         def search_stories
-          @q = Story.ransack(params[:q])
+          @q = Story.published.ransack(params[:q])
           @stories = @q.result(distinct: true)
           response_success(@stories)
         end
@@ -32,13 +32,15 @@ module Api
         end
 
         def show
-          @story = Story.find(params[:id])
+          @story = Story.published.find(params[:id])
           response_success(@story, serializer: ::Reader::StorySerializer)
         end
 
         def show_chapter
           # @story = Story.find_by(name: params[:name_story])
-          chapter = Chapter.find_by(id: params[:id])
+          chapter = Chapter.joins(:story).merge(Story.published).find_by(id: params[:id])
+          return response_not_found("Chapter not found") if chapter.nil?
+
           next_chap = Chapter.set_next_chap(chapter)
           prev_chap = Chapter.set_prev_chap(chapter)
           # render json: {chapter, serializer: ::Reader::ChapterSerializer, {meta: next_chap, prev_chap}}
@@ -47,7 +49,7 @@ module Api
         end
 
         def show_list_chapters
-          chapters = Chapter.where(story_id: params[:id]).order(id: :desc)
+          chapters = Chapter.joins(:story).merge(Story.published).where(story_id: params[:id]).order(id: :desc)
           response_success(chapters, { adapter: :json, serializer: ::Reader::ChapterSerializer })
         end
 

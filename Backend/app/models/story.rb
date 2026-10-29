@@ -6,6 +6,9 @@ class Story < ApplicationRecord
   has_many :reader_story
   has_many :reader, through: :reader_story
   validates :name, presence: true
+  PUBLISH_STATUSES = %w[draft published].freeze
+  validates :publish_status, inclusion: { in: PUBLISH_STATUSES }
+  scope :published, -> { where(publish_status: "published") }
   validates :author_id, presence: true
   # validates :categories_id, presence: true
   has_many :chapter
@@ -28,6 +31,6 @@ class Story < ApplicationRecord
                      .order(Arel.sql("COUNT(*) DESC"))
                      .limit(5)
                      .pluck(:story_id)
-    where(id: ids)
+    published.where(id: ids)
   end
 end
