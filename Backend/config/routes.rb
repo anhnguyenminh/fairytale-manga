@@ -116,9 +116,10 @@ Rails.application.routes.draw do
       namespace :admins do
         resources :missions, only: [:create, :update, :index]
         resources :sessions, only: [:create]
-        resources :admins do
+        resources :admins, only: [:index, :create, :update, :destroy] do
           collection do
             get :show_current_admin
+            put :update_profile
             put :update_admin
           end
         end
@@ -145,6 +146,7 @@ Rails.application.routes.draw do
           end
           member do
             get :show_list_chapters
+            put :set_publish_status
           end
         end
         resources :chapters

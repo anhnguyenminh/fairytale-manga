@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia'
 import { message } from 'ant-design-vue'
 import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import { adminApi } from '@/api/client'
+import { PUBLISH_OPTIONS, type PublishStatus } from '@/constants/admin'
 import { useCategoriesStore } from '@/stores/categories'
 import { useAuthorsStore } from '@/stores/authors'
 
@@ -24,6 +25,7 @@ const form = reactive({
   author_id: undefined as number | undefined,
   description: '',
   end: undefined as boolean | undefined,
+  publish_status: 'draft' as PublishStatus,
   selectedCategory: [] as number[],
 })
 const imgInput = useTemplateRef<HTMLInputElement>('imgInput')
@@ -34,6 +36,7 @@ async function onSubmit() {
   formData.append('author_id', String(form.author_id ?? null))
   formData.append('description', form.description)
   formData.append('end', String(form.end ?? null))
+  formData.append('publish_status', form.publish_status)
   formData.append('categories_id', JSON.stringify(form.selectedCategory))
   const file = imgInput.value?.files?.[0]
   if (file) formData.append('image', file)
@@ -63,7 +66,7 @@ onMounted(() => {
       </router-link>
       <h2 class="mx-5 my-0 text-2xl">Add New Story</h2>
     </div>
-    <a-form layout="vertical" @finish="onSubmit">
+    <a-form layout="vertical" :model="form" @finish="onSubmit">
       <div class="flex items-start justify-center gap-5">
         <div class="min-w-[66%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
@@ -88,6 +91,9 @@ onMounted(() => {
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
             <a-form-item label="Status">
               <a-select v-model:value="form.end" :options="statusOptions" placeholder="Please select an option" />
+            </a-form-item>
+            <a-form-item label="Xuất bản" extra="Nháp: độc giả chưa thấy truyện này.">
+              <a-select v-model:value="form.publish_status" :options="PUBLISH_OPTIONS" />
             </a-form-item>
           </div>
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">

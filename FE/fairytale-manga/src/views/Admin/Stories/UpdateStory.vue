@@ -5,6 +5,8 @@ import { storeToRefs } from 'pinia'
 import { message, Modal } from 'ant-design-vue'
 import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { adminApi } from '@/api/client'
+import { useProfileStore } from '@/stores/profile'
+import { PUBLISH_OPTIONS, type PublishStatus } from '@/constants/admin'
 import { useCategoriesStore } from '@/stores/categories'
 import { useAuthorsStore } from '@/stores/authors'
 import type { Chapter } from '@/types/models'
@@ -29,11 +31,13 @@ const form = reactive({
   description: '',
   images_url: '',
   end: undefined as boolean | undefined,
+  publish_status: 'draft' as PublishStatus,
   selectedCategory: [] as number[],
 })
 const chapters = ref<Chapter[]>([])
 const imgInput = useTemplateRef<HTMLInputElement>('imgInput')
 const deleting = shallowRef(false)
+const profile = useProfileStore()
 
 const chapterColumns = [
   { title: 'ID', dataIndex: 'id', key: 'id', width: '15%' },
@@ -48,6 +52,7 @@ async function fetchStory() {
     form.author_id = data.author_id
     form.description = data.description
     form.end = data.status
+    form.publish_status = data.publish_status ?? 'draft'
     form.images_url = data.image_url
     form.selectedCategory = (data.category ?? []).map((item: { id: number }) => item.id)
   } catch (error) {
@@ -70,6 +75,7 @@ async function onSubmit() {
   formData.append('author_id', String(form.author_id ?? null))
   formData.append('description', form.description)
   formData.append('end', String(form.end ?? null))
+  formData.append('publish_status', form.publish_status)
   formData.append('categories_id', JSON.stringify(form.selectedCategory))
   const file = imgInput.value?.files?.[0]
   if (file) formData.append('image', file)
@@ -135,7 +141,7 @@ onMounted(() => {
       </router-link>
       <h2 class="mx-5 my-0 text-2xl">Story Detail</h2>
     </div>
-    <a-form layout="vertical" @finish="onSubmit">
+    <a-form layout="vertical" :model="form" @finish="onSubmit">
       <div class="flex items-start justify-center gap-5">
         <div class="min-w-[66%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
@@ -154,15 +160,18 @@ onMounted(() => {
           </div>
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
             <div class="flex items-center justify-center gap-20">
-              <a-button danger @click="deleteStory">Delete this story</a-button>
+              <a-button v-if="profile.isManager" danger @click="deleteStory">Delete this story</a-button>
               <a-button type="primary" html-type="submit">Save story</a-button>
             </div>
           </div>
         </div>
         <div class="min-w-[30%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
-            <a-form-item label="Status" class="mb-0">
+            <a-form-item label="Status">
               <a-select v-model:value="form.end" :options="statusOptions" />
+            </a-form-item>
+            <a-form-item label="Xuất bản" extra="Nháp: độc giả chưa thấy truyện này." class="mb-0">
+              <a-select v-model:value="form.publish_status" :options="PUBLISH_OPTIONS" />
             </a-form-item>
           </div>
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
@@ -193,7 +202,7 @@ onMounted(() => {
               <router-link :to="`/admin/stories/${storyId}/chapter/${record.id}`">
                 <a-button type="primary" ghost>Details</a-button>
               </router-link>
-              <a-button danger :loading="deleting" @click="deleteChapter(record.id)">Delete</a-button>
+              <a-button v-if="profile.isManager" danger :loading="deleting" @click="deleteChapter(record.id)">Delete</a-button>
             </div>
           </template>
         </template>

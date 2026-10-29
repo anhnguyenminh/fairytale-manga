@@ -39,7 +39,7 @@ async function onSubmit() {
       <h2 class="mx-5 my-0 text-2xl">New Chapter</h2>
     </div>
     <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
-      <a-form layout="vertical" @finish="onSubmit">
+      <a-form layout="vertical" :model="form" @finish="onSubmit">
         <a-form-item label="Chapter" name="name" :rules="[{ required: true, message: 'Enter chapter number' }]">
           <a-input v-model:value="form.name" type="number" placeholder="Enter chapter number" />
         </a-form-item>

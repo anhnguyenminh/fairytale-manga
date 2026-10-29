@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class CommentsController < ApplicationController
+      class CommentsController < AdminappController
         def index
           # comment = Comment.where("num_report >= ? and status = 0", 3).order(id: :desc).ransack(params[:q]).result
           @comment = Comment.comment_be_report
