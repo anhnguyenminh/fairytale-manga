@@ -66,7 +66,7 @@ function logout() {
         v-for="link in links"
         :key="link.to"
         :to="link.to"
-        class="menu-item flex gap-4 border-l-4 px-6 py-3 text-lg font-bold no-underline transition-colors"
+        class="menu-item flex items-center gap-4 border-l-4 px-6 py-3 text-lg font-bold no-underline transition-colors"
         :class="isActive(link) ? 'border-white bg-admin-light !text-admin' : 'border-transparent !text-white hover:bg-white/20'"
         :aria-current="isActive(link) ? 'page' : undefined"
       >
@@ -74,7 +74,7 @@ function logout() {
         <span>{{ link.label }}</span>
       </router-link>
       <div
-        class="menu-item flex cursor-pointer gap-4 border-l-4 border-transparent px-6 py-3 text-lg font-bold no-underline transition-colors hover:bg-white/20"
+        class="menu-item flex cursor-pointer items-center gap-4 border-l-4 border-transparent px-6 py-3 text-lg font-bold no-underline transition-colors hover:bg-white/20"
         @click="logout"
       >
         <i class="fas fa-sign-out-alt w-6 text-center"></i>
