@@ -160,7 +160,7 @@ onMounted(() => {
           </div>
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
             <div class="flex items-center justify-center gap-20">
-              <a-button v-if="profile.isAdmin" danger @click="deleteStory">Delete this story</a-button>
+              <a-button v-if="profile.isManager" danger @click="deleteStory">Delete this story</a-button>
               <a-button type="primary" html-type="submit">Save story</a-button>
             </div>
           </div>
@@ -202,7 +202,7 @@ onMounted(() => {
               <router-link :to="`/admin/stories/${storyId}/chapter/${record.id}`">
                 <a-button type="primary" ghost>Details</a-button>
               </router-link>
-              <a-button v-if="profile.isAdmin" danger :loading="deleting" @click="deleteChapter(record.id)">Delete</a-button>
+              <a-button v-if="profile.isManager" danger :loading="deleting" @click="deleteChapter(record.id)">Delete</a-button>
             </div>
           </template>
         </template>

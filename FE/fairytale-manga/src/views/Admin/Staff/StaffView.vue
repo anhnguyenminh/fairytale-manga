@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, shallowRef } from 'vue'
+import { computed, onMounted, reactive, shallowRef } from 'vue'
 import { Modal, message } from 'ant-design-vue'
 import { adminApi } from '@/api/client'
 import { getApiError } from '@/api/errors'
@@ -24,6 +24,14 @@ const columns = [
 const modalOpen = shallowRef(false)
 const saving = shallowRef(false)
 const newAccount = reactive({ email: '', username: '', password: '', role: 'moderator' as AdminRole })
+
+// Admins can only add moderators; owners can add any role.
+const creatableRoles = computed(() => ROLE_OPTIONS.filter((option) => profile.manageable.includes(option.value)))
+
+const isSelf = (account: AdminProfile) => account.id === profile.admin?.id
+// Only owners change roles; deleting needs the target's role to be one this account manages.
+const canChangeRole = (account: AdminProfile) => profile.isOwner && !isSelf(account)
+const canDelete = (account: AdminProfile) => !isSelf(account) && profile.manageable.includes(account.role)
 
 function openCreate() {
   Object.assign(newAccount, { email: '', username: '', password: '', role: 'moderator' })
@@ -89,12 +97,12 @@ onMounted(fetchPage)
               size="small"
               :value="record.role"
               :options="ROLE_OPTIONS"
-              :disabled="record.id === profile.admin?.id"
+              :disabled="!canChangeRole(record as AdminProfile)"
               @change="(value) => changeRole(record as AdminProfile, value as AdminRole)"
             />
           </template>
           <template v-else-if="column.key === 'actions'">
-            <a-button danger size="small" :disabled="record.id === profile.admin?.id" @click="confirmDeleteAccount(record as AdminProfile)">
+            <a-button danger size="small" :disabled="!canDelete(record as AdminProfile)" @click="confirmDeleteAccount(record as AdminProfile)">
               Delete
             </a-button>
           </template>
@@ -112,7 +120,7 @@ onMounted(fetchPage)
         <a-form-item label="Mật khẩu (tối thiểu 8 ký tự)" name="password">
           <a-input-password v-model:value="newAccount.password" autocomplete="new-password" />
         </a-form-item>
-        <a-form-item label="Vai trò" name="role"><a-select v-model:value="newAccount.role" :options="ROLE_OPTIONS" /></a-form-item>
+        <a-form-item label="Vai trò" name="role"><a-select v-model:value="newAccount.role" :options="creatableRoles" /></a-form-item>
       </a-form>
     </a-modal>
   </div>

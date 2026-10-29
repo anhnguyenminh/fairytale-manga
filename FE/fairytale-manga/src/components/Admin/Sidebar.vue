@@ -5,15 +5,15 @@ import { useAuthStore } from '@/stores/auth'
 import { useProfileStore } from '@/stores/profile'
 import { ROLE_LABELS } from '@/constants/admin'
 
-interface MenuLink { to: string; icon: string; label: string; adminOnly?: boolean }
+interface MenuLink { to: string; icon: string; label: string; managerOnly?: boolean }
 
 const allLinks: MenuLink[] = [
   { to: '/admin/stories/', icon: 'fa-books', label: 'Stories' },
-  { to: '/admin/categories', icon: 'fa-th-large', label: 'Categories', adminOnly: true },
-  { to: '/admin/authors', icon: 'fa-marker', label: 'Authors', adminOnly: true },
-  { to: '/admin/readers', icon: 'fa-book-reader', label: 'Readers', adminOnly: true },
-  { to: '/admin/gifts', icon: 'fa-gift', label: 'Gifts', adminOnly: true },
-  { to: '/admin/staff', icon: 'fa-user-shield', label: 'Staff', adminOnly: true },
+  { to: '/admin/categories', icon: 'fa-th-large', label: 'Categories', managerOnly: true },
+  { to: '/admin/authors', icon: 'fa-marker', label: 'Authors', managerOnly: true },
+  { to: '/admin/readers', icon: 'fa-book-reader', label: 'Readers', managerOnly: true },
+  { to: '/admin/gifts', icon: 'fa-gift', label: 'Gifts', managerOnly: true },
+  { to: '/admin/staff', icon: 'fa-user-shield', label: 'Staff', managerOnly: true },
 ]
 
 const router = useRouter()
@@ -21,7 +21,7 @@ const auth = useAuthStore()
 const profile = useProfileStore()
 
 // Moderators only see the story tools.
-const links = computed(() => allLinks.filter((link) => !link.adminOnly || profile.isAdmin))
+const links = computed(() => allLinks.filter((link) => !link.managerOnly || profile.isManager))
 const roleLabel = computed(() => (profile.admin ? ROLE_LABELS[profile.admin.role] : ''))
 
 function logout() {

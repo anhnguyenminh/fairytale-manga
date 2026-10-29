@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { adminApi, readerApi } from '@/api/client'
-import { DEFAULT_ADMIN_NAME } from '@/constants/admin'
+import { DEFAULT_ADMIN_NAME, manageableRoles } from '@/constants/admin'
 import defaultAvatar from '@/assets/images/default-avatar.svg'
 import type { AdminProfile } from '@/types/models'
 
@@ -12,7 +12,10 @@ export const useProfileStore = defineStore('profile', () => {
   // Falls back to the default name/avatar while a field is empty or the profile hasn't loaded.
   const adminName = computed(() => admin.value?.username?.trim() || DEFAULT_ADMIN_NAME)
   const adminAvatar = computed(() => admin.value?.image_url || defaultAvatar)
-  const isAdmin = computed(() => admin.value?.role === 'admin')
+  const isOwner = computed(() => admin.value?.role === 'owner')
+  // Owners and admins run the site; moderators only get the story tools.
+  const isManager = computed(() => isOwner.value || admin.value?.role === 'admin')
+  const manageable = computed(() => manageableRoles(admin.value?.role))
 
   /** Loads the signed-in admin; resolves to false when the request fails (e.g. expired token). */
   async function fetchAdmin(): Promise<boolean> {
@@ -37,5 +40,5 @@ export const useProfileStore = defineStore('profile', () => {
     }
   }
 
-  return { admin, reader, adminName, adminAvatar, isAdmin, fetchAdmin, resetAdmin, fetchReader }
+  return { admin, reader, adminName, adminAvatar, isOwner, isManager, manageable, fetchAdmin, resetAdmin, fetchReader }
 })

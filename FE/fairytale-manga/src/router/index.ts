@@ -4,8 +4,8 @@ import { useProfileStore } from '@/stores/profile'
 
 declare module 'vue-router' {
     interface RouteMeta {
-        /** Only accounts with the admin role (not moderators) may open this route. */
-        adminOnly?: boolean
+        /** Only owners and admins (not moderators) may open this route. */
+        managerOnly?: boolean
     }
 }
 
@@ -91,65 +91,65 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'staff',
                 name: 'StaffView',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 component: () => import('@/views/Admin/Staff/StaffView.vue'),
             },
             {
                 path: 'categories',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'CategoriesView',
                 component: () => import('@/views/Admin/Categories/CategoriesView.vue')
             },
             {
                 path: 'categories/add-new',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'AddNewCategory',
                 component: () => import('@/views/Admin/Categories/AddNewCategory.vue'),
             },
             {
                 path: 'categories/update/:id',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'UpdateCategory',
                 component: () => import('@/views/Admin/Categories/UpdateCategory.vue'),
             },
             {
                 path: 'authors',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'AuthorsView',
                 component: () => import('@/views/Admin/Authors/AuthorsView.vue'),
             },
             {
                 path: 'authors/update/:id',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'UpdateAuthor',
                 component: () => import('@/views/Admin/Authors/UpdateAuthor.vue'),
             },
             {
                 path: 'authors/add-new',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 component: () => import('@/views/Admin/Authors/AddNewAuthor.vue'),
             },
             {
                 path: 'readers',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'ReadersView',
                 component: () => import('@/views/Admin/Readers/ReadersView.vue'),
             },
             {
                 path: 'gifts',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'GiftsView',
                 component: () => import('@/views/Admin/Gifts/GiftsView.vue'),
             },
             {
                 path: 'gifts/add-new',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'AddNewGift',
                 component: () => import('@/views/Admin/Gifts/AddNewGift.vue'),
             },
             {
                 path: 'gifts/update/:id',
-                meta: { adminOnly: true },
+                meta: { managerOnly: true },
                 name: 'UpdateGift',
                 component: () => import('@/views/Admin/Gifts/UpdateGift.vue'),
             }
@@ -185,7 +185,7 @@ router.beforeEach(async (to) => {
         auth.clearTokens()
         return { path: '/admin/login' }
     }
-    if (to.meta.adminOnly && !profile.isAdmin) return { path: '/admin/stories' }
+    if (to.meta.managerOnly && !profile.isManager) return { path: '/admin/stories' }
 })
 
 export default router

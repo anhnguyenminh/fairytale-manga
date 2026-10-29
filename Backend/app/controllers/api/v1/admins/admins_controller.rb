@@ -1,8 +1,9 @@
 module Api
   module V1
     module Admins
-      # Staff accounts. Listing/creating/changing/removing accounts is admin-only (see
-      # Admin#can?); every role may read and edit their own profile and credentials.
+      # Staff accounts. Who may do what is decided by Admin#can? (which actions) and
+      # Admin#manageable_roles (which accounts): owners manage everyone, admins only add and
+      # remove moderators, moderators nothing. Every role may edit their own profile.
       class AdminsController < AdminappController
         before_action :set_admin, only: [:update, :destroy]
 
@@ -12,7 +13,10 @@ module Api
         end
 
         def create
-          admin = Admin.new(staff_params)
+          role = staff_params[:role].presence || "moderator"
+          return forbid_role unless current_admin.manageable_roles.include?(role)
+
+          admin = Admin.new(staff_params.merge(role: role))
           if admin.save
             response_success(message: "Ok")
           else
@@ -21,10 +25,12 @@ module Api
         end
 
         def update
-          if @admin == current_admin && staff_params[:role].present? && staff_params[:role] != @admin.role
+          new_role = staff_params[:role]
+          if @admin == current_admin && new_role.present? && new_role != @admin.role
             return response_error(message: "You cannot change your own role")
           end
-          return response_error(message: "At least one administrator must remain") if demoting_last_admin?
+          return forbid_role if new_role.present? && !current_admin.manageable_roles.include?(new_role)
+          return response_error(message: "At least one owner must remain") if new_role.present? && new_role != "owner" && last_owner?(@admin)
 
           if @admin.update(staff_params.except(:password))
             response_success(message: "Update Successfully")
@@ -35,7 +41,8 @@ module Api
 
         def destroy
           return response_error(message: "You cannot delete your own account") if @admin == current_admin
-          return response_error(message: "At least one administrator must remain") if last_admin?(@admin)
+          return forbid_role unless current_admin.manageable_roles.include?(@admin.role)
+          return response_error(message: "At least one owner must remain") if last_owner?(@admin)
 
           @admin.destroy
           response_success(message: "destroy successfully")
@@ -78,12 +85,12 @@ module Api
           @admin = Admin.find(params[:id])
         end
 
-        def last_admin?(admin)
-          admin.admin? && Admin.where(role: "admin").count <= 1
+        def last_owner?(admin)
+          admin.owner? && Admin.where(role: "owner").count <= 1
         end
 
-        def demoting_last_admin?
-          staff_params[:role].present? && staff_params[:role] != "admin" && last_admin?(@admin)
+        def forbid_role
+          response_error({ message: "You don't have permission to manage this account" }, :forbidden)
         end
 
         def profile_params
