@@ -12,11 +12,11 @@ interface SearchResults { stories: SearchHit[]; authors: SearchHit[]; categories
 const MIN_LENGTH = 2
 const DEBOUNCE_MS = 300
 
-// Where each result group opens, and how it is labelled in the dropdown.
-const GROUPS: { key: keyof SearchResults; label: string; path: (id: number) => string }[] = [
-  { key: 'stories', label: 'Stories', path: (id) => `/admin/stories/update/${id}` },
-  { key: 'authors', label: 'Authors', path: (id) => `/admin/authors/update/${id}` },
-  { key: 'categories', label: 'Categories', path: (id) => `/admin/categories/update/${id}` },
+// Which list page each result group opens, and how it is labelled in the dropdown.
+const GROUPS: { key: keyof SearchResults; label: string; to: string }[] = [
+  { key: 'stories', label: 'Stories', to: '/admin/stories' },
+  { key: 'authors', label: 'Authors', to: '/admin/authors' },
+  { key: 'categories', label: 'Categories', to: '/admin/categories' },
 ]
 
 const router = useRouter()
@@ -59,11 +59,11 @@ watch(query, (value) => {
 })
 
 function open(value: string) {
-  const [key, id] = value.split(':')
+  const [key] = value.split(':')
   const group = GROUPS.find((g) => g.key === key)
   if (!group) return
   query.value = ''
-  router.push(group.path(Number(id)))
+  router.push(group.to)
 }
 </script>
 
