@@ -22,7 +22,7 @@ module Api
           if current_reader.blank?
             response_success(message: 'Doc truyen di')
           else
-            @readerstory = ReaderStory.new(reader_id: current_reader.id, story_id: params[:id], chap: params[:chap])
+            @readerstory = ReaderStory.new(reader_id: current_reader.id, story_id: Story.published.find(params[:id]).id, chap: params[:chap])
             if @readerstory.save
               response_success(message: 'ok')
             else

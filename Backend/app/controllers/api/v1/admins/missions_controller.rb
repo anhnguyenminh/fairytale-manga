@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admins
-      class MissionsController < ApplicationController
+      class MissionsController < AdminappController
         def create
           @mission = Mission.new(mission_params)
           if @mission.save

@@ -5,7 +5,7 @@ module Api
         private
 
         def set_commentable
-          @commentable = Chapter.find(params[:chapter_id])
+          @commentable = Chapter.joins(:story).merge(Story.published).find(params[:chapter_id])
         end
       end
     end

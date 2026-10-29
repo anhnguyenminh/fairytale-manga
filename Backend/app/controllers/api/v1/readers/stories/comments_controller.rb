@@ -4,7 +4,7 @@ module Api
       class Stories::CommentsController < CommentsController 
           private 
           def set_commentable
-            @commentable = Story.find(params[:story_id])
+            @commentable = Story.published.find(params[:story_id])
           end
       end
     end
