@@ -1,26 +1,14 @@
+<script setup lang="ts">
+import { MenuOutlined } from '@ant-design/icons-vue'
+
+defineEmits<{ 'toggle-menu': [] }>()
+</script>
+
 <template>
-  <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow search-navbar">
-    <!-- Topbar Search -->
-    <b-input-group class="search-box">
-      <b-form-input
-      placeholder="Search..."
-      ></b-form-input>
-      <b-input-group-append>
-        <b-button variant="light"><i class="fas fa-search fa-sm"></i></b-button>
-      </b-input-group-append>
-    </b-input-group>
+  <nav class="mb-4 flex items-center justify-between gap-3 bg-neutral-800 p-2 shadow lg:justify-end">
+    <a-button class="lg:!hidden" @click="$emit('toggle-menu')">
+      <template #icon><MenuOutlined /></template>
+    </a-button>
+    <a-input-search class="!w-full sm:!w-[40%] lg:!w-[30%]" placeholder="Search..." />
   </nav>
 </template>
-<script>
-
-</script>
-<style>
-nav.search-navbar {
-  justify-content: flex-end !important;
-}
-
-.search-box {
-  width: 30%;
-  margin: 0.5rem;
-}
-</style>

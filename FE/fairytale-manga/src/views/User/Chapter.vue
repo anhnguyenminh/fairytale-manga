@@ -1,81 +1,68 @@
+<script setup lang="ts">
+import { onMounted, shallowRef } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { readerApi } from '@/api/client'
+import Comment from '@/components/Client/Comment.vue'
+import type { ReaderChapter } from '@/types/reader'
+
+const route = useRoute()
+const router = useRouter()
+
+const chapter = shallowRef<ReaderChapter>({})
+const selected = shallowRef<string | undefined>(undefined)
+// Placeholder list kept from the original (chapter list is not wired to the API yet).
+const options = [{ value: 'list', label: 'Danh sách chương' }]
+
+function scrollToTop() {
+  window.scrollTo(0, 0)
+}
+
+onMounted(async () => {
+  try {
+    const chap = String(route.params.chap)
+    chapter.value = (await readerApi.get<ReaderChapter>(`readers/stories/${chap}/show_chapter`)).data
+  } catch (err) {
+    console.error(err)
+  }
+})
+</script>
+
 <template>
   <div class="container-fluid manga-read">
-    <h1 class="container title-manga-read">Chapter {{ chapter.name }}</h1>
-    <div class="container control-manga-read d-flex  justify-content-around">
-      <b-button @click="$router.go(-1)" class="btn-pre"><i class="far fa-arrow-circle-left"></i> Chương trước</b-button>
-      <div class="center-control-manga-read d-flex">
-        <b-button class="btn-read ">Quay lại</b-button>
-        <b-form-select v-model="selected" :options="options"></b-form-select>
+    <h1 class="container mx-auto title-manga-read">Chapter {{ chapter.name }}</h1>
+    <div class="container mx-auto control-manga-read flex flex-wrap justify-around gap-2">
+      <a-button class="btn-pre" @click="router.go(-1)">
+        <i class="far fa-arrow-circle-left"></i> Chương trước
+      </a-button>
+      <div class="center-control-manga-read flex flex-wrap justify-center gap-2">
+        <a-button class="btn-read">Quay lại</a-button>
+        <a-select v-model:value="selected" :options="options" placeholder="Danh sách chương" style="min-width: 160px" />
       </div>
-      <b-button class="btn-nex">Chương sau <i class="far fa-arrow-circle-right"></i></b-button>
+      <a-button class="btn-nex">Chương sau <i class="far fa-arrow-circle-right"></i></a-button>
     </div>
-    <!--  main chapter  -->
-    <div style="margin: 1.5rem 0; " class="area-show-content">
-      <div v-for="image in chapter.images_url" :key="image.index" class="image-chapter">
-        <b-img :src="image" fluid></b-img>
+    <div class="area-show-content" style="margin: 1.5rem 0">
+      <div v-for="(image, i) in chapter.images_url" :key="i" class="image-chapter">
+        <img :src="image" class="max-w-full h-auto" />
       </div>
     </div>
-    <!--    end main chapter-->
-    <div class="container control-manga-read d-flex  justify-content-around">
-      <b-button @click="$router.go(-1)" class="btn-pre"><i class="far fa-arrow-circle-left"></i> Chương trước</b-button>
-      <div class="center-control-manga-read d-flex">
-        <b-button class="btn-read ">Quay lại</b-button>
-        <b-form-select v-model="selected" :options="options"></b-form-select>
+    <div class="container mx-auto control-manga-read flex flex-wrap justify-around gap-2">
+      <a-button class="btn-pre" @click="router.go(-1)">
+        <i class="far fa-arrow-circle-left"></i> Chương trước
+      </a-button>
+      <div class="center-control-manga-read flex flex-wrap justify-center gap-2">
+        <a-button class="btn-read">Quay lại</a-button>
+        <a-select v-model:value="selected" :options="options" placeholder="Danh sách chương" style="min-width: 160px" />
       </div>
-      <b-button class="btn-nex">Chương sau <i class="far fa-arrow-circle-right"></i></b-button>
+      <a-button class="btn-nex">Chương sau <i class="far fa-arrow-circle-right"></i></a-button>
     </div>
     <div class="wrapped-comment container-fluid mt-3">
-      <Comment class="comment-chapter"></Comment>
+      <Comment class="comment-chapter" />
     </div>
-    <!-- btn scroll to top-->
     <div class="arrow-to-top" @click="scrollToTop">
       <button><i class="fas fa-long-arrow-up"></i></button>
     </div>
   </div>
 </template>
-
-<script>
-import axios from "axios";
-import Comment from "@/components/Client/Comment"
-
-export default {
-  name: 'Chapter',
-  components: {
-    Comment
-  },
-  data() {
-    return {
-      chapter: [],
-      selected: null,
-      options: [
-        {value: null, text: 'Danh sách chương'},
-        {value: 'a', text: 'This is First option'},
-        {value: 'b', text: 'Selected Option'},
-        {value: {C: '3PO'}, text: 'This is an option with object value'},
-        {value: 'd', text: 'This one is disabled', disabled: true}
-      ]
-    }
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    }
-  },
-  created() {
-    let self = this;
-    axios.get('http://localhost:3000/api/v1/readers/stories/' + this.$route.params.chap + '/show_chapter')
-        .then(function (response) {
-          // handle success
-          self.chapter = response.data
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-  }
-}
-</script>
 
 <style scoped>
 @import url(@/assets/css/chapter.css);

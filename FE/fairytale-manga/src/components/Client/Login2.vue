@@ -1,46 +1,37 @@
+<script setup lang="ts"></script>
+
 <template>
   <div>
     <section class="vh-100">
-      <div class="container">
-        <div class="row wrapped-card">
-          <div class="col col-xl-10">
-            <div class="card">
-              <div class="row g-0">
-                <div class="col-md-6 col-lg-5 d-none d-md-block">
-                  <img src="https://i.pinimg.com/564x/c2/70/ed/c270edfd62cb6fd905e48dea39b04a5e.jpg"
-                       alt="login form" class="card-image"/>
-                </div>
-
-
-                <div class="col-md-6 col-lg-7 card-details">
-                  <div class="card-body p-4 p-lg-5">
-                    <form>
-                      <div class="fairytale-wrapper">
-                        <span>Fairytale Manga</span>
-                      </div>
-                      <h5> Đăng nhập tài khoản của bạn</h5>
-                      <div class="form-outline">
-                        <label class="form-label" for="userEmail">Email</label>
-                        <input type="email" id="userEmail" class="form-control form-control-lg"
-                               placeholder="Nhập vào địa chỉ email"/>
-
-                      </div>
-
-                      <div class="form-outline">
-                        <label class="form-label" for="userPwd">Mật khẩu</label>
-                        <input type="password" id="userPwd" class="form-control form-control-lg"
-                               placeholder="Nhập vào mật khẩu" required/>
-                      </div>
-
-                      <div class="form-btn">
-                        <button class="btn btn-dark" type="button">Đăng nhập</button>
-                      </div>
-
-                      <p class="mb-5 pb-lg-2 suggest">Chưa có tài khoản? <router-link :to="{ name: 'RegisterView' }" tag="a"
-                      >Đăng kí tại đây</router-link></p>
-
-                    </form>
-                  </div>
+      <div class="container mx-auto">
+        <div class="wrapped-card">
+          <div class="card">
+            <div class="grid grid-cols-1 md:grid-cols-12">
+              <div class="hidden md:block md:col-span-5">
+                <img
+                  src="https://i.pinimg.com/564x/c2/70/ed/c270edfd62cb6fd905e48dea39b04a5e.jpg"
+                  alt="login form" class="card-image" />
+              </div>
+              <div class="md:col-span-7 flex items-center">
+                <div class="card-body w-full">
+                  <a-form layout="vertical">
+                    <div class="fairytale-wrapper">
+                      <span>Fairytale Manga</span>
+                    </div>
+                    <h5>Đăng nhập tài khoản của bạn</h5>
+                    <a-form-item label="Email">
+                      <a-input type="email" size="large" placeholder="Nhập vào địa chỉ email" />
+                    </a-form-item>
+                    <a-form-item label="Mật khẩu">
+                      <a-input-password size="large" placeholder="Nhập vào mật khẩu" />
+                    </a-form-item>
+                    <div class="form-btn">
+                      <a-button type="primary" size="large" block>Đăng nhập</a-button>
+                    </div>
+                    <p class="mb-5 suggest">Chưa có tài khoản?
+                      <router-link :to="{ name: 'RegisterView' }">Đăng kí tại đây</router-link>
+                    </p>
+                  </a-form>
                 </div>
               </div>
             </div>
@@ -48,32 +39,10 @@
         </div>
       </div>
     </section>
-
   </div>
 </template>
 
-<script>
-export default {
-  name: "Login2",
-  data() {
-    return {};
-  },
-  methods: {},
-};
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-* {
-  font-family: 'Alegreya', serif;
-  color: black;
-}
-
-.form-control:focus {
-  border-color: black !important;
-  box-shadow: none;
-}
-
 section {
   background: linear-gradient(210deg, #ffdde1, #ee9ca7, #9A616D);
 }
@@ -88,29 +57,26 @@ section {
   display: flex;
   justify-content: center;
   height: 100%;
-  align-items: center !important;
+  align-items: center;
 }
 
-
-.wrapped-card .card {
+.card {
   border-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 64rem;
   background: linear-gradient(210deg, #ffdde1, #F2F3F2, #ffdde1);
 }
 
 .card-image {
-  border-radius: 1rem 0 0 1rem;
   max-width: 100%;
   height: 100%;
-}
-
-.card-details {
-  display: flex;
-  align-items: center;
+  object-fit: cover;
 }
 
 .card-body {
   color: black;
-  opacity: 1;
+  padding: 2rem;
 }
 
 .fairytale-wrapper {
@@ -133,22 +99,9 @@ h5 {
   margin-bottom: 1rem;
 }
 
-.form-outline {
-  margin-bottom: 1.5rem
-}
-
-.form-outline label {
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
 .form-btn {
   padding-top: 0.25rem;
-  margin-bottom: 1.5rem
-}
-
-.form-btn button {
-  width: -webkit-fill-available;
+  margin-bottom: 1.5rem;
 }
 
 .suggest {
@@ -158,5 +111,15 @@ h5 {
 
 p a {
   color: #393f81;
+}
+
+.error-msg {
+  color: firebrick;
+  font-weight: 500;
+}
+
+* {
+  font-family: 'Alegreya', serif;
+  color: black;
 }
 </style>

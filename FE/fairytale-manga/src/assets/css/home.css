@@ -136,6 +136,13 @@ span.time-comic-tab {
     font-weight: 800;
     font-size: 13px;
     margin-right: 2px;
+    /* Centre the digit in the circle; Alegreya's default old-style figures sit below the baseline. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    font-variant-numeric: lining-nums;
 }
 
 .comic-image-top-bxh {
@@ -176,17 +183,13 @@ span.time-comic-tab {
 }
 .top-bxh-row-header .row-top-bxh:nth-child(3) .number-top-bhx{
     background: #7e4a4f;
-    padding: 1px 8px;
 }
 .top-bxh-row-header .row-top-bxh:nth-child(4) .number-top-bhx{
     background: #4ed0e0;
-    padding: 1px 7px;
 }
 .top-bxh-row-header .row-top-bxh:nth-child(5) .number-top-bhx{
     background: #434754;
-    padding: 1px 7px;
 }
 .top-bxh-row-header .row-top-bxh:nth-child(6) .number-top-bhx{
     background: #8c8c8c;
-    padding: 1px 7px;
 }

@@ -1,315 +1,203 @@
-<template>
-  <div class="container">
-    <div class="d-flex align-items-center ">
-      <router-link :to="{path: '/admin/stories/'}" class="btn go-back" tag="button">
-        <b-icon variant="dark" icon="arrow-left"></b-icon>
-      </router-link>
-      <h2 class="page-header">Story Detail</h2>
-    </div>
-    <b-form @submit.prevent="onSubmit">
-      <div class="wrap-body">
-        <!--      left-->
+<script setup lang="ts">
+import { onMounted, reactive, shallowRef, ref, useTemplateRef } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { message, Modal } from 'ant-design-vue'
+import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons-vue'
+import { adminApi } from '@/api/client'
+import { useCategoriesStore } from '@/stores/categories'
+import { useAuthorsStore } from '@/stores/authors'
+import type { Chapter } from '@/types/models'
 
-        <div class="left-side">
+const route = useRoute()
+const router = useRouter()
+const storyId = String(route.params.id)
 
-          <div class="content">
+const categoriesStore = useCategoriesStore()
+const authorsStore = useAuthorsStore()
+const { options: categoryOptions } = storeToRefs(categoriesStore)
+const { options: authorOptions } = storeToRefs(authorsStore)
 
+const statusOptions = [
+  { value: false, label: 'On going' },
+  { value: true, label: 'Ended' },
+]
 
-            <b-form-group id="input-group-1" label="Title" label-for="str-title">
-              <b-form-input
-                  id="str-title"
-                  v-model="form.name"
-                  type="text"
-                  placeholder="Enter story name..."
-                  required
-              ></b-form-input>
-            </b-form-group>
+const form = reactive({
+  name: '',
+  author_id: undefined as number | undefined,
+  description: '',
+  images_url: '',
+  end: undefined as boolean | undefined,
+  selectedCategory: [] as number[],
+})
+const chapters = ref<Chapter[]>([])
+const imgInput = useTemplateRef<HTMLInputElement>('imgInput')
+const deleting = shallowRef(false)
 
-            <b-form-group label="Author">
-              <b-form-select v-model="form.author_id" :options="Authors.options"></b-form-select>
-            </b-form-group>
+const chapterColumns = [
+  { title: 'ID', dataIndex: 'id', key: 'id', width: '15%' },
+  { title: 'Chapter', dataIndex: 'name', key: 'name' },
+  { title: 'Actions', key: 'actions', align: 'right' as const },
+]
 
-            <b-form-group label="Category" v-slot="{ ariaDescribedby }">
-              <b-form-checkbox-group
-                  id="checkbox-group-category"
-                  v-model="form.selectedCategory"
-                  :options="Categories.option2"
-                  :aria-describedby="ariaDescribedby"
-                  stacked
-                  name="categories"
-              ></b-form-checkbox-group>
-            </b-form-group>
-            <b-form-group label="Description" label-for="textarea">
-              <b-form-textarea
-                  id="textarea"
-                  v-model="form.description"
-                  placeholder="Enter short summary for this story"
-                  rows="5"
-                  max-rows="8"
-                  required
-              ></b-form-textarea>
-            </b-form-group>
-          </div>
-          <div class="content">
-
-            <div class="btn-bottom">
-              <b-button class="my-btn" type="reset" variant="outline-danger" @click="deleteStory($route.params.id)">
-                Delete this story
-              </b-button>
-              <b-button class="my-btn-submit" type="submit" variant="outline-success">Save story</b-button>
-            </div>
-          </div>
-
-        </div>
-        <!--      right-->
-        <div class="right-side">
-          <div class="content">
-            <b-form>
-              <b-form-group label="Status">
-                <b-form-select v-model="form.end" :options="form.status"></b-form-select>
-              </b-form-group>
-            </b-form>
-          </div>
-          <div class="content">
-            <div>
-              <h6>Cover image</h6>
-            </div>
-            <div class="wrapped-image">
-              <b-form-file
-                  ref="imgInput"
-                  placeholder="Choose file or drop it here..."
-                  drop-placeholder="Drop image here..."
-              >
-              </b-form-file>
-            </div>
-          </div>
-          <div class="content">
-            <div>
-              <h6>Preview</h6>
-            </div>
-            <div class="wrapped-image d-flex justify-content-center">
-              <b-img :src="form.images_url" fluid alt="Responsive image"></b-img>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </b-form>
-    <div class="content">
-      <div class="d-flex justify-content-between align-items-center">
-        <h5>Chapters</h5>
-        <div>
-          <router-link class="btn btn-success"
-                       :to="{ path: '/admin/stories/'+ this.$route.params.id +'/new-chapter' }"
-                       role="button"><i class="fas fa-plus"></i> <b>New chapter</b>
-          </router-link>
-        </div>
-      </div>
-      <div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" width="100%" cellspacing="0">
-              <thead>
-              <tr>
-                <th class="col-2">ID</th>
-                <th class="col-5">Chapter</th>
-                <th class="col-5 col-last">Actions</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="chap in chapter" :key="chap.id">
-                <td class="col-2">{{ chap.id }}</td>
-                <td class="col-5">{{ chap.name }}</td>
-                <td class="col-5 ">
-                  <div class="d-flex justify-content-end actions">
-                    <router-link :to="{path:'/admin/stories/'+ $route.params.id + '/chapter/' + chap.id }" tag="button" class="btn btn-info">Details</router-link>
-                    <button class="btn btn-danger" @click="getNewData(chap.id)">Delete</button>
-                  </div>
-                </td>
-              </tr>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-</template>
-
-<script>
-import axios from "@/plugins/axios";
-
-import {createNamespacedHelpers} from "vuex";
-
-const categoriesStore = createNamespacedHelpers("categories");
-const authorsStore = createNamespacedHelpers("authors");
-export default {
-  name: 'AddNewStory',
-  data() {
-    return {
-      form: {
-        name: '',
-        author_id: null,
-        description: '',
-        images_url: '',
-        end: null,
-        status: [
-          {value: false, text: 'On going'},
-          {value: true, text: 'Ended'}
-        ],
-        selectedCategory: [], // list categories
-      },
-      chapter: {}
-    }
-  },
-  created() {
-    let self = this;
-    axios.get('admins/stories/' + this.$route.params.id)
-        .then(function (response) {
-          // handle success
-          // console.log(response.data.category)
-          // console.log(response.data.status)
-          self.form.name = response.data.name
-          self.form.author_id = response.data.author_id
-          self.form.description = response.data.description
-          self.form.end = response.data.status
-          self.form.images_url = response.data.image_url
-          self.form.selectedCategory = response.data.category.map(item => {
-            return item.id
-          })
-          // console.log("GET STORY DATA")
-          // console.log(response)
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    axios.get('admins/stories/' + this.$route.params.id + '/show_list_chapters')
-        .then(function (response) {
-          // handle success
-          // console.log("AAAAAAAAAAAAAA")
-          self.chapter = response.data.chapters
-          // console.log(response.data.chapters);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-  },
-  methods: {
-    ...categoriesStore.mapActions([
-      'getAllCategories'
-    ]),
-    ...authorsStore.mapActions([
-      'getAllAuthors'
-    ]),
-    getNewData(id) {
-      let self = this
-      this.deleteChapter(id)
-      setTimeout(function () {
-        self.getChapter()
-      }, 300)
-    },
-    getChapter() {
-      let self = this;
-      axios.get('admins/stories/' + this.$route.params.id + '/show_list_chapters')
-          .then(function (response) {
-            // handle success
-            self.chapter = response.data.chapters
-            // console.log("GGGGGGGG")
-            // console.log(response.data.chapters);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
-    },
-    onSubmit(e) {
-      e.preventDefault();
-      console.log(this.$refs.imgInput.files);
-      let formData = new FormData();
-      formData.append("name", this.form.name);
-      // console.log(this.form.name)
-      formData.append("author_id", this.form.author_id);
-      // console.log(this.form.author_id)
-      formData.append("description", this.form.description);
-      // console.log(this.form.description)
-      formData.append("end", this.form.end);
-      // console.log(this.form.end)
-      formData.append("categories_id", JSON.stringify(this.form.selectedCategory));
-      // console.log(this.form.selectedCategory)
-      if (this.$refs.imgInput.files[0]) formData.append("image", this.$refs.imgInput.files[0]);
-
-      axios.put(`/admins/stories/` + this.$route.params.id, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }).then(() => {
-        e.preventDefault();
-        alert("Update story successfully!")
-        this.$router.push('/admin/stories')
-      }).catch(() => {
-        e.preventDefault();
-        alert("Something wrong happened, please check again!");
-
-      });
-    },
-    deleteStory(id) {
-      if (confirm('Are you sure you want to delete this story? (All chapters of this story will be delete completely)')) {
-        // Delete it!
-        axios.delete(`admins/stories/${id}`)
-            .then(response => {
-              alert("Delete successfully")
-              this.$router.push("/admin/stories/")
-            })
-            .catch(function (error) {
-              console.log(error.response)
-            })
-        console.log('Story was deleted.');
-      } else {
-        // Do nothing!
-        console.log('Story was not deleted.');
-      }
-    },
-    deleteChapter(id) {
-      if (confirm('Are you sure you want to delete this chapter?')) {
-        // Delete it!
-        axios.delete(`http://localhost:3000/api/v1/admins/chapters/${id}`)
-            .then(response => {
-              alert("Delete chapter completed!!")
-              // this.$router.push('/admin/stories')
-            })
-            .catch(function (error) {
-              console.log(error.response)
-            })
-        console.log('Thing was deleted.');
-      } else {
-        // Do nothing!
-        console.log('Thing was not deleted.');
-      }
-    }
-  },
-  computed: {
-    Categories() {
-      // console.log("Categories selected:" + this.form.selectedCategory)
-      return this.$store.state.categories
-    },
-    Authors() {
-      // console.log("Author selected:" + this.form.author_id)
-      return this.$store.state.authors
-    }
-  },
-  mounted() {
-    this.getAllCategories(),
-        this.getAllAuthors()
+async function fetchStory() {
+  try {
+    const { data } = await adminApi.get(`admins/stories/${storyId}`)
+    form.name = data.name
+    form.author_id = data.author_id
+    form.description = data.description
+    form.end = data.status
+    form.images_url = data.image_url
+    form.selectedCategory = (data.category ?? []).map((item: { id: number }) => item.id)
+  } catch (error) {
+    console.error(error)
   }
 }
+
+async function fetchChapters() {
+  try {
+    const { data } = await adminApi.get<{ chapters: Chapter[] }>(`admins/stories/${storyId}/show_list_chapters`)
+    chapters.value = data.chapters
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function onSubmit() {
+  const formData = new FormData()
+  formData.append('name', form.name)
+  formData.append('author_id', String(form.author_id ?? null))
+  formData.append('description', form.description)
+  formData.append('end', String(form.end ?? null))
+  formData.append('categories_id', JSON.stringify(form.selectedCategory))
+  const file = imgInput.value?.files?.[0]
+  if (file) formData.append('image', file)
+  try {
+    await adminApi.put(`/admins/stories/${storyId}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    message.success('Update story successfully!')
+    router.push('/admin/stories')
+  } catch {
+    message.error('Something wrong happened, please check again!')
+  }
+}
+
+function deleteStory() {
+  Modal.confirm({
+    title: 'Are you sure you want to delete this story? (All chapters of this story will be delete completely)',
+    okType: 'danger',
+    async onOk() {
+      try {
+        await adminApi.delete(`admins/stories/${storyId}`)
+        message.success('Delete successfully')
+        router.push('/admin/stories/')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+  })
+}
+
+function deleteChapter(id: number) {
+  Modal.confirm({
+    title: 'Are you sure you want to delete this chapter?',
+    okType: 'danger',
+    async onOk() {
+      deleting.value = true
+      try {
+        await adminApi.delete(`admins/chapters/${id}`)
+        message.success('Delete chapter completed!!')
+        await fetchChapters()
+      } catch (error) {
+        console.error(error)
+      } finally {
+        deleting.value = false
+      }
+    },
+  })
+}
+
+onMounted(() => {
+  fetchStory()
+  fetchChapters()
+  categoriesStore.fetchOptions()
+  authorsStore.fetchOptions()
+})
 </script>
 
-<style scoped>
+<template>
+  <div class="p-4">
+    <div class="flex items-center">
+      <router-link to="/admin/stories/">
+        <a-button><template #icon><ArrowLeftOutlined /></template></a-button>
+      </router-link>
+      <h2 class="mx-5 my-0 text-2xl">Story Detail</h2>
+    </div>
+    <a-form layout="vertical" @finish="onSubmit">
+      <div class="flex items-start justify-center gap-5">
+        <div class="min-w-[66%]">
+          <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+            <a-form-item label="Title" name="name" :rules="[{ required: true, message: 'Enter story name' }]">
+              <a-input v-model:value="form.name" placeholder="Enter story name..." />
+            </a-form-item>
+            <a-form-item label="Author">
+              <a-select v-model:value="form.author_id" :options="authorOptions" />
+            </a-form-item>
+            <a-form-item label="Category">
+              <a-checkbox-group v-model:value="form.selectedCategory" :options="categoryOptions" class="grid grid-cols-3 gap-1" />
+            </a-form-item>
+            <a-form-item label="Description" name="description" :rules="[{ required: true, message: 'Enter a summary' }]">
+              <a-textarea v-model:value="form.description" placeholder="Enter short summary for this story" :auto-size="{ minRows: 5, maxRows: 8 }" />
+            </a-form-item>
+          </div>
+          <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+            <div class="flex items-center justify-center gap-20">
+              <a-button danger @click="deleteStory">Delete this story</a-button>
+              <a-button type="primary" html-type="submit">Save story</a-button>
+            </div>
+          </div>
+        </div>
+        <div class="min-w-[30%]">
+          <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+            <a-form-item label="Status" class="mb-0">
+              <a-select v-model:value="form.end" :options="statusOptions" />
+            </a-form-item>
+          </div>
+          <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+            <h6 class="mb-2 font-semibold">Cover image</h6>
+            <input class="w-full max-w-full" ref="imgInput" type="file" accept="image/*" />
+          </div>
+          <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+            <h6 class="mb-2 font-semibold">Preview</h6>
+            <div class="flex justify-center">
+              <img v-if="form.images_url" :src="form.images_url" class="max-w-full h-auto" alt="Cover preview" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </a-form>
 
-@import url(@/assets/css/story.css);
-</style>
+    <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+      <div class="mb-3 flex items-center justify-between">
+        <h5 class="m-0 text-lg font-semibold">Chapters</h5>
+        <router-link :to="`/admin/stories/${storyId}/new-chapter`">
+          <a-button type="primary"><template #icon><PlusOutlined /></template>New chapter</a-button>
+        </router-link>
+      </div>
+      <a-table :scroll="{ x: 'max-content' }" :columns="chapterColumns" :data-source="chapters" row-key="id" :pagination="false" bordered>
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.key === 'actions'">
+            <div class="flex justify-end gap-2">
+              <router-link :to="`/admin/stories/${storyId}/chapter/${record.id}`">
+                <a-button type="primary" ghost>Details</a-button>
+              </router-link>
+              <a-button danger :loading="deleting" @click="deleteChapter(record.id)">Delete</a-button>
+            </div>
+          </template>
+        </template>
+      </a-table>
+    </div>
+  </div>
+</template>

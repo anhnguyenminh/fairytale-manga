@@ -1,20 +1,10 @@
+<script setup lang="ts">
+import Login from '@/components/Client/Login.vue'
+// Login2.vue is an unused static variant of the form (the original view had it commented out).
+</script>
+
 <template>
   <div class="login-view">
-<!--    <login></login>-->
-    <login-default></login-default>
+    <Login />
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import Login from '@/components/Client/Login.vue'
-import Login2 from '@/components/Client/Login2.vue'
-
-export default {
-  name: 'LoginView',
-  components: {
-    'login-default': Login,
-    'login': Login2
-  }
-}
-</script>

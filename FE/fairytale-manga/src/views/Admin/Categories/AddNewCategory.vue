@@ -1,94 +1,79 @@
-<template>
-  <div class="container" style="width: 60%; ">
-    <div class="d-flex align-items-center ">
-      <b-button style="background-color: #f1f1f1" @click="goBack">
-        <b-icon variant="dark" icon="arrow-left"></b-icon>
-      </b-button>
-      <h2 style="margin: 0 1.2rem ;">Create New Category</h2>
-    </div>
-    <div style="background-color: #f1f1f1; margin: 1.5rem 0 ;padding: 1.25rem 1rem; border-radius: 0.5rem; ">
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-        <b-form-group id="input-group-1" label="Title" label-for="input-1">
-          <b-form-input
-              id="input-1"
-              v-model="form.name"
-              type="text"
-              placeholder="Category name..."
-              required
-          ></b-form-input>
-        </b-form-group>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { reactive, shallowRef } from 'vue'
+import { message } from 'ant-design-vue'
+import { ArrowLeftOutlined } from '@ant-design/icons-vue'
+import { adminApi } from '@/api/client'
+import { TARGET_GENDER_OPTIONS } from '@/constants/gender'
 
-        <b-form-group id="input-group-2" label="Description" label-for="textarea">
-          <b-form-textarea
-              id="textarea"
-              v-model="form.description"
-              placeholder="Enter description for this category"
-              rows="3"
-              max-rows="6"
-              required
-          ></b-form-textarea>
-        </b-form-group>
 
-        <div style="text-align: center;">
-          <b-button class="my-btn" type="reset" variant="info">Reset</b-button>
-          <b-button class="my-btn" type="submit" variant="success">Save</b-button>
-        </div>
-      </b-form>
-    </div>
-    <b-card class="mt-3" header="Preview Data">
-      <p class="m-0 font-weight-bold">Category: {{ form.name }}</p>
-      <p class="m-0 font-weight-bold">Description: {{ form.description }}</p>
-    </b-card>
-  </div>
-</template>
+const router = useRouter()
 
-<script>
-import axios from "@/plugins/axios";
+const form = reactive({ name: '', description: '', target_gender: '' })
+const saving = shallowRef(false)
 
-export default {
-  name: 'AddNewCategory',
-  data() {
-    return {
-      form: {
-        name: '',
-        description: ''
-      },
-      show: true
-    }
-  },
-  methods: {
-    onSubmit(event) {
-      event.preventDefault()
-      axios.post('admins/categories', this.form)
-          .then((res) => {
-            //Perform Success Action
-            alert("Add new category completed!")
-            this.$router.push({path: "/admin/categories/"})
-          })
-          .catch((error) => {
-            // error.response.status Check status code
-          })
-     },
-    onReset(event) {
-      event.preventDefault()
-      // Reset our form values
-      this.form.name = ''
-      this.form.description = ''
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
-    },
-    goBack(){
-      this.$router.push({path: "/admin/categories"})
-    }
+async function onSubmit() {
+  saving.value = true
+  try {
+    await adminApi.post('admins/categories', form)
+    message.success('Add new category completed!')
+    router.push({ path: '/admin/categories' })
+  } catch (err) {
+    const e = err as { response?: { data?: { message?: string } } }
+    message.error(e.response?.data?.message ?? 'Request failed')
+  } finally {
+    saving.value = false
   }
+}
+
+function onReset() {
+  form.name = ''
+  form.description = ''
+  form.target_gender = ''
+}
+
+function goBack() {
+  router.push({ path: '/admin/categories' })
 }
 </script>
 
-<style scoped>
-.my-btn {
-  margin: 0 1.5rem;
-}
-</style>
+<template>
+  <div class="container mx-auto w-3/5">
+    <div class="flex items-center">
+      <a-button @click="goBack">
+        <template #icon><ArrowLeftOutlined /></template>
+      </a-button>
+      <h2 class="my-0 mx-5 text-2xl">Create New Category</h2>
+    </div>
+    <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
+      <a-form layout="vertical" :model="form" @finish="onSubmit">
+        <a-form-item label="Title" name="name" :rules="[{ required: true, message: 'Please enter a name' }]">
+          <a-input v-model:value="form.name" placeholder="Category name..." />
+        </a-form-item>
+
+        <a-form-item label="Description" name="description"
+          :rules="[{ required: true, message: 'Please enter a description' }]">
+          <a-textarea
+            v-model:value="form.description"
+            placeholder="Enter description for this category"
+            :auto-size="{ minRows: 3, maxRows: 6 }"
+          />
+        </a-form-item>
+
+        <a-form-item label="Gợi ý cho" name="target_gender" extra="Không chọn: hiện cho cả nam và nữ.">
+          <a-select v-model:value="form.target_gender" :options="TARGET_GENDER_OPTIONS" />
+        </a-form-item>
+
+        <div class="flex justify-center gap-6">
+          <a-button @click="onReset">Reset</a-button>
+          <a-button type="primary" html-type="submit" :loading="saving">Save</a-button>
+        </div>
+      </a-form>
+    </div>
+    <a-card class="mt-3" title="Preview Data">
+      <p class="m-0 font-bold">Category: {{ form.name }}</p>
+      <p class="m-0 font-bold">Description: {{ form.description }}</p>
+      <p class="m-0 font-bold">Gợi ý cho: {{ form.target_gender || 'Cả hai giới' }}</p>
+    </a-card>
+  </div>
+</template>

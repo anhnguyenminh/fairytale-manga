@@ -1,17 +1,9 @@
+<script setup lang="ts">
+import Sidebar from '@/components/Admin/Sidebar.vue'
+</script>
+
 <template>
   <div class="dashboard">
-    <Sidebar></Sidebar>
+    <Sidebar />
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import Sidebar from "@/components/Admin/Sidebar";
-
-export default {
-  name: 'DashboardView',
-  components: {
-    Sidebar
-  }
-}
-</script>

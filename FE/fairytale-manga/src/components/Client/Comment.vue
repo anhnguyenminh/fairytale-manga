@@ -1,39 +1,47 @@
+<script setup lang="ts">
+interface CommentItem {
+  id: number
+  author: string
+  chapter: string
+  time: string
+  content: string
+  avatar: string
+}
+
+// Static placeholder comments (not backed by an API yet, same as the original).
+const avatar = 'https://graph.facebook.com/v3.0/1104705490285804/picture?type=normal'
+const comments: CommentItem[] = [
+  { id: 114822, author: 'Ellen Phạm', chapter: 'Chapter 7.2', time: '2021/12/27 23:30', content: 'má plot này quả thực chưa nghĩ đến', avatar },
+  { id: 114812, author: 'Ellen Phạm', chapter: 'Chapter 7.2', time: '2021/12/27 23:30', content: 'má plot này quả thực chưa nghĩ đến', avatar },
+]
+</script>
+
 <template>
-  <div class="container comment-area">
+  <div class="container mx-auto comment-area">
     <div class="load-comment-content" style="padding: 0 15px">
-      <ul class="nav nav-tabs main-tab">
+      <ul class="nav nav-tabs main-tab list-none p-0">
         <li class="comment-active">
-          <a data-toggle="tab" href="#nt_comments">
-            <i class="fa fa-comments"></i> <span class="text-uppercase">Bình luận</span> (<span class="comment-count">430</span>)
+          <a href="#nt_comments">
+            <i class="fa fa-comments"></i> <span class="uppercase">Bình luận</span> (<span class="comment-count">430</span>)
           </a>
         </li>
       </ul>
       <div class="body-content-comment-area">
-        <form action="" id="form-comment">
-          <input type="hidden" name="manga_vote_url" value="https://qmanga3.net/set-vote">
-          <input type="hidden" name="manga_bookmark_url" value="https://qmanga3.net/set-bookmark">
-          <input type="hidden" name="manga_bookmark_chapter_url" value="https://qmanga3.net/set-bookmark-chapter">
-          <input type="hidden" name="manga_id" value="13595">
-          <input type="hidden" name="action_comment" value="https://qmanga3.net/chuc-nang-binh-luan">
-          <input type="hidden" name="comment_id">
-          <input type="hidden" name="chapter_id">
+        <form id="form-comment" @submit.prevent>
           <div class="form-group">
-              <textarea class="form-control comment-content" id="comment-content" rows="5" name="content"
-                        placeholder="Nhập nội dung bình luận ..."></textarea>
+            <a-textarea class="comment-content" :rows="5" placeholder="Nhập nội dung bình luận ..." />
           </div>
           <div class="form-group btn-submit">
             <button type="submit" class="btn-more btn-submit-comment"> Gửi</button>
           </div>
           <div id="comment-message-alert"></div>
-
         </form>
       </div>
-      <!--        body comment-->
       <div class="content-comment">
         <ul class="ul-content-comment">
-          <li class="single-comment" id="commentID114822">
+          <li v-for="comment in comments" :id="`commentID${comment.id}`" :key="comment.id" class="single-comment">
             <div class="image-li-content-comment">
-              <img class=" lazyloaded" src="https://graph.facebook.com/v3.0/1104705490285804/picture?type=normal">
+              <img class="lazyloaded" :src="comment.avatar" />
             </div>
             <div class="content-li-content-comment">
               <div class="three-dots-comments">
@@ -43,59 +51,22 @@
                   <p data-type="delete">Xóa</p>
                 </div>
               </div>
-              <!--                user comment-->
               <div class="h3-span-content-li-content-comment">
-                <h3>Ellen Phạm </h3>
-                <span class="chapter-comment">Chapter 7.2</span>
-                <span>2021/12/27 23:30</span>
+                <h3>{{ comment.author }}</h3>
+                <span class="chapter-comment">{{ comment.chapter }}</span>
+                <span>{{ comment.time }}</span>
               </div>
-              <!--                body-comment-->
-              <span class="summary-content-li-content-comment">má plot này quả thực chưa nghĩ đến</span>
+              <span class="summary-content-li-content-comment">{{ comment.content }}</span>
               <a class="reply">Trả lời</a>
-              <!--                href="javascript:;" onclick="replyComment(`114822`, `@Ellen Phạm`, `1447`)" -->
             </div>
-            <div class="replyComment" id="replyCommentID114822"></div>
-          </li>
-
-          <!--            second comment-->
-          <li class="single-comment" id="commentID114812">
-            <div class="image-li-content-comment">
-              <img class=" lazyloaded" src="https://graph.facebook.com/v3.0/1104705490285804/picture?type=normal">
-            </div>
-            <div class="content-li-content-comment">
-              <div class="three-dots-comments">
-                <span>...</span>
-                <div class="action-three-dots-comments">
-                  <p data-type="report">Báo cáo</p>
-                  <p data-type="delete">Xóa</p>
-                </div>
-              </div>
-              <!--                user comment-->
-              <div class="h3-span-content-li-content-comment">
-                <h3>Ellen Phạm </h3>
-                <span class="chapter-comment">Chapter 7.2</span>
-                <span>2021/12/27 23:30</span>
-              </div>
-              <!--                body-comment-->
-              <span class="summary-content-li-content-comment">má plot này quả thực chưa nghĩ đến</span>
-              <a class="reply">Trả lời</a>
-              <!--                href="javascript:;" onclick="replyComment(`114822`, `@Ellen Phạm`, `1447`)" -->
-            </div>
-            <div class="replyComment" id="replyCommentID114812"></div>
+            <div :id="`replyCommentID${comment.id}`" class="replyComment"></div>
           </li>
         </ul>
       </div>
-
     </div>
-
-
   </div>
 </template>
-<script>
-require('@/assets/css/story-details.css')
-</script>
 
 <style scoped>
-
 @import url(@/assets/css/story-details.css);
 </style>
