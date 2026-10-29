@@ -9,15 +9,15 @@ import { useAuthStore } from '@/stores/auth'
 const router = useRouter()
 const auth = useAuthStore()
 
-const admin = reactive({ adminEmail: '', adminPwd: '' })
+const admin = reactive({ email: '', password: '' })
 
 if (auth.adminToken) router.push('/admin/stories')
 
 async function adminAuthenticate() {
   try {
     const response = await adminApi.post('admins/sessions', {
-      email: admin.adminEmail,
-      password: admin.adminPwd,
+      email: admin.email,
+      password: admin.password,
     })
     if (response.status === 200) {
       auth.setAdminToken(response.data.token)
@@ -34,12 +34,12 @@ async function adminAuthenticate() {
   <section class="flex min-h-screen items-center justify-center bg-[#6959CD] px-4 py-12">
     <div class="w-full max-w-md rounded-2xl bg-white p-10 shadow-lg">
       <h3 class="mb-8 text-center text-2xl">Login</h3>
-      <a-form layout="vertical" @finish="adminAuthenticate">
+      <a-form layout="vertical" :model="admin" @finish="adminAuthenticate">
         <a-form-item name="email">
-          <a-input v-model:value="admin.adminEmail" type="email" size="large" placeholder="Email" required />
+          <a-input v-model:value="admin.email" type="email" size="large" placeholder="Email" required />
         </a-form-item>
         <a-form-item name="password">
-          <a-input-password v-model:value="admin.adminPwd" size="large" placeholder="Password" required />
+          <a-input-password v-model:value="admin.password" size="large" placeholder="Password" required />
         </a-form-item>
         <a-form-item>
           <a-checkbox>Remember password</a-checkbox>

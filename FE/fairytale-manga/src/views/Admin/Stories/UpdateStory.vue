@@ -135,7 +135,7 @@ onMounted(() => {
       </router-link>
       <h2 class="mx-5 my-0 text-2xl">Story Detail</h2>
     </div>
-    <a-form layout="vertical" @finish="onSubmit">
+    <a-form layout="vertical" :model="form" @finish="onSubmit">
       <div class="flex items-start justify-center gap-5">
         <div class="min-w-[66%]">
           <div class="my-6 rounded-lg bg-[#f1f1f1] px-4 py-5">
