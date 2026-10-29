@@ -43,7 +43,7 @@ function logout() {
 </script>
 
 <template>
-  <nav class="flex flex-col bg-[#6959CD] text-white">
+  <nav class="flex flex-col bg-admin text-white">
     <div class="mt-8 flex flex-col items-center">
       <img src="@/assets/images/logo-while.png" alt="app-logo" />
     </div>
@@ -67,7 +67,7 @@ function logout() {
         :key="link.to"
         :to="link.to"
         class="menu-item flex gap-4 border-l-4 px-6 py-3 text-lg font-bold no-underline transition-colors"
-        :class="isActive(link) ? 'border-white bg-[#F4F6FA] !text-[#6959CD]' : 'border-transparent !text-white hover:bg-white/20'"
+        :class="isActive(link) ? 'border-white bg-admin-light !text-admin' : 'border-transparent !text-white hover:bg-white/20'"
         :aria-current="isActive(link) ? 'page' : undefined"
       >
         <i :class="['fas', 'w-6 text-center', link.icon]"></i>
