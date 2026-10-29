@@ -49,7 +49,7 @@ onMounted(() => store.fetchPage())
       <a-table :scroll="{ x: 'max-content' }" :columns="columns" :data-source="gifts" row-key="id" :pagination="false" bordered>
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'image'">
-            <img :src="record.image_url" class="mx-auto max-w-[200px]" alt="" />
+            <img :src="record.image_url" class="mx-auto max-h-24 max-w-[120px] object-contain sm:max-h-none sm:max-w-[200px]" alt="" />
           </template>
           <template v-else-if="column.key === 'actions'">
             <div class="flex items-center justify-end gap-2">
