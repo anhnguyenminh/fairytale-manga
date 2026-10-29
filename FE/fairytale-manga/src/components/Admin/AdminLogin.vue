@@ -5,9 +5,11 @@ import { message } from 'ant-design-vue'
 import { isAxiosError } from 'axios'
 import { adminApi } from '@/api/client'
 import { useAuthStore } from '@/stores/auth'
+import { useProfileStore } from '@/stores/profile'
 
 const router = useRouter()
 const auth = useAuthStore()
+const profile = useProfileStore()
 
 const admin = reactive({ email: '', password: '' })
 const remember = shallowRef(false)
@@ -21,6 +23,7 @@ async function adminAuthenticate() {
       password: admin.password,
     })
     if (response.status === 200) {
+      profile.resetAdmin()
       auth.setAdminToken(response.data.token, remember.value)
       router.push({ path: '/admin/stories' })
     }

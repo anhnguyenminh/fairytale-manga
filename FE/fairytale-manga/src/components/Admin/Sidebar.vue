@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useProfileStore } from '@/stores/profile'
+import { ROLE_LABELS } from '@/constants/admin'
 
-interface MenuLink { to: string; icon: string; label: string }
+interface MenuLink { to: string; icon: string; label: string; adminOnly?: boolean }
 
-const links: MenuLink[] = [
+const allLinks: MenuLink[] = [
   { to: '/admin/stories/', icon: 'fa-books', label: 'Stories' },
-  { to: '/admin/categories', icon: 'fa-th-large', label: 'Categories' },
-  { to: '/admin/authors', icon: 'fa-marker', label: 'Authors' },
-  { to: '/admin/readers', icon: 'fa-book-reader', label: 'Readers' },
-  { to: '/admin/gifts', icon: 'fa-gift', label: 'Gifts' },
+  { to: '/admin/categories', icon: 'fa-th-large', label: 'Categories', adminOnly: true },
+  { to: '/admin/authors', icon: 'fa-marker', label: 'Authors', adminOnly: true },
+  { to: '/admin/readers', icon: 'fa-book-reader', label: 'Readers', adminOnly: true },
+  { to: '/admin/gifts', icon: 'fa-gift', label: 'Gifts', adminOnly: true },
+  { to: '/admin/staff', icon: 'fa-user-shield', label: 'Staff', adminOnly: true },
 ]
 
 const router = useRouter()
 const auth = useAuthStore()
 const profile = useProfileStore()
 
+// Moderators only see the story tools.
+const links = computed(() => allLinks.filter((link) => !link.adminOnly || profile.isAdmin))
+const roleLabel = computed(() => (profile.admin ? ROLE_LABELS[profile.admin.role] : ''))
+
 function logout() {
   auth.clearTokens()
+  profile.resetAdmin()
   router.push({ path: '/admin/login' })
 }
-
-onMounted(() => {
-  profile.fetchAdmin()
-})
 </script>
 
 <template>
@@ -35,14 +38,11 @@ onMounted(() => {
     </div>
 
     <div class="mt-10 flex flex-col items-center">
-      <img
-        class="mb-4 h-[75px] w-[75px] rounded-md"
-        src="https://preview.keenthemes.com/metronic8/demo15/assets/media/avatars/300-1.jpg"
-        alt="avatar"
-      />
+      <img class="mb-4 h-[75px] w-[75px] rounded-md object-cover" :src="profile.adminAvatar" alt="avatar" />
       <router-link to="/admin/profile-admin/" class="text-lg font-semibold !text-white hover:!text-blue-900">
-        Admin Control
+        {{ profile.adminName }}
       </router-link>
+      <span v-if="roleLabel" class="mt-1 rounded bg-white/20 px-2 py-0.5 text-xs">{{ roleLabel }}</span>
     </div>
 
     <div class="mt-6 flex flex-col">

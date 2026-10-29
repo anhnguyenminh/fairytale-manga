@@ -1,3 +1,5 @@
+import type { AdminRole, PublishStatus } from '@/constants/admin'
+
 /** Mirrors Backend/app/controllers/concerns/response.rb#meta_data (Pagy). */
 export interface PageMeta {
   total?: number
@@ -25,6 +27,7 @@ export interface Reader {
 export interface Story {
   id: number
   name: string
+  publish_status?: PublishStatus
   description?: string
   status?: string
   author_name?: string
@@ -32,3 +35,14 @@ export interface Story {
 }
 export interface Chapter { id: number; name: string; images_url?: string[] }
 export interface SelectOption { value: number; label: string }
+
+export interface AdminProfile {
+  id: number
+  email: string
+  username: string | null
+  full_name: string | null
+  phone: string | null
+  bio: string | null
+  role: AdminRole
+  image_url: string | null
+}
