@@ -43,7 +43,7 @@ function logout() {
 </script>
 
 <template>
-  <nav class="flex h-full flex-col bg-[#6959CD] text-white">
+  <nav class="flex flex-col bg-[#6959CD] text-white">
     <div class="mt-8 flex flex-col items-center">
       <img src="@/assets/images/logo-while.png" alt="app-logo" />
     </div>
@@ -52,7 +52,7 @@ function logout() {
       <img class="mb-4 h-[75px] w-[75px] rounded-md object-cover" :src="profile.adminAvatar" alt="avatar" />
       <router-link
         to="/admin/profile-admin/"
-        class="rounded px-2 text-lg font-semibold !text-white hover:!text-blue-900"
+        class="rounded px-2 text-lg font-semibold no-underline !text-white hover:!text-blue-900"
         :class="{ 'bg-white/25': profileActive }"
         :aria-current="profileActive ? 'page' : undefined"
       >
@@ -66,18 +66,18 @@ function logout() {
         v-for="link in links"
         :key="link.to"
         :to="link.to"
-        class="menu-item flex gap-4 border-l-4 px-6 py-3 text-lg font-bold hover:bg-[#F4F6FA] hover:!text-[#6959CD]"
-        :class="isActive(link) ? 'border-white bg-[#F4F6FA] !text-[#6959CD]' : 'border-transparent !text-white'"
+        class="menu-item flex gap-4 border-l-4 px-6 py-3 text-lg font-bold no-underline transition-colors"
+        :class="isActive(link) ? 'border-white bg-[#F4F6FA] !text-[#6959CD]' : 'border-transparent !text-white hover:bg-white/20'"
         :aria-current="isActive(link) ? 'page' : undefined"
       >
-        <i :class="['fas', link.icon]"></i>
+        <i :class="['fas', 'w-6 text-center', link.icon]"></i>
         <span>{{ link.label }}</span>
       </router-link>
       <div
-        class="menu-item flex cursor-pointer gap-4 border-l-4 border-transparent px-6 py-3 text-lg font-bold hover:bg-[#F4F6FA] hover:text-[#6959CD]"
+        class="menu-item flex cursor-pointer gap-4 border-l-4 border-transparent px-6 py-3 text-lg font-bold no-underline transition-colors hover:bg-white/20"
         @click="logout"
       >
-        <i class="fas fa-sign-out-alt"></i>
+        <i class="fas fa-sign-out-alt w-6 text-center"></i>
         <span>Logout</span>
       </div>
     </div>
